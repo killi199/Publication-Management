@@ -1,0 +1,629 @@
+openapi: 3.0.3
+info:
+  title: Swagger Petstore - OpenAPI 3.0
+  version: 0.0.1
+servers:
+  - url: http.//localhost:8080/
+tags:
+  - name: Publications
+    description: books, articles or all other science stuff you can borrow
+  - name: Assignment
+    description: publication assignments
+  - name: Kind of publications
+    description: categories for the publications
+  - name: Keywords
+    description: keywords of the publications
+  - name: Borrower
+    description: people that are allowed to borrow publications
+  - name: Overdue notice
+    description: handle the overdue assignments
+paths:
+  /publication:
+    get:
+      tags:
+        - Publications
+      summary: Get all existing publication
+      description: Get all existing publication
+      operationId: getPublication
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array 
+                items:
+                  $ref: '#/components/schemas/Publication'          
+            application/xml:
+              schema:
+                type: array 
+                items:
+                  $ref: '#/components/schemas/Publication'
+        '400':
+          description: Invalid key supplied
+        '404':
+          description: Publication not found
+        '405':
+          description: Validation exception
+    put:
+      tags:
+        - Publications
+      summary: Update a existing publication
+      description: Update a existing publication
+      operationId: updatePublication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Publication'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Publication'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Publication'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Publication'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Publication'
+        '400':
+          description: Invalid key supplied
+        '404':
+          description: Publication not found
+        '405':
+          description: Validation exception
+    post:
+      tags:
+        - Publications
+      summary: Create a publication
+      description: Create a publication
+      operationId: createPublication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Publication'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Publication'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Publication'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Publication'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Publication'
+        '400':
+          description: Invalid key supplied
+        '404':
+          description: Publication not found
+        '405':
+          description: Validation exception
+  /publication/{key}:
+    delete:
+      tags:
+        - Publications
+      summary: Delete a publication
+      operationId: deletePublication
+      parameters:
+        - name: key
+          in: path
+          description: Key of the publication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Invalid key supplied
+        '404':
+          description: Publication not found
+        '405':
+          description: Validation exception
+          
+  /borrower:
+    get:
+      tags:
+        - Borrower
+      summary: Get all existing borrower
+      description: Get all existing borrower
+      operationId: getBorrower
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array 
+                items:
+                  $ref: '#/components/schemas/Borrower'          
+            application/xml:
+              schema:
+                type: array 
+                items:
+                  $ref: '#/components/schemas/Borrower'
+        '400':
+          description: Invalid uuid supplied
+        '404':
+          description: Publication not found
+        '405':
+          description: Validation exception
+    put:
+      tags:
+        - Borrower
+      summary: Update a existing borrower
+      description: Update a existing borrower
+      operationId: updateBorrower
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Borrower'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Borrower'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Borrower'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Borrower'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Borrower'
+        '400':
+          description: Invalid uuid supplied
+        '404':
+          description: Publication not found
+        '405':
+          description: Validation exception
+    post:
+      tags:
+        - Borrower
+      summary: Create a borrower
+      description: Create a borrower
+      operationId: createBorrower
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BorrowerCreate'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/BorrowerCreate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BorrowerCreate'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Borrower'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Borrower'
+        '400':
+          description: Invalid uuid supplied
+        '404':
+          description: Publication not found
+        '405':
+          description: Validation exception
+  /borrower/{uuid}:
+    delete:
+      tags:
+        - Borrower
+      summary: Delete a borrower
+      operationId: deleteBorrower
+      parameters:
+        - name: uuid
+          in: path
+          description: Uuid of the borrower
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Invalid uuid supplied
+        '404':
+          description: Publication not found
+        '405':
+          description: Validation exception
+  /assignment/extend/{uuid}:
+    put:
+      tags:
+        - Assignment
+      summary: extend the assignment
+      operationId: extendAssignment
+      parameters:
+        - name: uuid
+          in: path
+          description: Uuid of the assignment
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful assignment
+          content:
+            application/json:
+              schema:
+                type: array 
+                items:
+                  $ref: '#/components/schemas/Assignment'          
+            application/xml:
+              schema:
+                type: array 
+                items:
+                  $ref: '#/components/schemas/Assignment'
+        '400':
+          description: Invalid uuid supplied
+        '404':
+          description: Publication not found
+        '405':
+          description: Validation exception
+  /assignment/extendable/{uuid}:
+    post:
+      tags:
+        - Assignment
+      summary: check if the assignment is extandable
+      operationId: extendableAssignment
+      parameters:
+        - name: uuid
+          in: path
+          description: Uuid of the assignment
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful assignment
+          content:
+            application/json:
+              schema:
+                type: boolean        
+            application/xml:
+              schema:
+                type: boolean
+        '400':
+          description: Invalid uuid supplied
+        '404':
+          description: Publication not found
+        '405':
+          description: Validation exception
+  /assignment:
+    get:
+      tags:
+        - Assignment
+      summary: Get all existing assignment
+      description: Get all existing assignment
+      operationId: getAssignment
+      responses:
+        '200':
+          description: Successful assignment
+          content:
+            application/json:
+              schema:
+                type: array 
+                items:
+                  $ref: '#/components/schemas/Assignment'          
+            application/xml:
+              schema:
+                type: array 
+                items:
+                  $ref: '#/components/schemas/Assignment'
+        '400':
+          description: Invalid uuid supplied
+        '404':
+          description: Publication not found
+        '405':
+          description: Validation exception
+    put:
+      tags:
+        - Assignment
+      summary: Update a existing assignment
+      description: Update a existing assignment
+      operationId: updateAssignment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Assignment'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Assignment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Assignment'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Assignment'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Assignment'
+        '400':
+          description: Invalid uuid supplied
+        '404':
+          description: Publication not found
+        '405':
+          description: Validation exception
+    post:
+      tags:
+        - Assignment
+      summary: Create a assignment
+      description: Create a assignment
+      operationId: createAssignment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignmentCreate'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/AssignmentCreate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AssignmentCreate'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Assignment'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Assignment'
+        '400':
+          description: Invalid uuid supplied
+        '404':
+          description: Publication not found
+        '405':
+          description: Validation exception
+  /assignment/{uuid}:
+    delete:
+      tags:
+        - Assignment
+      summary: Delete a assignment
+      operationId: deleteAssignment
+      parameters:
+        - name: uuid
+          in: path
+          description: Uuid of the assignment
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Invalid uuid supplied
+        '404':
+          description: Publication not found
+        '405':
+          description: Validation exception
+  /overdue-notice/warning/{overdueNoticeUuid}:
+    post:
+      tags:
+        - Overdue notice
+      summary: Create a Warning
+      operationId: createWarning
+      parameters:
+        - name: overdueNoticeUuid
+          in: path
+          description: Uuid of the overdue notice
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful overdue notice
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Warning'          
+            application/xml:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Warning'
+        '400':
+          description: Invalid uuid supplied
+        '404':
+          description: Publication not found
+        '405':
+          description: Validation exception
+  /overdue-notice:
+    get:
+      tags:
+        - Overdue notice
+      summary: Get all existing overdue notice
+      description: Get all existing overdue notice
+      operationId: getOverdueNotice
+      responses:
+        '200':
+          description: Successful overdue notice
+          content:
+            application/json:
+              schema:
+                type: array 
+                items:
+                  $ref: '#/components/schemas/OverdueNotice'          
+            application/xml:
+              schema:
+                type: array 
+                items:
+                  $ref: '#/components/schemas/OverdueNotice'
+        '400':
+          description: Invalid uuid supplied
+        '404':
+          description: Publication not found
+        '405':
+          description: Validation exception
+  /overdue-notice/{uuid}:
+    delete:
+      tags:
+        - Overdue notice
+      summary: Delete a overdue notice caused by loss
+      operationId: deleteOverdueNotice
+      parameters:
+        - name: uuid
+          in: path
+          description: Uuid of the overdue notice
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Invalid uuid supplied
+        '404':
+          description: Publication not found
+        '405':
+          description: Validation exception
+components:
+  schemas:
+    KindOfPublication:
+      type: string
+    Keyword:
+      type: string
+    Borrower:
+      type: object
+      properties:
+        uuid:
+          type: string
+        vorname:
+          type: string
+        nachname:
+          type: string
+        matrikelnummer:
+          type: string
+    BorrowerCreate:
+      type: object
+      properties:
+        vorname:
+          type: string
+        nachname:
+          type: string
+        matrikelnummer:
+          type: string
+    Publication:
+      type: object
+      properties:
+        key:
+          type: string
+        titel:
+          type: string
+        author:
+          type: string
+        dateOfPublication:
+          type: string
+          format: date-time
+        publisher:
+          type: string
+        kindOfPublication:
+          $ref: '#/components/schemas/KindOfPublication'
+        ISBN:
+          type: string
+        keywords:
+          type: array
+          items:
+            $ref: '#/components/schemas/Keyword'
+        quantity:
+          type: integer
+          format: int64
+          example: 69
+    Assignment:
+      type: object
+      properties:
+        uuid:
+          type: string
+        dateOfAssignment:
+          type: string
+          format: date-time
+        dateOfReturn:
+          type: string
+          format: date-time
+        publicationKey:
+          type: string
+        borrower: 
+          $ref: '#/components/schemas/Borrower'
+    AssignmentCreate:
+      type: object
+      properties:
+        dateOfAssignment:
+          type: string
+          format: date-time
+        dateOfReturn:
+          type: string
+          format: date-time
+        publicationKey:
+          type: string
+        borrower: 
+          $ref: '#/components/schemas/Borrower'
+    Warning:
+      type: object
+      properties:
+        uuid:
+          type: string
+        overdueNoticeUuid:
+          type: string
+        warningDate:
+          type: string
+          format: date-time
+    OverdueNotice:
+      type: object
+      properties:
+        uuid:
+          type: string
+        assignmentUuid:
+          type: string
+        warnings:
+          $ref: '#/components/schemas/Warning'
