@@ -3,7 +3,7 @@ info:
   title: Swagger Petstore - OpenAPI 3.0
   version: 0.0.1
 servers:
-  - url: http.//localhost:8080/
+  - url: http://localhost:8080/rest
 tags:
   - name: Publications
     description: books, articles or all other science stuff you can borrow
@@ -25,18 +25,25 @@ paths:
       summary: Get all existing publication
       description: Get all existing publication
       operationId: getPublication
+      parameters:
+        - name: showDeleted
+          in: query
+          description: show deleted publications
+          required: true
+          schema:
+            type: boolean
       responses:
         '200':
           description: Successful operation
           content:
             application/json:
               schema:
-                type: array 
+                type: array
                 items:
-                  $ref: '#/components/schemas/Publication'          
+                  $ref: '#/components/schemas/Publication'
             application/xml:
               schema:
-                type: array 
+                type: array
                 items:
                   $ref: '#/components/schemas/Publication'
         '400':
@@ -69,7 +76,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Publication'          
+                $ref: '#/components/schemas/Publication'
             application/xml:
               schema:
                 $ref: '#/components/schemas/Publication'
@@ -85,6 +92,13 @@ paths:
       summary: Create a publication
       description: Create a publication
       operationId: createPublication
+      parameters:
+        - name: override
+          in: query
+          description: override existing publication with same key
+          required: true
+          schema:
+            type: boolean
       requestBody:
         content:
           application/json:
@@ -103,7 +117,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Publication'          
+                $ref: '#/components/schemas/Publication'
             application/xml:
               schema:
                 $ref: '#/components/schemas/Publication'
@@ -139,7 +153,6 @@ paths:
           description: Publication not found
         '405':
           description: Validation exception
-          
   /borrower:
     get:
       tags:
@@ -153,12 +166,12 @@ paths:
           content:
             application/json:
               schema:
-                type: array 
+                type: array
                 items:
-                  $ref: '#/components/schemas/Borrower'          
+                  $ref: '#/components/schemas/Borrower'
             application/xml:
               schema:
-                type: array 
+                type: array
                 items:
                   $ref: '#/components/schemas/Borrower'
         '400':
@@ -191,7 +204,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Borrower'          
+                $ref: '#/components/schemas/Borrower'
             application/xml:
               schema:
                 $ref: '#/components/schemas/Borrower'
@@ -225,7 +238,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Borrower'          
+                $ref: '#/components/schemas/Borrower'
             application/xml:
               schema:
                 $ref: '#/components/schemas/Borrower'
@@ -241,6 +254,7 @@ paths:
         - Borrower
       summary: Delete a borrower
       operationId: deleteBorrower
+      description: only deleteable if no open assignment exists
       parameters:
         - name: uuid
           in: path
@@ -280,12 +294,12 @@ paths:
           content:
             application/json:
               schema:
-                type: array 
+                type: array
                 items:
-                  $ref: '#/components/schemas/Assignment'          
+                  $ref: '#/components/schemas/Assignment'
             application/xml:
               schema:
-                type: array 
+                type: array
                 items:
                   $ref: '#/components/schemas/Assignment'
         '400':
@@ -313,7 +327,7 @@ paths:
           content:
             application/json:
               schema:
-                type: boolean        
+                type: boolean
             application/xml:
               schema:
                 type: boolean
@@ -330,18 +344,25 @@ paths:
       summary: Get all existing assignment
       description: Get all existing assignment
       operationId: getAssignment
+      parameters:
+        - name: showReturned
+          in: query
+          description: show returned assignments
+          required: true
+          schema:
+            type: boolean
       responses:
         '200':
           description: Successful assignment
           content:
             application/json:
               schema:
-                type: array 
+                type: array
                 items:
-                  $ref: '#/components/schemas/Assignment'          
+                  $ref: '#/components/schemas/Assignment'
             application/xml:
               schema:
-                type: array 
+                type: array
                 items:
                   $ref: '#/components/schemas/Assignment'
         '400':
@@ -374,7 +395,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Assignment'          
+                $ref: '#/components/schemas/Assignment'
             application/xml:
               schema:
                 $ref: '#/components/schemas/Assignment'
@@ -408,36 +429,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Assignment'          
+                $ref: '#/components/schemas/Assignment'
             application/xml:
               schema:
                 $ref: '#/components/schemas/Assignment'
-        '400':
-          description: Invalid uuid supplied
-        '404':
-          description: Publication not found
-        '405':
-          description: Validation exception
-  /assignment/{uuid}:
-    delete:
-      tags:
-        - Assignment
-      summary: Delete a assignment
-      operationId: deleteAssignment
-      parameters:
-        - name: uuid
-          in: path
-          description: Uuid of the assignment
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                type: string
         '400':
           description: Invalid uuid supplied
         '404':
@@ -464,7 +459,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/Warning'          
+                  $ref: '#/components/schemas/Warning'
             application/xml:
               schema:
                 items:
@@ -482,18 +477,25 @@ paths:
       summary: Get all existing overdue notice
       description: Get all existing overdue notice
       operationId: getOverdueNotice
+      parameters:
+        - name: showClosed
+          in: query
+          description: show closed notices
+          required: true
+          schema:
+            type: boolean
       responses:
         '200':
           description: Successful overdue notice
           content:
             application/json:
               schema:
-                type: array 
+                type: array
                 items:
-                  $ref: '#/components/schemas/OverdueNotice'          
+                  $ref: '#/components/schemas/OverdueNotice'
             application/xml:
               schema:
-                type: array 
+                type: array
                 items:
                   $ref: '#/components/schemas/OverdueNotice'
         '400':
@@ -528,31 +530,430 @@ paths:
           description: Publication not found
         '405':
           description: Validation exception
+  /kind-of-publication:
+    get:
+      tags:
+        - Kind of publications
+      summary: Get all existing kind of publication
+      description: Get all existing kind of publication
+      operationId: getKindOfPublication
+      responses:
+        '200':
+          description: Successful kind of publication
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/KindOfPublication'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/KindOfPublication'
+        '400':
+          description: Invalid uuid supplied
+        '404':
+          description: Publication not found
+        '405':
+          description: Validation exception
+    put:
+      tags:
+        - Kind of publications
+      summary: Update a existing kind of publication
+      description: Update a existing kind of publication
+      operationId: updateKindOfPublication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KindOfPublication'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/KindOfPublication'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/KindOfPublication'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KindOfPublication'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/KindOfPublication'
+        '400':
+          description: Invalid uuid supplied
+        '404':
+          description: Publication not found
+        '405':
+          description: Validation exception
+    post:
+      tags:
+        - Kind of publications
+      summary: Create a kind of publication
+      description: Create a kind of publication
+      operationId: createKindOfPublication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KindOfPublicationCreate'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/KindOfPublicationCreate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/KindOfPublicationCreate'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KindOfPublication'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/KindOfPublication'
+        '400':
+          description: Invalid uuid supplied
+        '404':
+          description: Publication not found
+        '405':
+          description: Validation exception
+  /kind-of-publication/{uuid}:
+    delete:
+      tags:
+        - Kind of publications
+      summary: Delete a kind of publication
+      operationId: deleteKindOfPublication
+      parameters:
+        - name: uuid
+          in: path
+          description: Uuid of the kind
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Invalid uuid supplied
+        '404':
+          description: Publication not found
+        '405':
+          description: Validation exception
+  /author:
+    get:
+      tags:
+        - Author
+      summary: Get all existing author
+      description: Get all existing author
+      operationId: getAuthor
+      responses:
+        '200':
+          description: Successful kind of author
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Author'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Author'
+        '400':
+          description: Invalid uuid supplied
+        '404':
+          description: Publication not found
+        '405':
+          description: Validation exception
+    put:
+      tags:
+        - Author
+      summary: Update a existing author
+      description: Update a existing author
+      operationId: updateAuthor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Author'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Author'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Author'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Author'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Author'
+        '400':
+          description: Invalid uuid supplied
+        '404':
+          description: Publication not found
+        '405':
+          description: Validation exception
+    post:
+      tags:
+        - Author
+      summary: Create author
+      description: Create author
+      operationId: createAuthor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthorCreate'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/AuthorCreate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AuthorCreate'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Author'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Author'
+        '400':
+          description: Invalid uuid supplied
+        '404':
+          description: Publication not found
+        '405':
+          description: Validation exception
+  /author/{uuid}:
+    delete:
+      tags:
+        - Author
+      summary: Delete author
+      operationId: deleteAuthor
+      parameters:
+        - name: uuid
+          in: path
+          description: Uuid of the author
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Invalid uuid supplied
+        '404':
+          description: Publication not found
+        '405':
+          description: Validation exception
+  /keyword:
+    get:
+      tags:
+        - Keywords
+      summary: Get all existing keyword
+      description: Get all existing keyword
+      operationId: getKeyword
+      responses:
+        '200':
+          description: Successful kind of keyword
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Keyword'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Keyword'
+        '400':
+          description: Invalid uuid supplied
+        '404':
+          description: Publication not found
+        '405':
+          description: Validation exception
+    put:
+      tags:
+        - Keywords
+      summary: Update a existing keyword
+      description: Update a existing keyword
+      operationId: updateKeyword
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Keyword'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Keyword'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Keyword'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Keyword'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Keyword'
+        '400':
+          description: Invalid uuid supplied
+        '404':
+          description: Publication not found
+        '405':
+          description: Validation exception
+    post:
+      tags:
+        - Keywords
+      summary: Create keyword
+      description: Create keyword
+      operationId: createKeyword
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KeywordCreate'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/KeywordCreate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/KeywordCreate'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Keyword'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Keyword'
+        '400':
+          description: Invalid uuid supplied
+        '404':
+          description: Publication not found
+        '405':
+          description: Validation exception
+  /keyword/{uuid}:
+    delete:
+      tags:
+        - Keywords
+      summary: Delete keyword
+      operationId: deleteKeyword
+      parameters:
+        - name: uuid
+          in: path
+          description: Uuid of the author
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Invalid uuid supplied
+        '404':
+          description: Publication not found
+        '405':
+          description: Validation exception
 components:
   schemas:
     KindOfPublication:
-      type: string
+      type: object
+      properties:
+        uuid:
+          type: string
+        kind:
+          type: string
+    Author:
+      type: object
+      properties:
+        uuid:
+          type: string
+        surname:
+          type: string
+        name:
+          type: string
     Keyword:
-      type: string
+      type: object
+      properties:
+        uuid:
+          type: string
+        keyword:
+          type: string
+    KindOfPublicationCreate:
+      type: object
+      properties:
+        kind:
+          type: string
+    AuthorCreate:
+      type: object
+      properties:
+        surname:
+          type: string
+        name:
+          type: string
+    KeywordCreate:
+      type: object
+      properties:
+        keyword:
+          type: string
     Borrower:
       type: object
       properties:
         uuid:
           type: string
-        vorname:
+        surname:
           type: string
-        nachname:
+        name:
           type: string
-        matrikelnummer:
+        studentnumber:
           type: string
     BorrowerCreate:
       type: object
       properties:
-        vorname:
+        surname:
           type: string
-        nachname:
+        name:
           type: string
-        matrikelnummer:
+        studentnumber:
           type: string
     Publication:
       type: object
@@ -562,7 +963,9 @@ components:
         titel:
           type: string
         author:
-          type: string
+          type: array
+          items:
+            $ref: '#/components/schemas/Author'
         dateOfPublication:
           type: string
           format: date-time
@@ -593,7 +996,7 @@ components:
           format: date-time
         publicationKey:
           type: string
-        borrower: 
+        borrower:
           $ref: '#/components/schemas/Borrower'
     AssignmentCreate:
       type: object
@@ -601,12 +1004,9 @@ components:
         dateOfAssignment:
           type: string
           format: date-time
-        dateOfReturn:
-          type: string
-          format: date-time
         publicationKey:
           type: string
-        borrower: 
+        borrower:
           $ref: '#/components/schemas/Borrower'
     Warning:
       type: object
