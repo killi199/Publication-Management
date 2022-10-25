@@ -46,12 +46,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Publication'
-        '400':
-          description: Invalid key supplied
-        '404':
-          description: Publication not found
-        '405':
-          description: Validation exception
     put:
       tags:
         - Publications
@@ -80,12 +74,6 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Publication'
-        '400':
-          description: Invalid key supplied
-        '404':
-          description: Publication not found
-        '405':
-          description: Validation exception
     post:
       tags:
         - Publications
@@ -121,12 +109,6 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Publication'
-        '400':
-          description: Invalid key supplied
-        '404':
-          description: Publication not found
-        '405':
-          description: Validation exception
   /publication/{key}:
     delete:
       tags:
@@ -147,12 +129,6 @@ paths:
             application/json:
               schema:
                 type: string
-        '400':
-          description: Invalid key supplied
-        '404':
-          description: Publication not found
-        '405':
-          description: Validation exception
   /borrower:
     get:
       tags:
@@ -174,12 +150,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Borrower'
-        '400':
-          description: Invalid uuid supplied
-        '404':
-          description: Publication not found
-        '405':
-          description: Validation exception
     put:
       tags:
         - Borrower
@@ -208,12 +178,6 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Borrower'
-        '400':
-          description: Invalid uuid supplied
-        '404':
-          description: Publication not found
-        '405':
-          description: Validation exception
     post:
       tags:
         - Borrower
@@ -242,12 +206,6 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Borrower'
-        '400':
-          description: Invalid uuid supplied
-        '404':
-          description: Publication not found
-        '405':
-          description: Validation exception
   /borrower/{uuid}:
     delete:
       tags:
@@ -269,12 +227,6 @@ paths:
             application/json:
               schema:
                 type: string
-        '400':
-          description: Invalid uuid supplied
-        '404':
-          description: Publication not found
-        '405':
-          description: Validation exception
   /assignment/extend/{uuid}:
     put:
       tags:
@@ -302,12 +254,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Assignment'
-        '400':
-          description: Invalid uuid supplied
-        '404':
-          description: Publication not found
-        '405':
-          description: Validation exception
   /assignment/extendable/{uuid}:
     post:
       tags:
@@ -331,12 +277,6 @@ paths:
             application/xml:
               schema:
                 type: boolean
-        '400':
-          description: Invalid uuid supplied
-        '404':
-          description: Publication not found
-        '405':
-          description: Validation exception
   /assignment:
     get:
       tags:
@@ -365,12 +305,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Assignment'
-        '400':
-          description: Invalid uuid supplied
-        '404':
-          description: Publication not found
-        '405':
-          description: Validation exception
     put:
       tags:
         - Assignment
@@ -399,12 +333,6 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Assignment'
-        '400':
-          description: Invalid uuid supplied
-        '404':
-          description: Publication not found
-        '405':
-          description: Validation exception
     post:
       tags:
         - Assignment
@@ -433,12 +361,6 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Assignment'
-        '400':
-          description: Invalid uuid supplied
-        '404':
-          description: Publication not found
-        '405':
-          description: Validation exception
   /overdue-notice/warning/{overdueNoticeUuid}:
     post:
       tags:
@@ -464,12 +386,6 @@ paths:
               schema:
                 items:
                   $ref: '#/components/schemas/Warning'
-        '400':
-          description: Invalid uuid supplied
-        '404':
-          description: Publication not found
-        '405':
-          description: Validation exception
   /overdue-notice:
     get:
       tags:
@@ -498,12 +414,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/OverdueNotice'
-        '400':
-          description: Invalid uuid supplied
-        '404':
-          description: Publication not found
-        '405':
-          description: Validation exception
   /overdue-notice/{uuid}:
     delete:
       tags:
@@ -524,12 +434,6 @@ paths:
             application/json:
               schema:
                 type: string
-        '400':
-          description: Invalid uuid supplied
-        '404':
-          description: Publication not found
-        '405':
-          description: Validation exception
   /kind-of-publication:
     get:
       tags:
@@ -551,12 +455,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/KindOfPublication'
-        '400':
-          description: Invalid uuid supplied
-        '404':
-          description: Publication not found
-        '405':
-          description: Validation exception
     put:
       tags:
         - Kind of publications
@@ -585,12 +483,6 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/KindOfPublication'
-        '400':
-          description: Invalid uuid supplied
-        '404':
-          description: Publication not found
-        '405':
-          description: Validation exception
     post:
       tags:
         - Kind of publications
@@ -619,12 +511,6 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/KindOfPublication'
-        '400':
-          description: Invalid uuid supplied
-        '404':
-          description: Publication not found
-        '405':
-          description: Validation exception
   /kind-of-publication/{uuid}:
     delete:
       tags:
@@ -645,12 +531,6 @@ paths:
             application/json:
               schema:
                 type: string
-        '400':
-          description: Invalid uuid supplied
-        '404':
-          description: Publication not found
-        '405':
-          description: Validation exception
   /author:
     get:
       tags:
@@ -672,12 +552,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Author'
-        '400':
-          description: Invalid uuid supplied
-        '404':
-          description: Publication not found
-        '405':
-          description: Validation exception
     put:
       tags:
         - Author
@@ -706,12 +580,6 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Author'
-        '400':
-          description: Invalid uuid supplied
-        '404':
-          description: Publication not found
-        '405':
-          description: Validation exception
     post:
       tags:
         - Author
@@ -740,12 +608,6 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Author'
-        '400':
-          description: Invalid uuid supplied
-        '404':
-          description: Publication not found
-        '405':
-          description: Validation exception
   /author/{uuid}:
     delete:
       tags:
@@ -766,12 +628,6 @@ paths:
             application/json:
               schema:
                 type: string
-        '400':
-          description: Invalid uuid supplied
-        '404':
-          description: Publication not found
-        '405':
-          description: Validation exception
   /keyword:
     get:
       tags:
@@ -793,12 +649,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Keyword'
-        '400':
-          description: Invalid uuid supplied
-        '404':
-          description: Publication not found
-        '405':
-          description: Validation exception
     put:
       tags:
         - Keywords
@@ -827,12 +677,6 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Keyword'
-        '400':
-          description: Invalid uuid supplied
-        '404':
-          description: Publication not found
-        '405':
-          description: Validation exception
     post:
       tags:
         - Keywords
@@ -861,12 +705,6 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Keyword'
-        '400':
-          description: Invalid uuid supplied
-        '404':
-          description: Publication not found
-        '405':
-          description: Validation exception
   /keyword/{uuid}:
     delete:
       tags:
@@ -887,12 +725,6 @@ paths:
             application/json:
               schema:
                 type: string
-        '400':
-          description: Invalid uuid supplied
-        '404':
-          description: Publication not found
-        '405':
-          description: Validation exception
 components:
   schemas:
     KindOfPublication:
