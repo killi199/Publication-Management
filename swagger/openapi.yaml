@@ -732,7 +732,7 @@ components:
       properties:
         uuid:
           type: string
-        kind:
+        value:
           type: string
     Author:
       type: object
@@ -748,12 +748,12 @@ components:
       properties:
         uuid:
           type: string
-        keyword:
+        value:
           type: string
     KindOfPublicationCreate:
       type: object
       properties:
-        kind:
+        value:
           type: string
     AuthorCreate:
       type: object
@@ -765,7 +765,7 @@ components:
     KeywordCreate:
       type: object
       properties:
-        keyword:
+        value:
           type: string
     Borrower:
       type: object
