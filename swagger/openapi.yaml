@@ -428,12 +428,10 @@ paths:
           content:
             application/json:
               schema:
-                items:
-                  $ref: '#/components/schemas/Warning'
+                $ref: '#/components/schemas/Warning'
             application/xml:
               schema:
-                items:
-                  $ref: '#/components/schemas/Warning'
+                $ref: '#/components/schemas/Warning'
   /kind-of-publication:
     get:
       tags:
