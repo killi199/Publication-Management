@@ -1,4 +1,4 @@
-package com.nordakademie.library;
+package de.nordakademie.iaa.library;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

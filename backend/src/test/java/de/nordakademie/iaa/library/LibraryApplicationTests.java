@@ -1,4 +1,4 @@
-package com.nordakademie.library;
+package de.nordakademie.iaa.library;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
