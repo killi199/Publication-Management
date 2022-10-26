@@ -227,56 +227,6 @@ paths:
             application/json:
               schema:
                 type: string
-  /assignment/extend/{uuid}:
-    put:
-      tags:
-        - Assignment
-      summary: extend the assignment
-      operationId: extendAssignment
-      parameters:
-        - name: uuid
-          in: path
-          description: Uuid of the assignment
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful assignment
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Assignment'
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Assignment'
-  /assignment/extendable/{uuid}:
-    post:
-      tags:
-        - Assignment
-      summary: check if the assignment is extandable
-      operationId: extendableAssignment
-      parameters:
-        - name: uuid
-          in: path
-          description: Uuid of the assignment
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful assignment
-          content:
-            application/json:
-              schema:
-                type: boolean
-            application/xml:
-              schema:
-                type: boolean
   /assignment:
     get:
       tags:
@@ -361,31 +311,56 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Assignment'
-  /overdue-notice/warning/{overdueNoticeUuid}:
-    post:
+  /assignment/extend/{uuid}:
+    put:
       tags:
-        - Overdue notice
-      summary: Create a Warning
-      operationId: createWarning
+        - Assignment
+      summary: extend the assignment
+      operationId: extendAssignment
       parameters:
-        - name: overdueNoticeUuid
+        - name: uuid
           in: path
-          description: Uuid of the overdue notice
+          description: Uuid of the assignment
           required: true
           schema:
             type: string
       responses:
         '200':
-          description: Successful overdue notice
+          description: Successful assignment
           content:
             application/json:
               schema:
+                type: array
                 items:
-                  $ref: '#/components/schemas/Warning'
+                  $ref: '#/components/schemas/Assignment'
             application/xml:
               schema:
+                type: array
                 items:
-                  $ref: '#/components/schemas/Warning'
+                  $ref: '#/components/schemas/Assignment'
+  /assignment/extendable/{uuid}:
+    get:
+      tags:
+        - Assignment
+      summary: check if the assignment is extandable
+      operationId: extendableAssignment
+      parameters:
+        - name: uuid
+          in: path
+          description: Uuid of the assignment
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful assignment
+          content:
+            application/json:
+              schema:
+                type: boolean
+            application/xml:
+              schema:
+                type: boolean
   /overdue-notice:
     get:
       tags:
@@ -434,6 +409,31 @@ paths:
             application/json:
               schema:
                 type: string
+  /overdue-notice/warning/{overdueNoticeUuid}:
+    post:
+      tags:
+        - Overdue notice
+      summary: Create a Warning
+      operationId: createWarning
+      parameters:
+        - name: overdueNoticeUuid
+          in: path
+          description: Uuid of the overdue notice
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful overdue notice
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Warning'
+            application/xml:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Warning'
   /kind-of-publication:
     get:
       tags:
