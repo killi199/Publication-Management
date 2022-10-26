@@ -29,7 +29,7 @@ paths:
         - name: showDeleted
           in: query
           description: show deleted publications
-          required: true
+          required: false
           schema:
             type: boolean
       responses:
@@ -84,7 +84,7 @@ paths:
         - name: override
           in: query
           description: override existing publication with same key
-          required: true
+          required: false
           schema:
             type: boolean
       requestBody:
@@ -288,7 +288,7 @@ paths:
         - name: showReturned
           in: query
           description: show returned assignments
-          required: true
+          required: false
           schema:
             type: boolean
       responses:
@@ -397,7 +397,7 @@ paths:
         - name: showClosed
           in: query
           description: show closed notices
-          required: true
+          required: false
           schema:
             type: boolean
       responses:
