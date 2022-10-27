@@ -1,16 +1,16 @@
-<table mat-table [dataSource]="publications" class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
     <ng-container matColumnDef="key">
-        <th mat-header-cell *matHeaderCellDef>Key</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Key</th>
         <td mat-cell *matCellDef="let element">{{ element.key }}</td>
     </ng-container>
 
     <ng-container matColumnDef="title">
-        <th mat-header-cell *matHeaderCellDef>Title</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
         <td mat-cell *matCellDef="let element">{{ element.title }}</td>
     </ng-container>
 
     <ng-container matColumnDef="authors">
-        <th mat-header-cell *matHeaderCellDef>Authors</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Authors</th>
         <td mat-cell *matCellDef="let element">
             <div *ngFor="let author of element.authors">
                 {{ author.surname }} {{ author.name }}
@@ -19,31 +19,35 @@
     </ng-container>
 
     <ng-container matColumnDef="dateOfPublication">
-        <th mat-header-cell *matHeaderCellDef>Date of Publication</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Date of Publication
+        </th>
         <td mat-cell *matCellDef="let element">
             {{ element.dateOfPublication | date: "yyyy-MM-dd" }}
         </td>
     </ng-container>
 
     <ng-container matColumnDef="publisher">
-        <th mat-header-cell *matHeaderCellDef>Publisher</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Publisher</th>
         <td mat-cell *matCellDef="let element">{{ element.publisher }}</td>
     </ng-container>
 
     <ng-container matColumnDef="kindOfPublication">
-        <th mat-header-cell *matHeaderCellDef>Kind of Publication</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Kind of Publication
+        </th>
         <td mat-cell *matCellDef="let element">
             {{ element.kindOfPublication.value }}
         </td>
     </ng-container>
 
     <ng-container matColumnDef="isbn">
-        <th mat-header-cell *matHeaderCellDef>ISBN</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ISBN</th>
         <td mat-cell *matCellDef="let element">{{ element.isbn }}</td>
     </ng-container>
 
     <ng-container matColumnDef="keywords">
-        <th mat-header-cell *matHeaderCellDef>Keywords</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Keywords</th>
         <td mat-cell *matCellDef="let element">
             <label *ngFor="let keyword of element.keywords">
                 {{ keyword.value }}
@@ -52,13 +56,14 @@
     </ng-container>
 
     <ng-container matColumnDef="quantity">
-        <th mat-header-cell *matHeaderCellDef>Quantity</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Quantity</th>
         <td mat-cell *matCellDef="let element">{{ element.quantity }}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row
+    <tr
+        mat-row
         (click)="onShowPublication(row)"
-        *matRowDef="let row; columns: displayedColumns">
-    </tr>
+        *matRowDef="let row; columns: displayedColumns"
+    ></tr>
 </table>

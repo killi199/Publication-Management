@@ -1,9 +1,12 @@
-<app-publication-list
-    [publications]="publications"
-    (showPublication)="onShowPublication($event)"
-></app-publication-list>
+<div class="box">
+    <app-publication-list
+        class="test"
+        [publications]="(publications$ | async) ?? []"
+        (showPublication)="onShowPublication($event)"
+    ></app-publication-list>
 
-<app-publication-view
-    *ngIf="currentPublication"
-    [publication]="currentPublication"
-></app-publication-view>
+    <app-publication-view
+        *ngIf="currentPublication"
+        [publication]="currentPublication"
+    ></app-publication-view>
+</div>
