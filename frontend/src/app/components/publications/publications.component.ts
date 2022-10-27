@@ -8,7 +8,7 @@ const PUBLICATION: Publication = {
         { uuid: '3111', name: 'Schmidt', surname: 'Fritz' },
     ],
     isbn: '34567890',
-    dateOfPublication: new Date("2022-10-27"),
+    dateOfPublication: new Date('2022-10-27'),
     keywords: [
         { uuid: '5678', value: 'Java' },
         { uuid: '5679', value: 'IT' },
@@ -27,22 +27,14 @@ const PUBLICATIONS: Publication[] = [PUBLICATION, PUBLICATION, PUBLICATION];
     styleUrls: ['./publications.component.scss'],
 })
 export class PublicationsComponent implements OnInit {
-    displayedColumns: string[] = [
-        'key',
-        'title',
-        'authors',
-        'dateOfPublication',
-        'publisher',
-        'kindOfPublication',
-        'isbn',
-        'keywords',
-        'quantity',
-    ];
-    publications = PUBLICATIONS;
+    publications: Publication[] = PUBLICATIONS;
+    currentPublication?: Publication;
 
     constructor() {}
 
     ngOnInit(): void {}
 
-    onShowPublication(publication: Publication): void {}
+    onShowPublication(publication: Publication): void {
+        this.currentPublication = publication;
+    }
 }
