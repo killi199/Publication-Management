@@ -312,7 +312,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Assignment'
   /assignment/extend/{uuid}:
-    put:
+    post:
       tags:
         - Assignment
       summary: extend the assignment
@@ -853,7 +853,7 @@ components:
       properties:
         uuid:
           type: string
-        assignmentUuid:
-          type: string
+        assignment:
+          $ref: '#/components/schemas/Assignment'
         warnings:
           $ref: '#/components/schemas/Warning'
