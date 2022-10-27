@@ -6,7 +6,7 @@ import { Publication } from 'src/app/models/publication';
     templateUrl: './publication-list.component.html',
     styleUrls: ['./publication-list.component.scss'],
 })
-export class PublicationListComponent implements OnInit {
+export class PublicationListComponent {
     @Input() publications: Publication[] = [];
     @Output() showPublication = new EventEmitter<Publication>();
 
@@ -23,8 +23,6 @@ export class PublicationListComponent implements OnInit {
     ];
 
     constructor() {}
-
-    ngOnInit(): void {}
 
     onShowPublication(publication: Publication): void {
         this.showPublication.emit(publication);

@@ -6,12 +6,9 @@ import { Publication } from 'src/app/models/publication';
   templateUrl: './publication-view.component.html',
   styleUrls: ['./publication-view.component.scss']
 })
-export class PublicationViewComponent implements OnInit {
+export class PublicationViewComponent {
   @Input() publication?: Publication;
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

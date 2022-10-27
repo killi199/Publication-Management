@@ -26,13 +26,11 @@ const PUBLICATIONS: Publication[] = [PUBLICATION, PUBLICATION, PUBLICATION];
     templateUrl: './publications.component.html',
     styleUrls: ['./publications.component.scss'],
 })
-export class PublicationsComponent implements OnInit {
+export class PublicationsComponent {
     publications: Publication[] = PUBLICATIONS;
     currentPublication?: Publication;
 
     constructor() {}
-
-    ngOnInit(): void {}
 
     onShowPublication(publication: Publication): void {
         this.currentPublication = publication;
