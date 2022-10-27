@@ -1,0 +1,9 @@
+<app-publication-list
+    [publications]="publications"
+    (showPublication)="onShowPublication($event)"
+></app-publication-list>
+
+<app-publication-view
+    *ngIf="currentPublication"
+    [publication]="currentPublication"
+></app-publication-view>
