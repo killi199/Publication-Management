@@ -1,4 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+    AfterViewInit,
+    Component,
+    EventEmitter,
+    Input,
+    OnInit,
+    Output,
+    ViewChild,
+} from '@angular/core';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Publication } from 'src/app/models/publication';
 
 @Component({
@@ -6,9 +16,15 @@ import { Publication } from 'src/app/models/publication';
     templateUrl: './publication-list.component.html',
     styleUrls: ['./publication-list.component.scss'],
 })
-export class PublicationListComponent {
+export class PublicationListComponent implements AfterViewInit, OnInit {
     @Input() publications: Publication[] = [];
     @Output() showPublication = new EventEmitter<Publication>();
+
+    dataSource!: MatTableDataSource<Publication>;
+
+    ngOnInit(): void {
+        this.dataSource = new MatTableDataSource(this.publications);
+    }
 
     displayedColumns: string[] = [
         'key',
@@ -22,7 +38,11 @@ export class PublicationListComponent {
         'quantity',
     ];
 
-    constructor() {}
+    @ViewChild(MatSort) sort: MatSort = new MatSort();
+
+    ngAfterViewInit() {
+        this.dataSource.sort = this.sort;
+    }
 
     onShowPublication(publication: Publication): void {
         this.showPublication.emit(publication);
