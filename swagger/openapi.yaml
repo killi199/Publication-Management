@@ -1,0 +1,859 @@
+openapi: 3.0.3
+info:
+  title: Swagger Petstore - OpenAPI 3.0
+  version: 0.0.1
+servers:
+  - url: http://localhost:8080/rest
+tags:
+  - name: Publications
+    description: books, articles or all other science stuff you can borrow
+  - name: Assignment
+    description: publication assignments
+  - name: Kind of publications
+    description: categories for the publications
+  - name: Keywords
+    description: keywords of the publications
+  - name: Borrower
+    description: people that are allowed to borrow publications
+  - name: Overdue notice
+    description: handle the overdue assignments
+paths:
+  /publication:
+    get:
+      tags:
+        - Publications
+      summary: Get all existing publication
+      description: Get all existing publication
+      operationId: getPublication
+      parameters:
+        - name: showDeleted
+          in: query
+          description: show deleted publications
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Publication'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Publication'
+    put:
+      tags:
+        - Publications
+      summary: Update a existing publication
+      description: Update a existing publication
+      operationId: updatePublication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Publication'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Publication'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Publication'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Publication'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Publication'
+    post:
+      tags:
+        - Publications
+      summary: Create a publication
+      description: Create a publication
+      operationId: createPublication
+      parameters:
+        - name: override
+          in: query
+          description: override existing publication with same key
+          required: false
+          schema:
+            type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Publication'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Publication'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Publication'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Publication'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Publication'
+  /publication/{key}:
+    delete:
+      tags:
+        - Publications
+      summary: Delete a publication
+      operationId: deletePublication
+      parameters:
+        - name: key
+          in: path
+          description: Key of the publication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: string
+  /borrower:
+    get:
+      tags:
+        - Borrower
+      summary: Get all existing borrower
+      description: Get all existing borrower
+      operationId: getBorrower
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Borrower'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Borrower'
+    put:
+      tags:
+        - Borrower
+      summary: Update a existing borrower
+      description: Update a existing borrower
+      operationId: updateBorrower
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Borrower'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Borrower'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Borrower'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Borrower'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Borrower'
+    post:
+      tags:
+        - Borrower
+      summary: Create a borrower
+      description: Create a borrower
+      operationId: createBorrower
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BorrowerCreate'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/BorrowerCreate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BorrowerCreate'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Borrower'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Borrower'
+  /borrower/{uuid}:
+    delete:
+      tags:
+        - Borrower
+      summary: Delete a borrower
+      operationId: deleteBorrower
+      description: only deleteable if no open assignment exists
+      parameters:
+        - name: uuid
+          in: path
+          description: Uuid of the borrower
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: string
+  /assignment:
+    get:
+      tags:
+        - Assignment
+      summary: Get all existing assignment
+      description: Get all existing assignment
+      operationId: getAssignment
+      parameters:
+        - name: showReturned
+          in: query
+          description: show returned assignments
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Successful assignment
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Assignment'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Assignment'
+    put:
+      tags:
+        - Assignment
+      summary: Update a existing assignment
+      description: Update a existing assignment
+      operationId: updateAssignment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Assignment'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Assignment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Assignment'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Assignment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Assignment'
+    post:
+      tags:
+        - Assignment
+      summary: Create a assignment
+      description: Create a assignment
+      operationId: createAssignment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignmentCreate'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/AssignmentCreate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AssignmentCreate'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Assignment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Assignment'
+  /assignment/extend/{uuid}:
+    post:
+      tags:
+        - Assignment
+      summary: extend the assignment
+      operationId: extendAssignment
+      parameters:
+        - name: uuid
+          in: path
+          description: Uuid of the assignment
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful assignment
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Assignment'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Assignment'
+  /assignment/extendable/{uuid}:
+    get:
+      tags:
+        - Assignment
+      summary: check if the assignment is extandable
+      operationId: extendableAssignment
+      parameters:
+        - name: uuid
+          in: path
+          description: Uuid of the assignment
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful assignment
+          content:
+            application/json:
+              schema:
+                type: boolean
+            application/xml:
+              schema:
+                type: boolean
+  /overdue-notice:
+    get:
+      tags:
+        - Overdue notice
+      summary: Get all existing overdue notice
+      description: Get all existing overdue notice
+      operationId: getOverdueNotice
+      parameters:
+        - name: showClosed
+          in: query
+          description: show closed notices
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Successful overdue notice
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OverdueNotice'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OverdueNotice'
+  /overdue-notice/{uuid}:
+    delete:
+      tags:
+        - Overdue notice
+      summary: Delete a overdue notice caused by loss
+      operationId: deleteOverdueNotice
+      parameters:
+        - name: uuid
+          in: path
+          description: Uuid of the overdue notice
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: string
+  /overdue-notice/warning/{overdueNoticeUuid}:
+    post:
+      tags:
+        - Overdue notice
+      summary: Create a Warning
+      operationId: createWarning
+      parameters:
+        - name: overdueNoticeUuid
+          in: path
+          description: Uuid of the overdue notice
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful overdue notice
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Warning'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Warning'
+  /kind-of-publication:
+    get:
+      tags:
+        - Kind of publications
+      summary: Get all existing kind of publication
+      description: Get all existing kind of publication
+      operationId: getKindOfPublication
+      responses:
+        '200':
+          description: Successful kind of publication
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/KindOfPublication'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/KindOfPublication'
+    put:
+      tags:
+        - Kind of publications
+      summary: Update a existing kind of publication
+      description: Update a existing kind of publication
+      operationId: updateKindOfPublication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KindOfPublication'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/KindOfPublication'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/KindOfPublication'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KindOfPublication'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/KindOfPublication'
+    post:
+      tags:
+        - Kind of publications
+      summary: Create a kind of publication
+      description: Create a kind of publication
+      operationId: createKindOfPublication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KindOfPublicationCreate'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/KindOfPublicationCreate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/KindOfPublicationCreate'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KindOfPublication'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/KindOfPublication'
+  /kind-of-publication/{uuid}:
+    delete:
+      tags:
+        - Kind of publications
+      summary: Delete a kind of publication
+      operationId: deleteKindOfPublication
+      parameters:
+        - name: uuid
+          in: path
+          description: Uuid of the kind
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: string
+  /author:
+    get:
+      tags:
+        - Author
+      summary: Get all existing author
+      description: Get all existing author
+      operationId: getAuthor
+      responses:
+        '200':
+          description: Successful kind of author
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Author'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Author'
+    put:
+      tags:
+        - Author
+      summary: Update a existing author
+      description: Update a existing author
+      operationId: updateAuthor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Author'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Author'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Author'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Author'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Author'
+    post:
+      tags:
+        - Author
+      summary: Create author
+      description: Create author
+      operationId: createAuthor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthorCreate'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/AuthorCreate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AuthorCreate'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Author'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Author'
+  /author/{uuid}:
+    delete:
+      tags:
+        - Author
+      summary: Delete author
+      operationId: deleteAuthor
+      parameters:
+        - name: uuid
+          in: path
+          description: Uuid of the author
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: string
+  /keyword:
+    get:
+      tags:
+        - Keywords
+      summary: Get all existing keyword
+      description: Get all existing keyword
+      operationId: getKeyword
+      responses:
+        '200':
+          description: Successful kind of keyword
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Keyword'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Keyword'
+    put:
+      tags:
+        - Keywords
+      summary: Update a existing keyword
+      description: Update a existing keyword
+      operationId: updateKeyword
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Keyword'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Keyword'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Keyword'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Keyword'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Keyword'
+    post:
+      tags:
+        - Keywords
+      summary: Create keyword
+      description: Create keyword
+      operationId: createKeyword
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KeywordCreate'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/KeywordCreate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/KeywordCreate'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Keyword'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Keyword'
+  /keyword/{uuid}:
+    delete:
+      tags:
+        - Keywords
+      summary: Delete keyword
+      operationId: deleteKeyword
+      parameters:
+        - name: uuid
+          in: path
+          description: Uuid of the author
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: string
+components:
+  schemas:
+    KindOfPublication:
+      type: object
+      properties:
+        uuid:
+          type: string
+        value:
+          type: string
+    Author:
+      type: object
+      properties:
+        uuid:
+          type: string
+        surname:
+          type: string
+        name:
+          type: string
+    Keyword:
+      type: object
+      properties:
+        uuid:
+          type: string
+        value:
+          type: string
+    KindOfPublicationCreate:
+      type: object
+      properties:
+        value:
+          type: string
+    AuthorCreate:
+      type: object
+      properties:
+        surname:
+          type: string
+        name:
+          type: string
+    KeywordCreate:
+      type: object
+      properties:
+        value:
+          type: string
+    Borrower:
+      type: object
+      properties:
+        uuid:
+          type: string
+        surname:
+          type: string
+        name:
+          type: string
+        studentnumber:
+          type: string
+    BorrowerCreate:
+      type: object
+      properties:
+        surname:
+          type: string
+        name:
+          type: string
+        studentnumber:
+          type: string
+    Publication:
+      type: object
+      properties:
+        key:
+          type: string
+        titel:
+          type: string
+        author:
+          type: array
+          items:
+            $ref: '#/components/schemas/Author'
+        dateOfPublication:
+          type: string
+          format: date-time
+        publisher:
+          type: string
+        kindOfPublication:
+          $ref: '#/components/schemas/KindOfPublication'
+        ISBN:
+          type: string
+        keywords:
+          type: array
+          items:
+            $ref: '#/components/schemas/Keyword'
+        quantity:
+          type: integer
+          format: int64
+          example: 69
+    Assignment:
+      type: object
+      properties:
+        uuid:
+          type: string
+        dateOfAssignment:
+          type: string
+          format: date-time
+        dateOfReturn:
+          type: string
+          format: date-time
+        publicationKey:
+          type: string
+        borrower:
+          $ref: '#/components/schemas/Borrower'
+    AssignmentCreate:
+      type: object
+      properties:
+        dateOfAssignment:
+          type: string
+          format: date-time
+        publicationKey:
+          type: string
+        borrower:
+          $ref: '#/components/schemas/Borrower'
+    Warning:
+      type: object
+      properties:
+        uuid:
+          type: string
+        overdueNoticeUuid:
+          type: string
+        warningDate:
+          type: string
+          format: date-time
+    OverdueNotice:
+      type: object
+      properties:
+        uuid:
+          type: string
+        assignment:
+          $ref: '#/components/schemas/Assignment'
+        warnings:
+          $ref: '#/components/schemas/Warning'
