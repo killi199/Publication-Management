@@ -1,9 +1,15 @@
-import {NgModule} from '@angular/core';
-import {MatTableModule} from '@angular/material/table'
-import {BrowserModule} from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserModule } from '@angular/platform-browser';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { PublicationsComponent } from './components/publications/publications.component';
 import { PublicationListComponent } from './components/publications/publication-list/publication-list.component';
 import { PublicationViewComponent } from './components/publications/publication-view/publication-view.component';
@@ -13,15 +19,20 @@ import { PublicationViewComponent } from './components/publications/publication-
         AppComponent,
         PublicationsComponent,
         PublicationListComponent,
-        PublicationViewComponent
+        PublicationViewComponent,
     ],
     imports: [
+        BrowserAnimationsModule,
         BrowserModule,
         AppRoutingModule,
-        MatTableModule
+        MatFormFieldModule,
+        MatInputModule,
+        MatTableModule,
+        MatGridListModule,
+        MatCardModule,
+        MatIconModule,
     ],
     providers: [],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
