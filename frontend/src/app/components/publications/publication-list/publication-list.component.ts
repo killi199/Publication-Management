@@ -1,3 +1,4 @@
+import { SelectionModel } from '@angular/cdk/collections';
 import {
     AfterViewInit,
     Component,
@@ -7,9 +8,11 @@ import {
     Output,
     ViewChild,
 } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Publication } from 'src/app/models/publication';
+
 
 @Component({
     selector: 'app-publication-list',
@@ -40,11 +43,17 @@ export class PublicationListComponent implements AfterViewInit, OnInit {
 
     @ViewChild(MatSort) sort: MatSort = new MatSort();
 
+    @ViewChild(MatPaginator) paginator!: MatPaginator;
+
     ngAfterViewInit() {
         this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
     }
 
     onShowPublication(publication: Publication): void {
         this.showPublication.emit(publication);
     }
+
+    selection = new SelectionModel<Publication>(false, []);
+
 }

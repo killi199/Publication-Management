@@ -2,19 +2,24 @@
     <h1 class="header">Publication Management</h1>
 
     <app-publication-list
+        *ngIf="!openPublication"
         class="table"
         [publications]="(publications$ | async) ?? []"
-        (showPublication)="onShowPublication($event)"
+        (showPublication)="onSelectPublication($event)"
     ></app-publication-list>
 
     <div class="example-button-container">
-        <button mat-fab color="primary">
-          <mat-icon>add</mat-icon>
+        <button class="open-btn" *ngIf="currentPublication" (click)="onShowPublication()" mat-fab color="primary">
+            <mat-icon>edit</mat-icon>
         </button>
-      </div>
+
+        <button class="add-btn" (click)="onShowPublication()" mat-fab color="primary">
+          <mat-icon>add</mat-icon>
+      </button>
+    </div>
 
     <app-publication-view
-        *ngIf="currentPublication"
+        *ngIf="openPublication"
         [publication]="currentPublication"
     ></app-publication-view>
 </div>

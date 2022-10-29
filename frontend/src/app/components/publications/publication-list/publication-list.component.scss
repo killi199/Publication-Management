@@ -1,9 +1,15 @@
 table {
     width: 100%;
+    border: 1px solid black;
+}
+
+.container{
+    width: 100%;
 }
 
 th {
     font-size: larger;
+    background: rgb(52, 52, 52);
 }
 
 .mat-row:hover .mat-cell {
@@ -18,4 +24,12 @@ th {
 
 th.mat-sort-header-sorted {
     color: black;
-  }
+}
+
+.mat-row.hovered {
+    background: rgb(57, 57, 57);
+}
+
+.mat-row.highlighted {
+    background: rgb(132, 131, 131);
+}

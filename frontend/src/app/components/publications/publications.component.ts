@@ -11,12 +11,17 @@ import { PublicationService } from 'src/app/services/publication.service';
 export class PublicationsComponent {
     publications$: Observable<Publication[]>;
     currentPublication?: Publication;
+    openPublication: boolean = false;
 
     constructor(private publicationService: PublicationService) {
         this.publications$ = publicationService.loadAllPublications();
     }
 
-    onShowPublication(publication: Publication): void {
+    onSelectPublication(publication: Publication): void {
         this.currentPublication = publication;
+    }
+
+    onShowPublication(): void {
+        this.openPublication = !this.openPublication;
     }
 }
