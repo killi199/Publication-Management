@@ -1,9 +1,17 @@
-<div class="box">
+<div class="page">
+    <h1 class="header">Publication Management</h1>
+
     <app-publication-list
-        class="test"
+        class="table"
         [publications]="(publications$ | async) ?? []"
         (showPublication)="onShowPublication($event)"
     ></app-publication-list>
+
+    <div class="example-button-container">
+        <button mat-fab color="primary">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
 
     <app-publication-view
         *ngIf="currentPublication"

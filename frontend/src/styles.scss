@@ -1,10 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
-
-html, body {
-    height: 100%;
-}
+@import '@angular/material/prebuilt-themes/purple-green.css';
 
 body {
+    background-color: rgb(59, 56, 56);
+    height: 100vh;
+    width: 100vw;    
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+app-publications{
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+}
+
+app-publication-list{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
 }
