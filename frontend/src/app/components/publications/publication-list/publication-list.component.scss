@@ -1,15 +1,20 @@
 table {
     width: 100%;
-    border: 1px solid black;
+    height: 100%;
 }
 
-.container{
+.container {
     width: 100%;
+    border-bottom: 1px solid;
+    border-top: 1px solid;
 }
 
 th {
     font-size: larger;
-    background: rgb(52, 52, 52);
+}
+
+tr{
+    vertical-align: top;
 }
 
 .mat-row:hover .mat-cell {
@@ -22,14 +27,21 @@ th {
     cursor: pointer;
 }
 
-th.mat-sort-header-sorted {
-    color: black;
-}
-
 .mat-row.hovered {
-    background: rgb(57, 57, 57);
+    background-color: rgb(208, 208, 208);
 }
 
 .mat-row.highlighted {
-    background: rgb(132, 131, 131);
+    background-color: rgb(170, 170, 170);
+}
+
+.mat-paginator-sticky {
+    bottom: 0px;
+    position: sticky;
+    z-index: 10;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
 }

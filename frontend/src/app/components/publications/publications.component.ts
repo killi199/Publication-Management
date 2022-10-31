@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Publication } from 'src/app/models/publication';
 import { PublicationService } from 'src/app/services/publication.service';
@@ -6,7 +6,7 @@ import { PublicationService } from 'src/app/services/publication.service';
 @Component({
     selector: 'app-publications',
     templateUrl: './publications.component.html',
-    styleUrls: ['./publications.component.scss'],
+    styleUrls: ['./publications.component.scss']
 })
 export class PublicationsComponent {
     publications$: Observable<Publication[]>;
