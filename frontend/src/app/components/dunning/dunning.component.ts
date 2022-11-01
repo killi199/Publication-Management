@@ -5,11 +5,6 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './dunning.component.html',
   styleUrls: ['./dunning.component.scss']
 })
-export class DunningComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+export class DunningComponent  { 
 
 }
