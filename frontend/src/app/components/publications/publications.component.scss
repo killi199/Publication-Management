@@ -1,27 +1,24 @@
-.page{
+.page {
     width: 90%;
     height: 100%;
     display: flex;
     justify-content: center;
-    flex-direction: column;    
-    border:1px solid;
+    flex-direction: column;
+    border: 1px solid;
 }
 
-.header{
+.header {
     font-size: 40px;
     margin: 5px;
 }
 
-.example-button-container {
+.button-container {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     width: 99%;
-    margin: 5px;
-  }
-
-button{
     margin: 5px;
 }
 
-
-
+button {
+    margin: 5px;
+}

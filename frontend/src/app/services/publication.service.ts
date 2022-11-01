@@ -7,7 +7,7 @@ import { Publication } from '../models/publication';
 })
 export class PublicationService {
 
-    pubs!: Publication[];
+    pubs: Publication[];
 
     constructor() {
         this.pubs = this.generateAllPubs(100);
@@ -38,7 +38,7 @@ export class PublicationService {
     // TMP HELPER
     private generateAllPubs(amount: number): Publication[] {
         let pubs = [];
-        for (let i = 1; i < amount; i++) {
+        for (let i = 1; i <= amount; i++) {
             pubs.push(this.createPublication(i.toString()));
         }
         return pubs;
