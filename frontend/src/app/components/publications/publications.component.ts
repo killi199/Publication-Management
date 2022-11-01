@@ -6,7 +6,7 @@ import { PublicationService } from 'src/app/services/publication.service';
 @Component({
     selector: 'app-publications',
     templateUrl: './publications.component.html',
-    styleUrls: ['./publications.component.scss']
+    styleUrls: ['./publications.component.scss'],
 })
 export class PublicationsComponent {
     publications$: Observable<Publication[]>;
@@ -23,5 +23,18 @@ export class PublicationsComponent {
 
     onShowPublication(): void {
         this.openPublication = !this.openPublication;
+    }
+
+    onDeletePublication(publication: Publication | undefined): void {
+        this.publicationService.deletePublication(publication);
+    }
+
+    onSavePublication(publication: Publication | undefined): void {
+        this.publicationService.savePublication(publication);
+    }
+
+    onCancel(): void {
+        this.currentPublication = undefined;
+        this.openPublication = false;
     }
 }

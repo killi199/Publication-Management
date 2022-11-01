@@ -6,7 +6,6 @@ import { Publication } from '../models/publication';
     providedIn: 'root',
 })
 export class PublicationService {
-
     pubs: Publication[];
 
     constructor() {
@@ -15,6 +14,17 @@ export class PublicationService {
 
     loadAllPublications(): Observable<Publication[]> {
         return of(this.pubs);
+    }
+
+    deletePublication(publication: Publication | undefined): void {
+        console.log('deletePublication', publication);
+        if (publication) {
+            this.pubs = this.pubs.filter((pub) => pub.key !== publication.key);
+        }
+    }
+
+    savePublication(publication: Publication | undefined): void {
+        console.log('savePublication', publication);
     }
 
     // TMP HELPER
@@ -34,7 +44,7 @@ export class PublicationService {
             title: 'Python SuperBook',
         };
     }
-    
+
     // TMP HELPER
     private generateAllPubs(amount: number): Publication[] {
         let pubs = [];

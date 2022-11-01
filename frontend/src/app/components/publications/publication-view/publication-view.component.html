@@ -1,87 +1,123 @@
 <div class="container">
-    <form>
+    <form #form="ngForm" (ngSubmit)="onSubmit()">
         <mat-grid-list cols="2" rowHeight="14:1">
             <mat-grid-tile>
                 <mat-form-field appearance="fill">
-                    <mat-label>Key</mat-label>
-                    <input matInput value="{{ publication?.key }}" readonly />
-                </mat-form-field>
-            </mat-grid-tile>
-
-            <mat-grid-tile>
-                <mat-form-field appearance="fill">
-                    <mat-label>Title</mat-label>
-                    <input matInput value="{{ publication?.title }}" readonly />
-                </mat-form-field>
-            </mat-grid-tile>
-
-            <mat-grid-tile>
-                <mat-form-field appearance="fill">
-                    <mat-label>Authors</mat-label>
-                    <input matInput readonly />
-                </mat-form-field>
-            </mat-grid-tile>
-
-            <mat-grid-tile>
-                <mat-form-field appearance="fill">
-                    <mat-label>ISBN</mat-label>
-                    <input matInput value="{{ publication?.isbn }}" readonly />
-                </mat-form-field>
-            </mat-grid-tile>
-
-            <mat-grid-tile>
-                <mat-form-field appearance="fill">
-                    <mat-label>Quantity</mat-label>
+                    <mat-label for="key">Key</mat-label>
                     <input
                         matInput
-                        value="{{ publication?.quantity }}"
-                        readonly
+                        id="key"
+                        name="key"
+                        [ngModel]="publication?.key"
+                        (ngModelChange)="(publication?.key)"
+                        [readonly]="!editable"
                     />
                 </mat-form-field>
             </mat-grid-tile>
 
             <mat-grid-tile>
                 <mat-form-field appearance="fill">
-                    <mat-label>Publisher</mat-label>
+                    <mat-label for="title">Title</mat-label>
                     <input
                         matInput
-                        value="{{ publication?.publisher }}"
-                        readonly
+                        id="title"
+                        name="title"
+                        [ngModel]="publication?.title"
+                        (ngModelChange)="(publication?.title)"
+                        [readonly]="!editable"
                     />
                 </mat-form-field>
             </mat-grid-tile>
 
             <mat-grid-tile>
                 <mat-form-field appearance="fill">
-                    <mat-label>Date of Publication</mat-label>
+                    <mat-label for="authors">Authors</mat-label>
+                    <input matInput [readonly]="!editable" />
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <mat-label for="isbn">ISBN</mat-label>
                     <input
                         matInput
-                        value="{{
+                        id="isbn"
+                        name="isbn"
+                        [ngModel]="publication?.isbn"
+                        (ngModelChange)="(publication?.isbn)"
+                        [readonly]="!editable"
+                    />
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <mat-label for="quantity">Quantity</mat-label>
+                    <input
+                        matInput
+                        id="quantity"
+                        name="quantity"
+                        [ngModel]="publication?.quantity"
+                        (ngModelChange)="(publication?.quantity)"
+                        [readonly]="!editable"
+                    />
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <mat-label for="publisher">Publisher</mat-label>
+                    <input
+                        matInput
+                        id="publisher"
+                        name="publisher"
+                        [ngModel]="publication?.publisher"
+                        (ngModelChange)="(publication?.publisher)"
+                        [readonly]="!editable"
+                    />
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <mat-label for="dateOfPublication"
+                        >Date of Publication</mat-label
+                    >
+                    <input
+                        matInput
+                        id="dateOfPublication"
+                        name="dateOfPublication"
+                        [ngModel]="
                             publication?.dateOfPublication | date: 'yyyy-MM-dd'
-                        }}"
-                        readonly
+                        "
+                        (ngModelChange)="(publication?.dateOfPublication)"
+                        [readonly]="!editable"
                     />
                 </mat-form-field>
             </mat-grid-tile>
 
             <mat-grid-tile>
                 <mat-form-field appearance="fill">
-                    <mat-label>Kind of Publication</mat-label>
-                    <input matInput readonly />
+                    <mat-label for="kindOfPublication"
+                        >Kind of Publication</mat-label
+                    >
+                    <input matInput [readonly]="!editable" />
                 </mat-form-field>
             </mat-grid-tile>
 
             <mat-grid-tile>
                 <mat-form-field appearance="fill">
-                    <mat-label>Keywords</mat-label>
-                    <input matInput readonly />
+                    <mat-label for="keywords">Keywords</mat-label>
+                    <input matInput [readonly]="!editable" />
                 </mat-form-field>
             </mat-grid-tile>
 
             <mat-grid-tile>
-                <div class="example-flex-container">
-                    <div class="example-button-container">
+                <div class="flex-container">
+                    <div class="button-container" *ngIf="!editable">
                         <button
+                            type="button"
+                            (click)="onEdit()"
                             mat-mini-fab
                             color="primary"
                             matTooltip="edit publication"
@@ -90,13 +126,39 @@
                         </button>
                     </div>
 
-                    <div class="example-button-container">
+                    <div class="button-container" *ngIf="!editable">
                         <button
+                            type="button"
+                            (click)="onDeletePublication()"
                             mat-mini-fab
                             color="primary"
                             matTooltip="delete publication"
                         >
                             <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+
+                    <div class="button-container" *ngIf="editable">
+                        <button
+                            type="submit"
+                            [disabled]="form.invalid"
+                            mat-mini-fab
+                            color="primary"
+                            matTooltip="save publication"
+                        >
+                            <mat-icon>save</mat-icon>
+                        </button>
+                    </div>
+
+                    <div class="button-container" *ngIf="editable">
+                        <button
+                            type="button"
+                            (click)="onCancel()"
+                            mat-mini-fab
+                            color="primary"
+                            matTooltip="cancel"
+                        >
+                            <mat-icon>cancel</mat-icon>
                         </button>
                     </div>
                 </div>
