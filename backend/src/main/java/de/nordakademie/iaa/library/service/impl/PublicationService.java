@@ -10,6 +10,7 @@ import de.nordakademie.iaa.library.service.mapper.PublicationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import java.util.List;
  * The publication service provides methods to handle the publications
  */
 @Service
+@Transactional
 public class PublicationService implements PublicationServiceInterface {
 
     private final PublicationRepository publicationRepository;
