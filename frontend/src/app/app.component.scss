@@ -1,3 +1,7 @@
+$header-background: #1a70bc;
+$footer-background: rgb(24, 23, 123);
+$font-color: white;
+
 .content {
     display: flex;
     justify-content: center;
@@ -6,3 +10,41 @@
     height: 100%;
     flex-direction: column;
 }
+
+.main-container {
+    position: absolute;
+    top: 100px;
+    bottom: 50px;
+    left: 0;
+    right: 0;
+}
+
+.list {
+    display: inline-grid;
+}
+
+mat-list-item {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+button {
+    width: 100%;
+}
+
+.header {
+    padding: 60px;
+    text-align: center;
+    background: $header-background;
+    color: $font-color;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: $footer-background;
+    color: $font-color;
+    text-align: end;
+  }
