@@ -1,1 +1,33 @@
-<app-publications></app-publications>
+<div class="header">
+    <h1>NORDAKADEMIE - Bibliotheksverwaltung</h1>
+</div>
+
+<mat-sidenav-container class="main-container">
+    <mat-sidenav mode="side" class="sidenav" opened>
+        <mat-list class="list">
+            <mat-list-item>
+                <button mat-raised-button color="basic" [routerLink]="'/dunning'">Mahnwesen</button>
+            </mat-list-item>
+            <mat-list-item>
+                <button mat-raised-button color="primary" [routerLink]="'/publications'">Publikationen</button>
+            </mat-list-item>
+            <mat-list-item>
+                <button mat-raised-button color="accent">
+                    Ausleihvorgänge
+                </button>
+            </mat-list-item>
+            <mat-list-item>
+                <button mat-raised-button color="warn">Stammdaten</button>
+            </mat-list-item>
+        </mat-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+<div class="footer">
+    Gruppe: Thorge Früchtenicht, Nello Musmeci, Kevin Jahrens und Marcel Dymarz
+</div>
