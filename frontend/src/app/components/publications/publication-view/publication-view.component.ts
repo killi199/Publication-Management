@@ -45,6 +45,7 @@ export class PublicationViewComponent implements OnInit {
     onSubmit(): void {
         if (this.form.valid) {
             this.savePublication.emit(this.publication);
+            this.editable = false;
         }
     }
 
