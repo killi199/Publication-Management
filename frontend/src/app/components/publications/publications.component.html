@@ -1,9 +1,25 @@
-<app-publication-list
-    [publications]="publications"
-    (showPublication)="onShowPublication($event)"
-></app-publication-list>
+<div class="page">
+    <h1 class="header">Publication Management</h1>
 
-<app-publication-view
-    *ngIf="currentPublication"
-    [publication]="currentPublication"
-></app-publication-view>
+    <app-publication-list
+        *ngIf="!openPublication"
+        class="table"
+        [publications]="(publications$ | async) ?? []"
+        (showPublication)="onSelectPublication($event)"
+    ></app-publication-list>
+
+    <div class="button-container">
+        <button matTooltip="edit selection" *ngIf="currentPublication" (click)="onShowPublication()" mat-mini-fab color="primary">
+            <mat-icon>edit</mat-icon>
+        </button>
+
+        <button (click)="onShowPublication()" mat-mini-fab matTooltip="add publication" color="primary">
+          <mat-icon>add</mat-icon>
+      </button>
+    </div>
+
+    <app-publication-view
+        *ngIf="openPublication"
+        [publication]="currentPublication"
+    ></app-publication-view>
+</div>
