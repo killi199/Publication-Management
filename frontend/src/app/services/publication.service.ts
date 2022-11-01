@@ -29,20 +29,20 @@ export class PublicationService {
 
     // TMP HELPER
     private createPublication(key: string): Publication {
-        return {
-            key: key,
-            authors: [{ uuid: '3111', name: 'Schmidt', surname: 'Fritz' }],
-            isbn: '66653',
-            dateOfPublication: new Date('2021-02-17'),
-            keywords: [
+        return new Publication(
+            key,
+            'Python SuperBook',
+            [{ uuid: '3111', name: 'Schmidt', surname: 'Fritz' }],
+            new Date('2021-02-17'),
+            "O'Reilly",
+            { uuid: '567', value: 'Sachbuch' },
+            '66653',
+            [
                 { uuid: '5678', value: 'Python' },
                 { uuid: '5679', value: 'IT' },
             ],
-            kindOfPublication: { uuid: '567', value: 'Sachbuch' },
-            publisher: "O'Reilly",
-            quantity: 1,
-            title: 'Python SuperBook',
-        };
+            1
+        );
     }
 
     // TMP HELPER

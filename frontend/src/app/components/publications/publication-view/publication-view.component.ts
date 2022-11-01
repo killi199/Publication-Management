@@ -19,7 +19,7 @@ export class PublicationViewComponent implements OnInit {
     form!: NgForm;
 
     @Input()
-    publication: Publication | undefined;
+    publication: Publication = new Publication();
 
     @Output()
     deletePublication = new EventEmitter<Publication>();

@@ -20,13 +20,18 @@ import { Publication } from 'src/app/models/publication';
 })
 export class PublicationListComponent implements AfterViewInit, OnInit {
     @Input() publications: Publication[] = [];
+
     @Output() showPublication = new EventEmitter<Publication>();
+
+    @ViewChild(MatSort) sort: MatSort = new MatSort();
+
+    @ViewChild(MatPaginator) paginator!: MatPaginator;
 
     dataSource!: MatTableDataSource<Publication>;
 
-    ngOnInit(): void {
-        this.dataSource = new MatTableDataSource(this.publications);
-    }
+    selectedPublication?: Publication;
+
+    selection = new SelectionModel<Publication>(false, []);
 
     displayedColumns: string[] = [
         'key',
@@ -40,18 +45,17 @@ export class PublicationListComponent implements AfterViewInit, OnInit {
         'quantity',
     ];
 
-    @ViewChild(MatSort) sort: MatSort = new MatSort();
-
-    @ViewChild(MatPaginator) paginator!: MatPaginator;
+    ngOnInit(): void {
+        this.dataSource = new MatTableDataSource(this.publications);
+    }
 
     ngAfterViewInit() {
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
     }
 
-    selectedPublication!: Publication;
     onShowPublication(publication: Publication): void {
-        if (publication === this.selectedPublication) {
+        if (publication.equals(this.selectedPublication)) {
             this.showPublication.emit(undefined);
         } else {
             this.showPublication.emit(publication);
@@ -59,14 +63,12 @@ export class PublicationListComponent implements AfterViewInit, OnInit {
         this.selectedPublication = publication;
     }
 
-    selection = new SelectionModel<Publication>(false, []);
-
     applyFilter(event: Event) {
         const filterValue = (event.target as HTMLInputElement).value;
         this.dataSource.filter = filterValue.trim().toLowerCase();
-    
+
         if (this.dataSource.paginator) {
-          this.dataSource.paginator.firstPage();
+            this.dataSource.paginator.firstPage();
         }
-      }
+    }
 }

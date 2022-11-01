@@ -1,15 +1,25 @@
-import { Author } from "./author";
-import { Keyword } from "./keyword";
-import { KindOfPublication } from "./kind-of-publication";
+import { Author } from './author';
+import { Keyword } from './keyword';
+import { KindOfPublication } from './kind-of-publication';
 
-export interface Publication {
-    key: string;
-    title: string;
-    authors: Author[];
-    dateOfPublication: Date;
-    publisher: string;
-    kindOfPublication: KindOfPublication;
-    isbn: string;
-    keywords: Keyword[];
-    quantity: number;
+export class Publication {
+    constructor(
+        public key?: string,
+        public title?: string,
+        public authors?: Author[],
+        public dateOfPublication?: Date,
+        public publisher?: string,
+        public kindOfPublication?: KindOfPublication,
+        public isbn?: string,
+        public keywords?: Keyword[],
+        public quantity?: number
+    ) {}
+
+    equals(other: Publication | undefined): boolean {
+        if(!other){
+            return false;
+        }
+        
+        return this.key === other.key;
+    }
 }

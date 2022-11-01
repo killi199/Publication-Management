@@ -32,7 +32,7 @@
     </div>
 
     <app-publication-view
-        *ngIf="openPublication"
+        *ngIf="currentPublication && openPublication"
         [publication]="currentPublication"
         (deletePublication)="onDeletePublication($event)"
         (savePublication)="onSavePublication($event)"
