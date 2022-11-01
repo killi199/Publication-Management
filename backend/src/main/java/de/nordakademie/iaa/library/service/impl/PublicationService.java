@@ -1,10 +1,11 @@
-package de.nordakademie.iaa.library.service;
+package de.nordakademie.iaa.library.service.impl;
 
 import de.nordakademie.iaa.library.controller.api.exception.EntityAlreadyExistsException;
 import de.nordakademie.iaa.library.controller.api.exception.EntityDoesNotExistException;
 import de.nordakademie.iaa.library.controller.dto.PublicationDto;
 import de.nordakademie.iaa.library.persistent.entities.Publication;
 import de.nordakademie.iaa.library.persistent.repository.PublicationRepository;
+import de.nordakademie.iaa.library.service.PublicationServiceInterface;
 import de.nordakademie.iaa.library.service.mapper.PublicationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ import java.util.List;
  * The publication service provides methods to handle the publications
  */
 @Service
-public class PublicationService {
+public class PublicationService implements PublicationServiceInterface {
 
     private final PublicationRepository publicationRepository;
 

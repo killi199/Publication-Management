@@ -2,7 +2,7 @@ package de.nordakademie.iaa.library.controller.api;
 
 import de.nordakademie.iaa.library.controller.api.exception.MissingFieldException;
 import de.nordakademie.iaa.library.controller.dto.PublicationDto;
-import de.nordakademie.iaa.library.service.PublicationService;
+import de.nordakademie.iaa.library.service.PublicationServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +20,10 @@ import static de.nordakademie.iaa.library.controller.api.constants.ApiPath.PUBLI
 @RequestMapping(PUBLICATION_BASE_PATH)
 public class PublicationController {
 
-    private final PublicationService publicationService;
+    private final PublicationServiceInterface publicationService;
 
     @Autowired
-    public PublicationController(PublicationService publicationService) {
+    public PublicationController(PublicationServiceInterface publicationService) {
         this.publicationService = publicationService;
     }
 
