@@ -1,88 +1,106 @@
-<form>
-    <mat-grid-list cols="2" rowHeight="14:1">
-        <mat-grid-tile>
-            <mat-form-field appearance="fill">
-                <mat-label>Key</mat-label>
-                <input matInput value="{{ publication?.key }}" readonly />
-            </mat-form-field>
-        </mat-grid-tile>
+<div class="container">
+    <form>
+        <mat-grid-list cols="2" rowHeight="14:1">
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <mat-label>Key</mat-label>
+                    <input matInput value="{{ publication?.key }}" readonly />
+                </mat-form-field>
+            </mat-grid-tile>
 
-        <mat-grid-tile>
-            <mat-form-field appearance="fill">
-                <mat-label>Title</mat-label>
-                <input matInput value="{{ publication?.title }}" readonly />
-            </mat-form-field>
-        </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <mat-label>Title</mat-label>
+                    <input matInput value="{{ publication?.title }}" readonly />
+                </mat-form-field>
+            </mat-grid-tile>
 
-        <mat-grid-tile>
-            <mat-form-field appearance="fill">
-                <mat-label>Authors</mat-label>
-                <input matInput readonly />
-            </mat-form-field>
-        </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <mat-label>Authors</mat-label>
+                    <input matInput readonly />
+                </mat-form-field>
+            </mat-grid-tile>
 
-        <mat-grid-tile>
-            <mat-form-field appearance="fill">
-                <mat-label>ISBN</mat-label>
-                <input matInput value="{{ publication?.isbn }}" readonly />
-            </mat-form-field>
-        </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <mat-label>ISBN</mat-label>
+                    <input matInput value="{{ publication?.isbn }}" readonly />
+                </mat-form-field>
+            </mat-grid-tile>
 
-        <mat-grid-tile>
-            <mat-form-field appearance="fill">
-                <mat-label>Quantity</mat-label>
-                <input matInput value="{{ publication?.quantity }}" readonly />
-            </mat-form-field>
-        </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <mat-label>Quantity</mat-label>
+                    <input
+                        matInput
+                        value="{{ publication?.quantity }}"
+                        readonly
+                    />
+                </mat-form-field>
+            </mat-grid-tile>
 
-        <mat-grid-tile>
-            <mat-form-field appearance="fill">
-                <mat-label>Publisher</mat-label>
-                <input matInput value="{{ publication?.publisher }}" readonly />
-            </mat-form-field>
-        </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <mat-label>Publisher</mat-label>
+                    <input
+                        matInput
+                        value="{{ publication?.publisher }}"
+                        readonly
+                    />
+                </mat-form-field>
+            </mat-grid-tile>
 
-        <mat-grid-tile>
-            <mat-form-field appearance="fill">
-                <mat-label>Date of Publication</mat-label>
-                <input
-                    matInput
-                    value="{{
-                        publication?.dateOfPublication | date: 'yyyy-MM-dd'
-                    }}"
-                    readonly
-                />
-            </mat-form-field>
-        </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <mat-label>Date of Publication</mat-label>
+                    <input
+                        matInput
+                        value="{{
+                            publication?.dateOfPublication | date: 'yyyy-MM-dd'
+                        }}"
+                        readonly
+                    />
+                </mat-form-field>
+            </mat-grid-tile>
 
-        <mat-grid-tile>
-            <mat-form-field appearance="fill">
-                <mat-label>Kind of Publication</mat-label>
-                <input matInput readonly />
-            </mat-form-field>
-        </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <mat-label>Kind of Publication</mat-label>
+                    <input matInput readonly />
+                </mat-form-field>
+            </mat-grid-tile>
 
-        <mat-grid-tile>
-            <mat-form-field appearance="fill">
-                <mat-label>Keywords</mat-label>
-                <input matInput readonly />
-            </mat-form-field>
-        </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <mat-label>Keywords</mat-label>
+                    <input matInput readonly />
+                </mat-form-field>
+            </mat-grid-tile>
 
-        <mat-grid-tile>
-            <div class="example-flex-container">
-                <div class="example-button-container">
-                    <button mat-fab>
-                        <mat-icon>edit</mat-icon>
-                    </button>
+            <mat-grid-tile>
+                <div class="example-flex-container">
+                    <div class="example-button-container">
+                        <button
+                            mat-mini-fab
+                            color="primary"
+                            matTooltip="edit publication"
+                        >
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                    </div>
+
+                    <div class="example-button-container">
+                        <button
+                            mat-mini-fab
+                            color="primary"
+                            matTooltip="delete publication"
+                        >
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
                 </div>
-
-                <div class="example-button-container">
-                    <button mat-fab>
-                        <mat-icon>delete</mat-icon>
-                    </button>
-                </div>
-            </div>
-        </mat-grid-tile>
-    </mat-grid-list>
-</form>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </form>
+</div>
