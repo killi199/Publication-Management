@@ -27,14 +27,16 @@ export class PublicationViewComponent implements OnInit {
     @Output()
     savePublication = new EventEmitter<Publication>();
 
-    @Output()
-    cancel = new EventEmitter<void>();
-
     editable: boolean = false;
+
+    savedPublication: Publication = new Publication();
 
     ngOnInit(): void {
         if(!this.publication){
             this.editable = true;
+        }
+        else{
+            this.savedPublication = structuredClone(this.publication);
         }
     }
 
@@ -51,7 +53,7 @@ export class PublicationViewComponent implements OnInit {
 
     onCancel(): void {
         this.editable = false;
-        this.cancel.emit();
+        this.publication = structuredClone(this.savedPublication);
     }
 
     onEdit(): void {

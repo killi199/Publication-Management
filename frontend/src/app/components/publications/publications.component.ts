@@ -32,9 +32,4 @@ export class PublicationsComponent {
     onSavePublication(publication: Publication | undefined): void {
         this.publicationService.savePublication(publication);
     }
-
-    onCancel(): void {
-        this.currentPublication = undefined;
-        this.openPublication = false;
-    }
 }
