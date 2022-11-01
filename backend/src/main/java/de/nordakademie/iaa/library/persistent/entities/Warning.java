@@ -7,6 +7,10 @@ import javax.persistence.ManyToOne;
 import java.util.Date;
 import java.util.UUID;
 
+/**
+ * A warning is a element in an overdue notice.
+ * Warnings are often letters that will be sent out to the borrower.
+ */
 @Entity
 public class Warning {
     @Id

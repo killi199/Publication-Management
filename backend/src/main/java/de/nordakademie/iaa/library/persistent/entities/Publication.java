@@ -3,6 +3,9 @@ package de.nordakademie.iaa.library.persistent.entities;
 import javax.persistence.*;
 import java.util.*;
 
+/**
+ * A publication is the main object for a library. It describes thinks like books, articles, etc.
+ */
 @Entity
 public class Publication {
 

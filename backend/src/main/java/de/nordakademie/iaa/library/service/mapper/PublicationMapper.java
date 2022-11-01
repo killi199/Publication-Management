@@ -8,6 +8,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+
+/**
+ * This is an interface for a generated mapper.
+ * This interface defines methods to map between publicationDtos and publications.
+ */
 @Component
 @Mapper(componentModel = "spring", nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
 public interface PublicationMapper {

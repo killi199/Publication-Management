@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * A publication is the main object for a library. It describes thinks like books, articles, etc.
+ */
 public class PublicationDto {
 
     private String key;

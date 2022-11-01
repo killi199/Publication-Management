@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * An overdue notice will be started if the borrower exceeds the return date.
+ * It is an act where the staff of a library will warn the borrower.
+ */
 @Entity
 public class OverdueNotice {
     @Id

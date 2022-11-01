@@ -5,6 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.UUID;
 
+/**
+ * Keywords can be used to describe a publication with some simple words in a abstract form.
+ */
 @Entity
 public class Keyword {
     @Id

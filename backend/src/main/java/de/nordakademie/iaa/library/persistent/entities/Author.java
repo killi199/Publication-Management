@@ -5,6 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.UUID;
 
+/**
+ * The author describes a person that wrote a publication
+ */
 @Entity
 public class Author {
     @Id

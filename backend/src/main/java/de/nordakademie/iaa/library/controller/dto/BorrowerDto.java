@@ -2,6 +2,9 @@ package de.nordakademie.iaa.library.controller.dto;
 
 import java.util.UUID;
 
+/**
+ * A borrower is a person that is allowed to lend a publication.
+ */
 public class BorrowerDto {
 
     private UUID uuid;

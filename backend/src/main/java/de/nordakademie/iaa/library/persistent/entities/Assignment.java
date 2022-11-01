@@ -6,6 +6,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * An assignment describes the lending of publications.
+ * Each Publication can be lend to a borrower.
+ */
 @Entity
 public class Assignment {
     @Id

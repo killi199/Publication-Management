@@ -2,6 +2,9 @@ package de.nordakademie.iaa.library.controller.dto;
 
 import java.util.UUID;
 
+/**
+ * The kind of publication organizes a publication in different categories like: "book", "articel", etc.
+ */
 public class KindOfPublicationDto {
 
     private UUID uuid;

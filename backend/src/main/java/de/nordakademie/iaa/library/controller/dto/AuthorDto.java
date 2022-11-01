@@ -2,6 +2,10 @@ package de.nordakademie.iaa.library.controller.dto;
 
 import java.util.UUID;
 
+
+/**
+ * The author describes a person that wrote a publication
+ */
 public class AuthorDto {
     private UUID uuid;
 

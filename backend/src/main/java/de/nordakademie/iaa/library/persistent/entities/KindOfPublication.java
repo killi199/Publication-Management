@@ -5,6 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.UUID;
 
+/**
+ * The kind of publication organizes a publication in different categories like: "book", "articel", etc.
+ */
 @Entity
 public class KindOfPublication {
 
