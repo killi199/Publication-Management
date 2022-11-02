@@ -29,8 +29,14 @@ public class ExceptionController {
         return restApiException.handle();
     }
 
+    /**
+     *
+     * This handles the NotReadableException from spring boot to return an informative error text.
+     *
+     * @return The error text as response
+     */
     @ExceptionHandler(value = HttpMessageNotReadableException.class)
-    public ResponseEntity<String> exception(HttpMessageNotReadableException readableException) {
+    public ResponseEntity<String> exception() {
         return new ResponseEntity<>("The format of one or more values is not valid.", HttpStatus.BAD_REQUEST);
     }
 }
