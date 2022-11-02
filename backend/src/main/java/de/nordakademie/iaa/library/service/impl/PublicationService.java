@@ -47,8 +47,10 @@ public class PublicationService implements PublicationServiceInterface {
      *
      * @param publicationDto the publication that should be created
      * @return the created publication
+     * \@NotNull is here for documentation and does nothing.
+     * This method should not be called with null values.
      */
-    public PublicationDto create(PublicationDto publicationDto) {
+    public PublicationDto create(@NotNull PublicationDto publicationDto) {
 
         if (publicationDto.getKey() == null) {
             throw new MissingFieldException("key");
@@ -66,8 +68,10 @@ public class PublicationService implements PublicationServiceInterface {
      *
      * @param publicationDto the publication that should be updated
      * @return the updated publication
+     * \@NotNull is here for documentation and does nothing.
+     * This method should not be called with null values.
      */
-    public PublicationDto update(PublicationDto publicationDto) {
+    public PublicationDto update(@NotNull PublicationDto publicationDto) {
 
         if (publicationDto.getKey() == null) {
             throw new MissingFieldException("key");
@@ -85,16 +89,12 @@ public class PublicationService implements PublicationServiceInterface {
      * deletes the publication
      *
      * @param key the publication that should be deleted
+     * \@NotNull is here for documentation and does nothing.
+     * This method should not be called with null values.
      */
     public void delete(@NotNull String key) {
-
-        if (key == null) {
-            throw new MissingFieldException("key");
-        }
-
         Publication publication = new Publication();
         publication.setKey(key);
-
         publicationRepository.delete(publication);
     }
 
@@ -103,8 +103,10 @@ public class PublicationService implements PublicationServiceInterface {
      *
      * @param publicationDto the publication that should be created or updated
      * @return the created or updated publication
+     * \@NotNull is here for documentation and does nothing.
+     * This method should not be called with null values.
      */
-    private PublicationDto createOrUpdate(PublicationDto publicationDto) {
+    private PublicationDto createOrUpdate(@NotNull PublicationDto publicationDto) {
         Publication publication = publicationMapper.publicationDtoToEntity(publicationDto);
 
         return publicationMapper.publicationEntityToDto(publicationRepository.save(publication));

@@ -67,7 +67,6 @@ public class PublicationController {
     @DeleteMapping("/{key}")
     public ResponseEntity<Null> delete(@PathVariable String key) {
         publicationService.delete(key);
-
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

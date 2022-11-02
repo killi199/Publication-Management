@@ -36,7 +36,18 @@ public class ExceptionController {
      * @return The error text as response
      */
     @ExceptionHandler(value = HttpMessageNotReadableException.class)
-    public ResponseEntity<String> exception() {
+    public ResponseEntity<String> exception(HttpMessageNotReadableException ignored) {
         return new ResponseEntity<>("The format of one or more values is not valid.", HttpStatus.BAD_REQUEST);
+    }
+
+    /**
+     *
+     * This handles the NotPointerException from spring boot to return an informative error text.
+     *
+     * @return The error text as response
+     */
+    @ExceptionHandler(value = NullPointerException.class)
+    public ResponseEntity<String> exception(NullPointerException ignored) {
+        return new ResponseEntity<>("The server has an invalid state. Please contact the support.", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
