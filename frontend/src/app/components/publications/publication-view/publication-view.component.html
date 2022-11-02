@@ -10,6 +10,7 @@
                         name="key"
                         [(ngModel)]="publication.key"
                         [readonly]="!editable"
+                        required
                     />
                 </mat-form-field>
             </mat-grid-tile>
@@ -23,6 +24,7 @@
                         name="title"
                         [(ngModel)]="publication.title"
                         [readonly]="!editable"
+                        required
                     />
                 </mat-form-field>
             </mat-grid-tile>
@@ -30,7 +32,13 @@
             <mat-grid-tile>
                 <mat-form-field appearance="fill">
                     <mat-label for="authors">Authors</mat-label>
-                    <input matInput [readonly]="!editable" />
+                    <input
+                        matInput
+                        id="authors"
+                        name="authors"
+                        [readonly]="!editable"
+                        required
+                    />
                 </mat-form-field>
             </mat-grid-tile>
 
@@ -51,11 +59,13 @@
                 <mat-form-field appearance="fill">
                     <mat-label for="quantity">Quantity</mat-label>
                     <input
+                        type="number"
                         matInput
                         id="quantity"
                         name="quantity"
                         [(ngModel)]="publication.quantity"
                         [readonly]="!editable"
+                        required
                     />
                 </mat-form-field>
             </mat-grid-tile>
@@ -84,6 +94,7 @@
                         name="dateOfPublication"
                         [(ngModel)]="publication.dateOfPublication"
                         [readonly]="!editable"
+                        required
                     />
                 </mat-form-field>
             </mat-grid-tile>
@@ -93,14 +104,25 @@
                     <mat-label for="kindOfPublication"
                         >Kind of Publication</mat-label
                     >
-                    <input matInput [readonly]="!editable" />
+                    <input
+                        matInput
+                        id="kindOfPublication"
+                        name="kindOfPublication"
+                        [readonly]="!editable"
+                        required
+                    />
                 </mat-form-field>
             </mat-grid-tile>
 
             <mat-grid-tile>
                 <mat-form-field appearance="fill">
                     <mat-label for="keywords">Keywords</mat-label>
-                    <input matInput [readonly]="!editable" />
+                    <input
+                        matInput
+                        id="keywords"
+                        name="keywords"
+                        [readonly]="!editable"
+                    />
                 </mat-form-field>
             </mat-grid-tile>
 
