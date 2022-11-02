@@ -1,0 +1,1 @@
+insert into publication ("key", isbn, date_of_publication, publisher, quantity, titel) values ('test','test', '2020-03-09 13:44:33', 'test', 3, 'test')
