@@ -21,7 +21,7 @@ public class PublicationDto {
 
     private String publisher;
 
-    private List<KindOfPublicationDto> kindOfPublication = new ArrayList<>();
+    private List<KindOfPublicationDto> kindsOfPublication = new ArrayList<>();
 
     @JsonProperty("ISBN")
     private String ISBN;
@@ -70,12 +70,12 @@ public class PublicationDto {
         this.publisher = publisher;
     }
 
-    public List<KindOfPublicationDto> getKindOfPublications() {
-        return kindOfPublication;
+    public List<KindOfPublicationDto> getKindsOfPublication() {
+        return kindsOfPublication;
     }
 
-    public void setKindOfPublications(List<KindOfPublicationDto> kindOfPublications) {
-        this.kindOfPublication = kindOfPublications;
+    public void setKindsOfPublication(List<KindOfPublicationDto> kindOfPublications) {
+        this.kindsOfPublication = kindOfPublications;
     }
 
     public String getISBN() {

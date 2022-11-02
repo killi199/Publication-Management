@@ -45,11 +45,6 @@ public class PublicationController {
      */
     @PostMapping
     public ResponseEntity<PublicationDto> create(@RequestBody PublicationDto publicationDto) {
-
-        if (publicationDto.getKey() == null) {
-            throw new MissingFieldException("key");
-        }
-
         return new ResponseEntity<>(publicationService.create(publicationDto), HttpStatus.OK);
     }
 
@@ -61,11 +56,6 @@ public class PublicationController {
      */
     @PutMapping
     public ResponseEntity<PublicationDto> update(@RequestBody PublicationDto publicationDto) {
-
-        if (publicationDto.getKey() == null) {
-            throw new MissingFieldException("key");
-        }
-
         return new ResponseEntity<>(publicationService.update(publicationDto), HttpStatus.OK);
     }
 

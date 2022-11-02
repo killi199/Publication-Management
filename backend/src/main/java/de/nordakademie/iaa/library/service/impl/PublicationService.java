@@ -2,6 +2,7 @@ package de.nordakademie.iaa.library.service.impl;
 
 import de.nordakademie.iaa.library.controller.api.exception.EntityAlreadyExistsException;
 import de.nordakademie.iaa.library.controller.api.exception.EntityDoesNotExistException;
+import de.nordakademie.iaa.library.controller.api.exception.MissingFieldException;
 import de.nordakademie.iaa.library.controller.dto.PublicationDto;
 import de.nordakademie.iaa.library.persistent.entities.Publication;
 import de.nordakademie.iaa.library.persistent.repository.PublicationRepository;
@@ -49,6 +50,10 @@ public class PublicationService implements PublicationServiceInterface {
      */
     public PublicationDto create(PublicationDto publicationDto) {
 
+        if (publicationDto.getKey() == null) {
+            throw new MissingFieldException("key");
+        }
+
         if (publicationRepository.existsById(publicationDto.getKey())) {
             throw new EntityAlreadyExistsException();
         }
@@ -63,6 +68,10 @@ public class PublicationService implements PublicationServiceInterface {
      * @return the updated publication
      */
     public PublicationDto update(PublicationDto publicationDto) {
+
+        if (publicationDto.getKey() == null) {
+            throw new MissingFieldException("key");
+        }
 
         if (!publicationRepository.existsById(publicationDto.getKey())) {
             throw new EntityDoesNotExistException();

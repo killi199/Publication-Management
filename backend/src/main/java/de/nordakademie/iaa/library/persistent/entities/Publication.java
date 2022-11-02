@@ -30,7 +30,7 @@ public class Publication {
             name = "kind_publications",
             joinColumns = {@JoinColumn(name = "publication_key")},
             inverseJoinColumns = {@JoinColumn(name = "kind_uuid")})
-    private List<KindOfPublication> kindOfPublications = new ArrayList<>();
+    private List<KindOfPublication> kindsOfPublication = new ArrayList<>();
 
     private String ISBN;
 
@@ -83,12 +83,12 @@ public class Publication {
         this.publisher = publisher;
     }
 
-    public List<KindOfPublication> getKindOfPublications() {
-        return kindOfPublications;
+    public List<KindOfPublication> getKindsOfPublication() {
+        return kindsOfPublication;
     }
 
-    public void setKindOfPublications(List<KindOfPublication> kindOfPublications) {
-        this.kindOfPublications = kindOfPublications;
+    public void setKindsOfPublication(List<KindOfPublication> kindsOfPublication) {
+        this.kindsOfPublication = kindsOfPublication;
     }
 
     public String getISBN() {
