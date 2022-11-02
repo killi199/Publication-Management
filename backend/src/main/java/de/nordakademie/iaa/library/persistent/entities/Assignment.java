@@ -22,7 +22,7 @@ public class Assignment {
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(
-            name = "borrower_publications",
+            name = "borrower_assignments",
             joinColumns = {@JoinColumn(name = "assignment_uuid")},
             inverseJoinColumns = {@JoinColumn(name = "borrower_uuid")})
     private List<Borrower> borrowers = new ArrayList<>();
