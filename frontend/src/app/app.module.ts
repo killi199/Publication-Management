@@ -15,7 +15,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -50,7 +50,6 @@ import { DunningComponent } from './components/dunning/dunning.component';
         MatGridListModule,
         FormsModule,
     ],
-    providers: [],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
