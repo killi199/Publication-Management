@@ -16,14 +16,14 @@ export class PublicationService {
         return of(this.pubs);
     }
 
-    deletePublication(publication: Publication | undefined): void {
+    deletePublication(publication: Publication): void {
         console.log('deletePublication', publication);
         if (publication) {
             this.pubs = this.pubs.filter((pub) => pub.key !== publication.key);
         }
     }
 
-    savePublication(publication: Publication | undefined): void {
+    savePublication(publication: Publication): void {
         console.log('savePublication', publication);
     }
 

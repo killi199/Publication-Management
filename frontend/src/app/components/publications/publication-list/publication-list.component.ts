@@ -19,13 +19,17 @@ import { Publication } from 'src/app/models/publication';
     styleUrls: ['./publication-list.component.scss'],
 })
 export class PublicationListComponent implements AfterViewInit, OnInit {
-    @Input() publications: Publication[] = [];
+    @Input() 
+    publications: Publication[] = [];
 
-    @Output() showPublication = new EventEmitter<Publication>();
+    @Output() 
+    showPublication = new EventEmitter<Publication>();
 
-    @ViewChild(MatSort) sort: MatSort = new MatSort();
+    @ViewChild(MatSort) 
+    sort: MatSort = new MatSort();
 
-    @ViewChild(MatPaginator) paginator!: MatPaginator;
+    @ViewChild(MatPaginator) 
+    paginator!: MatPaginator;
 
     dataSource!: MatTableDataSource<Publication>;
 
@@ -49,21 +53,21 @@ export class PublicationListComponent implements AfterViewInit, OnInit {
         this.dataSource = new MatTableDataSource(this.publications);
     }
 
-    ngAfterViewInit() {
+    ngAfterViewInit(): void {
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
     }
 
     onShowPublication(publication: Publication): void {
-        if (publication.equals(this.selectedPublication)) {
-            this.showPublication.emit(undefined);
-        } else {
-            this.showPublication.emit(publication);
-        }
+        var eventObject = publication.equals(this.selectedPublication)
+            ? undefined
+            : publication;
+        this.showPublication.emit(eventObject);
+
         this.selectedPublication = publication;
     }
 
-    applyFilter(event: Event) {
+    applyFilter(event: Event): void {
         const filterValue = (event.target as HTMLInputElement).value;
         this.dataSource.filter = filterValue.trim().toLowerCase();
 

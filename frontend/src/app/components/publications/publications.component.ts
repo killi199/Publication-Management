@@ -25,11 +25,11 @@ export class PublicationsComponent {
         this.openPublication = !this.openPublication;
     }
 
-    onDeletePublication(publication: Publication | undefined): void {
+    onDeletePublication(publication: Publication): void {
         this.publicationService.deletePublication(publication);
     }
 
-    onSavePublication(publication: Publication | undefined): void {
+    onSavePublication(publication: Publication): void {
         this.publicationService.savePublication(publication);
     }
 }
