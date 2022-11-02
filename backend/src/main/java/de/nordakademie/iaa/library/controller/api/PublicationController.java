@@ -1,6 +1,5 @@
 package de.nordakademie.iaa.library.controller.api;
 
-import de.nordakademie.iaa.library.controller.api.exception.MissingFieldException;
 import de.nordakademie.iaa.library.controller.dto.PublicationDto;
 import de.nordakademie.iaa.library.service.PublicationServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,11 +66,6 @@ public class PublicationController {
      */
     @DeleteMapping("/{key}")
     public ResponseEntity<Null> delete(@PathVariable String key) {
-
-        if (key == null) {
-            throw new MissingFieldException("key");
-        }
-
         publicationService.delete(key);
 
         return new ResponseEntity<>(HttpStatus.OK);

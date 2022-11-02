@@ -88,6 +88,10 @@ public class PublicationService implements PublicationServiceInterface {
      */
     public void delete(@NotNull String key) {
 
+        if (key == null) {
+            throw new MissingFieldException("key");
+        }
+
         Publication publication = new Publication();
         publication.setKey(key);
 
