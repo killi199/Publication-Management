@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 
 // Material Modules
 import { MatTableModule } from '@angular/material/table';
@@ -12,6 +12,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,6 +25,12 @@ import { PublicationsComponent } from './components/publications/publications.co
 import { PublicationListComponent } from './components/publications/publication-list/publication-list.component';
 import { PublicationViewComponent } from './components/publications/publication-view/publication-view.component';
 import { DunningComponent } from './components/dunning/dunning.component';
+import { registerLocaleData } from '@angular/common';
+
+import localeDe from '@angular/common/locales/de';
+import localeDeExtra from '@angular/common/locales/extra/de';
+
+registerLocaleData(localeDe, 'de-DE', localeDeExtra);
 
 @NgModule({
     declarations: [
@@ -49,7 +57,13 @@ import { DunningComponent } from './components/dunning/dunning.component';
         MatListModule,
         MatGridListModule,
         FormsModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
     ],
+    providers: [
+        {provide: MAT_DATE_LOCALE, useValue: 'de-DE'},
+        {provide: LOCALE_ID, useValue: 'de-DE' },
+      ],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
