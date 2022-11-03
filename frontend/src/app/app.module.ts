@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import {MatTabsModule} from '@angular/material/tabs';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,6 +22,11 @@ import { PublicationsComponent } from './components/publications/publications.co
 import { PublicationListComponent } from './components/publications/publication-list/publication-list.component';
 import { PublicationViewComponent } from './components/publications/publication-view/publication-view.component';
 import { DunningComponent } from './components/dunning/dunning.component';
+import { BasedataComponent } from './components/basedata/basedata.component';
+import { BasedataKindsComponent } from './components/basedata/basedata-kinds/basedata-kinds.component';
+import { BasedataKeywordsComponent } from './components/basedata/basedata-keywords/basedata-keywords.component';
+import { BasedataBorrowersComponent } from './components/basedata/basedata-borrowers/basedata-borrowers.component';
+import { BasedataAuthorsComponent } from './components/basedata/basedata-authors/basedata-authors.component';
 
 @NgModule({
     declarations: [
@@ -29,6 +35,11 @@ import { DunningComponent } from './components/dunning/dunning.component';
         PublicationListComponent,
         PublicationViewComponent,
         DunningComponent,
+        BasedataComponent,
+        BasedataKindsComponent,
+        BasedataKeywordsComponent,
+        BasedataBorrowersComponent,
+        BasedataAuthorsComponent,
     ],
     imports: [
         BrowserModule,
@@ -44,6 +55,7 @@ import { DunningComponent } from './components/dunning/dunning.component';
         MatInputModule,
         MatSidenavModule,
         MatListModule,
+        MatTabsModule
     ],
     providers: [],
     bootstrap: [AppComponent],
