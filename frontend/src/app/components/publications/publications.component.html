@@ -5,7 +5,6 @@
 
     <app-publication-list
         *ngIf="!openPublication"
-        class="table"
         [publications]="(publications$ | async) ?? []"
         (showPublication)="onSelectPublication($event)"
     ></app-publication-list>
