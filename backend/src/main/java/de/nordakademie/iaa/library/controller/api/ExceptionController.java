@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 /**
- * This controller will handle all exceptions in this application. Caused by the controllerAdvice annotation,
- * each response has to pass this controller
+ * This controller will handle all exceptions in this application, caused by the controllerAdvice annotation.
+ * Each response has to pass this controller
  */
 @ControllerAdvice
 public class ExceptionController {
@@ -20,7 +20,7 @@ public class ExceptionController {
      * This method will handle all exceptions that extends the AbstractRestApiException.
      *
      * @param restApiException Caused by the fact, that the AbstractRestApiException implements
-     *                         the RestApiExceptionInterface Spring Boot will pass the exception as
+     *                         the RestApiExceptionInterface, Spring Boot will pass the exception as
      *                         RestApiExceptionInterface here.
      * @return The error text as response
      */
@@ -31,7 +31,7 @@ public class ExceptionController {
 
     /**
      *
-     * This handles the NotReadableException from spring boot to return an informative error text.
+     * This handles the NotReadableException from Spring Boot to return an informative error text.
      *
      * @return The error text as response
      */
@@ -42,7 +42,7 @@ public class ExceptionController {
 
     /**
      *
-     * This handles the NotPointerException from spring boot to return an informative error text.
+     * This handles the NullPointerException from Spring Boot to return an informative error text.
      *
      * @return The error text as response
      */

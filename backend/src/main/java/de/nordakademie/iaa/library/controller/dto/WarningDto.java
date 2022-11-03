@@ -5,8 +5,8 @@ import java.util.UUID;
 
 
 /**
- * A warning is a element in an overdue notice.
- * Warnings are often letters that will be sent out to the borrower.
+ * A Warning is a element in an Pverdue Notice.
+ * Warnings are often letters that will be sent out to the Borrower.
  */
 public class WarningDto {
     private UUID uuid;

@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
- * The publication service provides methods to handle the publications
+ * The Publication service provides methods to handle the Publications
  */
 @Service
 @Transactional
@@ -34,9 +34,9 @@ public class PublicationService implements PublicationServiceInterface {
     }
 
     /**
-     * get all publications
+     * get all Publications
      *
-     * @return all publications
+     * @return all Publications
      */
     public List<PublicationDto> getAll() {
         List<Publication> publications = publicationRepository.findAll();
@@ -44,10 +44,10 @@ public class PublicationService implements PublicationServiceInterface {
     }
 
     /**
-     * create a publication
+     * create a Publication
      *
-     * @param publicationDto the publication that should be created
-     * @return the created publication
+     * @param publicationDto the Publication that should be created
+     * @return the created Publication
      * \@NotNull is here for documentation and does nothing.
      * This method should not be called with null values.
      */
@@ -63,10 +63,10 @@ public class PublicationService implements PublicationServiceInterface {
     }
 
     /**
-     * update a publication
+     * update a Publication
      *
-     * @param publicationDto the publication that should be updated
-     * @return the updated publication
+     * @param publicationDto the Publication that should be updated
+     * @return the updated Publication
      * \@NotNull is here for documentation and does nothing.
      * This method should not be called with null values.
      */
@@ -83,9 +83,9 @@ public class PublicationService implements PublicationServiceInterface {
 
 
     /**
-     * deletes the publication
+     * deletes the Publication
      *
-     * @param key the publication that should be deleted
+     * @param key the Publication that should be deleted
      * \@NotNull is here for documentation and does nothing.
      * This method should not be called with null values.
      */
@@ -115,10 +115,10 @@ public class PublicationService implements PublicationServiceInterface {
     }
 
     /**
-     * create or updates a publication
+     * create or updates a Publication
      *
-     * @param publicationDto the publication that should be created or updated
-     * @return the created or updated publication
+     * @param publicationDto the Publication that should be created or updated
+     * @return the created or updated Publication
      * \@NotNull is here for documentation and does nothing.
      * This method should not be called with null values.
      */

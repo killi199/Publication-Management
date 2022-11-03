@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import java.util.UUID;
 
 /**
- * A borrower is a person that is allowed to lend a publication.
+ * A Borrower is a person that is allowed to lend a Publication.
  */
 @Entity
 public class Borrower {

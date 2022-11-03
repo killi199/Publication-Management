@@ -3,7 +3,7 @@ package de.nordakademie.iaa.library.controller.dto;
 import java.util.UUID;
 
 /**
- * A borrower is a person that is allowed to lend a publication.
+ * A Borrower is a person that is allowed to lend a Publication.
  */
 public class BorrowerDto {
 

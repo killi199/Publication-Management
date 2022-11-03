@@ -4,7 +4,7 @@ import java.util.UUID;
 
 
 /**
- * The author describes a person that wrote a publication
+ * The Author describes a person who wrote a Publication
  */
 public class AuthorDto {
     private UUID uuid;

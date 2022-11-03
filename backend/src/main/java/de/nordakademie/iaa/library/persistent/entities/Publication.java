@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 
 /**
- * A publication is the main object for a library. It describes thinks like books, articles, etc.
+ * A Publication is the main object for a library. It describes things like books, articles, etc.
  */
 @Entity
 public class Publication {

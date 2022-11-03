@@ -3,7 +3,7 @@ package de.nordakademie.iaa.library.controller.dto;
 import java.util.UUID;
 
 /**
- * The kind of publication organizes a publication in different categories like: "book", "articel", etc.
+ * The Kind Of Publication organizes a Publication in different categories like: "book", "article", etc.
  */
 public class KindOfPublicationDto {
 

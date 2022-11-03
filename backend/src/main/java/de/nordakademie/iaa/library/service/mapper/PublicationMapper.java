@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * This is an interface for a generated mapper.
- * This interface defines methods to map between publicationDtos and publications.
+ * This interface defines methods to map between PublicationDtos and Publications.
  */
 @Component
 @Mapper(componentModel = "spring", nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)

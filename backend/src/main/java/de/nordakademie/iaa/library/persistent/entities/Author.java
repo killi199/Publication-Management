@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import java.util.UUID;
 
 /**
- * The author describes a person that wrote a publication
+ * The Author describes a person that wrote a Publication
  */
 @Entity
 public class Author {

@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * An overdue notice will be started if the borrower exceeds the return date.
- * It is an act where the staff of a library will warn the borrower.
+ * An Overdue Notice will be started if the Borrower exceeds the return date.
+ * It is an act where the staff of a library will warn the Borrower.
  */
 public class OverdueNoticeDto {
     private UUID uuid;

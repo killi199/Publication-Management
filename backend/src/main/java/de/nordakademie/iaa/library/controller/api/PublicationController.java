@@ -37,7 +37,7 @@ public class PublicationController {
     }
 
     /**
-     * This method will create a publication. In this case the key has to get set by the user.
+     * This method will create a publication. In this case the key has to be set by the user.
      *
      * @param publicationDto the publication that should be created
      * @return The created publication

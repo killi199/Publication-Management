@@ -6,38 +6,38 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
- * The publication service provides methods to handle the publications
+ * The Publication service provides methods to handle the Publications
  */
 public interface PublicationServiceInterface {
 
     /**
-     * get all publications
+     * get all Publications
      *
-     * @return all publications
+     * @return all Publications
      */
     List<PublicationDto> getAll();
 
     /**
-     * create a publication
+     * create a Publication
      *
-     * @param publicationDto the publication that should be created
-     * @return the created publication
+     * @param publicationDto the Publication that should be created
+     * @return the created Publication
      */
     PublicationDto create(PublicationDto publicationDto);
 
     /**
-     * update a publication
+     * update a Publication
      *
-     * @param publicationDto the publication that should be updated
-     * @return the updated publication
+     * @param publicationDto the Publication that should be updated
+     * @return the updated Publication
      */
     PublicationDto update(PublicationDto publicationDto);
 
 
     /**
-     * deletes the publication
+     * deletes the Publication
      *
-     * @param key the publication that should be deleted
+     * @param key the Publication that should be deleted
      */
     void delete(@NotNull String key);
 }
