@@ -2,6 +2,7 @@ package de.nordakademie.iaa.library.controller.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,6 +14,7 @@ public class PublicationDto {
 
     private String key;
 
+    @NotNull
     private String titel;
 
     private List<AuthorDto> author = new ArrayList<>();

@@ -1,6 +1,7 @@
 package de.nordakademie.iaa.library.persistent.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.*;
 
 /**
@@ -12,6 +13,7 @@ public class Publication {
     @Id
     private String key;
 
+    @NotNull
     private String titel;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)

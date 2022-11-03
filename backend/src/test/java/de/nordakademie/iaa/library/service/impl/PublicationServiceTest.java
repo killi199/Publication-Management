@@ -3,6 +3,7 @@ package de.nordakademie.iaa.library.service.impl;
 import de.nordakademie.iaa.library.controller.api.exception.EntityAlreadyExistsException;
 import de.nordakademie.iaa.library.controller.api.exception.EntityDoesNotExistException;
 import de.nordakademie.iaa.library.controller.api.exception.MissingFieldException;
+import de.nordakademie.iaa.library.controller.api.exception.NegativValueIsNotAllowedException;
 import de.nordakademie.iaa.library.controller.dto.PublicationDto;
 import de.nordakademie.iaa.library.persistent.entities.Publication;
 import de.nordakademie.iaa.library.persistent.repository.PublicationRepository;
@@ -49,8 +50,27 @@ class PublicationServiceTest {
     }
 
     @Test
+    void create_nullTitle_throwsMissingFieldException() {
+        publicationDto.setKey("test");
+
+        assertThrows(MissingFieldException.class, () -> this.publicationService.create(publicationDto));
+        verify(publicationRepository, times(0)).existsById("test");
+    }
+
+    @Test
+    void create_negativeQuantity_throwsMissingFieldException() {
+        publicationDto.setKey("test");
+        publicationDto.setTitel("test");
+        publicationDto.setQuantity(-1);
+
+        assertThrows(NegativValueIsNotAllowedException.class, () -> this.publicationService.create(publicationDto));
+        verify(publicationRepository, times(0)).existsById("test");
+    }
+
+    @Test
     void create_publicationExists_throwsEntityAlreadyExistsException() {
         publicationDto.setKey("test");
+        publicationDto.setTitel("test");
 
         when(this.publicationRepository.existsById("test")).thenReturn(true);
 
@@ -61,6 +81,7 @@ class PublicationServiceTest {
     @Test
     void create_works() {
         publicationDto.setKey("test");
+        publicationDto.setTitel("test");
 
         when(this.publicationRepository.existsById("test")).thenReturn(false);
         when(this.publicationRepository.save(publication)).thenReturn(publication);
@@ -83,8 +104,27 @@ class PublicationServiceTest {
     }
 
     @Test
+    void update_nullTitle_throwsMissingFieldException() {
+        publicationDto.setKey("test");
+
+        assertThrows(MissingFieldException.class, () -> this.publicationService.update(publicationDto));
+        verify(publicationRepository, times(0)).existsById("test");
+    }
+
+    @Test
+    void update_negativeQuantity_throwsMissingFieldException() {
+        publicationDto.setKey("test");
+        publicationDto.setTitel("test");
+        publicationDto.setQuantity(-1);
+
+        assertThrows(NegativValueIsNotAllowedException.class, () -> this.publicationService.update(publicationDto));
+        verify(publicationRepository, times(0)).existsById("test");
+    }
+
+    @Test
     void update_publicationNotExists_throwsEntityDoesNotExistException() {
         publicationDto.setKey("test");
+        publicationDto.setTitel("test");
 
         when(this.publicationRepository.existsById("test")).thenReturn(false);
 
@@ -95,6 +135,7 @@ class PublicationServiceTest {
     @Test
     void update_works() {
         publicationDto.setKey("test");
+        publicationDto.setTitel("test");
 
         when(this.publicationRepository.existsById("test")).thenReturn(true);
         when(this.publicationRepository.save(publication)).thenReturn(publication);

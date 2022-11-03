@@ -3,6 +3,7 @@ package de.nordakademie.iaa.library.service.impl;
 import de.nordakademie.iaa.library.controller.api.exception.EntityAlreadyExistsException;
 import de.nordakademie.iaa.library.controller.api.exception.EntityDoesNotExistException;
 import de.nordakademie.iaa.library.controller.api.exception.MissingFieldException;
+import de.nordakademie.iaa.library.controller.api.exception.NegativValueIsNotAllowedException;
 import de.nordakademie.iaa.library.controller.dto.PublicationDto;
 import de.nordakademie.iaa.library.persistent.entities.Publication;
 import de.nordakademie.iaa.library.persistent.repository.PublicationRepository;
@@ -52,9 +53,7 @@ public class PublicationService implements PublicationServiceInterface {
      */
     public PublicationDto create(@NotNull PublicationDto publicationDto) {
 
-        if (publicationDto.getKey() == null) {
-            throw new MissingFieldException("key");
-        }
+        checkRequiredFields(publicationDto);
 
         if (publicationRepository.existsById(publicationDto.getKey())) {
             throw new EntityAlreadyExistsException();
@@ -73,9 +72,7 @@ public class PublicationService implements PublicationServiceInterface {
      */
     public PublicationDto update(@NotNull PublicationDto publicationDto) {
 
-        if (publicationDto.getKey() == null) {
-            throw new MissingFieldException("key");
-        }
+        checkRequiredFields(publicationDto);
 
         if (!publicationRepository.existsById(publicationDto.getKey())) {
             throw new EntityDoesNotExistException();
@@ -96,6 +93,25 @@ public class PublicationService implements PublicationServiceInterface {
         Publication publication = new Publication();
         publication.setKey(key);
         publicationRepository.delete(publication);
+    }
+
+    /**
+     * This function checks if every required parameter is set
+     *
+     * @param publicationDto dto from request
+     */
+    private void checkRequiredFields(@NotNull PublicationDto publicationDto) {
+        if (publicationDto.getKey() == null) {
+            throw new MissingFieldException("key");
+        }
+
+        if (publicationDto.getTitel() == null) {
+            throw new MissingFieldException("titel");
+        }
+
+        if (publicationDto.getQuantity() < 0) {
+            throw new NegativValueIsNotAllowedException("quantity");
+        }
     }
 
     /**
