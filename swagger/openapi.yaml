@@ -60,6 +60,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Publication'
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/MissingFieldException'
+                  - $ref: '#/components/schemas/NegativValueIsNotAllowedException'
+                  - $ref: '#/components/schemas/EntityDoesNotExistException'
+
     post:
       tags:
         - Publications
@@ -86,6 +96,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Publication'
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/MissingFieldException'
+                  - $ref: '#/components/schemas/NegativValueIsNotAllowedException'
+                  - $ref: '#/components/schemas/EntityAlreadyExistsException'
   /publication/{key}:
     delete:
       tags:
@@ -636,6 +655,9 @@ components:
           type: string
     Publication:
       type: object
+      required:
+        - key
+        - titel
       properties:
         key:
           type: string
@@ -660,7 +682,8 @@ components:
             $ref: '#/components/schemas/Keyword'
         quantity:
           type: integer
-          format: int64
+          format: uint
+          default: 0
           example: 69
     Assignment:
       type: object
@@ -706,3 +729,18 @@ components:
           $ref: '#/components/schemas/Assignment'
         warnings:
           $ref: '#/components/schemas/Warning'
+    EntityAlreadyExistsException:
+      type: string
+      enum: ["The entity you try to create already exits. You can override it if you want."]
+    EntityDoesNotExistException:
+      type: string
+      enum: ["The entity you try to update does not exits."]
+    IllegalUsageOfIdentifierException:
+      type: string
+      enum: ["The identifier shouldn't be set here."]
+    MissingFieldException:
+      type: string
+      enum: ["The field {x} is missing in the Request."]
+    NegativValueIsNotAllowedException:
+      type: string
+      enum: ["The field {x} is not allowed to be negativ."]
