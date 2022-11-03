@@ -37,7 +37,6 @@
                         id="authors"
                         name="authors"
                         [readonly]="!editable"
-                        required
                     />
                 </mat-form-field>
             </mat-grid-tile>
@@ -60,6 +59,7 @@
                     <mat-label for="quantity">Quantity</mat-label>
                     <input
                         type="number"
+                        min="0"
                         matInput
                         id="quantity"
                         name="quantity"
@@ -94,7 +94,6 @@
                         name="dateOfPublication"
                         [(ngModel)]="publication.dateOfPublication"
                         [readonly]="!editable"
-                        required
                     />
                 </mat-form-field>
             </mat-grid-tile>
@@ -109,7 +108,6 @@
                         id="kindOfPublication"
                         name="kindOfPublication"
                         [readonly]="!editable"
-                        required
                     />
                 </mat-form-field>
             </mat-grid-tile>
