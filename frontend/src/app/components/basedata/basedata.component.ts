@@ -11,7 +11,7 @@ import { PublicationService } from 'src/app/services/publication.service';
     templateUrl: './basedata.component.html',
     styleUrls: ['./basedata.component.scss'],
 })
-export class BasedataComponent implements OnInit {
+export class BasedataComponent {
     kindOfPubs$: Observable<KindOfPublication[]>;
     keywords$: Observable<Keyword[]>;
     authors$: Observable<Author[]>;
@@ -24,5 +24,4 @@ export class BasedataComponent implements OnInit {
         this.borrowers$ = publicationService.loadAuthors();
     }
 
-    ngOnInit(): void {}
 }
