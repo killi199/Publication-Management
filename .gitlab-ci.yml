@@ -51,7 +51,7 @@ frontend_test:
     policy: pull
 
 backend_verify:
-  image: maven:3.8.6-amazoncorretto-19
+  image: maven:3.8.6-openjdk-18-slim
   stage: test
   interruptible: true
   script:
