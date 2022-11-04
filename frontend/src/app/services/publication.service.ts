@@ -13,6 +13,6 @@ export class PublicationService {
     }
 
     loadAllPublications(): Observable<Publication[]> {
-        return this.http.get<Publication[]>('http://localhost:8080/rest/publication');
+        return this.http.get<Publication[]>('http://localhost:4200/rest/publication');
     }
 }
