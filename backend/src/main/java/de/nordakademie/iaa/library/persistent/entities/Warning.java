@@ -18,7 +18,7 @@ public class Warning {
     private UUID uuid;
 
     @ManyToOne
-    private OverdueNotice overdueNoticeUuid;
+    private OverdueNotice overdueNotice;
 
     private Date warningDate;
 
@@ -31,11 +31,11 @@ public class Warning {
     }
 
     public OverdueNotice getOverdueNoticeUuid() {
-        return overdueNoticeUuid;
+        return overdueNotice;
     }
 
-    public void setOverdueNoticeUuid(OverdueNotice overdueNoticeUuid) {
-        this.overdueNoticeUuid = overdueNoticeUuid;
+    public void setOverdueNoticeUuid(OverdueNotice overdueNotice) {
+        this.overdueNotice = overdueNotice;
     }
 
     public Date getWarningDate() {
