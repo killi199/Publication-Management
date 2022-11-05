@@ -20,7 +20,7 @@ import { Publication } from 'src/app/models/publication';
     styleUrls: ['./publication-list.component.scss'],
 })
 export class PublicationListComponent implements AfterViewInit, OnInit {
-    @Input() publications!: Observable<Publication[]>;
+    @Input() publications: Observable<Publication[]> = new Observable<Publication[]>;
     @Output() showPublication = new EventEmitter<Publication>();
 
     dataSource = new MatTableDataSource<Publication>();
