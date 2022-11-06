@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PublicationViewComponent } from './publication-view.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 describe('PublicationViewComponent', () => {
     let component: PublicationViewComponent;
@@ -9,7 +10,7 @@ describe('PublicationViewComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [FormsModule],
+            imports: [FormsModule, ReactiveFormsModule, MatAutocompleteModule],
             declarations: [PublicationViewComponent],
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
         }).compileComponents();
