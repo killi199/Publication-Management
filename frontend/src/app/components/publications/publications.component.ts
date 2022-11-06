@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Keyword } from 'src/app/models/keyword';
 import { Publication } from 'src/app/models/publication';
+import { KeywordService } from 'src/app/services/keyword.service';
 import { PublicationService } from 'src/app/services/publication.service';
 
 @Component({
@@ -10,11 +12,13 @@ import { PublicationService } from 'src/app/services/publication.service';
 })
 export class PublicationsComponent {
     publications$: Observable<Publication[]>;
+    keywords: Observable<Keyword[]>;
     currentPublication?: Publication;
     openPublication: boolean = false;
-
-    constructor(private publicationService: PublicationService) {
+    
+    constructor(private publicationService: PublicationService, keywordService: KeywordService) {
         this.publications$ = publicationService.loadAllPublications();
+        this.keywords = keywordService.loadAllKeywords();
     }
 
     onSelectPublication(publication: Publication): void {

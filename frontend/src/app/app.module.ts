@@ -14,6 +14,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatSelectModule } from '@angular/material/select';
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
 
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -59,11 +62,14 @@ registerLocaleData(localeDe, 'de-DE', localeDeExtra);
         FormsModule,
         MatDatepickerModule,
         MatNativeDateModule,
+        MatChipsModule,
+        MatSelectModule,
+        MatAutocompleteModule,
     ],
     providers: [
-        {provide: MAT_DATE_LOCALE, useValue: 'de-DE'},
-        {provide: LOCALE_ID, useValue: 'de-DE' },
-      ],
+        { provide: MAT_DATE_LOCALE, useValue: 'de-DE' },
+        { provide: LOCALE_ID, useValue: 'de-DE' },
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

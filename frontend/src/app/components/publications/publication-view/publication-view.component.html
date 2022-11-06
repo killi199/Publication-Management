@@ -1,6 +1,6 @@
 <div class="container">
     <form #form="ngForm" (ngSubmit)="onSubmit()">
-        <mat-grid-list cols="2" rowHeight="14:1">
+        <mat-grid-list cols="2" rowHeight="12:1">
             <mat-grid-tile>
                 <mat-form-field appearance="fill">
                     <mat-label for="key">Key</mat-label>
@@ -119,14 +119,41 @@
             </mat-grid-tile>
 
             <mat-grid-tile>
-                <mat-form-field appearance="fill">
+                <mat-form-field class="chip-list" appearance="fill">
                     <mat-label for="keywords">Keywords</mat-label>
-                    <input
-                        matInput
-                        id="keywords"
-                        name="keywords"
-                        [readonly]="!editable"
-                    />
+                    <mat-chip-list #chipList>
+                        <mat-chip
+                            *ngFor="let keyword of publication.keywords"
+                            (removed)="removeKeyword(keyword)"
+                        >
+                            {{ keyword.value }}
+                            <button matChipRemove>
+                                <mat-icon>cancel</mat-icon>
+                            </button>
+                        </mat-chip>
+                        <input
+                            id="keywords"
+                            name="keywords"
+                            [readonly]="!editable"
+                            placeholder="New keyword..."
+                            #keywordInput
+                            [matAutocomplete]="auto"
+                            [matChipInputFor]="chipList"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                            (matChipInputTokenEnd)="addKeyword($event)"
+                        />
+                    </mat-chip-list>
+                    <mat-autocomplete
+                        #auto="matAutocomplete"
+                        (optionSelected)="selectedKeyword($event)"
+                    >
+                        <mat-option
+                            *ngFor="let keyword of keywords | async"
+                            [value]="keyword.value"
+                        >
+                            {{ keyword.value }}
+                        </mat-option>
+                    </mat-autocomplete>
                 </mat-form-field>
             </mat-grid-tile>
 
