@@ -127,7 +127,7 @@
                             (removed)="removeKeyword(keyword)"
                         >
                             {{ keyword.value }}
-                            <button matChipRemove>
+                            <button matChipRemove [disabled]="!editable">
                                 <mat-icon>cancel</mat-icon>
                             </button>
                         </mat-chip>
@@ -137,6 +137,7 @@
                             [readonly]="!editable"
                             placeholder="New keyword..."
                             #keywordInput
+                            [formControl]="keywordCtrl"
                             [matAutocomplete]="auto"
                             [matChipInputFor]="chipList"
                             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
@@ -148,10 +149,10 @@
                         (optionSelected)="selectedKeyword($event)"
                     >
                         <mat-option
-                            *ngFor="let keyword of keywords | async"
-                            [value]="keyword.value"
+                            *ngFor="let keyword of filteredKeywords | async"
+                            [value]="keyword"
                         >
-                            {{ keyword.value }}
+                            {{ keyword }}
                         </mat-option>
                     </mat-autocomplete>
                 </mat-form-field>

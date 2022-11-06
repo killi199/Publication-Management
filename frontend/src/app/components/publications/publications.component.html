@@ -34,7 +34,7 @@
     <app-publication-view
         *ngIf="currentPublication && openPublication"
         [publication]="currentPublication"
-        [keywords]="keywords"
+        [allkeywords]="keywordsString"
         (deletePublication)="onDeletePublication($event)"
         (savePublication)="onSavePublication($event)"
     ></app-publication-view>

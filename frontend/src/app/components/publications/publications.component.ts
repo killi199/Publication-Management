@@ -10,15 +10,27 @@ import { PublicationService } from 'src/app/services/publication.service';
     templateUrl: './publications.component.html',
     styleUrls: ['./publications.component.scss'],
 })
-export class PublicationsComponent {
+export class PublicationsComponent implements OnInit {
     publications$: Observable<Publication[]>;
-    keywords: Observable<Keyword[]>;
+    keywords: Keyword[] = [];
+    keywordsString: string[] = [];
     currentPublication?: Publication;
     openPublication: boolean = false;
-    
-    constructor(private publicationService: PublicationService, keywordService: KeywordService) {
+
+    constructor(
+        private publicationService: PublicationService,
+        private keywordService: KeywordService
+    ) {
         this.publications$ = publicationService.loadAllPublications();
-        this.keywords = keywordService.loadAllKeywords();
+    }
+
+    ngOnInit(): void {
+        this.keywordService
+            .loadAllKeywords()
+            .subscribe((keywords) => (this.keywords = keywords));
+        this.keywordsString = this.keywords
+            .map((keyword) => keyword.value)
+            .filter(this._notEmpty);
     }
 
     onSelectPublication(publication: Publication): void {
@@ -35,5 +47,11 @@ export class PublicationsComponent {
 
     onSavePublication(publication: Publication): void {
         this.publicationService.savePublication(publication);
+    }
+
+    private _notEmpty<TValue>(
+        value: TValue | null | undefined
+    ): value is TValue {
+        return value !== null && value !== undefined;
     }
 }

@@ -7,8 +7,8 @@ import {
     Output,
     ViewChild,
 } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { FormControl, NgForm } from '@angular/forms';
+import { map, Observable, startWith } from 'rxjs';
 import { Keyword } from 'src/app/models/keyword';
 import { Publication } from 'src/app/models/publication';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
@@ -31,7 +31,7 @@ export class PublicationViewComponent implements OnInit {
     publication: Publication = new Publication();
 
     @Input()
-    keywords: Observable<Keyword[]> = new Observable<Keyword[]>();
+    allkeywords: string[] = [];
 
     @Output()
     deletePublication = new EventEmitter<Publication>();
@@ -44,6 +44,19 @@ export class PublicationViewComponent implements OnInit {
     savedPublication: Publication = new Publication();
 
     separatorKeysCodes: number[] = [ENTER, COMMA];
+
+    keywordCtrl = new FormControl('');
+
+    filteredKeywords: Observable<string[]>;
+
+    constructor() {
+        this.filteredKeywords = this.keywordCtrl.valueChanges.pipe(
+            startWith(null),
+            map((fruit: string | null) =>
+                fruit ? this._filter(fruit) : this.allkeywords.slice()
+            )
+        );
+    }
 
     ngOnInit(): void {
         if (!this.publication) {
@@ -96,6 +109,7 @@ export class PublicationViewComponent implements OnInit {
             }
 
             event.chipInput!.clear();
+            this.keywordCtrl.setValue(null);
         }
     }
 
@@ -105,6 +119,15 @@ export class PublicationViewComponent implements OnInit {
             keyword.value = event.option.viewValue;
             this.publication.keywords.push(keyword);
             this.keywordInput.nativeElement.value = '';
+            this.keywordCtrl.setValue(null);
         }
+    }
+
+    private _filter(value: string): string[] {
+        const filterValue = value.toLowerCase();
+
+        return this.allkeywords.filter((keyword) =>
+            keyword.toLowerCase().includes(filterValue)
+        );
     }
 }
