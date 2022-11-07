@@ -35,6 +35,7 @@
         *ngIf="currentPublication && openPublication"
         [publication]="currentPublication"
         [allKeywords]="keywords"
+        [allAuthors]="authors"
         [allKindsOfPublication]="kindsOfPublication"
         (deletePublication)="onDeletePublication($event)"
         (savePublication)="onSavePublication($event)"

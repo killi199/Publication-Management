@@ -15,6 +15,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { KindOfPublication } from 'src/app/models/kind-of-publication';
+import { Author } from 'src/app/models/author';
 
 @Component({
     selector: 'app-publication-view',
@@ -28,11 +29,17 @@ export class PublicationViewComponent implements OnInit {
     @ViewChild('keywordInput')
     keywordInput!: ElementRef<HTMLInputElement>;
 
+    @ViewChild('authorInput')
+    authorInput!: ElementRef<HTMLInputElement>;
+
     @Input()
     publication: Publication = new Publication();
 
     @Input()
     allKeywords: Keyword[] = [];
+
+    @Input()
+    allAuthors: Author[] = [];
 
     @Input()
     allKindsOfPublication: KindOfPublication[] = [];
@@ -51,9 +58,13 @@ export class PublicationViewComponent implements OnInit {
 
     keywordControl = new FormControl<string | Keyword>('');
 
+    authorControl = new FormControl<string | Author>('');
+
     kindOfPublicationControl = new FormControl<string | KindOfPublication>('');
 
     filteredKeywords: Observable<Keyword[]> = new Observable<Keyword[]>();
+
+    filteredAuthors: Observable<Author[]> = new Observable<Author[]>();
 
     filteredKindsOfPublication: Observable<KindOfPublication[]> =
         new Observable<KindOfPublication[]>();
@@ -116,6 +127,16 @@ export class PublicationViewComponent implements OnInit {
         }
     }
 
+    removeAuthor(author: Author): void {
+        if (this.publication.authors) {
+            let index = this.publication.authors.indexOf(author);
+
+            if (index >= 0) {
+                this.publication.authors?.splice(index, 1);
+            }
+        }
+    }
+
     addKeyword(event: MatChipInputEvent): void {
         if (this.publication.keywords) {
             let value = (event.value || '').trim();
@@ -137,11 +158,41 @@ export class PublicationViewComponent implements OnInit {
         }
     }
 
+    addAuthor(event: MatChipInputEvent): void {
+        if (this.publication.authors) {
+            let value = (event.value || '').trim();
+
+            let authors = this._filterAuthors(value as string);
+            if (authors.length === 1) {
+                this.publication.authors.push(authors[0]);
+            } else {
+                let author = new Author();
+                author.surname = value.split(' ')[0];
+                author.name = value.split(' ')[1];
+
+                if (value) {
+                    this.publication.authors.push(author);
+                }
+            }
+
+            event.chipInput!.clear();
+            this.authorControl.setValue('');
+        }
+    }
+
     selectedKeyword(event: MatAutocompleteSelectedEvent): void {
         if (this.publication.keywords) {
             this.publication.keywords.push(event.option.value);
             this.keywordInput.nativeElement.value = '';
             this.keywordControl.setValue('');
+        }
+    }
+
+    selectedAuthor(event: MatAutocompleteSelectedEvent): void {
+        if (this.publication.authors) {
+            this.publication.authors.push(event.option.value);
+            this.authorInput.nativeElement.value = '';
+            this.authorControl.setValue('');
         }
     }
 
@@ -155,11 +206,27 @@ export class PublicationViewComponent implements OnInit {
         return keyword && keyword.value ? keyword.value : '';
     }
 
+    displayAuthor(author: Author): string {
+        return author && author.surname && author.name
+            ? author.surname + author.name
+            : '';
+    }
+
     private _filterKeywords(value: string): Keyword[] {
         let filterValue = value.toLowerCase();
 
         return this.allKeywords.filter((keyword) =>
             keyword.value?.toLowerCase().includes(filterValue)
+        );
+    }
+
+    private _filterAuthors(value: string): Author[] {
+        let filterValue = value.toLowerCase();
+
+        return this.allAuthors.filter(
+            (author) =>
+                author.surname?.toLowerCase().includes(filterValue) &&
+                author.name?.toLowerCase().includes(filterValue)
         );
     }
 
@@ -180,6 +247,23 @@ export class PublicationViewComponent implements OnInit {
                 return value
                     ? this._filterKeywords(value as string)
                     : this.allKeywords.slice();
+            })
+        );
+
+        this.filteredAuthors = this.authorControl.valueChanges.pipe(
+            startWith(''),
+            map((author) => {
+                let value = '';
+
+                if (typeof author === 'string') {
+                    value = author;
+                } else if (author?.surname && author?.name) {
+                    value = author?.surname + author?.name;
+                }
+
+                return value
+                    ? this._filterAuthors(value as string)
+                    : this.allAuthors.slice();
             })
         );
 

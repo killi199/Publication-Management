@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Author } from 'src/app/models/author';
 import { Keyword } from 'src/app/models/keyword';
 import { KindOfPublication } from 'src/app/models/kind-of-publication';
 import { Publication } from 'src/app/models/publication';
+import { AuthorService } from 'src/app/services/author.service';
 import { KeywordService } from 'src/app/services/keyword.service';
 import { KindOfPublicationService } from 'src/app/services/kind-of-publication.service';
 import { PublicationService } from 'src/app/services/publication.service';
@@ -15,6 +17,7 @@ import { PublicationService } from 'src/app/services/publication.service';
 export class PublicationsComponent implements OnInit {
     publications$: Observable<Publication[]>;
     keywords: Keyword[] = [];
+    authors: Author[] = [];
     kindsOfPublication: KindOfPublication[] = [];
     currentPublication?: Publication;
     openPublication: boolean = false;
@@ -22,7 +25,8 @@ export class PublicationsComponent implements OnInit {
     constructor(
         private publicationService: PublicationService,
         private keywordService: KeywordService,
-        private kindOfPublicationService: KindOfPublicationService
+        private kindOfPublicationService: KindOfPublicationService,
+        private authorService: AuthorService
     ) {
         this.publications$ = publicationService.loadAllPublications();
     }
@@ -31,6 +35,9 @@ export class PublicationsComponent implements OnInit {
         this.keywordService
             .loadAllKeywords()
             .subscribe((keywords) => (this.keywords = keywords));
+        this.authorService
+            .loadAllAuthors()
+            .subscribe((authors) => (this.authors = authors));
         this.kindOfPublicationService
             .loadAllKindsOfPublication()
             .subscribe(

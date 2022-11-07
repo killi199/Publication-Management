@@ -32,12 +32,41 @@
             <mat-grid-tile>
                 <mat-form-field class="form-field" appearance="fill">
                     <mat-label for="authors">Authors</mat-label>
-                    <input
-                        matInput
-                        id="authors"
-                        name="authors"
-                        [readonly]="!editable"
-                    />
+                    <mat-chip-list #chipListAuthors>
+                        <mat-chip
+                            *ngFor="let author of publication.authors"
+                            (removed)="removeAuthor(author)"
+                        >
+                            {{ author.surname }} {{ author.name }}
+                            <button matChipRemove [disabled]="!editable">
+                                <mat-icon>cancel</mat-icon>
+                            </button>
+                        </mat-chip>
+                        <input
+                            id="authors"
+                            name="authors"
+                            [readonly]="!editable"
+                            placeholder="New Author..."
+                            #authorInput
+                            [formControl]="authorControl"
+                            [matAutocomplete]="autocompleteAuthors"
+                            [matChipInputFor]="chipListAuthors"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                            (matChipInputTokenEnd)="addAuthor($event)"
+                        />
+                    </mat-chip-list>
+                    <mat-autocomplete
+                        #autocompleteAuthors="matAutocomplete"
+                        (optionSelected)="selectedAuthor($event)"
+                        [displayWith]="displayAuthor"
+                    >
+                        <mat-option
+                            *ngFor="let author of filteredAuthors | async"
+                            [value]="author"
+                        >
+                            {{ author.surname }} {{ author.name }}
+                        </mat-option>
+                    </mat-autocomplete>
                 </mat-form-field>
             </mat-grid-tile>
 
@@ -124,7 +153,10 @@
                         [displayWith]="displayKindOfPublication"
                     >
                         <mat-option
-                            *ngFor="let kindOfPublication of filteredKindsOfPublication | async"
+                            *ngFor="
+                                let kindOfPublication of filteredKindsOfPublication
+                                    | async
+                            "
                             [value]="kindOfPublication"
                         >
                             {{ kindOfPublication.value }}
@@ -136,7 +168,7 @@
             <mat-grid-tile>
                 <mat-form-field class="form-field" appearance="fill">
                     <mat-label for="keywords">Keywords</mat-label>
-                    <mat-chip-list #chipList>
+                    <mat-chip-list #chipListKeywords>
                         <mat-chip
                             *ngFor="let keyword of publication.keywords"
                             (removed)="removeKeyword(keyword)"
@@ -154,7 +186,7 @@
                             #keywordInput
                             [formControl]="keywordControl"
                             [matAutocomplete]="autocompleteKeywords"
-                            [matChipInputFor]="chipList"
+                            [matChipInputFor]="chipListKeywords"
                             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                             (matChipInputTokenEnd)="addKeyword($event)"
                         />
