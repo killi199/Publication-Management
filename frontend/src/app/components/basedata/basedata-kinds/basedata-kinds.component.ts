@@ -1,5 +1,5 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -12,6 +12,7 @@ import { KindOfPublication } from 'src/app/models/kind-of-publication';
 })
 export class BasedataKindsComponent implements OnInit, AfterViewInit {
     @Input() kindOfPublications: KindOfPublication[] = [];
+    @Output() deleteKindOfPub = new EventEmitter<KindOfPublication>();
 
     @ViewChild(MatSort) sort: MatSort = new MatSort();
 
@@ -31,7 +32,7 @@ export class BasedataKindsComponent implements OnInit, AfterViewInit {
         this.dataSource.paginator = this.paginator;
     }
 
-    ngOnInit(): void {
+    ngOnInit() {
         this.dataSource = new MatTableDataSource(this.kindOfPublications);
     }
 
@@ -58,5 +59,10 @@ export class BasedataKindsComponent implements OnInit, AfterViewInit {
 
     undo(){
         this.editMode = false;
+    }
+
+    delete(){
+        this.deleteKindOfPub.emit(this.selectedKindOfPub);
+        this.dataSource = new MatTableDataSource(this.kindOfPublications);
     }
 }

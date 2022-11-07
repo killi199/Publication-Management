@@ -53,6 +53,7 @@
                 matInput
                 placeholder="Ex. Hausarbeit"
                 [value]="selectedKindOfPub?.value"
+                #value
             />
         </mat-form-field>
     </form>
@@ -83,6 +84,7 @@
         [disabled]="selectedKindOfPub?.value === null"
         *ngIf="!editMode"
         color="warn"
+        (click)="delete()"
     >
         <mat-icon>delete</mat-icon>
     </button>

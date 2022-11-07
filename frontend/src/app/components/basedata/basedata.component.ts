@@ -17,11 +17,16 @@ export class BasedataComponent {
     authors$: Observable<Author[]>;
     borrowers$: Observable<Borrower[]>;
 
-    constructor(publicationService: PublicationService) {
+    constructor(private publicationService: PublicationService) {
         this.kindOfPubs$ = publicationService.loadKindOfPublications();
         this.keywords$ = publicationService.loadKeywords();
         this.authors$ = publicationService.loadBorrowers();
         this.borrowers$ = publicationService.loadAuthors();
+    }
+
+    onDeleteKindOfPublication(kindOfPublication: KindOfPublication){
+        console.log(kindOfPublication)
+        this.publicationService.deletePublication(kindOfPublication);
     }
 
 }
