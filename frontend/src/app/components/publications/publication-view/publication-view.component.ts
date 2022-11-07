@@ -14,6 +14,7 @@ import { Publication } from 'src/app/models/publication';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { KindOfPublication } from 'src/app/models/kind-of-publication';
 
 @Component({
     selector: 'app-publication-view',
@@ -31,7 +32,10 @@ export class PublicationViewComponent implements OnInit {
     publication: Publication = new Publication();
 
     @Input()
-    allkeywords: string[] = [];
+    allKeywords: string[] = [];
+
+    @Input()
+    allKindsOfPublication: KindOfPublication[] = [];
 
     @Output()
     deletePublication = new EventEmitter<Publication>();
@@ -47,13 +51,18 @@ export class PublicationViewComponent implements OnInit {
 
     keywordCtrl = new FormControl('');
 
+    kindOfPublicationControl = new FormControl<string | KindOfPublication>('');
+
     filteredKeywords: Observable<string[]>;
+
+    filteredKindsOfPublication: Observable<KindOfPublication[]> =
+        new Observable<KindOfPublication[]>();
 
     constructor() {
         this.filteredKeywords = this.keywordCtrl.valueChanges.pipe(
             startWith(null),
             map((fruit: string | null) =>
-                fruit ? this._filter(fruit) : this.allkeywords.slice()
+                fruit ? this._filterKeywords(fruit) : this.allKeywords.slice()
             )
         );
     }
@@ -64,6 +73,8 @@ export class PublicationViewComponent implements OnInit {
         } else {
             this.savedPublication = structuredClone(this.publication);
         }
+
+        this._reloadView();
     }
 
     onDeletePublication(): void {
@@ -72,6 +83,20 @@ export class PublicationViewComponent implements OnInit {
 
     onSubmit(): void {
         if (this.form.valid) {
+            if (this.kindOfPublicationControl.value) {
+                if (typeof this.kindOfPublicationControl.value === 'string') {
+                    this.publication.kindOfPublication =
+                        new KindOfPublication();
+                    this.publication.kindOfPublication.value =
+                        this.kindOfPublicationControl.value;
+                } else {
+                    this.publication.kindOfPublication =
+                        this.kindOfPublicationControl.value;
+                }
+            } else {
+                this.publication.kindOfPublication = undefined;
+            }
+            this.savedPublication = structuredClone(this.publication);
             this.savePublication.emit(this.publication);
             this.editable = false;
         }
@@ -80,6 +105,7 @@ export class PublicationViewComponent implements OnInit {
     onCancel(): void {
         this.editable = false;
         this.publication = structuredClone(this.savedPublication);
+        this._reloadView();
     }
 
     onEdit(): void {
@@ -97,7 +123,6 @@ export class PublicationViewComponent implements OnInit {
     }
 
     addKeyword(event: MatChipInputEvent): void {
-        console.log(event.value);
         if (this.publication.keywords) {
             const value = (event.value || '').trim();
 
@@ -123,11 +148,45 @@ export class PublicationViewComponent implements OnInit {
         }
     }
 
-    private _filter(value: string): string[] {
+    displayFn(kindOfPublication: KindOfPublication): string {
+        return kindOfPublication && kindOfPublication.value
+            ? kindOfPublication.value
+            : '';
+    }
+
+    private _filterKeywords(value: string): string[] {
         const filterValue = value.toLowerCase();
 
-        return this.allkeywords.filter((keyword) =>
+        return this.allKeywords.filter((keyword) =>
             keyword.toLowerCase().includes(filterValue)
         );
+    }
+
+    private _filterKindsOfPublication(value: string): KindOfPublication[] {
+        const filterValue = value.toLowerCase();
+
+        return this.allKindsOfPublication.filter((kindOfPublicationControl) =>
+            kindOfPublicationControl.value?.toLowerCase().includes(filterValue)
+        );
+    }
+
+    private _reloadView(): void {
+        this.filteredKindsOfPublication =
+            this.kindOfPublicationControl.valueChanges.pipe(
+                startWith(''),
+                map((value) => {
+                    const name =
+                        typeof value === 'string' ? value : value?.value;
+                    return name
+                        ? this._filterKindsOfPublication(name as string)
+                        : this.allKindsOfPublication.slice();
+                })
+            );
+
+        if (this.publication.kindOfPublication) {
+            this.kindOfPublicationControl.setValue(
+                this.publication.kindOfPublication
+            );
+        }
     }
 }

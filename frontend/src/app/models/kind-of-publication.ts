@@ -1,4 +1,3 @@
-export interface KindOfPublication {
-    uuid: string;
-    value: string;
+export class KindOfPublication {
+    constructor(public uuid?: string, public value?: string) {}
 }

@@ -111,11 +111,25 @@
                         >Kind of Publication</mat-label
                     >
                     <input
-                        matInput
+                        type="text"
                         id="kindOfPublication"
                         name="kindOfPublication"
                         [readonly]="!editable"
+                        matInput
+                        [formControl]="kindOfPublicationControl"
+                        [matAutocomplete]="auto"
                     />
+                    <mat-autocomplete
+                        #auto="matAutocomplete"
+                        [displayWith]="displayFn"
+                    >
+                        <mat-option
+                            *ngFor="let kindOfPublication of filteredKindsOfPublication | async"
+                            [value]="kindOfPublication"
+                        >
+                            {{ kindOfPublication.value }}
+                        </mat-option>
+                    </mat-autocomplete>
                 </mat-form-field>
             </mat-grid-tile>
 

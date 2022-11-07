@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Keyword } from 'src/app/models/keyword';
+import { KindOfPublication } from 'src/app/models/kind-of-publication';
 import { Publication } from 'src/app/models/publication';
 import { KeywordService } from 'src/app/services/keyword.service';
+import { KindOfPublicationService } from 'src/app/services/kind-of-publication.service';
 import { PublicationService } from 'src/app/services/publication.service';
 
 @Component({
@@ -13,13 +15,15 @@ import { PublicationService } from 'src/app/services/publication.service';
 export class PublicationsComponent implements OnInit {
     publications$: Observable<Publication[]>;
     keywords: Keyword[] = [];
+    kindsOfPublication: KindOfPublication[] = [];
     keywordsString: string[] = [];
     currentPublication?: Publication;
     openPublication: boolean = false;
 
     constructor(
         private publicationService: PublicationService,
-        private keywordService: KeywordService
+        private keywordService: KeywordService,
+        private kindOfPublicationService: KindOfPublicationService
     ) {
         this.publications$ = publicationService.loadAllPublications();
     }
@@ -31,6 +35,12 @@ export class PublicationsComponent implements OnInit {
         this.keywordsString = this.keywords
             .map((keyword) => keyword.value)
             .filter(this._notEmpty);
+        this.kindOfPublicationService
+            .loadAllKindsOfPublication()
+            .subscribe(
+                (kindsOfPublication) =>
+                    (this.kindsOfPublication = kindsOfPublication)
+            );
     }
 
     onSelectPublication(publication: Publication): void {
