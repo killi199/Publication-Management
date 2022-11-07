@@ -11,6 +11,7 @@ import {
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Observable } from 'rxjs';
 import { Publication } from 'src/app/models/publication';
 
 @Component({
@@ -19,13 +20,17 @@ import { Publication } from 'src/app/models/publication';
     styleUrls: ['./publication-list.component.scss'],
 })
 export class PublicationListComponent implements AfterViewInit, OnInit {
-    @Input() publications: Publication[] = [];
+    @Input() publications: Observable<Publication[]> = new Observable<Publication[]>;
     @Output() showPublication = new EventEmitter<Publication>();
 
-    dataSource!: MatTableDataSource<Publication>;
+    dataSource = new MatTableDataSource<Publication>();
 
     ngOnInit(): void {
-        this.dataSource = new MatTableDataSource(this.publications);
+        this.publications.subscribe(publications => {
+            this.dataSource.data = publications;
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+        });
     }
 
     displayedColumns: string[] = [
