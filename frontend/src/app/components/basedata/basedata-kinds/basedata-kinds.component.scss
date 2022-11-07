@@ -4,7 +4,7 @@ table {
 
 .container {
     width: 100%;
-    height: 400px;
+    height: 400px;    
 }
 
 th {
@@ -42,4 +42,14 @@ tr{
 .mat-form-field {
     font-size: 14px;
     width: 100%;
+}
+
+
+.button-container {
+    width: 99%;
+    margin: 5px;
+}
+
+button {
+    margin: 5px;
 }

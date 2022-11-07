@@ -36,9 +36,19 @@
     </table>
 
     <mat-paginator
-    [pageSizeOptions]="[10, 25, 50, dataSource.data.length]"
-    showFirstLastButtons
-    class="mat-paginator-sticky"
->
-</mat-paginator>
+        [pageSizeOptions]="[10, 25, 50, dataSource.data.length]"
+        showFirstLastButtons
+        class="mat-paginator-sticky"
+    >
+    </mat-paginator>
+</div>
+
+<div class="button-container">
+    <button matTooltip="edit selection" mat-mini-fab color="primary">
+        <mat-icon>edit</mat-icon>
+    </button>
+
+    <button mat-mini-fab matTooltip="add publication" color="primary">
+        <mat-icon>add</mat-icon>
+    </button>
 </div>
