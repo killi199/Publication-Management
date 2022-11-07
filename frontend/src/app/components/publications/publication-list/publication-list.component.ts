@@ -26,7 +26,15 @@ export class PublicationListComponent implements AfterViewInit, OnInit {
     @Output() 
     showPublication = new EventEmitter<Publication>();
 
+    @ViewChild(MatSort) 
+    sort: MatSort = new MatSort();
+
+    @ViewChild(MatPaginator) 
+    paginator!: MatPaginator;
+
     dataSource = new MatTableDataSource<Publication>;
+
+    selectedPublication?: Publication;
 
     selection = new SelectionModel<Publication>(false, []);
 
