@@ -12,6 +12,7 @@
                 "project": [
                     "tsconfig.json"
                 ],
+                "tsconfigRootDir": "frontend",
                 "createDefaultProgram": true
             },
             "extends": [
