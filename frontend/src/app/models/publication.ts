@@ -5,11 +5,11 @@ import { KindOfPublication } from './kind-of-publication';
 export class Publication {
     constructor(
         public key?: string,
-        public title?: string,
-        public authors?: Author[],
+        public titel?: string,
+        public author?: Author[],
         public dateOfPublication?: Date,
         public publisher?: string,
-        public kindOfPublication?: KindOfPublication,
+        public kindsOfPublication?: KindOfPublication[],
         public isbn?: string,
         public keywords?: Keyword[],
         public quantity?: number

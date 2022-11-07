@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Swagger Petstore - OpenAPI 3.0
+  title: Swagger IAA - OpenAPI 3.0
   version: 0.0.1
 servers:
   - url: http://localhost:8080/rest
@@ -41,11 +41,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Publication'
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Publication'
     put:
       tags:
         - Publications
@@ -57,12 +52,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Publication'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Publication'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Publication'
         required: true
       responses:
         '200':
@@ -71,9 +60,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Publication'
-            application/xml:
+        '400':
+          description: BadRequest
+          content:
+            application/json:
               schema:
-                $ref: '#/components/schemas/Publication'
+                oneOf:
+                  - $ref: '#/components/schemas/MissingFieldException'
+                  - $ref: '#/components/schemas/NegativValueIsNotAllowedException'
+                  - $ref: '#/components/schemas/EntityDoesNotExistException'
+
     post:
       tags:
         - Publications
@@ -92,12 +88,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Publication'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Publication'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Publication'
         required: true
       responses:
         '200':
@@ -106,9 +96,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Publication'
-            application/xml:
+        '400':
+          description: BadRequest
+          content:
+            application/json:
               schema:
-                $ref: '#/components/schemas/Publication'
+                oneOf:
+                  - $ref: '#/components/schemas/MissingFieldException'
+                  - $ref: '#/components/schemas/NegativValueIsNotAllowedException'
+                  - $ref: '#/components/schemas/EntityAlreadyExistsException'
   /publication/{key}:
     delete:
       tags:
@@ -145,11 +141,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Borrower'
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Borrower'
     put:
       tags:
         - Borrower
@@ -161,21 +152,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Borrower'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Borrower'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Borrower'
         required: true
       responses:
         '200':
           description: Successful operation
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/Borrower'
-            application/xml:
               schema:
                 $ref: '#/components/schemas/Borrower'
     post:
@@ -189,21 +171,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/BorrowerCreate'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/BorrowerCreate'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/BorrowerCreate'
         required: true
       responses:
         '200':
           description: Successful operation
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/Borrower'
-            application/xml:
               schema:
                 $ref: '#/components/schemas/Borrower'
   /borrower/{uuid}:
@@ -250,11 +223,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Assignment'
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Assignment'
     put:
       tags:
         - Assignment
@@ -266,21 +234,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Assignment'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Assignment'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Assignment'
         required: true
       responses:
         '200':
           description: Successful operation
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/Assignment'
-            application/xml:
               schema:
                 $ref: '#/components/schemas/Assignment'
     post:
@@ -294,21 +253,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/AssignmentCreate'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/AssignmentCreate'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/AssignmentCreate'
         required: true
       responses:
         '200':
           description: Successful operation
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/Assignment'
-            application/xml:
               schema:
                 $ref: '#/components/schemas/Assignment'
   /assignment/extend/{uuid}:
@@ -329,11 +279,6 @@ paths:
           description: Successful assignment
           content:
             application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Assignment'
-            application/xml:
               schema:
                 type: array
                 items:
@@ -384,11 +329,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/OverdueNotice'
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/OverdueNotice'
   /overdue-notice/{uuid}:
     delete:
       tags:
@@ -429,9 +369,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Warning'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Warning'
   /kind-of-publication:
     get:
       tags:
@@ -448,11 +385,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/KindOfPublication'
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/KindOfPublication'
     put:
       tags:
         - Kind of publications
@@ -464,21 +396,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/KindOfPublication'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/KindOfPublication'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/KindOfPublication'
         required: true
       responses:
         '200':
           description: Successful operation
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/KindOfPublication'
-            application/xml:
               schema:
                 $ref: '#/components/schemas/KindOfPublication'
     post:
@@ -492,21 +415,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/KindOfPublicationCreate'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/KindOfPublicationCreate'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/KindOfPublicationCreate'
         required: true
       responses:
         '200':
           description: Successful operation
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/KindOfPublication'
-            application/xml:
               schema:
                 $ref: '#/components/schemas/KindOfPublication'
   /kind-of-publication/{uuid}:
@@ -545,11 +459,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Author'
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Author'
     put:
       tags:
         - Author
@@ -561,21 +470,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Author'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Author'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Author'
         required: true
       responses:
         '200':
           description: Successful operation
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/Author'
-            application/xml:
               schema:
                 $ref: '#/components/schemas/Author'
     post:
@@ -589,21 +489,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/AuthorCreate'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/AuthorCreate'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/AuthorCreate'
         required: true
       responses:
         '200':
           description: Successful operation
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/Author'
-            application/xml:
               schema:
                 $ref: '#/components/schemas/Author'
   /author/{uuid}:
@@ -642,11 +533,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Keyword'
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Keyword'
     put:
       tags:
         - Keywords
@@ -658,21 +544,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Keyword'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Keyword'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Keyword'
         required: true
       responses:
         '200':
           description: Successful operation
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/Keyword'
-            application/xml:
               schema:
                 $ref: '#/components/schemas/Keyword'
     post:
@@ -686,21 +563,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/KeywordCreate'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/KeywordCreate'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/KeywordCreate'
         required: true
       responses:
         '200':
           description: Successful operation
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/Keyword'
-            application/xml:
               schema:
                 $ref: '#/components/schemas/Keyword'
   /keyword/{uuid}:
@@ -787,6 +655,9 @@ components:
           type: string
     Publication:
       type: object
+      required:
+        - key
+        - titel
       properties:
         key:
           type: string
@@ -801,7 +672,7 @@ components:
           format: date-time
         publisher:
           type: string
-        kindOfPublication:
+        kindsOfPublication:
           $ref: '#/components/schemas/KindOfPublication'
         ISBN:
           type: string
@@ -811,7 +682,8 @@ components:
             $ref: '#/components/schemas/Keyword'
         quantity:
           type: integer
-          format: int64
+          format: uint
+          default: 0
           example: 69
     Assignment:
       type: object
@@ -857,3 +729,18 @@ components:
           $ref: '#/components/schemas/Assignment'
         warnings:
           $ref: '#/components/schemas/Warning'
+    EntityAlreadyExistsException:
+      type: string
+      enum: ["The entity you try to create already exits. You can override it if you want."]
+    EntityDoesNotExistException:
+      type: string
+      enum: ["The entity you try to update does not exits."]
+    IllegalUsageOfIdentifierException:
+      type: string
+      enum: ["The identifier shouldn't be set here."]
+    MissingFieldException:
+      type: string
+      enum: ["The field {x} is missing in the Request."]
+    NegativValueIsNotAllowedException:
+      type: string
+      enum: ["The field {x} is not allowed to be negativ."]

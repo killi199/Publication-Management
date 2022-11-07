@@ -11,6 +11,7 @@ import {
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Observable } from 'rxjs';
 import { Publication } from 'src/app/models/publication';
 
 @Component({
@@ -20,20 +21,12 @@ import { Publication } from 'src/app/models/publication';
 })
 export class PublicationListComponent implements AfterViewInit, OnInit {
     @Input() 
-    publications: Publication[] = [];
-
+    publications: Observable<Publication[]> = new Observable<Publication[]>;
+    
     @Output() 
     showPublication = new EventEmitter<Publication>();
 
-    @ViewChild(MatSort) 
-    sort: MatSort = new MatSort();
-
-    @ViewChild(MatPaginator) 
-    paginator!: MatPaginator;
-
-    dataSource!: MatTableDataSource<Publication>;
-
-    selectedPublication?: Publication;
+    dataSource = new MatTableDataSource<Publication>;
 
     selection = new SelectionModel<Publication>(false, []);
 
@@ -50,7 +43,11 @@ export class PublicationListComponent implements AfterViewInit, OnInit {
     ];
 
     ngOnInit(): void {
-        this.dataSource = new MatTableDataSource(this.publications);
+        this.publications.subscribe(publications => {
+            this.dataSource.data = publications;
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+        });
     }
 
     ngAfterViewInit(): void {

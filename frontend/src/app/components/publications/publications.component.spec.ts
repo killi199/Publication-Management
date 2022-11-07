@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PublicationsComponent } from './publications.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -9,6 +10,7 @@ describe('PublicationsComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [PublicationsComponent],
+            imports: [HttpClientModule],
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
         }).compileComponents();
 

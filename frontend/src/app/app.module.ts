@@ -21,6 +21,7 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -66,6 +67,7 @@ registerLocaleData(localeDe, 'de-DE', localeDeExtra);
         MatSelectModule,
         MatAutocompleteModule,
         ReactiveFormsModule,
+        HttpClientModule,
     ],
     providers: [
         { provide: MAT_DATE_LOCALE, useValue: 'de-DE' },

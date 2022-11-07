@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Publication } from '../models/publication';
@@ -8,12 +9,11 @@ import { Publication } from '../models/publication';
 export class PublicationService {
     pubs: Publication[];
 
-    constructor() {
-        this.pubs = this.generateAllPubs(100);
+    constructor(private http: HttpClient) {
     }
 
     loadAllPublications(): Observable<Publication[]> {
-        return of(this.pubs);
+        return this.http.get<Publication[]>('http://localhost:4200/rest/publication');
     }
 
     deletePublication(publication: Publication): void {
