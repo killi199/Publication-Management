@@ -52,11 +52,16 @@ tr{
     width: 99%;
     margin: 5px;
     text-align: right;
-
+    display: flex;
+    margin-left: 10px;
 }
 
 button {
     margin: 5px;
+}
+
+form {
+    width: 400px;
 }
 
 

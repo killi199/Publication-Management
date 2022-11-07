@@ -23,6 +23,9 @@ export class BasedataKindsComponent implements OnInit, AfterViewInit {
 
     selection = new SelectionModel<KindOfPublication>(false, []);
 
+    editMode = false;
+    selectedKindOfPub: KindOfPublication | undefined;
+
     ngAfterViewInit() {
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
@@ -39,5 +42,21 @@ export class BasedataKindsComponent implements OnInit, AfterViewInit {
         if (this.dataSource.paginator) {
             this.dataSource.paginator.firstPage();
         }
+    }
+
+    selectionChanged(kindOfPublication: KindOfPublication){
+        this.selectedKindOfPub = kindOfPublication;
+    }
+
+    edit(){
+        this.editMode = true;
+    }
+
+    save(){
+        this.editMode = false;
+    }
+
+    undo(){
+        this.editMode = false;
     }
 }
