@@ -4,7 +4,7 @@
     </div>
     <mat-tab-group>
         <mat-tab label="Publicationtypes">
-            <app-basedata-kinds
+            <app-basedata-kinds 
                 [kindOfPublications]="(kindOfPubs$ | async) ?? []"
             ></app-basedata-kinds>
         </mat-tab>

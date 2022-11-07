@@ -1,62 +1,56 @@
-<div class="mat-elevation-z8 container">
-    <mat-form-field appearance="standard">
-        <mat-label>Filter</mat-label>
-        <input
-            matInput
-            (keyup)="applyFilter($event)"
-            placeholder="Ex. Java"
-            #input
-        />
-    </mat-form-field>
-    <table mat-table [dataSource]="dataSource" matSort>
-        <ng-container matColumnDef="kindOfPublication">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                Kind of Publication
-            </th>
-            <td mat-cell *matCellDef="let element">
-                {{ element.value }}
-            </td>
-        </ng-container>
 
-        <tr
-            mat-header-row
-            *matHeaderRowDef="displayedColumns; sticky: true"
-        ></tr>
-        <tr
-            mat-row
-            (click)="selection.toggle(row)"
-            [ngClass]="{
-                hovered: row.hovered,
-                highlighted: selection.isSelected(row)
-            }"
-            (mouseover)="row.hovered = true"
-            (mouseout)="row.hovered = false"
-            *matRowDef="let row; columns: displayedColumns"
-        ></tr>
-    </table>
+    <div class="container">
+        <mat-form-field appearance="standard">
+            <mat-label>Filter</mat-label>
+            <input
+                matInput
+                (keyup)="applyFilter($event)"
+                placeholder="Ex. Java"
+                #input
+            />
+        </mat-form-field>
+        <table mat-table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="kindOfPublication">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Kind of Publication
+                </th>
+                <td mat-cell *matCellDef="let element">
+                    {{ element.value }}
+                </td>
+            </ng-container>
 
-    <mat-paginator
-<<<<<<< HEAD
-        [pageSizeOptions]="[10, 25, 50, dataSource.data.length]"
-        showFirstLastButtons
-        class="mat-paginator-sticky"
-    >
-    </mat-paginator>
-</div>
+            <tr
+                mat-header-row
+                *matHeaderRowDef="displayedColumns; sticky: true"
+            ></tr>
+            <tr
+                mat-row
+                (click)="selection.toggle(row)"
+                [ngClass]="{
+                    hovered: row.hovered,
+                    highlighted: selection.isSelected(row)
+                }"
+                (mouseover)="row.hovered = true"
+                (mouseout)="row.hovered = false"
+                *matRowDef="let row; columns: displayedColumns"
+            ></tr>
+        </table>
 
-<div class="button-container">
-    <button matTooltip="edit selection" mat-mini-fab color="primary">
-        <mat-icon>edit</mat-icon>
-    </button>
+        <mat-paginator
+            [pageSizeOptions]="[10, 25, 50, dataSource.data.length]"
+            showFirstLastButtons
+            class="mat-paginator-sticky"
+        >
+        </mat-paginator>
+    </div>
 
-    <button mat-mini-fab matTooltip="add publication" color="primary">
-        <mat-icon>add</mat-icon>
-    </button>
-=======
-    [pageSizeOptions]="[10, 25, 50, dataSource.data.length]"
-    showFirstLastButtons
-    class="mat-paginator-sticky"
->
-</mat-paginator>
->>>>>>> 98eeb8518a0ebf64429ece6354ea3f3712f36b76
-</div>
+    <div class="button-container">
+        <button matTooltip="edit selection" mat-mini-fab color="primary">
+            <mat-icon>edit</mat-icon>
+        </button>
+
+        <button mat-mini-fab matTooltip="add publication" color="primary">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+
