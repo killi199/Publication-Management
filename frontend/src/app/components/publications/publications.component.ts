@@ -16,7 +16,6 @@ export class PublicationsComponent implements OnInit {
     publications$: Observable<Publication[]>;
     keywords: Keyword[] = [];
     kindsOfPublication: KindOfPublication[] = [];
-    keywordsString: string[] = [];
     currentPublication?: Publication;
     openPublication: boolean = false;
 
@@ -32,9 +31,6 @@ export class PublicationsComponent implements OnInit {
         this.keywordService
             .loadAllKeywords()
             .subscribe((keywords) => (this.keywords = keywords));
-        this.keywordsString = this.keywords
-            .map((keyword) => keyword.value)
-            .filter(this._notEmpty);
         this.kindOfPublicationService
             .loadAllKindsOfPublication()
             .subscribe(
@@ -57,11 +53,5 @@ export class PublicationsComponent implements OnInit {
 
     onSavePublication(publication: Publication): void {
         this.publicationService.savePublication(publication);
-    }
-
-    private _notEmpty<TValue>(
-        value: TValue | null | undefined
-    ): value is TValue {
-        return value !== null && value !== undefined;
     }
 }

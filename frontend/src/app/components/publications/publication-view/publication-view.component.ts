@@ -32,7 +32,7 @@ export class PublicationViewComponent implements OnInit {
     publication: Publication = new Publication();
 
     @Input()
-    allKeywords: string[] = [];
+    allKeywords: Keyword[] = [];
 
     @Input()
     allKindsOfPublication: KindOfPublication[] = [];
@@ -49,23 +49,16 @@ export class PublicationViewComponent implements OnInit {
 
     separatorKeysCodes: number[] = [ENTER, COMMA];
 
-    keywordCtrl = new FormControl('');
+    keywordControl = new FormControl<string | Keyword>('');
 
     kindOfPublicationControl = new FormControl<string | KindOfPublication>('');
 
-    filteredKeywords: Observable<string[]>;
+    filteredKeywords: Observable<Keyword[]> = new Observable<Keyword[]>();
 
     filteredKindsOfPublication: Observable<KindOfPublication[]> =
         new Observable<KindOfPublication[]>();
 
-    constructor() {
-        this.filteredKeywords = this.keywordCtrl.valueChanges.pipe(
-            startWith(null),
-            map((fruit: string | null) =>
-                fruit ? this._filterKeywords(fruit) : this.allKeywords.slice()
-            )
-        );
-    }
+    constructor() {}
 
     ngOnInit(): void {
         if (!this.publication) {
@@ -96,6 +89,7 @@ export class PublicationViewComponent implements OnInit {
             } else {
                 this.publication.kindOfPublication = undefined;
             }
+
             this.savedPublication = structuredClone(this.publication);
             this.savePublication.emit(this.publication);
             this.editable = false;
@@ -114,7 +108,7 @@ export class PublicationViewComponent implements OnInit {
 
     removeKeyword(keyword: Keyword): void {
         if (this.publication.keywords) {
-            const index = this.publication.keywords.indexOf(keyword);
+            let index = this.publication.keywords.indexOf(keyword);
 
             if (index >= 0) {
                 this.publication.keywords?.splice(index, 1);
@@ -124,61 +118,81 @@ export class PublicationViewComponent implements OnInit {
 
     addKeyword(event: MatChipInputEvent): void {
         if (this.publication.keywords) {
-            const value = (event.value || '').trim();
+            let value = (event.value || '').trim();
 
-            let keyword = new Keyword();
-            keyword.value = value;
+            let keywords = this._filterKeywords(value as string);
+            if (keywords.length === 1) {
+                this.publication.keywords.push(keywords[0]);
+            } else {
+                let keyword = new Keyword();
+                keyword.value = value;
 
-            if (value) {
-                this.publication.keywords.push(keyword);
+                if (value) {
+                    this.publication.keywords.push(keyword);
+                }
             }
 
             event.chipInput!.clear();
-            this.keywordCtrl.setValue(null);
+            this.keywordControl.setValue('');
         }
     }
 
     selectedKeyword(event: MatAutocompleteSelectedEvent): void {
         if (this.publication.keywords) {
-            let keyword = new Keyword();
-            keyword.value = event.option.viewValue;
-            this.publication.keywords.push(keyword);
+            this.publication.keywords.push(event.option.value);
             this.keywordInput.nativeElement.value = '';
-            this.keywordCtrl.setValue(null);
+            this.keywordControl.setValue('');
         }
     }
 
-    displayFn(kindOfPublication: KindOfPublication): string {
+    displayKindOfPublication(kindOfPublication: KindOfPublication): string {
         return kindOfPublication && kindOfPublication.value
             ? kindOfPublication.value
             : '';
     }
 
-    private _filterKeywords(value: string): string[] {
-        const filterValue = value.toLowerCase();
+    displayKeyword(keyword: Keyword): string {
+        return keyword && keyword.value ? keyword.value : '';
+    }
+
+    private _filterKeywords(value: string): Keyword[] {
+        let filterValue = value.toLowerCase();
 
         return this.allKeywords.filter((keyword) =>
-            keyword.toLowerCase().includes(filterValue)
+            keyword.value?.toLowerCase().includes(filterValue)
         );
     }
 
     private _filterKindsOfPublication(value: string): KindOfPublication[] {
-        const filterValue = value.toLowerCase();
+        let filterValue = value.toLowerCase();
 
-        return this.allKindsOfPublication.filter((kindOfPublicationControl) =>
-            kindOfPublicationControl.value?.toLowerCase().includes(filterValue)
+        return this.allKindsOfPublication.filter((kindOfPublication) =>
+            kindOfPublication.value?.toLowerCase().includes(filterValue)
         );
     }
 
     private _reloadView(): void {
+        this.filteredKeywords = this.keywordControl.valueChanges.pipe(
+            startWith(''),
+            map((keyword) => {
+                let value =
+                    typeof keyword === 'string' ? keyword : keyword?.value;
+                return value
+                    ? this._filterKeywords(value as string)
+                    : this.allKeywords.slice();
+            })
+        );
+
         this.filteredKindsOfPublication =
             this.kindOfPublicationControl.valueChanges.pipe(
                 startWith(''),
-                map((value) => {
-                    const name =
-                        typeof value === 'string' ? value : value?.value;
-                    return name
-                        ? this._filterKindsOfPublication(name as string)
+                map((kindOfPublication) => {
+                    let value =
+                        typeof kindOfPublication === 'string'
+                            ? kindOfPublication
+                            : kindOfPublication?.value;
+                    return value
+                        ? this._filterKindsOfPublication(value as string)
                         : this.allKindsOfPublication.slice();
                 })
             );

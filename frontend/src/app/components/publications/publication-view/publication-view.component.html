@@ -117,11 +117,11 @@
                         [readonly]="!editable"
                         matInput
                         [formControl]="kindOfPublicationControl"
-                        [matAutocomplete]="auto"
+                        [matAutocomplete]="autocompleteKindOfPublication"
                     />
                     <mat-autocomplete
-                        #auto="matAutocomplete"
-                        [displayWith]="displayFn"
+                        #autocompleteKindOfPublication="matAutocomplete"
+                        [displayWith]="displayKindOfPublication"
                     >
                         <mat-option
                             *ngFor="let kindOfPublication of filteredKindsOfPublication | async"
@@ -152,22 +152,23 @@
                             [readonly]="!editable"
                             placeholder="New keyword..."
                             #keywordInput
-                            [formControl]="keywordCtrl"
-                            [matAutocomplete]="auto"
+                            [formControl]="keywordControl"
+                            [matAutocomplete]="autocompleteKeywords"
                             [matChipInputFor]="chipList"
                             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                             (matChipInputTokenEnd)="addKeyword($event)"
                         />
                     </mat-chip-list>
                     <mat-autocomplete
-                        #auto="matAutocomplete"
+                        #autocompleteKeywords="matAutocomplete"
                         (optionSelected)="selectedKeyword($event)"
+                        [displayWith]="displayKeyword"
                     >
                         <mat-option
                             *ngFor="let keyword of filteredKeywords | async"
                             [value]="keyword"
                         >
-                            {{ keyword }}
+                            {{ keyword.value }}
                         </mat-option>
                     </mat-autocomplete>
                 </mat-form-field>
