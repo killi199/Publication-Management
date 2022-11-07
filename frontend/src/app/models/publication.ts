@@ -4,11 +4,11 @@ import { KindOfPublication } from "./kind-of-publication";
 
 export interface Publication {
     key: string;
-    title: string;
-    authors: Author[];
+    titel: string;
+    author: Author[];
     dateOfPublication: Date;
     publisher: string;
-    kindOfPublication: KindOfPublication;
+    kindsOfPublication: KindOfPublication[];
     isbn: string;
     keywords: Keyword[];
     quantity: number;

@@ -13,7 +13,7 @@ export class PublicationsComponent {
     currentPublication?: Publication;
     openPublication: boolean = false;
 
-    constructor(private publicationService: PublicationService) {
+    constructor(publicationService: PublicationService) {
         this.publications$ = publicationService.loadAllPublications();
     }
 
