@@ -14,25 +14,21 @@ public class Publication {
     private String key;
 
     @NotNull
-    private String titel;
+    private String title;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(
             name = "author_publications",
             joinColumns = {@JoinColumn(name = "publication_key")},
             inverseJoinColumns = {@JoinColumn(name = "author_uuid")})
-    private List<Author> author = new ArrayList<>();
+    private List<Author> authors = new ArrayList<>();
 
     private Date dateOfPublication;
 
     private String publisher;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinTable(
-            name = "kind_publications",
-            joinColumns = {@JoinColumn(name = "publication_key")},
-            inverseJoinColumns = {@JoinColumn(name = "kind_uuid")})
-    private List<KindOfPublication> kindsOfPublication = new ArrayList<>();
+    @ManyToOne
+    private KindOfPublication kindOfPublication;
 
     private String ISBN;
 
@@ -53,20 +49,20 @@ public class Publication {
         this.key = key;
     }
 
-    public String getTitel() {
-        return titel;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTitel(String titel) {
-        this.titel = titel;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public List<Author> getAuthor() {
-        return author;
+    public List<Author> getAuthors() {
+        return authors;
     }
 
-    public void setAuthor(List<Author> author) {
-        this.author = author;
+    public void setAuthors(List<Author> authors) {
+        this.authors = authors;
     }
 
     public Date getDateOfPublication() {
@@ -85,12 +81,12 @@ public class Publication {
         this.publisher = publisher;
     }
 
-    public List<KindOfPublication> getKindsOfPublication() {
-        return kindsOfPublication;
+    public KindOfPublication getKindOfPublication() {
+        return kindOfPublication;
     }
 
-    public void setKindsOfPublication(List<KindOfPublication> kindsOfPublication) {
-        this.kindsOfPublication = kindsOfPublication;
+    public void setKindOfPublication(KindOfPublication kindOfPublication) {
+        this.kindOfPublication = kindOfPublication;
     }
 
     public String getISBN() {
