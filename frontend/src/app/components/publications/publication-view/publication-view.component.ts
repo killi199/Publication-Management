@@ -89,16 +89,18 @@ export class PublicationViewComponent implements OnInit {
         if (this.form.valid) {
             if (this.kindOfPublicationControl.value) {
                 if (typeof this.kindOfPublicationControl.value === 'string') {
-                    this.publication.kindOfPublication =
-                        new KindOfPublication();
-                    this.publication.kindOfPublication.value =
+                    this.publication.kindsOfPublication = [
+                        new KindOfPublication(),
+                    ];
+                    this.publication.kindsOfPublication[0].value =
                         this.kindOfPublicationControl.value;
                 } else {
-                    this.publication.kindOfPublication =
-                        this.kindOfPublicationControl.value;
+                    this.publication.kindsOfPublication = [
+                        this.kindOfPublicationControl.value,
+                    ];
                 }
             } else {
-                this.publication.kindOfPublication = undefined;
+                this.publication.kindsOfPublication = undefined;
             }
 
             this.savedPublication = structuredClone(this.publication);
@@ -128,11 +130,11 @@ export class PublicationViewComponent implements OnInit {
     }
 
     removeAuthor(author: Author): void {
-        if (this.publication.authors) {
-            let index = this.publication.authors.indexOf(author);
+        if (this.publication.author) {
+            let index = this.publication.author.indexOf(author);
 
             if (index >= 0) {
-                this.publication.authors?.splice(index, 1);
+                this.publication.author?.splice(index, 1);
             }
         }
     }
@@ -159,19 +161,19 @@ export class PublicationViewComponent implements OnInit {
     }
 
     addAuthor(event: MatChipInputEvent): void {
-        if (this.publication.authors) {
+        if (this.publication.author) {
             let value = (event.value || '').trim();
 
             let authors = this._filterAuthors(value as string);
             if (authors.length === 1) {
-                this.publication.authors.push(authors[0]);
+                this.publication.author.push(authors[0]);
             } else {
                 let author = new Author();
                 author.surname = value.split(' ')[0];
                 author.name = value.split(' ')[1];
 
                 if (value) {
-                    this.publication.authors.push(author);
+                    this.publication.author.push(author);
                 }
             }
 
@@ -189,8 +191,8 @@ export class PublicationViewComponent implements OnInit {
     }
 
     selectedAuthor(event: MatAutocompleteSelectedEvent): void {
-        if (this.publication.authors) {
-            this.publication.authors.push(event.option.value);
+        if (this.publication.author) {
+            this.publication.author.push(event.option.value);
             this.authorInput.nativeElement.value = '';
             this.authorControl.setValue('');
         }
@@ -281,9 +283,12 @@ export class PublicationViewComponent implements OnInit {
                 })
             );
 
-        if (this.publication.kindOfPublication) {
+        if (
+            this.publication.kindsOfPublication &&
+            this.publication.kindsOfPublication[0]
+        ) {
             this.kindOfPublicationControl.setValue(
-                this.publication.kindOfPublication
+                this.publication.kindsOfPublication[0]
             );
         }
     }

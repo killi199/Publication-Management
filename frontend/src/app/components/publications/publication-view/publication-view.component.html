@@ -22,7 +22,7 @@
                         matInput
                         id="title"
                         name="title"
-                        [(ngModel)]="publication.title"
+                        [(ngModel)]="publication.titel"
                         [readonly]="!editable"
                         required
                     />
@@ -34,7 +34,7 @@
                     <mat-label for="authors">Authors</mat-label>
                     <mat-chip-list #chipListAuthors>
                         <mat-chip
-                            *ngFor="let author of publication.authors"
+                            *ngFor="let author of publication.author"
                             (removed)="removeAuthor(author)"
                         >
                             {{ author.surname }} {{ author.name }}
