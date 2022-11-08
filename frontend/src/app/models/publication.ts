@@ -14,12 +14,4 @@ export class Publication {
         public keywords?: Keyword[],
         public quantity?: number
     ) {}
-
-    equals(other: Publication | undefined): boolean {
-        if(!other){
-            return false;
-        }
-        
-        return this.key === other.key;
-    }
 }

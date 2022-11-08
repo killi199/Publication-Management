@@ -64,12 +64,13 @@ export class PublicationListComponent implements AfterViewInit, OnInit {
     }
 
     onShowPublication(publication: Publication): void {
-        var eventObject = publication.equals(this.selectedPublication)
-            ? undefined
-            : publication;
-        this.showPublication.emit(eventObject);
-
-        this.selectedPublication = publication;
+        if (publication === this.selectedPublication) {
+            this.showPublication.emit(undefined);
+            this.selectedPublication = undefined;
+        } else {
+            this.showPublication.emit(publication);
+            this.selectedPublication = publication;
+        }
     }
 
     applyFilter(event: Event): void {
