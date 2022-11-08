@@ -1,13 +1,12 @@
-.flex-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
 .button-container {
     display: flex;
-    justify-content: center;
-    width: 60px;
+    justify-content: flex-end;
+    width: 99%;
+    margin: 5px;
+}
+
+button {
+    margin: 5px;
 }
 
 .container {

@@ -1,262 +1,231 @@
 <div class="container">
     <form #form="ngForm" (ngSubmit)="onSubmit()">
-        <mat-grid-list cols="2" rowHeight="12:1">
-            <mat-grid-tile>
-                <mat-form-field class="form-field" appearance="fill">
-                    <mat-label for="key">Key</mat-label>
-                    <input
-                        matInput
-                        id="key"
-                        name="key"
-                        [(ngModel)]="publication.key"
-                        [readonly]="!editable"
-                        required
-                    />
-                </mat-form-field>
-            </mat-grid-tile>
+        <mat-form-field class="form-field" appearance="fill">
+            <mat-label for="key">Key</mat-label>
+            <input
+                matInput
+                id="key"
+                name="key"
+                [(ngModel)]="publication.key"
+                [readonly]="!editable"
+                required
+            />
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="fill">
+            <mat-label for="title">Title</mat-label>
+            <input
+                matInput
+                id="title"
+                name="title"
+                [(ngModel)]="publication.titel"
+                [readonly]="!editable"
+                required
+            />
+        </mat-form-field>
 
-            <mat-grid-tile>
-                <mat-form-field class="form-field" appearance="fill">
-                    <mat-label for="title">Title</mat-label>
-                    <input
-                        matInput
-                        id="title"
-                        name="title"
-                        [(ngModel)]="publication.titel"
-                        [readonly]="!editable"
-                        required
-                    />
-                </mat-form-field>
-            </mat-grid-tile>
+        <mat-form-field class="form-field" appearance="fill">
+            <mat-label for="authors">Authors</mat-label>
+            <mat-chip-list #chipListAuthors>
+                <mat-chip
+                    *ngFor="let author of publication.author"
+                    (removed)="removeAuthor(author)"
+                >
+                    {{ author.surname }} {{ author.name }}
+                    <button matChipRemove [disabled]="!editable">
+                        <mat-icon>cancel</mat-icon>
+                    </button>
+                </mat-chip>
+                <input
+                    id="authors"
+                    name="authors"
+                    [readonly]="!editable"
+                    placeholder="New Author..."
+                    #authorInput
+                    [formControl]="authorControl"
+                    [matAutocomplete]="autocompleteAuthors"
+                    [matChipInputFor]="chipListAuthors"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                    (matChipInputTokenEnd)="addAuthor($event)"
+                />
+            </mat-chip-list>
+            <mat-autocomplete
+                #autocompleteAuthors="matAutocomplete"
+                (optionSelected)="selectedAuthor($event)"
+                [displayWith]="displayAuthor"
+            >
+                <mat-option
+                    *ngFor="let author of filteredAuthors | async"
+                    [value]="author"
+                >
+                    {{ author.surname }} {{ author.name }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
 
-            <mat-grid-tile>
-                <mat-form-field class="form-field" appearance="fill">
-                    <mat-label for="authors">Authors</mat-label>
-                    <mat-chip-list #chipListAuthors>
-                        <mat-chip
-                            *ngFor="let author of publication.author"
-                            (removed)="removeAuthor(author)"
-                        >
-                            {{ author.surname }} {{ author.name }}
-                            <button matChipRemove [disabled]="!editable">
-                                <mat-icon>cancel</mat-icon>
-                            </button>
-                        </mat-chip>
-                        <input
-                            id="authors"
-                            name="authors"
-                            [readonly]="!editable"
-                            placeholder="New Author..."
-                            #authorInput
-                            [formControl]="authorControl"
-                            [matAutocomplete]="autocompleteAuthors"
-                            [matChipInputFor]="chipListAuthors"
-                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                            (matChipInputTokenEnd)="addAuthor($event)"
-                        />
-                    </mat-chip-list>
-                    <mat-autocomplete
-                        #autocompleteAuthors="matAutocomplete"
-                        (optionSelected)="selectedAuthor($event)"
-                        [displayWith]="displayAuthor"
-                    >
-                        <mat-option
-                            *ngFor="let author of filteredAuthors | async"
-                            [value]="author"
-                        >
-                            {{ author.surname }} {{ author.name }}
-                        </mat-option>
-                    </mat-autocomplete>
-                </mat-form-field>
-            </mat-grid-tile>
+        <mat-form-field class="form-field" appearance="fill">
+            <mat-label for="isbn">ISBN</mat-label>
+            <input
+                matInput
+                id="isbn"
+                name="isbn"
+                [(ngModel)]="publication.isbn"
+                [readonly]="!editable"
+            />
+        </mat-form-field>
 
-            <mat-grid-tile>
-                <mat-form-field class="form-field" appearance="fill">
-                    <mat-label for="isbn">ISBN</mat-label>
-                    <input
-                        matInput
-                        id="isbn"
-                        name="isbn"
-                        [(ngModel)]="publication.isbn"
-                        [readonly]="!editable"
-                    />
-                </mat-form-field>
-            </mat-grid-tile>
+        <mat-form-field class="form-field" appearance="fill">
+            <mat-label for="quantity">Quantity</mat-label>
+            <input
+                type="number"
+                min="0"
+                matInput
+                id="quantity"
+                name="quantity"
+                [(ngModel)]="publication.quantity"
+                [readonly]="!editable"
+                required
+            />
+        </mat-form-field>
 
-            <mat-grid-tile>
-                <mat-form-field class="form-field" appearance="fill">
-                    <mat-label for="quantity">Quantity</mat-label>
-                    <input
-                        type="number"
-                        min="0"
-                        matInput
-                        id="quantity"
-                        name="quantity"
-                        [(ngModel)]="publication.quantity"
-                        [readonly]="!editable"
-                        required
-                    />
-                </mat-form-field>
-            </mat-grid-tile>
+        <mat-form-field class="form-field" appearance="fill">
+            <mat-label for="publisher">Publisher</mat-label>
+            <input
+                matInput
+                id="publisher"
+                name="publisher"
+                [(ngModel)]="publication.publisher"
+                [readonly]="!editable"
+            />
+        </mat-form-field>
 
-            <mat-grid-tile>
-                <mat-form-field class="form-field" appearance="fill">
-                    <mat-label for="publisher">Publisher</mat-label>
-                    <input
-                        matInput
-                        id="publisher"
-                        name="publisher"
-                        [(ngModel)]="publication.publisher"
-                        [readonly]="!editable"
-                    />
-                </mat-form-field>
-            </mat-grid-tile>
+        <mat-form-field class="form-field" appearance="fill">
+            <mat-label for="dateOfPublication">Date of Publication</mat-label>
+            <input
+                matInput
+                id="dateOfPublication"
+                name="dateOfPublication"
+                [(ngModel)]="publication.dateOfPublication"
+                [readonly]="!editable"
+                [matDatepicker]="picker"
+            />
+            <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+                [disabled]="!editable"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
 
-            <mat-grid-tile>
-                <mat-form-field class="form-field" appearance="fill">
-                    <mat-label for="dateOfPublication"
-                        >Date of Publication</mat-label
-                    >
-                    <input
-                        matInput
-                        id="dateOfPublication"
-                        name="dateOfPublication"
-                        [(ngModel)]="publication.dateOfPublication"
-                        [readonly]="!editable"
-                        [matDatepicker]="picker"
-                    />
-                    <mat-datepicker-toggle
-                        matSuffix
-                        [for]="picker"
-                        [disabled]="!editable"
-                    ></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-            </mat-grid-tile>
+        <mat-form-field class="form-field" appearance="fill">
+            <mat-label for="kindOfPublication">Kind of Publication</mat-label>
+            <input
+                type="text"
+                id="kindOfPublication"
+                name="kindOfPublication"
+                [readonly]="!editable"
+                matInput
+                [formControl]="kindOfPublicationControl"
+                [matAutocomplete]="autocompleteKindOfPublication"
+            />
+            <mat-autocomplete
+                #autocompleteKindOfPublication="matAutocomplete"
+                [displayWith]="displayKindOfPublication"
+            >
+                <mat-option
+                    *ngFor="
+                        let kindOfPublication of filteredKindsOfPublication
+                            | async
+                    "
+                    [value]="kindOfPublication"
+                >
+                    {{ kindOfPublication.value }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
 
-            <mat-grid-tile>
-                <mat-form-field class="form-field" appearance="fill">
-                    <mat-label for="kindOfPublication"
-                        >Kind of Publication</mat-label
-                    >
-                    <input
-                        type="text"
-                        id="kindOfPublication"
-                        name="kindOfPublication"
-                        [readonly]="!editable"
-                        matInput
-                        [formControl]="kindOfPublicationControl"
-                        [matAutocomplete]="autocompleteKindOfPublication"
-                    />
-                    <mat-autocomplete
-                        #autocompleteKindOfPublication="matAutocomplete"
-                        [displayWith]="displayKindOfPublication"
-                    >
-                        <mat-option
-                            *ngFor="
-                                let kindOfPublication of filteredKindsOfPublication
-                                    | async
-                            "
-                            [value]="kindOfPublication"
-                        >
-                            {{ kindOfPublication.value }}
-                        </mat-option>
-                    </mat-autocomplete>
-                </mat-form-field>
-            </mat-grid-tile>
+        <mat-form-field class="form-field" appearance="fill">
+            <mat-label for="keywords">Keywords</mat-label>
+            <mat-chip-list #chipListKeywords>
+                <mat-chip
+                    *ngFor="let keyword of publication.keywords"
+                    (removed)="removeKeyword(keyword)"
+                >
+                    {{ keyword.value }}
+                    <button matChipRemove [disabled]="!editable">
+                        <mat-icon>cancel</mat-icon>
+                    </button>
+                </mat-chip>
+                <input
+                    id="keywords"
+                    name="keywords"
+                    [readonly]="!editable"
+                    placeholder="New keyword..."
+                    #keywordInput
+                    [formControl]="keywordControl"
+                    [matAutocomplete]="autocompleteKeywords"
+                    [matChipInputFor]="chipListKeywords"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                    (matChipInputTokenEnd)="addKeyword($event)"
+                />
+            </mat-chip-list>
+            <mat-autocomplete
+                #autocompleteKeywords="matAutocomplete"
+                (optionSelected)="selectedKeyword($event)"
+                [displayWith]="displayKeyword"
+            >
+                <mat-option
+                    *ngFor="let keyword of filteredKeywords | async"
+                    [value]="keyword"
+                >
+                    {{ keyword.value }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
 
-            <mat-grid-tile>
-                <mat-form-field class="form-field" appearance="fill">
-                    <mat-label for="keywords">Keywords</mat-label>
-                    <mat-chip-list #chipListKeywords>
-                        <mat-chip
-                            *ngFor="let keyword of publication.keywords"
-                            (removed)="removeKeyword(keyword)"
-                        >
-                            {{ keyword.value }}
-                            <button matChipRemove [disabled]="!editable">
-                                <mat-icon>cancel</mat-icon>
-                            </button>
-                        </mat-chip>
-                        <input
-                            id="keywords"
-                            name="keywords"
-                            [readonly]="!editable"
-                            placeholder="New keyword..."
-                            #keywordInput
-                            [formControl]="keywordControl"
-                            [matAutocomplete]="autocompleteKeywords"
-                            [matChipInputFor]="chipListKeywords"
-                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                            (matChipInputTokenEnd)="addKeyword($event)"
-                        />
-                    </mat-chip-list>
-                    <mat-autocomplete
-                        #autocompleteKeywords="matAutocomplete"
-                        (optionSelected)="selectedKeyword($event)"
-                        [displayWith]="displayKeyword"
-                    >
-                        <mat-option
-                            *ngFor="let keyword of filteredKeywords | async"
-                            [value]="keyword"
-                        >
-                            {{ keyword.value }}
-                        </mat-option>
-                    </mat-autocomplete>
-                </mat-form-field>
-            </mat-grid-tile>
+        <div class="button-container">
+            <button
+                *ngIf="!editable"
+                type="button"
+                (click)="onEdit()"
+                mat-mini-fab
+                color="primary"
+                matTooltip="edit publication"
+            >
+                <mat-icon>edit</mat-icon>
+            </button>
 
-            <mat-grid-tile>
-                <div class="flex-container">
-                    <div class="button-container" *ngIf="!editable">
-                        <button
-                            type="button"
-                            (click)="onEdit()"
-                            mat-mini-fab
-                            color="primary"
-                            matTooltip="edit publication"
-                        >
-                            <mat-icon>edit</mat-icon>
-                        </button>
-                    </div>
+            <button
+                *ngIf="!editable"
+                type="button"
+                (click)="onDeletePublication()"
+                mat-mini-fab
+                color="primary"
+                matTooltip="delete publication"
+            >
+                <mat-icon>delete</mat-icon>
+            </button>
 
-                    <div class="button-container" *ngIf="!editable">
-                        <button
-                            type="button"
-                            (click)="onDeletePublication()"
-                            mat-mini-fab
-                            color="primary"
-                            matTooltip="delete publication"
-                        >
-                            <mat-icon>delete</mat-icon>
-                        </button>
-                    </div>
+            <button
+                *ngIf="editable"
+                type="submit"
+                [disabled]="form.invalid"
+                mat-mini-fab
+                color="primary"
+                matTooltip="save publication"
+            >
+                <mat-icon>save</mat-icon>
+            </button>
 
-                    <div class="button-container" *ngIf="editable">
-                        <button
-                            type="submit"
-                            [disabled]="form.invalid"
-                            mat-mini-fab
-                            color="primary"
-                            matTooltip="save publication"
-                        >
-                            <mat-icon>save</mat-icon>
-                        </button>
-                    </div>
-
-                    <div class="button-container" *ngIf="editable">
-                        <button
-                            type="button"
-                            (click)="onCancel()"
-                            mat-mini-fab
-                            color="primary"
-                            matTooltip="cancel"
-                        >
-                            <mat-icon>cancel</mat-icon>
-                        </button>
-                    </div>
-                </div>
-            </mat-grid-tile>
-        </mat-grid-list>
+            <button
+                *ngIf="editable"
+                type="button"
+                (click)="onCancel()"
+                mat-mini-fab
+                color="primary"
+                matTooltip="cancel"
+            >
+                <mat-icon>cancel</mat-icon>
+            </button>
+        </div>
     </form>
 </div>
