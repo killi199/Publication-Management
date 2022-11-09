@@ -15,7 +15,7 @@ import { PublicationService } from 'src/app/services/publication.service';
     styleUrls: ['./publications.component.scss'],
 })
 export class PublicationsComponent implements OnInit {
-    publications$: Observable<Publication[]>;
+    publications: Observable<Publication[]>;
     keywords: Keyword[] = [];
     authors: Author[] = [];
     kindsOfPublication: KindOfPublication[] = [];
@@ -29,7 +29,7 @@ export class PublicationsComponent implements OnInit {
         private kindOfPublicationService: KindOfPublicationService,
         private authorService: AuthorService
     ) {
-        this.publications$ = publicationService.listAllPublications();
+        this.publications = publicationService.listAllPublications();
     }
 
     ngOnInit(): void {
