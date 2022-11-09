@@ -21,6 +21,7 @@ export class PublicationsComponent implements OnInit {
     kindsOfPublication: KindOfPublication[] = [];
     currentPublication?: Publication;
     openPublication: boolean = false;
+    addingPublication: boolean = false;
 
     constructor(
         private publicationService: PublicationService,
@@ -28,7 +29,7 @@ export class PublicationsComponent implements OnInit {
         private kindOfPublicationService: KindOfPublicationService,
         private authorService: AuthorService
     ) {
-        this.publications$ = publicationService.loadAllPublications();
+        this.publications$ = publicationService.listAllPublications();
     }
 
     ngOnInit(): void {
@@ -50,15 +51,28 @@ export class PublicationsComponent implements OnInit {
         this.currentPublication = publication;
     }
 
-    onShowPublication(): void {
+    onEditPublication(): void {
+        this.addingPublication = false;
+        this.openPublication = !this.openPublication;
+    }
+
+    onAddPublication(): void {
+        this.addingPublication = true;
+        this.currentPublication = new Publication();
         this.openPublication = !this.openPublication;
     }
 
     onDeletePublication(publication: Publication): void {
-        this.publicationService.deletePublication(publication);
+        this.publicationService.deletePublication(publication).subscribe();
+        this.currentPublication = undefined;
+        this.openPublication = false;
     }
 
     onSavePublication(publication: Publication): void {
-        this.publicationService.savePublication(publication);
+        if (this.addingPublication) {
+            this.publicationService.savePublication(publication).subscribe();
+        } else {
+            this.publicationService.updatePublication(publication).subscribe();
+        }
     }
 }

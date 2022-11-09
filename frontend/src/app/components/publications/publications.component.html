@@ -14,7 +14,7 @@
         <button
             matTooltip="edit selection"
             *ngIf="currentPublication"
-            (click)="onShowPublication()"
+            (click)="onEditPublication()"
             mat-mini-fab
             color="primary"
         >
@@ -22,7 +22,7 @@
         </button>
 
         <button
-            (click)="onShowPublication()"
+            (click)="onAddPublication()"
             mat-mini-fab
             matTooltip="add publication"
             color="primary"

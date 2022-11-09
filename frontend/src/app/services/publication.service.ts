@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Publication } from '../models/publication';
 
+const ENDPOINT_URL = '/rest/publication';
+
 @Injectable({
     providedIn: 'root',
 })
@@ -12,18 +14,19 @@ export class PublicationService {
     constructor(private http: HttpClient) {
     }
 
-    loadAllPublications(): Observable<Publication[]> {
-        return this.http.get<Publication[]>('http://localhost:4200/rest/publication');
+    listAllPublications(): Observable<Publication[]> {
+        return this.http.get<Publication[]>(ENDPOINT_URL);
     }
 
-    deletePublication(publication: Publication): void {
-        console.log('deletePublication', publication);
-        if (publication) {
-            this.pubs = this.pubs?.filter((pub) => pub.key !== publication.key);
-        }
+    deletePublication(publication: Publication): Observable<any> {
+        return this.http.delete(`${ENDPOINT_URL}/${publication.key}`);
     }
 
-    savePublication(publication: Publication): void {
-        console.log('savePublication', publication);
+    updatePublication(publication: Publication): Observable<any> {
+        return this.http.put(ENDPOINT_URL, publication);
+    }
+
+    savePublication(publication: Publication): Observable<any> {
+        return this.http.post(ENDPOINT_URL, publication);
     }
 }
