@@ -190,7 +190,7 @@
                 type="button"
                 (click)="onDeletePublication()"
                 mat-mini-fab
-                color="primary"
+                color="warn"
                 matTooltip="delete publication"
             >
                 <mat-icon>delete</mat-icon>
@@ -202,7 +202,7 @@
                 [disabled]="form.invalid"
                 mat-mini-fab
                 color="primary"
-                matTooltip="save publication"
+                matTooltip="save changes"
             >
                 <mat-icon>save</mat-icon>
             </button>
@@ -213,9 +213,9 @@
                 (click)="onCancel()"
                 mat-mini-fab
                 color="primary"
-                matTooltip="cancel"
+                matTooltip="undo changes"
             >
-                <mat-icon>cancel</mat-icon>
+                <mat-icon>undo</mat-icon>
             </button>
         </div>
     </form>

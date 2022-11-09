@@ -74,12 +74,12 @@
             (click)="save(input.value)"
             color="primary"
         >
-            <mat-icon>done</mat-icon>
+            <mat-icon>save</mat-icon>
         </button>
 
         <button
             mat-mini-fab
-            matTooltip="remove publication"
+            matTooltip="delete kind of publication"
             [disabled]="selectedKindOfPub.value === null"
             *ngIf="!editMode"
             color="warn"
