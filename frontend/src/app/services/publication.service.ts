@@ -52,8 +52,8 @@ export class PublicationService {
     loadKindOfPublications(): Observable<KindOfPublication[]> {
         return of(this.kindOfPublications);
     }
-
-    deletePublication(kindOfPublication: KindOfPublication) {
+    
+    deleteKindOfPublication(kindOfPublication: KindOfPublication) {
         const index = this.kindOfPublications.indexOf(kindOfPublication);
         if (index !== -1){
             this.kindOfPublications.splice(index, 1);

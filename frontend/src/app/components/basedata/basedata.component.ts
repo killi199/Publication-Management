@@ -25,7 +25,7 @@ export class BasedataComponent {
     }
 
     onDeleteKindOfPublication(kindOfPublication: KindOfPublication){
-        this.publicationService.deletePublication(kindOfPublication);
+        this.publicationService.deleteKindOfPublication(kindOfPublication);
     }
 
 }
