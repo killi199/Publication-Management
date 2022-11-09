@@ -1,13 +1,9 @@
 <div class="container">
     <mat-form-field appearance="standard">
         <mat-label>Filter</mat-label>
-        <input
-            matInput
-            (keyup)="applyFilter($event)"
-            placeholder="Ex. Java"
-        />
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Journal" />
     </mat-form-field>
-    <table  mat-table [dataSource]="dataSource" matSort>
+    <table mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="kindOfPublication">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
                 Kind of Publication
@@ -17,11 +13,11 @@
             </td>
         </ng-container>
 
-        <tr 
+        <tr
             mat-header-row
             *matHeaderRowDef="displayedColumns; sticky: true"
         ></tr>
-        <tr 
+        <tr
             mat-row
             (click)="selection.toggle(row)"
             (click)="selectionChanged(row)"
@@ -54,6 +50,7 @@
                 placeholder="Ex. Hausarbeit"
                 [value]="selectedKindOfPub?.value"
                 #input
+                id="inputField"
             />
         </mat-form-field>
     </form>
@@ -62,6 +59,7 @@
         <button
             matTooltip="edit selection"
             (click)="edit()"
+            [disabled]="selectedKindOfPub === undefined"
             *ngIf="!editMode"
             mat-mini-fab
             color="primary"
@@ -82,7 +80,7 @@
         <button
             mat-mini-fab
             matTooltip="remove publication"
-            [disabled]="selectedKindOfPub?.value === null"
+            [disabled]="selectedKindOfPub?.value === null || selectedKindOfPub === undefined"
             *ngIf="!editMode"
             color="warn"
             (click)="delete()"
