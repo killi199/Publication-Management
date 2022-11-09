@@ -20,8 +20,8 @@ export class BasedataComponent {
     constructor(private publicationService: PublicationService) {
         this.kindOfPubs$ = publicationService.loadKindOfPublications();
         this.keywords$ = publicationService.loadKeywords();
-        this.authors$ = publicationService.loadBorrowers();
-        this.borrowers$ = publicationService.loadAuthors();
+        this.authors$ = publicationService.loadAuthors();
+        this.borrowers$ = publicationService.loadBorrowers();
     }
 
     onDeleteKindOfPublication(kindOfPublication: KindOfPublication){

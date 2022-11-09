@@ -110,7 +110,7 @@ export class PublicationService {
         { name: 'Hmidt', surname: 'Fax', studentnumber: '1444', uuid: '2' },
         { name: 'Chmidt', surname: 'Tax', studentnumber: '544', uuid: '3' },
     ]
-    loadAuthors(): Observable<Borrower[]> {
+    loadBorrowers(): Observable<Borrower[]> {
         return of(this.borrowers);
     }
 
@@ -137,7 +137,7 @@ export class PublicationService {
         { name: 'Hmidt', surname: 'Fax', uuid: '2' },
         { name: 'Chmidt', surname: 'Tax', uuid: '3' },
     ]
-    loadBorrowers(): Observable<Author[]> {
+    loadAuthors(): Observable<Author[]> {
         return of(this.authors);
     }
 
