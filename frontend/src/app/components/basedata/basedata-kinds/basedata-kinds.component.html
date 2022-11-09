@@ -44,7 +44,7 @@
     </mat-paginator>
 </div>
 
-<div class="button-container">
+<div class="form-container">
     <form>
         <mat-form-field appearance="fill">
             <mat-label>Kind of Publication</mat-label>
@@ -58,48 +58,55 @@
         </mat-form-field>
     </form>
 
+    <div class="btn-container">
+        <button
+            matTooltip="edit selection"
+            (click)="edit()"
+            *ngIf="!editMode"
+            mat-mini-fab
+            color="primary"
+        >
+            <mat-icon>edit</mat-icon>
+        </button>
+
+        <button
+            mat-mini-fab
+            matTooltip="save changes"
+            *ngIf="editMode"
+            (click)="save()"
+            color="primary"
+        >
+            <mat-icon>done</mat-icon>
+        </button>
+
+        <button
+            mat-mini-fab
+            matTooltip="remove publication"
+            [disabled]="selectedKindOfPub?.value === null"
+            *ngIf="!editMode"
+            color="warn"
+            (click)="delete()"
+        >
+            <mat-icon>delete</mat-icon>
+        </button>
+
+        <button
+            mat-mini-fab
+            matTooltip="undo changes"
+            (click)="undo()"
+            *ngIf="editMode"
+            color="primary"
+        >
+            <mat-icon>undo</mat-icon>
+        </button>
+    </div>
+
     <button
-        matTooltip="edit selection"
-        (click)="edit()"
-        *ngIf="!editMode"
+        class="add-btn"
         mat-mini-fab
+        matTooltip="add publication"
         color="primary"
     >
-        <mat-icon>edit</mat-icon>
-    </button>
-
-    <button
-        mat-mini-fab
-        matTooltip="save changes"
-        *ngIf="editMode"
-        (click)="save()"
-        color="primary"
-    >
-        <mat-icon>done</mat-icon>
-    </button>
-
-    <button
-        mat-mini-fab
-        matTooltip="remove publication"
-        [disabled]="selectedKindOfPub?.value === null"
-        *ngIf="!editMode"
-        color="warn"
-        (click)="delete()"
-    >
-        <mat-icon>delete</mat-icon>
-    </button>
-
-    <button
-        mat-mini-fab
-        matTooltip="undo changes"
-        (click)="undo()"
-        *ngIf="editMode"
-        color="primary"
-    >
-        <mat-icon>undo</mat-icon>
-    </button>
-
-    <button mat-mini-fab matTooltip="add publication" color="primary">
         <mat-icon>add</mat-icon>
     </button>
 </div>
