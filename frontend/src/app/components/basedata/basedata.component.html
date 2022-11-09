@@ -1,0 +1,28 @@
+<div class="page">
+    <div class="header-div">
+        <h1>Base Data</h1>
+    </div>
+    <mat-tab-group>
+        <mat-tab label="Publicationtypes">
+            <app-basedata-kinds 
+                [kindOfPublications]="(kindOfPubs$ | async) ?? []"
+                (deleteKindOfPub)="onDeleteKindOfPublication($event)"
+            ></app-basedata-kinds>
+        </mat-tab>
+        <mat-tab label="Keywords">
+            <app-basedata-keywords
+                [keywords]="(keywords$ | async) ?? []"
+            ></app-basedata-keywords>
+        </mat-tab>
+        <mat-tab label="Borrowers">
+            <app-basedata-borrowers
+                [borrowers]="(borrowers$ | async) ?? []"
+            ></app-basedata-borrowers>
+        </mat-tab>
+        <mat-tab label="Authors">
+            <app-basedata-authors
+                [authors]="(authors$ | async) ?? []"
+            ></app-basedata-authors>
+        </mat-tab>
+    </mat-tab-group>
+</div>

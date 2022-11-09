@@ -1,0 +1,112 @@
+<div class="container">
+    <mat-form-field appearance="standard">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Journal" />
+    </mat-form-field>
+    <table mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="kindOfPublication">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Kind of Publication
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.value }}
+            </td>
+        </ng-container>
+
+        <tr
+            mat-header-row
+            *matHeaderRowDef="displayedColumns; sticky: true"
+        ></tr>
+        <tr
+            mat-row
+            (click)="selection.toggle(row)"
+            (click)="selectionChanged(row)"
+            [ngClass]="{
+                hovered: row.hovered,
+                highlighted: selection.isSelected(row),
+                disabled: tableDisabled
+            }"
+            (mouseover)="row.hovered = true"
+            (mouseout)="row.hovered = false"
+            *matRowDef="let row; columns: displayedColumns"
+        ></tr>
+    </table>
+
+    <mat-paginator
+        [pageSizeOptions]="[10, 25, 50, dataSource.data.length]"
+        showFirstLastButtons
+        class="mat-paginator-sticky"
+    >
+    </mat-paginator>
+</div>
+
+<div class="form-container">
+    <form>
+        <mat-form-field appearance="fill">
+            <mat-label>Kind of Publication</mat-label>
+            <input
+                [disabled]="!editMode"
+                matInput
+                placeholder="Ex. Hausarbeit"
+                [value]="selectedKindOfPub?.value"
+                #input
+                id="inputField"
+            />
+        </mat-form-field>
+    </form>
+
+    <div class="btn-container">
+        <button
+            matTooltip="edit selection"
+            (click)="edit()"
+            [disabled]="selectedKindOfPub === undefined"
+            *ngIf="!editMode"
+            mat-mini-fab
+            color="primary"
+        >
+            <mat-icon>edit</mat-icon>
+        </button>
+
+        <button
+            mat-mini-fab
+            matTooltip="save changes"
+            *ngIf="editMode"
+            (click)="save(input.value)"
+            color="primary"
+        >
+            <mat-icon>done</mat-icon>
+        </button>
+
+        <button
+            mat-mini-fab
+            matTooltip="remove publication"
+            [disabled]="selectedKindOfPub?.value === null || selectedKindOfPub === undefined"
+            *ngIf="!editMode"
+            color="warn"
+            (click)="delete()"
+        >
+            <mat-icon>delete</mat-icon>
+        </button>
+
+        <button
+            mat-mini-fab
+            matTooltip="undo changes"
+            (click)="undo()"
+            *ngIf="editMode"
+            color="primary"
+        >
+            <mat-icon>undo</mat-icon>
+        </button>
+    </div>
+
+    <button
+        class="add-btn"
+        mat-mini-fab
+        matTooltip="add publication"
+        color="primary"
+        (click)="add()"
+        *ngIf="!tableDisabled"
+    >
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
