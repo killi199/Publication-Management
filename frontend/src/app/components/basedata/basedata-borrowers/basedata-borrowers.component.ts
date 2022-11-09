@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Borrower } from 'src/app/models/borrower';
-import { TableInits } from '../../../helpers/table-inits';
+import { TableInitsComponent } from '../../../helpers/table-inits';
 
 @Component({
     selector: 'app-basedata-borrowers',
@@ -14,7 +14,7 @@ import { TableInits } from '../../../helpers/table-inits';
     styleUrls: ['./basedata-borrowers.component.scss'],
 })
 export class BasedataBorrowersComponent
-    extends TableInits<Borrower>
+    extends TableInitsComponent<Borrower>
     implements OnInit, AfterViewInit
 {
     @Input() borrowers: Borrower[] = [];

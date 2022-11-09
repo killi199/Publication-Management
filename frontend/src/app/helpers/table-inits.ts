@@ -7,7 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 @Component({
     template: '',
 })
-export class TableInits<Type> implements  AfterViewInit {    
+export class TableInitsComponent<Type> implements  AfterViewInit {    
 
     @ViewChild(MatSort) sort: MatSort = new MatSort();
     @ViewChild(MatPaginator) paginator!: MatPaginator;

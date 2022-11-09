@@ -5,7 +5,6 @@
             matInput
             (keyup)="applyFilter($event)"
             placeholder="Ex. Java"
-            #input
         />
     </mat-form-field>
     <table  mat-table [dataSource]="dataSource" matSort>
@@ -54,7 +53,7 @@
                 matInput
                 placeholder="Ex. Hausarbeit"
                 [value]="selectedKindOfPub?.value"
-                #value
+                #input
             />
         </mat-form-field>
     </form>
@@ -74,7 +73,7 @@
             mat-mini-fab
             matTooltip="save changes"
             *ngIf="editMode"
-            (click)="save()"
+            (click)="save(input.value)"
             color="primary"
         >
             <mat-icon>done</mat-icon>

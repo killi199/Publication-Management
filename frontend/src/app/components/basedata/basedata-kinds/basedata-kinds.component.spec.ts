@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { BasedataKindsComponent } from './basedata-kinds.component';
 
@@ -8,6 +9,7 @@ describe('BasedataKindsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports:[MatSnackBarModule],
       declarations: [ BasedataKindsComponent ]
     })
     .compileComponents();

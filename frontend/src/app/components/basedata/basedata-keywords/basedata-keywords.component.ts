@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Keyword } from 'src/app/models/keyword';
-import { TableInits } from '../../../helpers/table-inits';
+import { TableInitsComponent } from '../../../helpers/table-inits';
 
 @Component({
     selector: 'app-basedata-keywords',
@@ -14,7 +14,7 @@ import { TableInits } from '../../../helpers/table-inits';
     styleUrls: ['./basedata-keywords.component.scss'],
 })
 export class BasedataKeywordsComponent
-    extends TableInits<Keyword>
+    extends TableInitsComponent<Keyword>
     implements OnInit, AfterViewInit
 {
     @Input() keywords: Keyword[] = [];

@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Author } from 'src/app/models/author';
-import { TableInits } from '../../../helpers/table-inits';
+import { TableInitsComponent } from '../../../helpers/table-inits';
 
 @Component({
     selector: 'app-basedata-authors',
@@ -14,7 +14,7 @@ import { TableInits } from '../../../helpers/table-inits';
     styleUrls: ['./basedata-authors.component.scss'],
 })
 export class BasedataAuthorsComponent
-    extends TableInits<Author>
+    extends TableInitsComponent<Author>
     implements OnInit, AfterViewInit
 {
     @Input() authors: Author[] = [];
