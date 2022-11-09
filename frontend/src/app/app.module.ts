@@ -15,7 +15,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { DateAdapter, MatNativeDateModule } from '@angular/material/core';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
@@ -40,6 +40,7 @@ import { BasedataAuthorsComponent } from './components/basedata/basedata-authors
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 import localeDeExtra from '@angular/common/locales/extra/de';
+import { GermanDateAdapter } from './helpers/GermanDateAdapter';
 
 registerLocaleData(localeDe, 'de-DE', localeDeExtra);
 
@@ -84,9 +85,13 @@ registerLocaleData(localeDe, 'de-DE', localeDeExtra);
         MatSnackBarModule
     ],
     providers: [
-        { provide: MAT_DATE_LOCALE, useValue: 'de-DE' },
         { provide: LOCALE_ID, useValue: 'de-DE' },
+        {provide: DateAdapter, useClass: GermanDateAdapter},
     ],
     bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+    constructor(dateAdapter: DateAdapter<Date>) {
+        dateAdapter.setLocale('de-DE');
+    }
+}
