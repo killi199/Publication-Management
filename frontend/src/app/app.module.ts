@@ -11,6 +11,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -29,8 +31,13 @@ import { PublicationsComponent } from './components/publications/publications.co
 import { PublicationListComponent } from './components/publications/publication-list/publication-list.component';
 import { PublicationViewComponent } from './components/publications/publication-view/publication-view.component';
 import { DunningComponent } from './components/dunning/dunning.component';
-import { registerLocaleData } from '@angular/common';
+import { BasedataComponent } from './components/basedata/basedata.component';
+import { BasedataKindsComponent } from './components/basedata/basedata-kinds/basedata-kinds.component';
+import { BasedataKeywordsComponent } from './components/basedata/basedata-keywords/basedata-keywords.component';
+import { BasedataBorrowersComponent } from './components/basedata/basedata-borrowers/basedata-borrowers.component';
+import { BasedataAuthorsComponent } from './components/basedata/basedata-authors/basedata-authors.component';
 
+import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 import localeDeExtra from '@angular/common/locales/extra/de';
 
@@ -43,6 +50,11 @@ registerLocaleData(localeDe, 'de-DE', localeDeExtra);
         PublicationListComponent,
         PublicationViewComponent,
         DunningComponent,
+        BasedataComponent,
+        BasedataKindsComponent,
+        BasedataKeywordsComponent,
+        BasedataBorrowersComponent,
+        BasedataAuthorsComponent,
     ],
     imports: [
         BrowserAnimationsModule,
@@ -68,6 +80,8 @@ registerLocaleData(localeDe, 'de-DE', localeDeExtra);
         MatAutocompleteModule,
         ReactiveFormsModule,
         HttpClientModule,
+        MatTabsModule,
+        MatSnackBarModule
     ],
     providers: [
         { provide: MAT_DATE_LOCALE, useValue: 'de-DE' },
