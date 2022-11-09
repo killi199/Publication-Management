@@ -11,7 +11,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -57,7 +58,8 @@ import { BasedataAuthorsComponent } from './components/basedata/basedata-authors
         MatSidenavModule,
         MatListModule,
         HttpClientModule,
-        MatTabsModule
+        MatTabsModule,
+        MatSnackBarModule
     ],
     providers: [],
     bootstrap: [AppComponent],

@@ -8,7 +8,7 @@
             #input
         />
     </mat-form-field>
-    <table mat-table [dataSource]="dataSource" matSort>
+    <table  mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="kindOfPublication">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
                 Kind of Publication
@@ -18,17 +18,18 @@
             </td>
         </ng-container>
 
-        <tr
+        <tr 
             mat-header-row
             *matHeaderRowDef="displayedColumns; sticky: true"
         ></tr>
-        <tr
+        <tr 
             mat-row
             (click)="selection.toggle(row)"
             (click)="selectionChanged(row)"
             [ngClass]="{
                 hovered: row.hovered,
-                highlighted: selection.isSelected(row)
+                highlighted: selection.isSelected(row),
+                disabled: tableDisabled
             }"
             (mouseover)="row.hovered = true"
             (mouseout)="row.hovered = false"
@@ -106,6 +107,8 @@
         mat-mini-fab
         matTooltip="add publication"
         color="primary"
+        (click)="add()"
+        *ngIf="!tableDisabled"
     >
         <mat-icon>add</mat-icon>
     </button>

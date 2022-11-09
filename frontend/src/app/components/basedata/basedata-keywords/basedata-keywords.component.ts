@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Keyword } from 'src/app/models/keyword';
-import { TableInits } from '../table-inits';
+import { TableInits } from '../../../helpers/table-inits';
 
 @Component({
     selector: 'app-basedata-keywords',

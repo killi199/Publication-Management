@@ -36,6 +36,10 @@ tr{
     background-color: rgb(170, 170, 170);
 }
 
+.mat-row.disabled {
+    pointer-events: none;
+}
+
 .mat-paginator-sticky {
     bottom: 0px;
     position: sticky;
