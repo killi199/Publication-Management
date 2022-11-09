@@ -3,7 +3,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { KindOfPublication } from 'src/app/models/kind-of-publication';
 import { TableInitsComponent } from '../../../helpers/table-inits';
-import { FormControl } from '@angular/forms';
 
 @Component({
     selector: 'app-basedata-kinds',
