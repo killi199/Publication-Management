@@ -63,9 +63,10 @@ export class PublicationsComponent implements OnInit {
     }
 
     onDeletePublication(publication: Publication): void {
-        this.publicationService.deletePublication(publication).subscribe();
-        this.currentPublication = undefined;
-        this.openPublication = false;
+        this.publicationService.deletePublication(publication).subscribe(() => {
+            this.currentPublication = undefined;
+            this.openPublication = false;
+        });
     }
 
     onSavePublication(publication: Publication): void {
