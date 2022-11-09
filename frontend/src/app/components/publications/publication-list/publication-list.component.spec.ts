@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PublicationListComponent } from './publication-list.component';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 
 describe('PublicationListComponent', () => {
@@ -11,7 +10,6 @@ describe('PublicationListComponent', () => {
         await TestBed.configureTestingModule({
             imports: [MatTableModule],
             declarations: [PublicationListComponent],
-            schemas: [CUSTOM_ELEMENTS_SCHEMA],
         }).compileComponents();
 
         fixture = TestBed.createComponent(PublicationListComponent);

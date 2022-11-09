@@ -1,7 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PublicationsComponent } from './publications.component';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('PublicationsComponent', () => {
     let component: PublicationsComponent;
@@ -11,7 +10,6 @@ describe('PublicationsComponent', () => {
         await TestBed.configureTestingModule({
             declarations: [PublicationsComponent],
             imports: [HttpClientModule],
-            schemas: [CUSTOM_ELEMENTS_SCHEMA],
         }).compileComponents();
 
         fixture = TestBed.createComponent(PublicationsComponent);
