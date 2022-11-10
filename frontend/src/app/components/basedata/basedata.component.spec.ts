@@ -8,7 +8,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TestUtils } from 'src/app/helpers/test-util';
 import { BasedataAuthorsComponent } from './basedata-authors/basedata-authors.component';
 import { BasedataBorrowersComponent } from './basedata-borrowers/basedata-borrowers.component';
 import { BasedataKeywordsComponent } from './basedata-keywords/basedata-keywords.component';
@@ -21,7 +20,6 @@ describe('BasedataComponent', () => {
     let fixture: ComponentFixture<BasedataComponent>;
 
     beforeEach(async () => {
-        TestUtils.utilTest();
         await TestBed.configureTestingModule({
             imports: [
                 HttpClientModule,

@@ -4,7 +4,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TestUtils } from 'src/app/helpers/test-util';
 
 import { BasedataKeywordsComponent } from './basedata-keywords.component';
 
@@ -13,7 +12,6 @@ describe('BasedataKeywordsComponent', () => {
     let fixture: ComponentFixture<BasedataKeywordsComponent>;
 
     beforeEach(async () => {
-        TestUtils.utilTest();
         await TestBed.configureTestingModule({
             imports: [
                 MatPaginatorModule,

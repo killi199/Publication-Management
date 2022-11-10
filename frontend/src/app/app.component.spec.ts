@@ -5,11 +5,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { TestUtils } from './helpers/test-util';
 
 describe('AppComponent', () => {
     beforeEach(async () => {
-        TestUtils.utilTest();
         await TestBed.configureTestingModule({
             imports: [
                 RouterTestingModule,
