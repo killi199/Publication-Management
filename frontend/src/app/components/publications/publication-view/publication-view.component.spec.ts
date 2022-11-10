@@ -5,6 +5,10 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('PublicationViewComponent', () => {
     let component: PublicationViewComponent;
@@ -19,6 +23,10 @@ describe('PublicationViewComponent', () => {
                 MatChipsModule,
                 MatDatepickerModule,
                 MatNativeDateModule,
+                MatFormFieldModule,
+                MatInputModule,
+                MatIconModule,
+                BrowserAnimationsModule,
             ],
             declarations: [PublicationViewComponent],
         }).compileComponents();

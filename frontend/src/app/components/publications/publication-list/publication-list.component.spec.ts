@@ -6,7 +6,6 @@ import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PublicationListComponent } from './publication-list.component';
-import { MatTableModule } from '@angular/material/table';
 
 describe('PublicationListComponent', () => {
     let component: PublicationListComponent;
