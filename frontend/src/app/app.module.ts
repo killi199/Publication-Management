@@ -82,7 +82,7 @@ registerLocaleData(localeDe, 'de-DE', localeDeExtra);
         ReactiveFormsModule,
         HttpClientModule,
         MatTabsModule,
-        MatSnackBarModule
+        MatSnackBarModule,
     ],
     providers: [
         { provide: LOCALE_ID, useValue: 'de-DE' },
