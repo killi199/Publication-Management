@@ -1,5 +1,14 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TestUtils } from 'src/app/helpers/test-util';
+import { PublicationListComponent } from './publication-list/publication-list.component';
+import { PublicationViewComponent } from './publication-view/publication-view.component';
 
 import { PublicationsComponent } from './publications.component';
 
@@ -8,9 +17,22 @@ describe('PublicationsComponent', () => {
     let fixture: ComponentFixture<PublicationsComponent>;
 
     beforeEach(async () => {
+        TestUtils.utilTest();
         await TestBed.configureTestingModule({
-            declarations: [PublicationsComponent],
-            imports: [HttpClientModule],
+            imports: [
+                HttpClientModule,
+                MatTableModule,
+                MatFormFieldModule,
+                MatInputModule,
+                MatIconModule,
+                MatPaginatorModule,
+                BrowserAnimationsModule,
+            ],
+            declarations: [
+                PublicationsComponent,
+                PublicationViewComponent,
+                PublicationListComponent,
+            ],
         }).compileComponents();
 
         fixture = TestBed.createComponent(PublicationsComponent);

@@ -59,7 +59,7 @@ import { BasedataAuthorsComponent } from './components/basedata/basedata-authors
         MatListModule,
         HttpClientModule,
         MatTabsModule,
-        MatSnackBarModule
+        MatSnackBarModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

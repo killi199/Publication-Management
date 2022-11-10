@@ -1,16 +1,24 @@
-import {TestBed} from '@angular/core/testing';
-import {RouterTestingModule} from '@angular/router/testing';
-import {AppComponent} from './app.component';
+import { TestBed } from '@angular/core/testing';
+import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AppComponent } from './app.component';
+import { TestUtils } from './helpers/test-util';
 
 describe('AppComponent', () => {
     beforeEach(async () => {
+        TestUtils.utilTest();
         await TestBed.configureTestingModule({
             imports: [
-                RouterTestingModule
+                RouterTestingModule,
+                MatSidenavModule,
+                MatPaginatorModule,
+                BrowserAnimationsModule,
+                MatListModule,
             ],
-            declarations: [
-                AppComponent
-            ],
+            declarations: [AppComponent],
         }).compileComponents();
     });
 
