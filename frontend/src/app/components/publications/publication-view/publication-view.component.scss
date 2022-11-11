@@ -1,7 +1,7 @@
 .button-container {
-    display: flex;
+    display: inline-block;
     justify-content: flex-end;
-    width: 99%;
+    width: 40%;
     margin: 5px;
 }
 
@@ -11,8 +11,10 @@ button {
 
 .container {
     width: 100%;
+    text-align: center;
 }
 
-.form-field {
-    width: 50%;
+.mat-form-field {
+    width: 40%;
+    margin-left: 12px;
 }
