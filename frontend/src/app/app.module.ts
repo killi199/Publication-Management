@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 
 // Material Modules
 import { MatTableModule } from '@angular/material/table';
@@ -13,9 +13,16 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { DateAdapter, MatNativeDateModule } from '@angular/material/core';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatSelectModule } from '@angular/material/select';
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
 
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -29,6 +36,13 @@ import { BasedataKindsComponent } from './components/basedata/basedata-kinds/bas
 import { BasedataKeywordsComponent } from './components/basedata/basedata-keywords/basedata-keywords.component';
 import { BasedataBorrowersComponent } from './components/basedata/basedata-borrowers/basedata-borrowers.component';
 import { BasedataAuthorsComponent } from './components/basedata/basedata-authors/basedata-authors.component';
+
+import { registerLocaleData } from '@angular/common';
+import localeDe from '@angular/common/locales/de';
+import localeDeExtra from '@angular/common/locales/extra/de';
+import { GermanDateAdapter } from './helpers/german-date-adapter';
+
+registerLocaleData(localeDe, 'de-DE', localeDeExtra);
 
 @NgModule({
     declarations: [
@@ -44,6 +58,7 @@ import { BasedataAuthorsComponent } from './components/basedata/basedata-authors
         BasedataAuthorsComponent,
     ],
     imports: [
+        BrowserAnimationsModule,
         BrowserModule,
         BrowserAnimationsModule,
         AppRoutingModule,
@@ -57,11 +72,26 @@ import { BasedataAuthorsComponent } from './components/basedata/basedata-authors
         MatInputModule,
         MatSidenavModule,
         MatListModule,
+        MatGridListModule,
+        FormsModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatChipsModule,
+        MatSelectModule,
+        MatAutocompleteModule,
+        ReactiveFormsModule,
         HttpClientModule,
         MatTabsModule,
         MatSnackBarModule,
     ],
-    providers: [],
+    providers: [
+        { provide: LOCALE_ID, useValue: 'de-DE' },
+        {provide: DateAdapter, useClass: GermanDateAdapter},
+    ],
     bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+    constructor(dateAdapter: DateAdapter<Date>) {
+        dateAdapter.setLocale('de-DE');
+    }
+}

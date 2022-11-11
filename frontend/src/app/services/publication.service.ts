@@ -7,16 +7,29 @@ import { Keyword } from '../models/keyword';
 import { KindOfPublication } from '../models/kind-of-publication';
 import { Publication } from '../models/publication';
 
+const ENDPOINT_URL = '/rest/publication';
+
 @Injectable({
     providedIn: 'root',
 })
 export class PublicationService {
-   
     constructor(private http: HttpClient) {
     }
 
-    loadAllPublications(): Observable<Publication[]> {
-        return this.http.get<Publication[]>('http://localhost:4200/rest/publication');
+    listAllPublications(): Observable<Publication[]> {
+        return this.http.get<Publication[]>(ENDPOINT_URL);
+    }
+
+    deletePublication(publication: Publication): Observable<any> {
+        return this.http.delete(`${ENDPOINT_URL}/${publication.key}`);
+    }
+
+    updatePublication(publication: Publication): Observable<any> {
+        return this.http.put(ENDPOINT_URL, publication);
+    }
+
+    savePublication(publication: Publication): Observable<any> {
+        return this.http.post(ENDPOINT_URL, publication);
     }
 
     kindOfPublications: KindOfPublication[] = [
@@ -39,8 +52,8 @@ export class PublicationService {
     loadKindOfPublications(): Observable<KindOfPublication[]> {
         return of(this.kindOfPublications);
     }
-
-    deletePublication(kindOfPublication: KindOfPublication) {
+    
+    deleteKindOfPublication(kindOfPublication: KindOfPublication) {
         const index = this.kindOfPublications.indexOf(kindOfPublication);
         if (index !== -1){
             this.kindOfPublications.splice(index, 1);
@@ -97,7 +110,7 @@ export class PublicationService {
         { name: 'Hmidt', surname: 'Fax', studentnumber: '1444', uuid: '2' },
         { name: 'Chmidt', surname: 'Tax', studentnumber: '544', uuid: '3' },
     ]
-    loadAuthors(): Observable<Borrower[]> {
+    loadBorrowers(): Observable<Borrower[]> {
         return of(this.borrowers);
     }
 
@@ -124,7 +137,7 @@ export class PublicationService {
         { name: 'Hmidt', surname: 'Fax', uuid: '2' },
         { name: 'Chmidt', surname: 'Tax', uuid: '3' },
     ]
-    loadBorrowers(): Observable<Author[]> {
+    loadAuthors(): Observable<Author[]> {
         return of(this.authors);
     }
 

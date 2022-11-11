@@ -1,1 +1,222 @@
-{{ publication?.titel }}
+<div class="container">
+    <form #form="ngForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="fill">
+            <mat-label>Key</mat-label>
+            <input
+                matInput
+                name="key"
+                [(ngModel)]="publication.key"
+                [readonly]="!editable"
+                required
+            />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Title</mat-label>
+            <input
+                matInput
+                name="title"
+                [(ngModel)]="publication.titel"
+                [readonly]="!editable"
+                required
+            />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Authors</mat-label>
+            <mat-chip-list #chipListAuthors>
+                <mat-chip
+                    *ngFor="let author of publication.author"
+                    (removed)="removeAuthor(author)"
+                >
+                    {{ author.surname }} {{ author.name }}
+                    <button matChipRemove [disabled]="!editable">
+                        <mat-icon>cancel</mat-icon>
+                    </button>
+                </mat-chip>
+                <input
+                    name="authors"
+                    [readonly]="!editable"
+                    placeholder="New Author..."
+                    #authorInput
+                    [formControl]="authorControl"
+                    [matAutocomplete]="autocompleteAuthors"
+                    [matChipInputFor]="chipListAuthors"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                    (matChipInputTokenEnd)="addAuthor($event)"
+                />
+            </mat-chip-list>
+            <mat-autocomplete
+                #autocompleteAuthors="matAutocomplete"
+                (optionSelected)="selectedAuthor($event)"
+                [displayWith]="displayAuthor"
+            >
+                <mat-option
+                    *ngFor="let author of filteredAuthors | async"
+                    [value]="author"
+                >
+                    {{ author.surname }} {{ author.name }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>ISBN</mat-label>
+            <input
+                matInput
+                name="isbn"
+                [(ngModel)]="publication.isbn"
+                [readonly]="!editable"
+            />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Quantity</mat-label>
+            <input
+                type="number"
+                min="0"
+                matInput
+                name="quantity"
+                [(ngModel)]="publication.quantity"
+                [readonly]="!editable"
+                required
+            />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Publisher</mat-label>
+            <input
+                matInput
+                name="publisher"
+                [(ngModel)]="publication.publisher"
+                [readonly]="!editable"
+            />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Date of Publication</mat-label>
+            <input
+                matInput
+                name="dateOfPublication"
+                [(ngModel)]="publication.dateOfPublication"
+                [readonly]="!editable"
+                [matDatepicker]="picker"
+            />
+            <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+                [disabled]="!editable"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Kind of Publication</mat-label>
+            <input
+                type="text"
+                name="kindOfPublication"
+                [readonly]="!editable"
+                matInput
+                [formControl]="kindOfPublicationControl"
+                [matAutocomplete]="autocompleteKindOfPublication"
+            />
+            <mat-autocomplete
+                #autocompleteKindOfPublication="matAutocomplete"
+                [displayWith]="displayKindOfPublication"
+            >
+                <mat-option
+                    *ngFor="
+                        let kindOfPublication of filteredKindsOfPublication
+                            | async
+                    "
+                    [value]="kindOfPublication"
+                >
+                    {{ kindOfPublication.value }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Keywords</mat-label>
+            <mat-chip-list #chipListKeywords>
+                <mat-chip
+                    *ngFor="let keyword of publication.keywords"
+                    (removed)="removeKeyword(keyword)"
+                >
+                    {{ keyword.value }}
+                    <button matChipRemove [disabled]="!editable">
+                        <mat-icon>cancel</mat-icon>
+                    </button>
+                </mat-chip>
+                <input
+                    name="keywords"
+                    [readonly]="!editable"
+                    placeholder="New keyword..."
+                    #keywordInput
+                    [formControl]="keywordControl"
+                    [matAutocomplete]="autocompleteKeywords"
+                    [matChipInputFor]="chipListKeywords"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                    (matChipInputTokenEnd)="addKeyword($event)"
+                />
+            </mat-chip-list>
+            <mat-autocomplete
+                #autocompleteKeywords="matAutocomplete"
+                (optionSelected)="selectedKeyword($event)"
+                [displayWith]="displayKeyword"
+            >
+                <mat-option
+                    *ngFor="let keyword of filteredKeywords | async"
+                    [value]="keyword"
+                >
+                    {{ keyword.value }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <div class="button-container">
+            <button
+                *ngIf="!editable"
+                type="button"
+                (click)="onEdit()"
+                mat-mini-fab
+                color="primary"
+                matTooltip="edit publication"
+            >
+                <mat-icon>edit</mat-icon>
+            </button>
+
+            <button
+                *ngIf="!editable"
+                type="button"
+                (click)="onDeletePublication()"
+                mat-mini-fab
+                color="warn"
+                matTooltip="delete publication"
+            >
+                <mat-icon>delete</mat-icon>
+            </button>
+
+            <button
+                *ngIf="editable"
+                type="submit"
+                [disabled]="form.invalid"
+                mat-mini-fab
+                color="primary"
+                matTooltip="save changes"
+            >
+                <mat-icon>save</mat-icon>
+            </button>
+
+            <button
+                *ngIf="editable"
+                type="button"
+                (click)="onCancel()"
+                mat-mini-fab
+                color="primary"
+                matTooltip="undo changes"
+            >
+                <mat-icon>undo</mat-icon>
+            </button>
+        </div>
+    </form>
+</div>

@@ -1,5 +1,3 @@
-export interface Author {
-    uuid: string;
-    surname: string;
-    name: string;
+export class Author {
+    constructor(public uuid?: string, public surname?: string, public name?: string) {}
 }

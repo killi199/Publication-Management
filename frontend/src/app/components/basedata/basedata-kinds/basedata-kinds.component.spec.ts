@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -23,6 +24,7 @@ describe('BasedataKindsComponent', () => {
                 BrowserAnimationsModule,
                 MatSnackBarModule,
                 MatIconModule,
+                FormsModule,
             ],
             declarations: [BasedataKindsComponent],
         }).compileComponents();

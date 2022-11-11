@@ -1,15 +1,17 @@
-import { Author } from "./author";
-import { Keyword } from "./keyword";
-import { KindOfPublication } from "./kind-of-publication";
+import { Author } from './author';
+import { Keyword } from './keyword';
+import { KindOfPublication } from './kind-of-publication';
 
-export interface Publication {
-    key: string;
-    titel: string;
-    author: Author[];
-    dateOfPublication: Date;
-    publisher: string;
-    kindsOfPublication: KindOfPublication[];
-    isbn: string;
-    keywords: Keyword[];
-    quantity: number;
+export class Publication {
+    constructor(
+        public key?: string,
+        public titel?: string,
+        public author?: Author[],
+        public dateOfPublication?: Date,
+        public publisher?: string,
+        public kindsOfPublication?: KindOfPublication[],
+        public isbn?: string,
+        public keywords?: Keyword[],
+        public quantity?: number
+    ) {}
 }

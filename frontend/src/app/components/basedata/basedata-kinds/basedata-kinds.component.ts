@@ -23,7 +23,7 @@ export class BasedataKindsComponent
     displayedColumns: string[] = ['kindOfPublication'];
 
     editMode = false;
-    selectedKindOfPub?: KindOfPublication;
+    selectedKindOfPub: KindOfPublication = new KindOfPublication();
     tableDisabled = false;
 
     ngOnInit() {
@@ -31,8 +31,8 @@ export class BasedataKindsComponent
     }
 
     selectionChanged(kindOfPublication: KindOfPublication) {
-        if (this.selectedKindOfPub == kindOfPublication) {
-            this.selectedKindOfPub = undefined;
+        if (this.selectedKindOfPub === kindOfPublication) {
+            this.selectedKindOfPub = new KindOfPublication();
         } else {
             this.selectedKindOfPub = kindOfPublication;
         }
@@ -55,21 +55,19 @@ export class BasedataKindsComponent
         this.editMode = false;
         this.tableDisabled = false;
         this.openSnackbar('Nothing changed!');
-        let inputField: HTMLInputElement = <HTMLInputElement> document.getElementById("inputField");
-        inputField.value = this.selectedKindOfPub?.value ?? "";
     }
 
     delete() {
         this.deleteKindOfPub.emit(this.selectedKindOfPub);
-        const nameOfPubKind = this.selectedKindOfPub?.value;
+        const nameOfPubKind = this.selectedKindOfPub.value;
         this.dataSource = new MatTableDataSource(this.kindOfPublications);
-        this.selectedKindOfPub = undefined;
+        this.selectedKindOfPub = new KindOfPublication();
         this.openSnackbar(nameOfPubKind + ' deleted!');
     }
 
     add() {
         this.editMode = true;
-        this.selectedKindOfPub = undefined;
+        this.selectedKindOfPub = new KindOfPublication();
         this.tableDisabled = true;
     }
 

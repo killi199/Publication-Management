@@ -5,7 +5,7 @@
 
     <app-publication-list
         *ngIf="!openPublication"
-        [publications]="publications$"
+        [publications]="publications"
         (showPublication)="onSelectPublication($event)"
     ></app-publication-list>
 
@@ -13,7 +13,7 @@
         <button
             matTooltip="edit selection"
             *ngIf="currentPublication"
-            (click)="onShowPublication()"
+            (click)="onEditPublication()"
             mat-mini-fab
             color="primary"
         >
@@ -21,7 +21,7 @@
         </button>
 
         <button
-            (click)="onShowPublication()"
+            (click)="onAddPublication()"
             mat-mini-fab
             matTooltip="add publication"
             color="primary"
@@ -31,7 +31,12 @@
     </div>
 
     <app-publication-view
-        *ngIf="openPublication"
+        *ngIf="currentPublication && openPublication"
         [publication]="currentPublication"
+        [allKeywords]="keywords"
+        [allAuthors]="authors"
+        [allKindsOfPublication]="kindsOfPublication"
+        (deletePublication)="onDeletePublication($event)"
+        (savePublication)="onSavePublication($event)"
     ></app-publication-view>
 </div>

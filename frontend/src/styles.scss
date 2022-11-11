@@ -32,6 +32,14 @@ app-publication-view {
     justify-content: center;
 }
 
+app-dunning{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+}
+
 app-basedata {
     width: 100%;
     height: 90%;
