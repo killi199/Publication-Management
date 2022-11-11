@@ -69,13 +69,11 @@ export class PublicationViewComponent implements OnInit {
     filteredKindsOfPublication: Observable<KindOfPublication[]> =
         new Observable<KindOfPublication[]>();
 
-    constructor() {}
-
     ngOnInit(): void {
-        if (!this.publication) {
-            this.editable = true;
-        } else {
+        if (this.publication) {
             this.savedPublication = structuredClone(this.publication);
+        } else {
+            this.editable = true;
         }
 
         this._reloadView();
@@ -86,27 +84,19 @@ export class PublicationViewComponent implements OnInit {
     }
 
     onSubmit(): void {
-        if (this.form.valid) {
-            if (this.kindOfPublicationControl.value) {
-                if (typeof this.kindOfPublicationControl.value === 'string') {
-                    this.publication.kindsOfPublication = [
-                        new KindOfPublication(),
-                    ];
-                    this.publication.kindsOfPublication[0].value =
-                        this.kindOfPublicationControl.value;
-                } else {
-                    this.publication.kindsOfPublication = [
-                        this.kindOfPublicationControl.value,
-                    ];
-                }
-            } else {
-                this.publication.kindsOfPublication = undefined;
-            }
+        if (!this.form.valid) return;
 
-            this.savedPublication = structuredClone(this.publication);
-            this.savePublication.emit(this.publication);
-            this.editable = false;
+        const kindOfPublication = this.kindOfPublicationControl.value;
+
+        if (kindOfPublication) {
+            this._setValueToKindOfPublication(kindOfPublication);
+        } else {
+            this.publication.kindsOfPublication = undefined;
         }
+
+        this.savedPublication = structuredClone(this.publication);
+        this.savePublication.emit(this.publication);
+        this.editable = false;
     }
 
     onCancel(): void {
@@ -121,7 +111,7 @@ export class PublicationViewComponent implements OnInit {
 
     removeKeyword(keyword: Keyword): void {
         if (this.publication.keywords) {
-            let index = this.publication.keywords.indexOf(keyword);
+            const index = this.publication.keywords.indexOf(keyword);
 
             if (index >= 0) {
                 this.publication.keywords?.splice(index, 1);
@@ -131,7 +121,7 @@ export class PublicationViewComponent implements OnInit {
 
     removeAuthor(author: Author): void {
         if (this.publication.author) {
-            let index = this.publication.author.indexOf(author);
+            const index = this.publication.author.indexOf(author);
 
             if (index >= 0) {
                 this.publication.author?.splice(index, 1);
@@ -140,46 +130,40 @@ export class PublicationViewComponent implements OnInit {
     }
 
     addKeyword(event: MatChipInputEvent): void {
-        if (this.publication.keywords) {
-            let value = (event.value || '').trim();
+        if (!this.publication.keywords) return;
 
-            let keywords = this._filterKeywords(value as string);
-            if (keywords.length === 1) {
-                this.publication.keywords.push(keywords[0]);
-            } else {
-                let keyword = new Keyword();
-                keyword.value = value;
+        const value = (event.value || '').trim();
 
-                if (value) {
-                    this.publication.keywords.push(keyword);
-                }
-            }
-
-            event.chipInput!.clear();
-            this.keywordControl.setValue('');
+        const keywords = this._filterKeywords(value as string);
+        if (keywords.length === 1) {
+            this.publication.keywords.push(keywords[0]);
+        } else {
+            const keyword = new Keyword();
+            keyword.value = value;
+            this.publication.keywords.push(keyword);
         }
+
+        event.chipInput!.clear();
+        this.keywordControl.setValue('');
     }
 
     addAuthor(event: MatChipInputEvent): void {
-        if (this.publication.author) {
-            let value = (event.value || '').trim();
+        if (!this.publication.author) return;
 
-            let authors = this._filterAuthors(value as string);
-            if (authors.length === 1) {
-                this.publication.author.push(authors[0]);
-            } else {
-                let author = new Author();
-                author.surname = value.split(' ')[0];
-                author.name = value.split(' ')[1];
+        const value = (event.value || '').trim();
+        const authors = this._filterAuthors(value as string);
 
-                if (value) {
-                    this.publication.author.push(author);
-                }
-            }
-
-            event.chipInput!.clear();
-            this.authorControl.setValue('');
+        if (authors.length === 1) {
+            this.publication.author.push(authors[0]);
+        } else {
+            const author = new Author();
+            author.surname = value.split(' ')[0];
+            author.name = value.split(' ')[1];
+            this.publication.author.push(author);
         }
+
+        event.chipInput!.clear();
+        this.authorControl.setValue('');
     }
 
     selectedKeyword(event: MatAutocompleteSelectedEvent): void {
@@ -199,23 +183,21 @@ export class PublicationViewComponent implements OnInit {
     }
 
     displayKindOfPublication(kindOfPublication: KindOfPublication): string {
-        return kindOfPublication && kindOfPublication.value
-            ? kindOfPublication.value
-            : '';
+        return kindOfPublication?.value ?? '';
     }
 
     displayKeyword(keyword: Keyword): string {
-        return keyword && keyword.value ? keyword.value : '';
+        return keyword?.value ?? '';
     }
 
     displayAuthor(author: Author): string {
-        return author && author.surname && author.name
+        return author.surname && author.name
             ? author.surname + author.name
             : '';
     }
 
     private _filterKeywords(value: string): Keyword[] {
-        let filterValue = value.toLowerCase();
+        const filterValue = value.toLowerCase();
 
         return this.allKeywords.filter((keyword) =>
             keyword.value?.toLowerCase().includes(filterValue)
@@ -223,7 +205,7 @@ export class PublicationViewComponent implements OnInit {
     }
 
     private _filterAuthors(value: string): Author[] {
-        let filterValue = value.toLowerCase();
+        const filterValue = value.toLowerCase();
 
         return this.allAuthors.filter(
             (author) =>
@@ -233,7 +215,7 @@ export class PublicationViewComponent implements OnInit {
     }
 
     private _filterKindsOfPublication(value: string): KindOfPublication[] {
-        let filterValue = value.toLowerCase();
+        const filterValue = value.toLowerCase();
 
         return this.allKindsOfPublication.filter((kindOfPublication) =>
             kindOfPublication.value?.toLowerCase().includes(filterValue)
@@ -244,7 +226,7 @@ export class PublicationViewComponent implements OnInit {
         this.filteredKeywords = this.keywordControl.valueChanges.pipe(
             startWith(''),
             map((keyword) => {
-                let value =
+                const value =
                     typeof keyword === 'string' ? keyword : keyword?.value;
                 return value
                     ? this._filterKeywords(value as string)
@@ -273,7 +255,7 @@ export class PublicationViewComponent implements OnInit {
             this.kindOfPublicationControl.valueChanges.pipe(
                 startWith(''),
                 map((kindOfPublication) => {
-                    let value =
+                    const value =
                         typeof kindOfPublication === 'string'
                             ? kindOfPublication
                             : kindOfPublication?.value;
@@ -290,6 +272,16 @@ export class PublicationViewComponent implements OnInit {
             this.kindOfPublicationControl.setValue(
                 this.publication.kindsOfPublication[0]
             );
+        }
+    }
+
+    private _setValueToKindOfPublication(value: string | KindOfPublication): void {
+        if (typeof value === 'string') {
+            this.publication.kindsOfPublication = [new KindOfPublication()];
+            this.publication.kindsOfPublication[0].value =
+            value;
+        } else {
+            this.publication.kindsOfPublication = [value];
         }
     }
 }
