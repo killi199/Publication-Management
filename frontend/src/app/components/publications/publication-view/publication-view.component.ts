@@ -191,7 +191,7 @@ export class PublicationViewComponent implements OnInit {
     }
 
     displayAuthor(author: Author): string {
-        return author.surname && author.name
+        return author?.surname && author?.name
             ? author.surname + author.name
             : '';
     }
