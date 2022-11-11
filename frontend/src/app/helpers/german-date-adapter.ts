@@ -1,8 +1,11 @@
+import { Injectable } from "@angular/core";
 import { NativeDateAdapter } from "@angular/material/core";
 
 // Weirder stuff but it works 
 // https://github.com/angular/components/issues/5041#issuecomment-307752968
 // https://github.com/angular/components/issues/8100
+
+@Injectable()
 export class GermanDateAdapter extends NativeDateAdapter {
   override parse(value: any): Date | null {
     if ((typeof value === 'string') && (value.indexOf('.') > -1)) {
