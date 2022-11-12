@@ -4,6 +4,7 @@ import { Author } from 'src/app/models/author';
 import { Borrower } from 'src/app/models/borrower';
 import { Keyword } from 'src/app/models/keyword';
 import { KindOfPublication } from 'src/app/models/kind-of-publication';
+import { KindOfPublicationService } from 'src/app/services/kind-of-publication.service';
 import { PublicationService } from 'src/app/services/publication.service';
 
 @Component({
@@ -17,15 +18,25 @@ export class BasedataComponent {
     authors$: Observable<Author[]>;
     borrowers$: Observable<Borrower[]>;
 
-    constructor(private publicationService: PublicationService) {
-        this.kindOfPubs$ = publicationService.loadKindOfPublications();
+    constructor(
+        private publicationService: PublicationService,
+        private kindOfPubService: KindOfPublicationService
+    ) {
+        this.kindOfPubs$ = kindOfPubService.loadAllKindsOfPublication();
         this.keywords$ = publicationService.loadKeywords();
         this.authors$ = publicationService.loadAuthors();
         this.borrowers$ = publicationService.loadBorrowers();
     }
 
-    onDeleteKindOfPublication(kindOfPublication: KindOfPublication){
-        this.publicationService.deleteKindOfPublication(kindOfPublication);
+    onDeleteKindOfPublication(kindOfPublication: KindOfPublication) {
+        this.kindOfPubService.delete(kindOfPublication);
     }
 
+    onCreateKindOfPublication(nameOfPubKind: string) {
+        this.kindOfPubService.create(nameOfPubKind);
+    }
+
+    onUpdateKindOfPublication(kindOfPublication: KindOfPublication) {
+        this.kindOfPubService.update(kindOfPublication);
+    }
 }

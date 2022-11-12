@@ -7,6 +7,8 @@
             <app-basedata-kinds 
                 [kindOfPublications]="(kindOfPubs$ | async) ?? []"
                 (deleteKindOfPub)="onDeleteKindOfPublication($event)"
+                (createKindOfPub)="onCreateKindOfPublication($event)"
+                (updateKindOfPub)="onUpdateKindOfPublication($event)"
             ></app-basedata-kinds>
         </mat-tab>
         <mat-tab label="Keywords">

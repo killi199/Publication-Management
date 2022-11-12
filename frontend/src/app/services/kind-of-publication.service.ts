@@ -6,6 +6,23 @@ import { KindOfPublication } from '../models/kind-of-publication';
     providedIn: 'root',
 })
 export class KindOfPublicationService {
+    update(kindOfPublication: KindOfPublication) {
+        const index = this.kindsOfPublication.map( k => k.uuid ).indexOf(kindOfPublication.uuid);
+        if (index !== -1) {
+            this.kindsOfPublication.splice(index, 1);
+            this.kindsOfPublication.splice(index, 0, kindOfPublication);
+        }
+    }
+    create(value: string) {
+        const kindOfPublication = new KindOfPublication(undefined, value);
+        this.kindsOfPublication.push(kindOfPublication);
+    }
+    delete(kindOfPublication: KindOfPublication) {
+        const index = this.kindsOfPublication.indexOf(kindOfPublication);
+        if (index !== -1) {
+            this.kindsOfPublication.splice(index, 1);
+        }
+    }
     kindsOfPublication: KindOfPublication[];
 
     constructor() {

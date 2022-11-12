@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { KindOfPublication } from 'src/app/models/kind-of-publication';
 import { TableInitsComponent } from '../../../helpers/table-inits';
+import { Snackbar } from 'src/app/helpers/snackbar';
+import { CrudState } from 'src/app/models/crud-state';
 
 @Component({
     selector: 'app-basedata-kinds',
@@ -15,67 +16,73 @@ export class BasedataKindsComponent
 {
     @Input() kindOfPublications: KindOfPublication[] = [];
     @Output() deleteKindOfPub = new EventEmitter<KindOfPublication>();
+    @Output() createKindOfPub = new EventEmitter<string>();
+    @Output() updateKindOfPub = new EventEmitter<KindOfPublication>();
 
-    constructor(private snackBar: MatSnackBar) {
+    displayedColumns: string[] = ['kindOfPublication'];
+ 
+    crudState: CrudState = CrudState.Read;
+    selectedKindOfPub: KindOfPublication = new KindOfPublication();
+
+    constructor(private snackBar: Snackbar) {
         super();
     }
 
-    displayedColumns: string[] = ['kindOfPublication'];
-
-    editMode = false;
-    selectedKindOfPub: KindOfPublication = new KindOfPublication();
-    tableDisabled = false;
-
-    ngOnInit() {
+    ngOnInit(): void {
         this.dataSource = new MatTableDataSource(this.kindOfPublications);
     }
 
-    selectionChanged(kindOfPublication: KindOfPublication) {
-        if (this.selectedKindOfPub === kindOfPublication) {
-            this.selectedKindOfPub = new KindOfPublication();
+    selectionChanged(kindOfPublication: KindOfPublication): void {
+        this.selectedKindOfPub =
+            this.selectedKindOfPub === kindOfPublication
+                ? new KindOfPublication()
+                : kindOfPublication;
+    }
+
+    edit(): void {
+        this.crudState = CrudState.Update;
+    }
+
+    save(nameOfPub: string): void {
+        let messageType = '';
+        if (this.crudState === CrudState.Create) {
+            if (nameOfPub?.trim()) {
+                this.createKindOfPub.emit(nameOfPub);
+                messageType = ' created!';
+            } else {
+                messageType = 'Nothing to add!';
+            }
         } else {
-            this.selectedKindOfPub = kindOfPublication;
+            this.updateKindOfPub.emit(
+                new KindOfPublication(this.selectedKindOfPub.uuid, nameOfPub)
+            );
+            messageType = ' updated!';
         }
+
+        this.snackBar.open(nameOfPub + messageType);
+        this.dataSource = new MatTableDataSource(this.kindOfPublications);
+        this.crudState = CrudState.Read;
+        (<HTMLInputElement>document.getElementById('inputField')).value = '';
     }
 
-    editableValue?: string;
-    edit() {
-        this.editableValue = this.selectedKindOfPub?.value;
-        this.editMode = true;
-        this.tableDisabled = true;
+    undo(): void {
+        this.snackBar.open('Nothing changed!');
+        this.crudState = CrudState.Read;
+        (<HTMLInputElement>document.getElementById('inputField')).value = '';
+        this.selection.clear();
     }
 
-    save(nameOfPub: string) {
-        this.editMode = false;
-        this.tableDisabled = false;
-        this.openSnackbar(nameOfPub + ' created!');
-    }
-
-    undo() {
-        this.editMode = false;
-        this.tableDisabled = false;
-        this.openSnackbar('Nothing changed!');
-    }
-
-    delete() {
+    delete(): void {
         this.deleteKindOfPub.emit(this.selectedKindOfPub);
         const nameOfPubKind = this.selectedKindOfPub.value;
         this.dataSource = new MatTableDataSource(this.kindOfPublications);
         this.selectedKindOfPub = new KindOfPublication();
-        this.openSnackbar(nameOfPubKind + ' deleted!');
+        this.snackBar.open(nameOfPubKind + ' deleted!');
     }
 
-    add() {
-        this.editMode = true;
+    add(): void {
+        this.crudState = CrudState.Create;
         this.selectedKindOfPub = new KindOfPublication();
-        this.tableDisabled = true;
-    }
-
-    openSnackbar(message: string) {
-        this.snackBar.open(message, 'OK', {
-            horizontalPosition: 'end',
-            verticalPosition: 'bottom',
-            duration: 3000,
-        });
+        this.selection.clear();
     }
 }

@@ -24,7 +24,7 @@
             [ngClass]="{
                 hovered: row.hovered,
                 highlighted: selection.isSelected(row),
-                disabled: tableDisabled
+                disabled: crudState === 0 || crudState === 2
             }"
             (mouseover)="row.hovered = true"
             (mouseout)="row.hovered = false"
@@ -45,11 +45,12 @@
         <mat-form-field appearance="fill">
             <mat-label>Kind of Publication</mat-label>
             <input
+                id="inputField"
                 name="kindOfPublication"
-                [disabled]="!editMode"
+                [disabled]="crudState === 1"
                 matInput
                 placeholder="Ex. Hausarbeit"
-                [(ngModel)]="selectedKindOfPub.value"
+                [value]="selectedKindOfPub.value || ''"
                 #input
             />
         </mat-form-field>
@@ -59,8 +60,8 @@
         <button
             matTooltip="edit selection"
             (click)="edit()"
-            [disabled]="selectedKindOfPub === undefined"
-            *ngIf="!editMode"
+            [disabled]="selectedKindOfPub.value === undefined"
+            *ngIf="crudState === 1"
             mat-mini-fab
             color="primary"
         >
@@ -70,18 +71,18 @@
         <button
             mat-mini-fab
             matTooltip="save changes"
-            *ngIf="editMode"
+            *ngIf="crudState === 0 || crudState === 2"
             (click)="save(input.value)"
             color="primary"
         >
-            <mat-icon>save</mat-icon>
+            <mat-icon>done</mat-icon>
         </button>
 
         <button
             mat-mini-fab
             matTooltip="delete kind of publication"
-            [disabled]="selectedKindOfPub.value === null"
-            *ngIf="!editMode"
+            [disabled]="selectedKindOfPub.value === undefined"
+            *ngIf="crudState === 1"
             color="warn"
             (click)="delete()"
         >
@@ -92,10 +93,10 @@
             mat-mini-fab
             matTooltip="undo changes"
             (click)="undo()"
-            *ngIf="editMode"
+            *ngIf="crudState === 0 || crudState === 2"
             color="primary"
         >
-            <mat-icon>undo</mat-icon>
+            <mat-icon>close</mat-icon>
         </button>
     </div>
 
@@ -105,7 +106,7 @@
         matTooltip="add publication"
         color="primary"
         (click)="add()"
-        *ngIf="!tableDisabled"
+        *ngIf="crudState === 1"
     >
         <mat-icon>add</mat-icon>
     </button>
