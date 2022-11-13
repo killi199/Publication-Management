@@ -32,60 +32,6 @@ export class PublicationService {
         return this.http.post(ENDPOINT_URL, publication);
     }
 
-   
-    borrowers: Borrower[] = [
-        {
-            name: 'Schmidt',
-            surname: 'Max',
-            studentnumber: '4444',
-            uuid: '1',
-        },
-        { name: 'Hmidt', surname: 'Fax', studentnumber: '1444', uuid: '2' },
-        { name: 'Chmidt', surname: 'Tax', studentnumber: '544', uuid: '3' },
-        {
-            name: 'Schmidt',
-            surname: 'Max',
-            studentnumber: '4444',
-            uuid: '1',
-        },
-        { name: 'Hmidt', surname: 'Fax', studentnumber: '1444', uuid: '2' },
-        { name: 'Chmidt', surname: 'Tax', studentnumber: '544', uuid: '3' },
-        {
-            name: 'Schmidt',
-            surname: 'Max',
-            studentnumber: '4444',
-            uuid: '1',
-        },
-        { name: 'Hmidt', surname: 'Fax', studentnumber: '1444', uuid: '2' },
-        { name: 'Chmidt', surname: 'Tax', studentnumber: '544', uuid: '3' },
-        {
-            name: 'Schmidt',
-            surname: 'Max',
-            studentnumber: '4444',
-            uuid: '1',
-        },
-        { name: 'Hmidt', surname: 'Fax', studentnumber: '1444', uuid: '2' },
-        { name: 'Chmidt', surname: 'Tax', studentnumber: '544', uuid: '3' },
-        {
-            name: 'Schmidt',
-            surname: 'Max',
-            studentnumber: '4444',
-            uuid: '1',
-        },
-        { name: 'Hmidt', surname: 'Fax', studentnumber: '1444', uuid: '2' },
-        { name: 'Chmidt', surname: 'Tax', studentnumber: '544', uuid: '3' },
-        {
-            name: 'Schmidt',
-            surname: 'Max',
-            studentnumber: '4444',
-            uuid: '1',
-        },
-        { name: 'Hmidt', surname: 'Fax', studentnumber: '1444', uuid: '2' },
-        { name: 'Chmidt', surname: 'Tax', studentnumber: '544', uuid: '3' },
-    ]
-    loadBorrowers(): Observable<Borrower[]> {
-        return of(this.borrowers);
-    }
 
     authors: Author[] = [
         { name: 'Schmidt', surname: 'Max', uuid: '1' },
