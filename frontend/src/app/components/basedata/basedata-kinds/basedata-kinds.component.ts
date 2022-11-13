@@ -54,10 +54,8 @@ export class BasedataKindsComponent
             }
         } else {
             if (this.selectedKindOfPub.value !== nameOfPub) {
-                this.updateKindOfPub.emit({
-                    uuid: this.selectedKindOfPub.uuid,
-                    value: nameOfPub,
-                });
+                this.selectedKindOfPub.value = nameOfPub;
+                this.updateKindOfPub.emit(this.selectedKindOfPub);
                 messageType = nameOfPub + ' updated!';
             }
             else{
