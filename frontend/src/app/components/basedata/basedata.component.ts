@@ -32,8 +32,8 @@ export class BasedataComponent {
         this.kindOfPubService.delete(kindOfPublication);
     }
 
-    onCreateKindOfPublication(nameOfPubKind: string) {
-        this.kindOfPubService.create(nameOfPubKind);
+    onCreateKindOfPublication(kindOfPublication: KindOfPublication) {
+        this.kindOfPubService.create(kindOfPublication);
     }
 
     onUpdateKindOfPublication(kindOfPublication: KindOfPublication) {

@@ -13,8 +13,7 @@ export class KindOfPublicationService {
             this.kindsOfPublication.splice(index, 0, kindOfPublication);
         }
     }
-    create(value: string) {
-        const kindOfPublication = new KindOfPublication(undefined, value);
+    create(kindOfPublication: KindOfPublication) {
         this.kindsOfPublication.push(kindOfPublication);
     }
     delete(kindOfPublication: KindOfPublication) {

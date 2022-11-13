@@ -16,11 +16,11 @@ export class BasedataKindsComponent
 {
     @Input() kindOfPublications: KindOfPublication[] = [];
     @Output() deleteKindOfPub = new EventEmitter<KindOfPublication>();
-    @Output() createKindOfPub = new EventEmitter<string>();
+    @Output() createKindOfPub = new EventEmitter<KindOfPublication>();
     @Output() updateKindOfPub = new EventEmitter<KindOfPublication>();
 
     displayedColumns: string[] = ['kindOfPublication'];
- 
+
     crudState: CrudState = CrudState.Read;
     selectedKindOfPub: KindOfPublication = new KindOfPublication();
 
@@ -47,7 +47,7 @@ export class BasedataKindsComponent
         let messageType = '';
         if (this.crudState === CrudState.Create) {
             if (nameOfPub?.trim()) {
-                this.createKindOfPub.emit(nameOfPub);
+                this.createKindOfPub.emit({ value: nameOfPub });
                 messageType = ' created!';
             } else {
                 messageType = 'Nothing to add!';
