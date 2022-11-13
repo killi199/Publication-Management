@@ -44,24 +44,10 @@ export class BasedataKindsComponent
     }
 
     save(nameOfPub: string): void {
-        let messageType = '';
-        if (this.crudState === CrudState.Create) {
-            if (nameOfPub?.trim()) {
-                this.createKindOfPub.emit({ value: nameOfPub });
-                messageType = nameOfPub + ' created!';
-            } else {
-                messageType = 'Nothing to add!';
-            }
-        } else {
-            if (this.selectedKindOfPub.value !== nameOfPub) {
-                this.selectedKindOfPub.value = nameOfPub;
-                this.updateKindOfPub.emit(this.selectedKindOfPub);
-                messageType = nameOfPub + ' updated!';
-            }
-            else{
-                messageType = 'Nothing to change!';
-            }
-        }
+        let messageType =
+            this.crudState === CrudState.Create
+                ? this._emitCreateKindOfPub(nameOfPub)
+                : this._emitUpdateKindOfPub(nameOfPub);
 
         this.snackBar.open(messageType);
         this.dataSource = new MatTableDataSource(this.kindOfPublications);
@@ -88,5 +74,21 @@ export class BasedataKindsComponent
         this.crudState = CrudState.Create;
         this.selectedKindOfPub = new KindOfPublication();
         this.selection.clear();
+    }
+
+    private _emitCreateKindOfPub(nameOfPub: string): string {
+        if (!nameOfPub?.trim()) return 'Nothing to add!';
+
+        this.createKindOfPub.emit({ value: nameOfPub });
+        return nameOfPub + ' created!';
+    }
+
+    private _emitUpdateKindOfPub(nameOfPub: string): string {
+        if (this.selectedKindOfPub.value === nameOfPub)
+            return 'Nothing to change!';
+
+        this.selectedKindOfPub.value = nameOfPub;
+        this.updateKindOfPub.emit(this.selectedKindOfPub);
+        return nameOfPub + ' updated!';
     }
 }
