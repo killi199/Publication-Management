@@ -5,10 +5,10 @@
     <mat-tab-group>
         <mat-tab label="Publicationtypes">
             <app-basedata-kinds 
-                [kindOfPublications]="(kindOfPubs$ | async) ?? []"
-                (deleteKindOfPub)="onDeleteKindOfPublication($event)"
-                (createKindOfPub)="onCreateKindOfPublication($event)"
-                (updateKindOfPub)="onUpdateKindOfPublication($event)"
+                [data]="(kindOfPubs$ | async) ?? []"
+                (onDelete)="onDeleteKindOfPublication($event)"
+                (onCreate)="onCreateKindOfPublication($event)"
+                (onUpdate)="onUpdateKindOfPublication($event)"
             ></app-basedata-kinds>
         </mat-tab>
         <mat-tab label="Keywords">
