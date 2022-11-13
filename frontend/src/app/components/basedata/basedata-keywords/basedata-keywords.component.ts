@@ -12,19 +12,19 @@ import { CrudComponent } from '../CrudComponent';
 export class BasedataKeywordsComponent extends CrudComponent<Keyword> {
     displayedColumns: string[] = ['keyword'];
 
-    _emitOnCreate(record: Keyword): string {
+    _emitCreate(record: Keyword): string {
         if (!record.value?.trim()) return 'Nothing to add!';
 
-        this.onCreate.emit({ value: record.value });
+        this.create.emit({ value: record.value });
         return record.value + ' created!';
     }
 
-    _emitOnUpdate(record: Keyword): string {
+    _emitUpdate(record: Keyword): string {
         if (this.selectedRecord?.value === record.value)
             return 'Nothing to change!';
 
         this.selectedRecord!.value = record.value;
-        this.onUpdate.emit(this.selectedRecord);
+        this.update.emit(this.selectedRecord);
         return record.value + ' updated!';
     }
 

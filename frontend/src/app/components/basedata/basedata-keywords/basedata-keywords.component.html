@@ -62,7 +62,7 @@
     <div class="btn-container">
         <button
             matTooltip="edit selection"
-            (click)="edit()"
+            (click)="onEdit()"
             [disabled]="selectedRecord?.value === null"
             *ngIf="crudState === 'read'"
             mat-mini-fab
@@ -75,7 +75,7 @@
             mat-mini-fab
             matTooltip="save changes"
             *ngIf="crudState === 'create' || crudState === 'update'"
-            (click)="save()"
+            (click)="onSave()"
             color="primary"
         >
             <mat-icon>done</mat-icon>
@@ -87,7 +87,7 @@
             [disabled]="selectedRecord?.value === null"
             *ngIf="crudState === 'read'"
             color="warn"
-            (click)="delete(selectedRecord?.value!)"
+            (click)="onDelete(selectedRecord?.value!)"
         >
             <mat-icon>delete</mat-icon>
         </button>
@@ -95,7 +95,7 @@
         <button
             mat-mini-fab
             matTooltip="undo changes"
-            (click)="undo()"
+            (click)="onUndo()"
             *ngIf="crudState === 'create' || crudState === 'update'"
             color="primary"
         >
@@ -108,7 +108,7 @@
         mat-mini-fab
         matTooltip="add keyword"
         color="primary"
-        (click)="add()"
+        (click)="onAdd()"
         *ngIf="crudState === 'read'"
     >
         <mat-icon>add</mat-icon>

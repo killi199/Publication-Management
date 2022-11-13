@@ -6,17 +6,17 @@
         <mat-tab label="Publicationtypes">
             <app-basedata-kinds 
                 [data]="(kindOfPubs$ | async) ?? []"
-                (onDelete)="deleteKindOfPublication($event)"
-                (onCreate)="createKindOfPublication($event)"
-                (onUpdate)="updateKindOfPublication($event)"
+                (delete)="deleteKindOfPublication($event)"
+                (create)="createKindOfPublication($event)"
+                (update)="updateKindOfPublication($event)"
             ></app-basedata-kinds>
         </mat-tab>
         <mat-tab label="Keywords">
             <app-basedata-keywords
                 [data]="(keywords$ | async) ?? []"
-                (onDelete)="deleteKeyword($event)"
-                (onCreate)="createKeyword($event)"
-                (onUpdate)="updateKeyword($event)"
+                (delete)="deleteKeyword($event)"
+                (create)="createKeyword($event)"
+                (update)="updateKeyword($event)"
             ></app-basedata-keywords>
         </mat-tab>
         <mat-tab label="Borrowers">

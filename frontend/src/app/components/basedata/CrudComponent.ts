@@ -1,17 +1,20 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { MatTableDataSource } from "@angular/material/table";
-import { Snackbar } from "src/app/helpers/snackbar";
-import { TableInitsComponent } from "src/app/helpers/table-inits";
-import { CrudState } from "src/app/models/crud-state";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { Snackbar } from 'src/app/helpers/snackbar';
+import { TableInitsComponent } from 'src/app/helpers/table-inits';
+import { CrudState } from 'src/app/models/crud-state';
 
 @Component({
     template: '',
 })
-export abstract class CrudComponent<T> extends TableInitsComponent<T>{
+export abstract class CrudComponent<T>
+    extends TableInitsComponent<T>
+    implements OnInit
+{
     @Input() data: T[] = [];
-    @Output() onDelete = new EventEmitter<T>();
-    @Output() onCreate = new EventEmitter<T>();
-    @Output() onUpdate = new EventEmitter<T>();
+    @Output() delete = new EventEmitter<T>();
+    @Output() create = new EventEmitter<T>();
+    @Output() update = new EventEmitter<T>();
 
     crudState: CrudState = CrudState.Read;
     selectedRecord?: T;
@@ -26,21 +29,19 @@ export abstract class CrudComponent<T> extends TableInitsComponent<T>{
 
     selectionChanged(selection: T): void {
         this.selectedRecord =
-            this.selectedRecord === selection
-                ? undefined
-                : selection;
+            this.selectedRecord === selection ? undefined : selection;
     }
 
-    edit(): void {
+    onEdit(): void {
         this.crudState = CrudState.Update;
     }
 
-    save(): void {
+    onSave(): void {
         const recordToSave = this._getRecordFromInputFields();
         let messageType =
             this.crudState === CrudState.Create
-                ? this._emitOnCreate(recordToSave)
-                : this._emitOnUpdate(recordToSave);
+                ? this._emitCreate(recordToSave)
+                : this._emitUpdate(recordToSave);
 
         this.snackBar.open(messageType);
         this.dataSource = new MatTableDataSource(this.data);
@@ -48,7 +49,7 @@ export abstract class CrudComponent<T> extends TableInitsComponent<T>{
         this._clearInputFields();
     }
 
-    undo(): void {
+    onUndo(): void {
         this.snackBar.open('Nothing changed!');
         this.crudState = CrudState.Read;
         this._clearInputFields();
@@ -56,21 +57,21 @@ export abstract class CrudComponent<T> extends TableInitsComponent<T>{
         this.selectedRecord = undefined;
     }
 
-    delete(nameOfRecord: string): void {
-        this.onDelete.emit(this.selectedRecord);
+    onDelete(nameOfRecord: string): void {
+        this.delete.emit(this.selectedRecord);
         this.dataSource = new MatTableDataSource(this.data);
         this.selectedRecord = undefined;
         this.snackBar.open(nameOfRecord + ' deleted!');
     }
 
-    add(): void {
+    onAdd(): void {
         this.crudState = CrudState.Create;
         this.selectedRecord = undefined;
         this.selection.clear();
     }
 
-    abstract _emitOnCreate(record: T): string;
-    abstract _emitOnUpdate(record: T): string;
+    abstract _emitCreate(record: T): string;
+    abstract _emitUpdate(record: T): string;
     abstract _getRecordFromInputFields(): T;
     abstract _clearInputFields(): void;
 }

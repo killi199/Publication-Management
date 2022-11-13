@@ -10,19 +10,19 @@ import { CrudComponent } from '../CrudComponent';
 export class BasedataKindsComponent extends CrudComponent<KindOfPublication> {
     displayedColumns: string[] = ['kindOfPublication'];
 
-    override _emitOnCreate(record: KindOfPublication): string {
+    override _emitCreate(record: KindOfPublication): string {
         if (!record.value?.trim()) return 'Nothing to add!';
 
-        this.onCreate.emit({ value: record.value });
+        this.create.emit({ value: record.value });
         return record.value + ' created!';
     }
 
-    override _emitOnUpdate(record: KindOfPublication): string {
+    override _emitUpdate(record: KindOfPublication): string {
         if (this.selectedRecord?.value === record.value)
             return 'Nothing to change!';
 
         this.selectedRecord!.value = record.value;
-        this.onUpdate.emit(this.selectedRecord);
+        this.update.emit(this.selectedRecord);
         return record.value + ' updated!';
     }
 
