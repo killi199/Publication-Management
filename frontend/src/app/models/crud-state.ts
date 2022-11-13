@@ -1,6 +1,6 @@
-export enum CrudState{
-    Create, 
-    Read,
-    Update, 
-    Delete
+export enum CrudState {
+    Create = 'create',
+    Read = 'read',
+    Update = 'update',
+    Delete = 'delete',
 }

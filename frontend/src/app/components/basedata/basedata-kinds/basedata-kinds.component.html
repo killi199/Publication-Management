@@ -1,7 +1,11 @@
 <div class="container">
     <mat-form-field appearance="standard">
         <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Journal" />
+        <input
+            matInput
+            (keyup)="applyFilter($event)"
+            placeholder="Ex. Journal"
+        />
     </mat-form-field>
     <table mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="kindOfPublication">
@@ -24,7 +28,7 @@
             [ngClass]="{
                 hovered: row.hovered,
                 highlighted: selection.isSelected(row),
-                disabled: crudState === 0 || crudState === 2
+                disabled: crudState === 'create' || crudState === 'update'
             }"
             (mouseover)="row.hovered = true"
             (mouseout)="row.hovered = false"
@@ -47,7 +51,7 @@
             <input
                 id="inputField"
                 name="kindOfPublication"
-                [disabled]="crudState === 1"
+                [disabled]="crudState === 'read'"
                 matInput
                 placeholder="Ex. Hausarbeit"
                 [value]="selectedKindOfPub.value || ''"
@@ -61,7 +65,7 @@
             matTooltip="edit selection"
             (click)="edit()"
             [disabled]="selectedKindOfPub.value === undefined"
-            *ngIf="crudState === 1"
+            *ngIf="crudState === 'read'"
             mat-mini-fab
             color="primary"
         >
@@ -71,7 +75,7 @@
         <button
             mat-mini-fab
             matTooltip="save changes"
-            *ngIf="crudState === 0 || crudState === 2"
+            *ngIf="crudState === 'create' || crudState === 'update'"
             (click)="save(input.value)"
             color="primary"
         >
@@ -82,7 +86,7 @@
             mat-mini-fab
             matTooltip="delete kind of publication"
             [disabled]="selectedKindOfPub.value === undefined"
-            *ngIf="crudState === 1"
+            *ngIf="crudState === 'read'"
             color="warn"
             (click)="delete()"
         >
@@ -93,7 +97,7 @@
             mat-mini-fab
             matTooltip="undo changes"
             (click)="undo()"
-            *ngIf="crudState === 0 || crudState === 2"
+            *ngIf="crudState === 'create' || crudState === 'update'"
             color="primary"
         >
             <mat-icon>close</mat-icon>
@@ -106,7 +110,7 @@
         matTooltip="add publication"
         color="primary"
         (click)="add()"
-        *ngIf="crudState === 1"
+        *ngIf="crudState === 'read'"
     >
         <mat-icon>add</mat-icon>
     </button>
