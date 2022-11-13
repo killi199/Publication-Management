@@ -4,6 +4,7 @@ import { Author } from 'src/app/models/author';
 import { Borrower } from 'src/app/models/borrower';
 import { Keyword } from 'src/app/models/keyword';
 import { KindOfPublication } from 'src/app/models/kind-of-publication';
+import { KeywordService } from 'src/app/services/keyword.service';
 import { KindOfPublicationService } from 'src/app/services/kind-of-publication.service';
 import { PublicationService } from 'src/app/services/publication.service';
 
@@ -20,23 +21,36 @@ export class BasedataComponent {
 
     constructor(
         publicationService: PublicationService,
-        private kindOfPubService: KindOfPublicationService
+        private kindOfPubService: KindOfPublicationService,
+        private keywordService: KeywordService
     ) {
         this.kindOfPubs$ = kindOfPubService.loadAllKindsOfPublication();
-        this.keywords$ = publicationService.loadKeywords();
+        this.keywords$ = keywordService.loadAllKeywords();
         this.authors$ = publicationService.loadAuthors();
         this.borrowers$ = publicationService.loadBorrowers();
     }
 
-    onDeleteKindOfPublication(kindOfPublication: KindOfPublication) {
+    deleteKindOfPublication(kindOfPublication: KindOfPublication) {
         this.kindOfPubService.delete(kindOfPublication);
     }
 
-    onCreateKindOfPublication(kindOfPublication: KindOfPublication) {
+    createKindOfPublication(kindOfPublication: KindOfPublication) {
         this.kindOfPubService.create(kindOfPublication);
     }
 
-    onUpdateKindOfPublication(kindOfPublication: KindOfPublication) {
+    updateKindOfPublication(kindOfPublication: KindOfPublication) {
         this.kindOfPubService.update(kindOfPublication);
+    }
+
+    deleteKeyword(keyword: Keyword) {
+        this.keywordService.delete(keyword);
+    }
+
+    createKeyword(keyword: Keyword) {
+        this.keywordService.create(keyword);
+    }
+
+    updateKeyword(keyword: Keyword) {
+        this.keywordService.update(keyword);
     }
 }

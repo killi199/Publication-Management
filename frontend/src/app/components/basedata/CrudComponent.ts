@@ -24,11 +24,11 @@ export abstract class CrudComponent<T> extends TableInitsComponent<T>{
         this.dataSource = new MatTableDataSource(this.data);
     }
 
-    selectionChanged(T: T): void {
+    selectionChanged(selection: T): void {
         this.selectedRecord =
-            this.selectedRecord === T
+            this.selectedRecord === selection
                 ? undefined
-                : T;
+                : selection;
     }
 
     edit(): void {

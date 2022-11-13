@@ -10,12 +10,6 @@ import { CrudComponent } from '../CrudComponent';
 export class BasedataKindsComponent extends CrudComponent<KindOfPublication> {
     displayedColumns: string[] = ['kindOfPublication'];
 
-    override _getRecordFromInputFields(): KindOfPublication {
-        var name = (<HTMLInputElement>document.getElementById('input-value-of-pub'))
-            .value;
-        return { value: name };
-    }
-
     override _emitOnCreate(record: KindOfPublication): string {
         if (!record.value?.trim()) return 'Nothing to add!';
 
@@ -30,6 +24,12 @@ export class BasedataKindsComponent extends CrudComponent<KindOfPublication> {
         this.selectedRecord!.value = record.value;
         this.onUpdate.emit(this.selectedRecord);
         return record.value + ' updated!';
+    }
+
+    override _getRecordFromInputFields(): KindOfPublication {
+        var name = (<HTMLInputElement>document.getElementById('input-value-of-pub'))
+            .value;
+        return { value: name };
     }
 
     override _clearInputFields(): void {

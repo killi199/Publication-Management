@@ -7,10 +7,11 @@ import { MatTableDataSource } from '@angular/material/table';
 @Component({
     template: '',
 })
-export class TableInitsComponent<Type> implements  AfterViewInit {    
-
+export abstract class TableInitsComponent<Type> implements AfterViewInit {
     @ViewChild(MatSort) sort: MatSort = new MatSort();
     @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+    abstract displayedColumns: string[];
 
     dataSource!: MatTableDataSource<Type>;
     selection = new SelectionModel<Type>(false, []);

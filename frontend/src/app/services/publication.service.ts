@@ -32,34 +32,7 @@ export class PublicationService {
         return this.http.post(ENDPOINT_URL, publication);
     }
 
-    kindOfPublications: KindOfPublication[] = [
-        { uuid: '1', value: 'Sachbuch' },
-        { uuid: '2', value: 'Fachbuch' },
-        { uuid: '3', value: 'Hausarbeit' },
-        { uuid: '4', value: 'Bachelor' },
-        { uuid: '1', value: 'Sachbuch' },
-        { uuid: '2', value: 'Fachbuch' },
-        { uuid: '3', value: 'Hausarbeit' },
-        { uuid: '4', value: 'Bachelor' },
-        { uuid: '1', value: 'Sachbuch' },
-        { uuid: '2', value: 'Fachbuch' },
-        { uuid: '3', value: 'Hausarbeit' },
-        { uuid: '4', value: 'Bachelor' },
-        { uuid: '1', value: 'Sachbuch' },
-        { uuid: '2', value: 'Fachbuch' },
-        { uuid: '3', value: 'Hausarbeit' },
-    ]
-    loadKindOfPublications(): Observable<KindOfPublication[]> {
-        return of(this.kindOfPublications);
-    }
-    
-    deleteKindOfPublication(kindOfPublication: KindOfPublication) {
-        const index = this.kindOfPublications.indexOf(kindOfPublication);
-        if (index !== -1){
-            this.kindOfPublications.splice(index, 1);
-        }
-    }
-
+   
     borrowers: Borrower[] = [
         {
             name: 'Schmidt',
@@ -139,33 +112,5 @@ export class PublicationService {
     ]
     loadAuthors(): Observable<Author[]> {
         return of(this.authors);
-    }
-
-    keywords: Keyword[] = [
-        { uuid: '1', value: 'Java' },
-        { uuid: '2', value: 'Python' },
-        { uuid: '3', value: 'IT' },
-        { uuid: '4', value: 'BWL' },
-        { uuid: '1', value: 'Java' },
-        { uuid: '2', value: 'Python' },
-        { uuid: '3', value: 'IT' },
-        { uuid: '4', value: 'BWL' },
-        { uuid: '1', value: 'Java' },
-        { uuid: '2', value: 'Python' },
-        { uuid: '3', value: 'IT' },
-        { uuid: '4', value: 'BWL' },
-        { uuid: '1', value: 'Java' },
-        { uuid: '2', value: 'Python' },
-        { uuid: '3', value: 'IT' },
-        { uuid: '4', value: 'BWL' },
-        { uuid: '1', value: 'Java' },
-        { uuid: '2', value: 'Python' },
-        { uuid: '3', value: 'IT' },
-        { uuid: '4', value: 'BWL' },
-        { uuid: '1', value: 'Java' }
-    ]
-    loadKeywords(): Observable<Keyword[]> {
-        return of(this.keywords);
-    }
-
+    }   
 }
