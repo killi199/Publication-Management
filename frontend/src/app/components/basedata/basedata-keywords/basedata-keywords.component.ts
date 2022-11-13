@@ -1,7 +1,5 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component } from '@angular/core';
 import { Keyword } from 'src/app/models/keyword';
-import { TableInitsComponent } from '../../../helpers/table-inits';
 import { CrudComponent } from '../CrudComponent';
 
 @Component({
@@ -29,7 +27,7 @@ export class BasedataKeywordsComponent extends CrudComponent<Keyword> {
     }
 
     _getRecordFromInputFields(): Keyword {
-        var name = (<HTMLInputElement>(
+        const name = (<HTMLInputElement>(
             document.getElementById('input-value-of-keyword')
         )).value;
         return { value: name };

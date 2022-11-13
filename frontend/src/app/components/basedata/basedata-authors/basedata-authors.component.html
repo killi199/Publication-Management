@@ -1,11 +1,10 @@
-<div class="mat-elevation-z8 container">
+<div class="container">
     <mat-form-field appearance="standard">
         <mat-label>Filter</mat-label>
         <input
             matInput
             (keyup)="applyFilter($event)"
-            placeholder="Ex. Markus"
-            #input
+            placeholder="Ex. Max"
         />
     </mat-form-field>
 
@@ -30,10 +29,12 @@
         ></tr>
         <tr
             mat-row
-            (click)="selection.toggle(row)"
+            (click)="selection.toggle(row)"            
+            (click)="selectionChanged(row)"
             [ngClass]="{
                 hovered: row.hovered,
-                highlighted: selection.isSelected(row)
+                highlighted: selection.isSelected(row),
+                disabled: crudState === 'create' || crudState === 'update'
             }"
             (mouseover)="row.hovered = true"
             (mouseout)="row.hovered = false"
@@ -48,3 +49,82 @@
     >
     </mat-paginator>
 </div>
+
+<div class="form-container">
+    <mat-form-field appearance="fill">
+        <mat-label>Surname</mat-label>
+        <input
+            id="input-surname"
+            [disabled]="crudState === 'read'"
+            matInput
+            placeholder="Ex. Max"
+            [value]="selectedRecord?.surname || ''"
+        />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input
+            id="input-name"
+            [disabled]="crudState === 'read'"
+            matInput
+            placeholder="Ex. Mustermann"
+            [value]="selectedRecord?.name || ''"
+        />
+    </mat-form-field>
+
+    <div class="btn-container">
+        <button
+            matTooltip="edit selection"
+            (click)="onEdit()"
+            [disabled]="selectedRecord?.name === null"
+            *ngIf="crudState === 'read'"
+            mat-mini-fab
+            color="primary"
+        >
+            <mat-icon>edit</mat-icon>
+        </button>
+
+        <button
+            mat-mini-fab
+            matTooltip="save changes"
+            *ngIf="crudState === 'create' || crudState === 'update'"
+            (click)="onSave()"
+            color="primary"
+        >
+            <mat-icon>done</mat-icon>
+        </button>
+
+        <button
+            mat-mini-fab
+            matTooltip="delete author"
+            [disabled]="selectedRecord?.name === null"
+            *ngIf="crudState === 'read'"
+            color="warn"
+            (click)="onDelete(selectedRecord?.name!)"
+        >
+            <mat-icon>delete</mat-icon>
+        </button>
+
+        <button
+            mat-mini-fab
+            matTooltip="undo changes"
+            (click)="onUndo()"
+            *ngIf="crudState === 'create' || crudState === 'update'"
+            color="primary"
+        >
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <button
+        class="add-btn"
+        mat-mini-fab
+        matTooltip="add author"
+        color="primary"
+        (click)="onAdd()"
+        *ngIf="crudState === 'read'"
+    >
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+

@@ -1,11 +1,7 @@
 <div class="container">
     <mat-form-field appearance="standard">
         <mat-label>Filter</mat-label>
-        <input
-            matInput
-            (keyup)="applyFilter($event)"
-            placeholder="Ex. Java"
-        />
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Java" />
     </mat-form-field>
 
     <table mat-table [dataSource]="dataSource" matSort>
@@ -22,7 +18,7 @@
         ></tr>
         <tr
             mat-row
-            (click)="selection.toggle(row)"            
+            (click)="selection.toggle(row)"
             (click)="selectionChanged(row)"
             [ngClass]="{
                 hovered: row.hovered,
@@ -43,21 +39,18 @@
     </mat-paginator>
 </div>
 
-
 <div class="form-container">
-    <form>
-        <mat-form-field appearance="fill">
-            <mat-label>Keyword</mat-label>
-            <input
-                id="input-value-of-keyword"
-                [disabled]="crudState === 'read'"
-                matInput
-                placeholder="Ex. Java"
-                [value]="selectedRecord?.value || ''"
-                #input
-            />
-        </mat-form-field>
-    </form>
+    <mat-form-field appearance="fill">
+        <mat-label>Keyword</mat-label>
+        <input
+            id="input-value-of-keyword"
+            [disabled]="crudState === 'read'"
+            matInput
+            placeholder="Ex. Java"
+            [value]="selectedRecord?.value || ''"
+            #input
+        />
+    </mat-form-field>
 
     <div class="btn-container">
         <button

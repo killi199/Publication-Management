@@ -1,10 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { Author } from '../models/author';
-import { Borrower } from '../models/borrower';
-import { Keyword } from '../models/keyword';
-import { KindOfPublication } from '../models/kind-of-publication';
+import { Observable } from 'rxjs';
 import { Publication } from '../models/publication';
 
 const ENDPOINT_URL = '/rest/publication';
@@ -30,33 +26,5 @@ export class PublicationService {
 
     savePublication(publication: Publication): Observable<any> {
         return this.http.post(ENDPOINT_URL, publication);
-    }
-
-
-    authors: Author[] = [
-        { name: 'Schmidt', surname: 'Max', uuid: '1' },
-        { name: 'Hmidt', surname: 'Fax', uuid: '2' },
-        { name: 'Chmidt', surname: 'Tax', uuid: '3' },
-        { name: 'Schmidt', surname: 'Max', uuid: '1' },
-        { name: 'Hmidt', surname: 'Fax', uuid: '2' },
-        { name: 'Chmidt', surname: 'Tax', uuid: '3' },
-        { name: 'Schmidt', surname: 'Max', uuid: '1' },
-        { name: 'Hmidt', surname: 'Fax', uuid: '2' },
-        { name: 'Chmidt', surname: 'Tax', uuid: '3' },
-        { name: 'Schmidt', surname: 'Max', uuid: '1' },
-        { name: 'Hmidt', surname: 'Fax', uuid: '2' },
-        { name: 'Chmidt', surname: 'Tax', uuid: '3' },
-        { name: 'Schmidt', surname: 'Max', uuid: '1' },
-        { name: 'Hmidt', surname: 'Fax', uuid: '2' },
-        { name: 'Chmidt', surname: 'Tax', uuid: '3' },
-        { name: 'Schmidt', surname: 'Max', uuid: '1' },
-        { name: 'Hmidt', surname: 'Fax', uuid: '2' },
-        { name: 'Chmidt', surname: 'Tax', uuid: '3' },
-        { name: 'Schmidt', surname: 'Max', uuid: '1' },
-        { name: 'Hmidt', surname: 'Fax', uuid: '2' },
-        { name: 'Chmidt', surname: 'Tax', uuid: '3' },
-    ]
-    loadAuthors(): Observable<Author[]> {
-        return of(this.authors);
-    }   
+    }    
 }

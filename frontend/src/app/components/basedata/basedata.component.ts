@@ -4,6 +4,8 @@ import { Author } from 'src/app/models/author';
 import { Borrower } from 'src/app/models/borrower';
 import { Keyword } from 'src/app/models/keyword';
 import { KindOfPublication } from 'src/app/models/kind-of-publication';
+import { AuthorService } from 'src/app/services/author.service';
+import { BorrowerService } from 'src/app/services/borrower.service';
 import { KeywordService } from 'src/app/services/keyword.service';
 import { KindOfPublicationService } from 'src/app/services/kind-of-publication.service';
 import { PublicationService } from 'src/app/services/publication.service';
@@ -20,14 +22,15 @@ export class BasedataComponent {
     borrowers$: Observable<Borrower[]>;
 
     constructor(
-        publicationService: PublicationService,
         private kindOfPubService: KindOfPublicationService,
-        private keywordService: KeywordService
+        private keywordService: KeywordService,
+        private borrowerService: BorrowerService,
+        private authorService: AuthorService
     ) {
         this.kindOfPubs$ = kindOfPubService.loadAllKindsOfPublication();
         this.keywords$ = keywordService.loadAllKeywords();
-        this.authors$ = publicationService.loadAuthors();
-        this.borrowers$ = publicationService.loadBorrowers();
+        this.authors$ = authorService.loadAllAuthors();
+        this.borrowers$ = borrowerService.loadAllBorrowers();
     }
 
     deleteKindOfPublication(kindOfPublication: KindOfPublication) {
@@ -52,5 +55,29 @@ export class BasedataComponent {
 
     updateKeyword(keyword: Keyword) {
         this.keywordService.update(keyword);
+    }
+
+    deleteBorrower(borrower: Borrower) {
+        this.borrowerService.delete(borrower);
+    }
+
+    createBorrower(borrower: Borrower) {
+        this.borrowerService.create(borrower);
+    }
+
+    updateBorrower(borrower: Borrower) {
+        this.borrowerService.update(borrower);
+    }
+
+    deleteAuthor(author: Author) {
+        this.authorService.delete(author);
+    }
+
+    createAuthor(author: Author) {
+        this.authorService.create(author);
+    }
+
+    updateAuthor(author: Author) {
+        this.authorService.update(author);
     }
 }

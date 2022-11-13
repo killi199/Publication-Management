@@ -21,12 +21,18 @@
         </mat-tab>
         <mat-tab label="Borrowers">
             <app-basedata-borrowers
-                [borrowers]="(borrowers$ | async) ?? []"
+                [data]="(borrowers$ | async) ?? []"
+                (delete)="deleteBorrower($event)"
+                (create)="createBorrower($event)"
+                (update)="updateBorrower($event)"
             ></app-basedata-borrowers>
         </mat-tab>
         <mat-tab label="Authors">
             <app-basedata-authors
-                [authors]="(authors$ | async) ?? []"
+                [data]="(authors$ | async) ?? []"
+                (delete)="deleteAuthor($event)"
+                (create)="createAuthor($event)"
+                (update)="updateAuthor($event)"
             ></app-basedata-authors>
         </mat-tab>
     </mat-tab-group>

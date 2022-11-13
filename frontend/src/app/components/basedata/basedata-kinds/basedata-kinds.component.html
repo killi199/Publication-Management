@@ -45,19 +45,17 @@
 </div>
 
 <div class="form-container">
-    <form>
-        <mat-form-field appearance="fill">
-            <mat-label>Kind of Publication</mat-label>
-            <input
-                id="input-value-of-pub"
-                [disabled]="crudState === 'read'"
-                matInput
-                placeholder="Ex. Hausarbeit"
-                [value]="selectedRecord?.value || ''"
-                #input
-            />
-        </mat-form-field>
-    </form>
+    <mat-form-field appearance="fill">
+        <mat-label>Kind of Publication</mat-label>
+        <input
+            id="input-value-of-pub"
+            [disabled]="crudState === 'read'"
+            matInput
+            placeholder="Ex. Hausarbeit"
+            [value]="selectedRecord?.value || ''"
+            #input
+        />
+    </mat-form-field>
 
     <div class="btn-container">
         <button
