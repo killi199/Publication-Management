@@ -19,7 +19,7 @@ export class BasedataComponent {
     borrowers$: Observable<Borrower[]>;
 
     constructor(
-        private publicationService: PublicationService,
+        publicationService: PublicationService,
         private kindOfPubService: KindOfPublicationService
     ) {
         this.kindOfPubs$ = kindOfPubService.loadAllKindsOfPublication();

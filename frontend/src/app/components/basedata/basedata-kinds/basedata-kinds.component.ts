@@ -48,18 +48,24 @@ export class BasedataKindsComponent
         if (this.crudState === CrudState.Create) {
             if (nameOfPub?.trim()) {
                 this.createKindOfPub.emit({ value: nameOfPub });
-                messageType = ' created!';
+                messageType = nameOfPub + ' created!';
             } else {
                 messageType = 'Nothing to add!';
             }
         } else {
-            this.updateKindOfPub.emit(
-                new KindOfPublication(this.selectedKindOfPub.uuid, nameOfPub)
-            );
-            messageType = ' updated!';
+            if (this.selectedKindOfPub.value !== nameOfPub) {
+                this.updateKindOfPub.emit({
+                    uuid: this.selectedKindOfPub.uuid,
+                    value: nameOfPub,
+                });
+                messageType = nameOfPub + ' updated!';
+            }
+            else{
+                messageType = 'Nothing to change!';
+            }
         }
 
-        this.snackBar.open(nameOfPub + messageType);
+        this.snackBar.open(messageType);
         this.dataSource = new MatTableDataSource(this.kindOfPublications);
         this.crudState = CrudState.Read;
         (<HTMLInputElement>document.getElementById('inputField')).value = '';
