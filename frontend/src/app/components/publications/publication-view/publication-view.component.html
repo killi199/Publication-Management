@@ -3,6 +3,7 @@
         <mat-form-field appearance="fill">
             <mat-label>Key</mat-label>
             <input
+                placeholder="Ex. NA-123"
                 matInput
                 name="key"
                 [(ngModel)]="publication.key"
@@ -13,6 +14,7 @@
         <mat-form-field appearance="fill">
             <mat-label>Title</mat-label>
             <input
+                placeholder="Ex. Clean Code"
                 matInput
                 name="title"
                 [(ngModel)]="publication.titel"
@@ -34,9 +36,9 @@
                     </button>
                 </mat-chip>
                 <input
+                    placeholder="Ex. Mustermann Max"
                     name="authors"
                     [readonly]="!editable"
-                    placeholder="New Author..."
                     #authorInput
                     [formControl]="authorControl"
                     [matAutocomplete]="autocompleteAuthors"
@@ -62,6 +64,7 @@
         <mat-form-field appearance="fill">
             <mat-label>ISBN</mat-label>
             <input
+                placeholder="Ex. 9780132350884"
                 matInput
                 name="isbn"
                 [(ngModel)]="publication.isbn"
@@ -72,6 +75,7 @@
         <mat-form-field appearance="fill">
             <mat-label>Quantity</mat-label>
             <input
+                placeholder="Ex. 42"
                 type="number"
                 min="0"
                 matInput
@@ -85,6 +89,7 @@
         <mat-form-field appearance="fill">
             <mat-label>Publisher</mat-label>
             <input
+                placeholder="Ex. Prentice Hall"
                 matInput
                 name="publisher"
                 [(ngModel)]="publication.publisher"
@@ -95,6 +100,7 @@
         <mat-form-field appearance="fill">
             <mat-label>Date of Publication</mat-label>
             <input
+                placeholder="Ex. 01.08.2008"
                 matInput
                 name="dateOfPublication"
                 [(ngModel)]="publication.dateOfPublication"
@@ -112,6 +118,7 @@
         <mat-form-field appearance="fill">
             <mat-label>Kind of Publication</mat-label>
             <input
+                placeholder="Ex. Book"
                 type="text"
                 name="kindOfPublication"
                 [readonly]="!editable"
@@ -148,9 +155,9 @@
                     </button>
                 </mat-chip>
                 <input
+                    placeholder="Ex. Code"
                     name="keywords"
                     [readonly]="!editable"
-                    placeholder="New keyword..."
                     #keywordInput
                     [formControl]="keywordControl"
                     [matAutocomplete]="autocompleteKeywords"
