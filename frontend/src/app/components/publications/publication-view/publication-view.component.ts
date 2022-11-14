@@ -209,7 +209,7 @@ export class PublicationViewComponent implements OnInit {
 
         return this.allAuthors.filter(
             (author) =>
-                author.surname?.toLowerCase().includes(filterValue) &&
+                author.surname?.toLowerCase().includes(filterValue) ||
                 author.name?.toLowerCase().includes(filterValue)
         );
     }
