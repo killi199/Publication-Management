@@ -12,6 +12,25 @@ export class AuthorService {
         this.authors = this.generateAllAuthors();
     }
 
+    update(author: Author) {
+        const index = this.authors.map((a) => a.uuid).indexOf(author.uuid);
+        if (index !== -1) {
+            this.authors.splice(index, 1);
+            this.authors.splice(index, 0, author);
+        }
+    }
+
+    create(author: Author) {
+        this.authors.push(author);
+    }
+    
+    delete(author: Author) {
+        const index = this.authors.indexOf(author);
+        if (index !== -1) {
+            this.authors.splice(index, 1);
+        }
+    }
+
     loadAllAuthors(): Observable<Author[]> {
         return of(this.authors);
     }

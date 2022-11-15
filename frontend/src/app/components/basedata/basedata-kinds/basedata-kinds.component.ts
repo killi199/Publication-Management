@@ -1,81 +1,38 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Component } from '@angular/core';
 import { KindOfPublication } from 'src/app/models/kind-of-publication';
-import { TableInitsComponent } from '../../../helpers/table-inits';
+import { CrudComponent } from '../../../helpers/CrudComponent';
 
 @Component({
     selector: 'app-basedata-kinds',
     templateUrl: './basedata-kinds.component.html',
-    styleUrls: ['./basedata-kinds.component.scss'],
+    styleUrls: ['../basedata.common.scss'],
 })
-export class BasedataKindsComponent
-    extends TableInitsComponent<KindOfPublication>
-    implements OnInit
-{
-    @Input() kindOfPublications: KindOfPublication[] = [];
-    @Output() deleteKindOfPub = new EventEmitter<KindOfPublication>();
-
-    constructor(private snackBar: MatSnackBar) {
-        super();
-    }
-
+export class BasedataKindsComponent extends CrudComponent<KindOfPublication> {
     displayedColumns: string[] = ['kindOfPublication'];
 
-    editMode = false;
-    selectedKindOfPub: KindOfPublication = new KindOfPublication();
-    tableDisabled = false;
+    override _emitCreate(record: KindOfPublication): string {
+        if (!record.value?.trim()) return 'Nothing to add!';
 
-    ngOnInit() {
-        this.dataSource = new MatTableDataSource(this.kindOfPublications);
+        this.create.emit({ value: record.value });
+        return record.value + ' created!';
     }
 
-    selectionChanged(kindOfPublication: KindOfPublication) {
-        if (this.selectedKindOfPub === kindOfPublication) {
-            this.selectedKindOfPub = new KindOfPublication();
-        } else {
-            this.selectedKindOfPub = kindOfPublication;
-        }
+    override _emitUpdate(record: KindOfPublication): string {
+        if (this.selectedRecord?.value === record.value)
+            return 'Nothing to change!';
+
+        this.selectedRecord!.value = record.value;
+        this.update.emit(this.selectedRecord);
+        return record.value + ' updated!';
     }
 
-    editableValue?: string;
-    edit() {
-        this.editableValue = this.selectedKindOfPub?.value;
-        this.editMode = true;
-        this.tableDisabled = true;
+    override _getRecordFromInputFields(): KindOfPublication {
+        var name = (<HTMLInputElement>document.getElementById('input-value-of-pub'))
+            .value;
+        return { value: name };
     }
 
-    save(nameOfPub: string) {
-        this.editMode = false;
-        this.tableDisabled = false;
-        this.openSnackbar(nameOfPub + ' created!');
-    }
-
-    undo() {
-        this.editMode = false;
-        this.tableDisabled = false;
-        this.openSnackbar('Nothing changed!');
-    }
-
-    delete() {
-        this.deleteKindOfPub.emit(this.selectedKindOfPub);
-        const nameOfPubKind = this.selectedKindOfPub.value;
-        this.dataSource = new MatTableDataSource(this.kindOfPublications);
-        this.selectedKindOfPub = new KindOfPublication();
-        this.openSnackbar(nameOfPubKind + ' deleted!');
-    }
-
-    add() {
-        this.editMode = true;
-        this.selectedKindOfPub = new KindOfPublication();
-        this.tableDisabled = true;
-    }
-
-    openSnackbar(message: string) {
-        this.snackBar.open(message, 'OK', {
-            horizontalPosition: 'end',
-            verticalPosition: 'bottom',
-            duration: 3000,
-        });
+    override _clearInputFields(): void {
+        (<HTMLInputElement>document.getElementById('input-value-of-pub')).value = '';
     }
 }

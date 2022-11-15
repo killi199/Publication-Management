@@ -9,14 +9,35 @@ export class KindOfPublicationService {
     kindsOfPublication: KindOfPublication[];
 
     constructor() {
-        this.kindsOfPublication = this.generateAllKindsOfPublication();
+        this.kindsOfPublication = this._generateAllKindsOfPublication();
+    }
+
+    update(kindOfPublication: KindOfPublication) {
+        const index = this.kindsOfPublication
+            .map((k) => k.uuid)
+            .indexOf(kindOfPublication.uuid);
+        if (index !== -1) {
+            this.kindsOfPublication.splice(index, 1);
+            this.kindsOfPublication.splice(index, 0, kindOfPublication);
+        }
+    }
+
+    create(kindOfPublication: KindOfPublication) {
+        this.kindsOfPublication.push(kindOfPublication);
+    }
+
+    delete(kindOfPublication: KindOfPublication) {
+        const index = this.kindsOfPublication.indexOf(kindOfPublication);
+        if (index !== -1) {
+            this.kindsOfPublication.splice(index, 1);
+        }
     }
 
     loadAllKindsOfPublication(): Observable<KindOfPublication[]> {
         return of(this.kindsOfPublication);
     }
 
-    private generateAllKindsOfPublication(): KindOfPublication[] {
+    private _generateAllKindsOfPublication(): KindOfPublication[] {
         let test1 = new KindOfPublication('1', 'Book');
         let test2 = new KindOfPublication('2', 'Article');
         let test3 = new KindOfPublication('3', 'Thesis');

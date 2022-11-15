@@ -1,7 +1,11 @@
 <div class="container">
     <mat-form-field appearance="standard">
         <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Journal" />
+        <input
+            matInput
+            (keyup)="applyFilter($event)"
+            placeholder="Ex. Journal"
+        />
     </mat-form-field>
     <table mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="kindOfPublication">
@@ -24,7 +28,7 @@
             [ngClass]="{
                 hovered: row.hovered,
                 highlighted: selection.isSelected(row),
-                disabled: tableDisabled
+                disabled: crudState === 'create' || crudState === 'update'
             }"
             (mouseover)="row.hovered = true"
             (mouseout)="row.hovered = false"
@@ -41,26 +45,24 @@
 </div>
 
 <div class="form-container">
-    <form>
-        <mat-form-field appearance="fill">
-            <mat-label>Kind of Publication</mat-label>
-            <input
-                name="kindOfPublication"
-                [disabled]="!editMode"
-                matInput
-                placeholder="Ex. Hausarbeit"
-                [(ngModel)]="selectedKindOfPub.value"
-                #input
-            />
-        </mat-form-field>
-    </form>
+    <mat-form-field appearance="fill">
+        <mat-label>Kind of Publication</mat-label>
+        <input
+            id="input-value-of-pub"
+            [disabled]="crudState === 'read'"
+            matInput
+            placeholder="Ex. Hausarbeit"
+            [value]="selectedRecord?.value || ''"
+            #input
+        />
+    </mat-form-field>
 
     <div class="btn-container">
         <button
             matTooltip="edit selection"
-            (click)="edit()"
-            [disabled]="selectedKindOfPub === undefined"
-            *ngIf="!editMode"
+            (click)="onEdit()"
+            [disabled]="selectedRecord?.value === null"
+            *ngIf="crudState === 'read'"
             mat-mini-fab
             color="primary"
         >
@@ -70,20 +72,20 @@
         <button
             mat-mini-fab
             matTooltip="save changes"
-            *ngIf="editMode"
-            (click)="save(input.value)"
+            *ngIf="crudState === 'create' || crudState === 'update'"
+            (click)="onSave()"
             color="primary"
         >
-            <mat-icon>save</mat-icon>
+            <mat-icon>done</mat-icon>
         </button>
 
         <button
             mat-mini-fab
             matTooltip="delete kind of publication"
-            [disabled]="selectedKindOfPub.value === null"
-            *ngIf="!editMode"
+            [disabled]="selectedRecord?.value === null"
+            *ngIf="crudState === 'read'"
             color="warn"
-            (click)="delete()"
+            (click)="onDelete(selectedRecord?.value!)"
         >
             <mat-icon>delete</mat-icon>
         </button>
@@ -91,11 +93,11 @@
         <button
             mat-mini-fab
             matTooltip="undo changes"
-            (click)="undo()"
-            *ngIf="editMode"
+            (click)="onUndo()"
+            *ngIf="crudState === 'create' || crudState === 'update'"
             color="primary"
         >
-            <mat-icon>undo</mat-icon>
+            <mat-icon>close</mat-icon>
         </button>
     </div>
 
@@ -104,8 +106,8 @@
         mat-mini-fab
         matTooltip="add publication"
         color="primary"
-        (click)="add()"
-        *ngIf="!tableDisabled"
+        (click)="onAdd()"
+        *ngIf="crudState === 'read'"
     >
         <mat-icon>add</mat-icon>
     </button>
