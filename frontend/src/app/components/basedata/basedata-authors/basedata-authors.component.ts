@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 import { Author } from 'src/app/models/author';
-import { CrudComponent } from '../CrudComponent';
+import { CrudComponent } from '../../../helpers/CrudComponent';
 
 @Component({
     selector: 'app-basedata-authors',
     templateUrl: './basedata-authors.component.html',
-    styleUrls: ['./basedata-authors.component.scss'],
+    styleUrls: ['../basedata.common.scss'],
 })
 export class BasedataAuthorsComponent extends CrudComponent<Author> {
     displayedColumns: string[] = ['surname', 'name'];
 
-    _emitCreate(record: Author): string {
+    override _emitCreate(record: Author): string {
         if (!record.name?.trim() || !record.surname?.trim())
             return 'Nothing to add!';
 
@@ -21,7 +21,7 @@ export class BasedataAuthorsComponent extends CrudComponent<Author> {
         return 'Author created!';
     }
 
-    _emitUpdate(record: Author): string {
+    override _emitUpdate(record: Author): string {
         if (
             this.selectedRecord?.name === record.name &&
             this.selectedRecord?.surname === record.surname
@@ -36,7 +36,7 @@ export class BasedataAuthorsComponent extends CrudComponent<Author> {
         return 'Author updated!';
     }
 
-    _getRecordFromInputFields(): Author {
+    override _getRecordFromInputFields(): Author {
         const surname = (<HTMLInputElement>(
             document.getElementById('input-surname')
         )).value;
@@ -45,7 +45,7 @@ export class BasedataAuthorsComponent extends CrudComponent<Author> {
         return { surname: surname, name: name };
     }
 
-    _clearInputFields(): void {
+    override _clearInputFields(): void {
         (<HTMLInputElement>document.getElementById('input-surname')).value = '';
         (<HTMLInputElement>document.getElementById('input-name')).value = '';
     }

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { KindOfPublication } from 'src/app/models/kind-of-publication';
-import { CrudComponent } from '../CrudComponent';
+import { CrudComponent } from '../../../helpers/CrudComponent';
 
 @Component({
     selector: 'app-basedata-kinds',
     templateUrl: './basedata-kinds.component.html',
-    styleUrls: ['./basedata-kinds.component.scss'],
+    styleUrls: ['../basedata.common.scss'],
 })
 export class BasedataKindsComponent extends CrudComponent<KindOfPublication> {
     displayedColumns: string[] = ['kindOfPublication'];

@@ -6,33 +6,33 @@
         <mat-tab label="Publicationtypes">
             <app-basedata-kinds 
                 [data]="(kindOfPubs$ | async) ?? []"
-                (delete)="deleteKindOfPublication($event)"
-                (create)="createKindOfPublication($event)"
-                (update)="updateKindOfPublication($event)"
+                (delete)="onDeleteKindOfPublication($event)"
+                (create)="onCreateKindOfPublication($event)"
+                (update)="onUpdateKindOfPublication($event)"
             ></app-basedata-kinds>
         </mat-tab>
         <mat-tab label="Keywords">
             <app-basedata-keywords
                 [data]="(keywords$ | async) ?? []"
-                (delete)="deleteKeyword($event)"
-                (create)="createKeyword($event)"
-                (update)="updateKeyword($event)"
+                (delete)="onDeleteKeyword($event)"
+                (create)="onCreateKeyword($event)"
+                (update)="onUpdateKeyword($event)"
             ></app-basedata-keywords>
         </mat-tab>
         <mat-tab label="Borrowers">
             <app-basedata-borrowers
                 [data]="(borrowers$ | async) ?? []"
-                (delete)="deleteBorrower($event)"
-                (create)="createBorrower($event)"
-                (update)="updateBorrower($event)"
+                (delete)="onDeleteBorrower($event)"
+                (create)="onCreateBorrower($event)"
+                (update)="onUpdateBorrower($event)"
             ></app-basedata-borrowers>
         </mat-tab>
         <mat-tab label="Authors">
             <app-basedata-authors
                 [data]="(authors$ | async) ?? []"
-                (delete)="deleteAuthor($event)"
-                (create)="createAuthor($event)"
-                (update)="updateAuthor($event)"
+                (delete)="onDeleteAuthor($event)"
+                (create)="onCreateAuthor($event)"
+                (update)="onUpdateAuthor($event)"
             ></app-basedata-authors>
         </mat-tab>
     </mat-tab-group>

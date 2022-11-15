@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 import { Borrower } from 'src/app/models/borrower';
-import { CrudComponent } from '../CrudComponent';
+import { CrudComponent } from '../../../helpers/CrudComponent';
 
 @Component({
     selector: 'app-basedata-borrowers',
     templateUrl: './basedata-borrowers.component.html',
-    styleUrls: ['./basedata-borrowers.component.scss'],
+    styleUrls: ['../basedata.common.scss'],
 })
 export class BasedataBorrowersComponent extends CrudComponent<Borrower> {
     displayedColumns: string[] = ['surname', 'name', 'studentnumber'];
 
-    _emitCreate(record: Borrower): string {
+    override _emitCreate(record: Borrower): string {
         if (
             !record.name?.trim() ||
             !record.surname?.trim() ||
@@ -25,7 +25,7 @@ export class BasedataBorrowersComponent extends CrudComponent<Borrower> {
         });
         return 'Borrower created!';
     }
-    _emitUpdate(record: Borrower): string {
+    override _emitUpdate(record: Borrower): string {
         if (
             this.selectedRecord?.name === record.name &&
             this.selectedRecord?.surname === record.surname &&
@@ -42,7 +42,7 @@ export class BasedataBorrowersComponent extends CrudComponent<Borrower> {
         return 'Borrower updated!';
     }
 
-    _getRecordFromInputFields(): Borrower {
+    override _getRecordFromInputFields(): Borrower {
         const surname = (<HTMLInputElement>(
             document.getElementById('input-surname')
         )).value;
@@ -54,7 +54,7 @@ export class BasedataBorrowersComponent extends CrudComponent<Borrower> {
         return { surname: surname, name: name, studentnumber: studentnumber };
     }
 
-    _clearInputFields(): void {
+    override _clearInputFields(): void {
         (<HTMLInputElement>document.getElementById('input-surname')).value = '';
         (<HTMLInputElement>document.getElementById('input-name')).value = '';
         (<HTMLInputElement>(

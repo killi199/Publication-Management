@@ -33,51 +33,51 @@ export class BasedataComponent {
         this.borrowers$ = borrowerService.loadAllBorrowers();
     }
 
-    deleteKindOfPublication(kindOfPublication: KindOfPublication) {
+    onDeleteKindOfPublication(kindOfPublication: KindOfPublication) {
         this.kindOfPubService.delete(kindOfPublication);
     }
 
-    createKindOfPublication(kindOfPublication: KindOfPublication) {
+    onCreateKindOfPublication(kindOfPublication: KindOfPublication) {
         this.kindOfPubService.create(kindOfPublication);
     }
 
-    updateKindOfPublication(kindOfPublication: KindOfPublication) {
+    onUpdateKindOfPublication(kindOfPublication: KindOfPublication) {
         this.kindOfPubService.update(kindOfPublication);
     }
 
-    deleteKeyword(keyword: Keyword) {
+    onDeleteKeyword(keyword: Keyword) {
         this.keywordService.delete(keyword);
     }
 
-    createKeyword(keyword: Keyword) {
+    onCreateKeyword(keyword: Keyword) {
         this.keywordService.create(keyword);
     }
 
-    updateKeyword(keyword: Keyword) {
+    onUpdateKeyword(keyword: Keyword) {
         this.keywordService.update(keyword);
     }
 
-    deleteBorrower(borrower: Borrower) {
+    onDeleteBorrower(borrower: Borrower) {
         this.borrowerService.delete(borrower);
     }
 
-    createBorrower(borrower: Borrower) {
+    onCreateBorrower(borrower: Borrower) {
         this.borrowerService.create(borrower);
     }
 
-    updateBorrower(borrower: Borrower) {
+    onUpdateBorrower(borrower: Borrower) {
         this.borrowerService.update(borrower);
     }
 
-    deleteAuthor(author: Author) {
+    onDeleteAuthor(author: Author) {
         this.authorService.delete(author);
     }
 
-    createAuthor(author: Author) {
+    onCreateAuthor(author: Author) {
         this.authorService.create(author);
     }
 
-    updateAuthor(author: Author) {
+    onUpdateAuthor(author: Author) {
         this.authorService.update(author);
     }
 }
