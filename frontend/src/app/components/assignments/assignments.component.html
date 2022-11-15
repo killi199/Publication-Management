@@ -3,7 +3,7 @@
         <h1>Ausleihvorgänge Übersicht</h1>
     </div>
 
-    <app-assignment-list></app-assignment-list>
+    <app-assignment-list [assignments]="assignments"></app-assignment-list>
 
     <div class="button-container">
         <button matTooltip="edit selection" mat-mini-fab color="primary">
@@ -15,5 +15,5 @@
         </button>
     </div>
 
-    <app-assignment-view></app-assignment-view>
+    <app-assignment-view *ngIf="false"></app-assignment-view>
 </div>
