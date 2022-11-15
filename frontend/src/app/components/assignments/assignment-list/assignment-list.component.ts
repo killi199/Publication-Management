@@ -8,7 +8,7 @@ import { Assignment } from 'src/app/models/assignment';
     templateUrl: './assignment-list.component.html',
     styleUrls: ['./assignment-list.component.scss'],
 })
-export class AssignmentListComponent extends TableInitsComponent<Assignment> {
+export class AssignmentListComponent extends TableInitsComponent<Assignment> implements OnInit {
     @Input() assignments: Observable<Assignment[]> = new Observable<
         Assignment[]
     >();

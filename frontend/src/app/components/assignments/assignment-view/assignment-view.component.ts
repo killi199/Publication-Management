@@ -5,11 +5,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './assignment-view.component.html',
   styleUrls: ['./assignment-view.component.scss']
 })
-export class AssignmentViewComponent implements OnInit {
+export class AssignmentViewComponent {
 
-  constructor() { }
 
-  ngOnInit(): void {
-  }
 
 }
