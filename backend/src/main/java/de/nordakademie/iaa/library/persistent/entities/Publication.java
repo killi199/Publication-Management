@@ -17,19 +17,19 @@ public class Publication {
     @NotNull
     private String title;
 
-    @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "publication", fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<AuthorsPublications> authorsPublications = new ArrayList<>();
 
     private Date dateOfPublication;
 
     private String publisher;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL} )
     private KindOfPublication kindOfPublication;
 
     private String ISBN;
 
-    @OneToMany(mappedBy = "keyword", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "publication", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<KeywordsPublications> keywordsPublications = new ArrayList<>();
 
     private int quantity;

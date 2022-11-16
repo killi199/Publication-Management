@@ -1,36 +1,50 @@
 package de.nordakademie.iaa.library.persistent.entities.compositeKeys;
 
-import org.hibernate.annotations.Type;
-
-import javax.persistence.Embeddable;
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.UUID;
 
 
 /**
  * Key for combined foreign key to make the many to many relation author and publications unique
  */
-@Embeddable
 public class AuthorPublicationsKey implements Serializable {
-    private String publicationKey;
+    private String publication;
 
-    @Type(type="org.hibernate.type.UUIDCharType")
-    private UUID authorUuid;
+    private UUID author;
 
+    public AuthorPublicationsKey(String publication, UUID author) {
+        this.publication = publication;
+        this.author = author;
+    }
+    public AuthorPublicationsKey() {}
 
     public String getPublicationKey() {
-        return publicationKey;
+        return publication;
     }
 
-    public void setPublicationKey(String publicationKey) {
-        this.publicationKey = publicationKey;
+    public void setPublicationKey(String publication) {
+        this.publication = publication;
     }
 
     public UUID getAuthorUuid() {
-        return authorUuid;
+        return author;
     }
 
-    public void setAuthorUuid(UUID authorUuid) {
-        this.authorUuid = authorUuid;
+    public void setAuthorUuid(UUID author) {
+        this.author = author;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AuthorPublicationsKey that = (AuthorPublicationsKey) o;
+        return publication.equals(that.publication) && author.equals(that.author);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(publication, author);
     }
 }

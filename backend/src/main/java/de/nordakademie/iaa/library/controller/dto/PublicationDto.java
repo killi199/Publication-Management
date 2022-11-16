@@ -1,7 +1,5 @@
 package de.nordakademie.iaa.library.controller.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,7 +23,6 @@ public class PublicationDto {
 
     private KindOfPublicationDto kindOfPublication;
 
-    @JsonProperty("ISBN")
     private String ISBN;
 
     private List<KeywordDto> keywords = new ArrayList<>();

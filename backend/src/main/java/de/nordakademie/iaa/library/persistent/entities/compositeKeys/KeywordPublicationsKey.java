@@ -1,38 +1,52 @@
 package de.nordakademie.iaa.library.persistent.entities.compositeKeys;
 
-import org.hibernate.annotations.Type;
-
-import javax.persistence.Embeddable;
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.UUID;
 
 
 /**
  * Key for combined foreign key to make the many to many relation keyword and publications unique
  */
-@Embeddable
 public class KeywordPublicationsKey implements Serializable {
 
-    private String publicationKey;
+    private String publication;
 
-    @Type(type="org.hibernate.type.UUIDCharType")
-    private UUID keywordUuid;
+    private UUID keyword;
 
-
-    public String getPublicationKey() {
-        return publicationKey;
+    public KeywordPublicationsKey(String publication, UUID keyword) {
+        this.publication = publication;
+        this.keyword = keyword;
     }
 
-    public void setPublicationKey(String publicationKey) {
-        this.publicationKey = publicationKey;
+    public KeywordPublicationsKey() {}
+
+    public String getPublicationKey() {
+        return publication;
+    }
+
+    public void setPublicationKey(String publication) {
+        this.publication = publication;
     }
 
     public UUID getKeywordUuid() {
-        return keywordUuid;
+        return keyword;
     }
 
-    public void setKeywordUuid(UUID keywordUuid) {
-        this.keywordUuid = keywordUuid;
+    public void setKeywordUuid(UUID keyword) {
+        this.keyword = keyword;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        KeywordPublicationsKey that = (KeywordPublicationsKey) o;
+        return publication.equals(that.publication) && keyword.equals(that.keyword);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(publication, keyword);
+    }
 }
