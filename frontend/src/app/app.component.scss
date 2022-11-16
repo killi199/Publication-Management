@@ -1,6 +1,13 @@
-$header-background: #1a70bc;
-$footer-background: rgb(24, 23, 123);
+@import '../theme.scss';
+
+$header-background: $primary;
+$footer-background: $primary;
 $font-color: white;
+
+img{
+    width: 45px;
+    height: 45px;
+} 
 
 .content {
     display: flex;
@@ -13,8 +20,8 @@ $font-color: white;
 
 .main-container {
     position: absolute;
-    top: 100px;
-    bottom: 50px;
+    top: 60px;
+    bottom: 20px;
     left: 0;
     right: 0;
 }
@@ -30,14 +37,20 @@ mat-list-item {
 
 button {
     width: 100%;
+    display: flex;
+}
+
+mat-icon{
+    margin-right: 10px;
 }
 
 .header {
-    padding: 60px;
-    text-align: center;
+    display: flex;
+    padding: 15px;
     background: $header-background;
     color: $font-color;
 }
+
 
 .footer {
     position: fixed;

@@ -1,23 +1,38 @@
 <div class="header">
+    <img src="/assets/picsvg_download.svg">
     <h1>NORDAKADEMIE - Bibliotheksverwaltung</h1>
 </div>
 
 <mat-sidenav-container class="main-container">
-    <mat-sidenav mode="side" class="sidenav" opened>
+    <mat-sidenav mode="side" opened>
         <mat-list class="list">
             <mat-list-item>
-                <button mat-raised-button color="basic" [routerLink]="'/dunning'">Mahnwesen</button>
+                <button mat-icon-button color="basic" [routerLink]="'/dunning'">
+                    <mat-icon>running_with_errors</mat-icon>
+                    Mahnwesen
+                </button>
             </mat-list-item>
             <mat-list-item>
-                <button mat-raised-button color="primary" [routerLink]="'/publications'">Publikationen</button>
+                <button
+                    mat-icon-button
+                    color="primary"
+                    [routerLink]="'/publications'"
+                >
+                    <mat-icon>menu_book</mat-icon>
+                    Publikationen
+                </button>
             </mat-list-item>
             <mat-list-item>
-                <button mat-raised-button color="accent">
+                <button mat-icon-button color="accent">
+                    <mat-icon>assignment</mat-icon>
                     Ausleihvorgänge
                 </button>
             </mat-list-item>
             <mat-list-item>
-                <button mat-raised-button color="warn" [routerLink]="'/basedata'">Stammdaten</button>
+                <button mat-icon-button color="warn" [routerLink]="'/basedata'">
+                    <mat-icon>storage</mat-icon>
+                    Stammdaten
+                </button>
             </mat-list-item>
         </mat-list>
     </mat-sidenav>
