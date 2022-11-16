@@ -7,7 +7,7 @@ import {
     Output,
     ViewChild,
 } from '@angular/core';
-import { FormControl, NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { map, Observable, startWith } from 'rxjs';
 import { Keyword } from 'src/app/models/keyword';
 import { Publication } from 'src/app/models/publication';
@@ -23,9 +23,6 @@ import { Author } from 'src/app/models/author';
     styleUrls: ['./publication-view.component.scss'],
 })
 export class PublicationViewComponent implements OnInit {
-    @ViewChild('form')
-    form!: NgForm;
-
     @ViewChild('keywordInput')
     keywordInput!: ElementRef<HTMLInputElement>;
 
@@ -50,17 +47,21 @@ export class PublicationViewComponent implements OnInit {
     @Output()
     savePublication = new EventEmitter<Publication>();
 
-    editable: boolean = false;
-
     savedPublication: Publication = new Publication();
 
     separatorKeysCodes: number[] = [ENTER, COMMA];
 
-    keywordControl = new FormControl<string | Keyword>('');
-
-    authorControl = new FormControl<string | Author>('');
-
-    kindOfPublicationControl = new FormControl<string | KindOfPublication>('');
+    formGroup = new FormGroup({
+        key: new FormControl<string>(''),
+        title: new FormControl<string>(''),
+        authors: new FormControl<string | Author>(''),
+        isbn: new FormControl<string>(''),
+        quantity: new FormControl<number>(0),
+        publisher: new FormControl<string>(''),
+        dateOfPublication: new FormControl<Date>(new Date()),
+        kindsOfPublication: new FormControl<string | KindOfPublication>(''),
+        keywords: new FormControl<string | Keyword>(''),
+    });
 
     filteredKeywords: Observable<Keyword[]> = new Observable<Keyword[]>();
 
@@ -71,9 +72,8 @@ export class PublicationViewComponent implements OnInit {
 
     ngOnInit(): void {
         if (this.publication) {
+            this.formGroup.disable();
             this.savedPublication = structuredClone(this.publication);
-        } else {
-            this.editable = true;
         }
 
         this._reloadView();
@@ -84,9 +84,11 @@ export class PublicationViewComponent implements OnInit {
     }
 
     onSubmit(): void {
-        if (!this.form.valid) return;
+        if (!this.formGroup.valid) return;
 
-        const kindOfPublication = this.kindOfPublicationControl.value;
+        console.log(this.formGroup.value);
+
+        const kindOfPublication = this.formGroup.get('kindsOfPublication')!.value;
 
         if (kindOfPublication) {
             this._setValueToKindOfPublication(kindOfPublication);
@@ -96,17 +98,17 @@ export class PublicationViewComponent implements OnInit {
 
         this.savedPublication = structuredClone(this.publication);
         this.savePublication.emit(this.publication);
-        this.editable = false;
+        this.formGroup.disable();
     }
 
     onCancel(): void {
-        this.editable = false;
+        this.formGroup.disable();
         this.publication = structuredClone(this.savedPublication);
         this._reloadView();
     }
 
     onEdit(): void {
-        this.editable = true;
+        this.formGroup.enable();
     }
 
     removeKeyword(keyword: Keyword): void {
@@ -144,7 +146,9 @@ export class PublicationViewComponent implements OnInit {
         }
 
         event.chipInput!.clear();
-        this.keywordControl.setValue('');
+        this.formGroup.patchValue({
+            keywords: '',
+        });
     }
 
     addAuthor(event: MatChipInputEvent): void {
@@ -163,14 +167,18 @@ export class PublicationViewComponent implements OnInit {
         }
 
         event.chipInput!.clear();
-        this.authorControl.setValue('');
+        this.formGroup.patchValue({
+            authors: '',
+        });
     }
 
     selectedKeyword(event: MatAutocompleteSelectedEvent): void {
         if (this.publication.keywords) {
             this.publication.keywords.push(event.option.value);
             this.keywordInput.nativeElement.value = '';
-            this.keywordControl.setValue('');
+            this.formGroup.patchValue({
+                keywords: '',
+            });
         }
     }
 
@@ -178,7 +186,9 @@ export class PublicationViewComponent implements OnInit {
         if (this.publication.author) {
             this.publication.author.push(event.option.value);
             this.authorInput.nativeElement.value = '';
-            this.authorControl.setValue('');
+            this.formGroup.patchValue({
+                authors: '',
+            });
         }
     }
 
@@ -223,7 +233,7 @@ export class PublicationViewComponent implements OnInit {
     }
 
     private _reloadView(): void {
-        this.filteredKeywords = this.keywordControl.valueChanges.pipe(
+        this.filteredKeywords = this.formGroup.get('keywords')!.valueChanges.pipe(
             startWith(''),
             map((keyword) => {
                 const value =
@@ -234,7 +244,7 @@ export class PublicationViewComponent implements OnInit {
             })
         );
 
-        this.filteredAuthors = this.authorControl.valueChanges.pipe(
+        this.filteredAuthors = this.formGroup.get('authors')!.valueChanges.pipe(
             startWith(''),
             map((author) => {
                 let value = '';
@@ -252,7 +262,7 @@ export class PublicationViewComponent implements OnInit {
         );
 
         this.filteredKindsOfPublication =
-            this.kindOfPublicationControl.valueChanges.pipe(
+            this.formGroup.get('kindsOfPublication')!.valueChanges.pipe(
                 startWith(''),
                 map((kindOfPublication) => {
                     const value =
@@ -269,9 +279,9 @@ export class PublicationViewComponent implements OnInit {
             this.publication.kindsOfPublication &&
             this.publication.kindsOfPublication[0]
         ) {
-            this.kindOfPublicationControl.setValue(
-                this.publication.kindsOfPublication[0]
-            );
+            this.formGroup.patchValue({
+                kindsOfPublication: this.publication.kindsOfPublication[0],
+            });
         }
     }
 
