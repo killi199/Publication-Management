@@ -10,6 +10,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AssignmentListComponent } from '../../assignments/assignment-list/assignment-list.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
 
 describe('PublicationViewComponent', () => {
     let component: PublicationViewComponent;
@@ -29,8 +32,10 @@ describe('PublicationViewComponent', () => {
                 MatIconModule,
                 BrowserAnimationsModule,
                 MatSnackBarModule,
+                MatPaginatorModule,
+                MatTableModule,
             ],
-            declarations: [PublicationViewComponent],
+            declarations: [PublicationViewComponent, AssignmentListComponent],
         }).compileComponents();
 
         fixture = TestBed.createComponent(PublicationViewComponent);
