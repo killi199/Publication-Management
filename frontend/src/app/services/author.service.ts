@@ -23,7 +23,7 @@ export class AuthorService {
     create(author: Author) {
         this.authors.push(author);
     }
-    
+
     delete(author: Author) {
         const index = this.authors.indexOf(author);
         if (index !== -1) {
@@ -36,9 +36,10 @@ export class AuthorService {
     }
 
     private generateAllAuthors(): Author[] {
-        let test1 = new Author('3111', 'Fritz', 'Schmidt');
-        let test2 = new Author('3112', 'Max', 'Mustermann');
-        let test3 = new Author('3113', 'Hans', 'Wurst');
-        return [test1, test2, test3];
+        return [
+            { uuid: '1', name: 'Fritz', surname: 'Schmidt' },
+            { uuid: '2', name: 'Max', surname: 'Mustermann' },
+            { uuid: '3', name: 'Hans', surname: 'Wurst' },
+        ];
     }
 }

@@ -156,10 +156,9 @@ export class PublicationViewComponent implements OnInit {
         if (filteredAuthors.length === 1) {
             authors.push(filteredAuthors[0]);
         } else {
-            const author = new Author();
-            author.surname = value.split(' ')[0];
-            author.name = value.split(' ')[1];
-            authors.push(author);
+            const surname = value.split(' ')[0];
+            const name = value.split(' ')[1];
+            authors.push({ surname: surname, name: name });
         }
 
         event.chipInput!.clear();
