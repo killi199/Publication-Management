@@ -4,14 +4,14 @@ import { KindOfPublication } from './kind-of-publication';
 
 export class Publication {
     constructor(
-        public key?: string,
-        public title?: string,
-        public authors?: Author[],
-        public dateOfPublication?: Date,
-        public publisher?: string,
-        public kindOfPublication?: KindOfPublication,
-        public isbn?: string,
-        public keywords?: Keyword[],
-        public quantity?: number
+        public key?: string | null,
+        public title?: string | null,
+        public authors?: Author[] | null,
+        public dateOfPublication?: Date | null,
+        public publisher?: string | null,
+        public kindOfPublication?: KindOfPublication | null,
+        public isbn?: string | null,
+        public keywords?: Keyword[] | null,
+        public quantity?: number | null
     ) {}
 }

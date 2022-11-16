@@ -82,30 +82,19 @@ export class PublicationViewComponent implements OnInit {
     }
 
     onDeletePublication(): void {
-        this.deletePublication.emit(this.publication);
+        this.deletePublication.emit(this.formGroup.value);
     }
 
     onSubmit(): void {
         if (!this.formGroup.valid) return;
 
-        console.log(this.formGroup.value);
-
-        const kindOfPublication =
-            this.formGroup.get('kindsOfPublication')!.value;
-
-        if (kindOfPublication) {
-            this._setValueToKindOfPublication(kindOfPublication);
-        } else {
-            this.publication.kindOfPublication = undefined;
-        }
-
-        this.savePublication.emit(this.publication);
+        this.savePublication.emit(this.formGroup.value);
         this.formGroup.disable();
     }
 
     onCancel(): void {
         this.formGroup.disable();
-        this.formGroup.reset();
+        this.formGroup.patchValue(this.publication);
         this._reloadView();
     }
 
@@ -114,37 +103,38 @@ export class PublicationViewComponent implements OnInit {
     }
 
     removeKeyword(keyword: Keyword): void {
-        if (this.publication.keywords) {
-            const index = this.publication.keywords.indexOf(keyword);
+        const keywords = this.formGroup.get('keywords')?.value;
+        if (!keywords) return;
 
-            if (index >= 0) {
-                this.publication.keywords?.splice(index, 1);
-            }
+        const index = keywords.indexOf(keyword);
+        if (index >= 0) {
+            keywords.splice(index, 1);
         }
     }
 
     removeAuthor(author: Author): void {
-        if (this.publication.authors) {
-            const index = this.publication.authors.indexOf(author);
+        const authors = this.formGroup.get('authors')?.value;
+        if (!authors) return;
 
-            if (index >= 0) {
-                this.publication.authors?.splice(index, 1);
-            }
+        const index = authors.indexOf(author);
+        if (index >= 0) {
+            authors.splice(index, 1);
         }
     }
 
     addKeyword(event: MatChipInputEvent): void {
-        if (!this.publication.keywords) return;
+        const keywords = this.formGroup.get('keywords')?.value;
+        if (!keywords) return;
 
         const value = (event.value || '').trim();
-
-        const keywords = this._filterKeywords(value as string);
-        if (keywords.length === 1) {
-            this.publication.keywords.push(keywords[0]);
+        const filteredKeywords = this._filterKeywords(value as string);
+        
+        if (filteredKeywords.length === 1) {
+            keywords.push(filteredKeywords[0]);
         } else {
             const keyword = new Keyword();
             keyword.value = value;
-            this.publication.keywords.push(keyword);
+            keywords.push(keyword);
         }
 
         event.chipInput!.clear();
@@ -152,18 +142,19 @@ export class PublicationViewComponent implements OnInit {
     }
 
     addAuthor(event: MatChipInputEvent): void {
-        if (!this.publication.authors) return;
+        const authors = this.formGroup.get('authors')?.value;
+        if (!authors) return;
 
         const value = (event.value || '').trim();
-        const authors = this._filterAuthors(value as string);
+        const filteredAuthors = this._filterAuthors(value as string);
 
-        if (authors.length === 1) {
-            this.publication.authors.push(authors[0]);
+        if (filteredAuthors.length === 1) {
+            authors.push(filteredAuthors[0]);
         } else {
             const author = new Author();
             author.surname = value.split(' ')[0];
             author.name = value.split(' ')[1];
-            this.publication.authors.push(author);
+            authors.push(author);
         }
 
         event.chipInput!.clear();
@@ -171,19 +162,21 @@ export class PublicationViewComponent implements OnInit {
     }
 
     selectedKeyword(event: MatAutocompleteSelectedEvent): void {
-        if (this.publication.keywords) {
-            this.publication.keywords.push(event.option.value);
-            this.keywordInput.nativeElement.value = '';
-            this.keywordControl.setValue('');
-        }
+        const keywords = this.formGroup.get('keywords')?.value;
+        if (!keywords) return;
+
+        keywords.push(event.option.value);
+        this.keywordInput.nativeElement.value = '';
+        this.keywordControl.setValue('');
     }
 
     selectedAuthor(event: MatAutocompleteSelectedEvent): void {
-        if (this.publication.authors) {
-            this.publication.authors.push(event.option.value);
-            this.authorInput.nativeElement.value = '';
-            this.authorControl.setValue('');
-        }
+        const authors = this.formGroup.get('authors')?.value;
+        if (!authors) return;
+
+        authors.push(event.option.value);
+        this.authorInput.nativeElement.value = '';
+        this.authorControl.setValue('');
     }
 
     displayKindOfPublication(kindOfPublication: KindOfPublication): string {
@@ -269,24 +262,5 @@ export class PublicationViewComponent implements OnInit {
                         : this.allKindsOfPublication.slice();
                 })
             );
-
-        if (
-            this.publication.kindOfPublication
-        ) {
-            this.formGroup.patchValue({
-                kindsOfPublication: this.publication.kindOfPublication,
-            });
-        }
-    }
-
-    private _setValueToKindOfPublication(
-        value: string | KindOfPublication
-    ): void {
-        if (typeof value === 'string') {
-            this.publication.kindOfPublication = new KindOfPublication();
-            this.publication.kindOfPublication.value = value;
-        } else {
-            this.publication.kindOfPublication = value;
-        }
     }
 }
