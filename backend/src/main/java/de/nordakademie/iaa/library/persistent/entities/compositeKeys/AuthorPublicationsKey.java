@@ -23,7 +23,7 @@ public class AuthorPublicationsKey implements Serializable {
         return publication;
     }
 
-    public void setPublicationKey(String publicationKey) {
+    public void setPublicationKey(String publication) {
         this.publication = publication;
     }
 
