@@ -47,8 +47,6 @@ export class PublicationViewComponent implements OnInit {
     @Output()
     savePublication = new EventEmitter<Publication>();
 
-    savedPublication: Publication = new Publication();
-
     separatorKeysCodes: number[] = [ENTER, COMMA];
 
     formGroup = new FormGroup({
@@ -73,7 +71,6 @@ export class PublicationViewComponent implements OnInit {
     ngOnInit(): void {
         if (this.publication) {
             this.formGroup.disable();
-            this.savedPublication = structuredClone(this.publication);
         }
 
         this._reloadView();
@@ -96,14 +93,13 @@ export class PublicationViewComponent implements OnInit {
             this.publication.kindsOfPublication = undefined;
         }
 
-        this.savedPublication = structuredClone(this.publication);
         this.savePublication.emit(this.publication);
         this.formGroup.disable();
     }
 
     onCancel(): void {
         this.formGroup.disable();
-        this.publication = structuredClone(this.savedPublication);
+        this.formGroup.reset();
         this._reloadView();
     }
 
