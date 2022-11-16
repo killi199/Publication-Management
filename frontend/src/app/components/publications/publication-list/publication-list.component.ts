@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TableInitsComponent } from 'src/app/helpers/table-inits';
 import { Publication } from 'src/app/models/publication';
@@ -8,7 +8,7 @@ import { Publication } from 'src/app/models/publication';
     templateUrl: './publication-list.component.html',
     styleUrls: ['./publication-list.component.scss'],
 })
-export class PublicationListComponent extends TableInitsComponent<Publication> {
+export class PublicationListComponent extends TableInitsComponent<Publication> implements OnInit {
     @Input() publications: Observable<Publication[]> = new Observable<
         Publication[]
     >();
