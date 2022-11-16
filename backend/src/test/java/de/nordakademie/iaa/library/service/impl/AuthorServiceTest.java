@@ -52,8 +52,8 @@ class AuthorServiceTest {
     }
 
     @Test
-    void create_nullValue_throwsMissingFieldException() {
-        authorDto.setUuid(null);
+    void create_nullName_throwsMissingFieldException() {
+        authorDto.setName(null);
 
         assertThrows(MissingFieldException.class, () -> this.authorService.create(authorDto));
         verify(authorRepository, times(0)).existsById(any());
@@ -85,7 +85,7 @@ class AuthorServiceTest {
     }
 
     @Test
-    void update_nullTitle_throwsMissingFieldException() {
+    void update_nullName_throwsMissingFieldException() {
         UUID uuid = UUID.randomUUID();
 
         authorDto.setUuid(uuid);
