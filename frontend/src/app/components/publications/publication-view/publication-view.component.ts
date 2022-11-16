@@ -16,6 +16,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { KindOfPublication } from 'src/app/models/kind-of-publication';
 import { Author } from 'src/app/models/author';
+import { Snackbar } from 'src/app/helpers/snackbar';
 
 @Component({
     selector: 'app-publication-view',
@@ -75,6 +76,8 @@ export class PublicationViewComponent implements OnInit {
     filteredKindsOfPublication: Observable<KindOfPublication[]> =
         new Observable<KindOfPublication[]>();
 
+    constructor(private snackBar: Snackbar) {}
+
     ngOnInit(): void {
         if (this.publication) {
             this.formGroup.disable();
@@ -86,12 +89,23 @@ export class PublicationViewComponent implements OnInit {
 
     onDeletePublication(): void {
         this.deletePublication.emit(this.formGroup.value);
+        this.snackBar.open(this.formGroup.get('title')?.value + ' deleted!');
     }
 
     onSubmit(): void {
         if (!this.formGroup.valid) return;
 
         this.savePublication.emit(this.formGroup.value);
+        if (this.addingPublication) {
+            this.snackBar.open(
+                this.formGroup.get('title')?.value + ' created!'
+            );
+        } else {
+            this.snackBar.open(
+                this.formGroup.get('title')?.value + ' updated!'
+            );
+        }
+
         this.formGroup.disable();
     }
 
@@ -103,6 +117,7 @@ export class PublicationViewComponent implements OnInit {
             this.formGroup.reset();
         }
         this._reloadView();
+        this.snackBar.open('Nothing changed!');
     }
 
     onEdit(): void {
@@ -139,7 +154,7 @@ export class PublicationViewComponent implements OnInit {
         if (filteredKeywords.length === 1) {
             keywords.push(filteredKeywords[0]);
         } else {
-            keywords.push({ value: value});
+            keywords.push({ value: value });
         }
 
         event.chipInput!.clear();
