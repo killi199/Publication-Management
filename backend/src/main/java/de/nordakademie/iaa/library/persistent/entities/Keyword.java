@@ -1,5 +1,6 @@
 package de.nordakademie.iaa.library.persistent.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,6 +15,7 @@ public class Keyword {
     @GeneratedValue
     private UUID uuid;
 
+    @Column(unique = true)
     private String value;
 
     public UUID getUuid() {

@@ -100,7 +100,7 @@ class PublicationServiceTest {
         publicationDto.setKey(null);
 
         assertThrows(MissingFieldException.class, () -> this.publicationService.update(publicationDto));
-        verify(publicationRepository, times(0)).existsById("test");
+        verify(publicationRepository, times(0)).existsById(any());
     }
 
     @Test
