@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Assignment } from 'src/app/models/assignment';
 import { Author } from 'src/app/models/author';
 import { Keyword } from 'src/app/models/keyword';
 import { KindOfPublication } from 'src/app/models/kind-of-publication';
 import { Publication } from 'src/app/models/publication';
+import { AssignmentService } from 'src/app/services/assignment.service';
 import { AuthorService } from 'src/app/services/author.service';
 import { KeywordService } from 'src/app/services/keyword.service';
 import { KindOfPublicationService } from 'src/app/services/kind-of-publication.service';
@@ -16,6 +18,7 @@ import { PublicationService } from 'src/app/services/publication.service';
 })
 export class PublicationsComponent implements OnInit {
     publications: Observable<Publication[]>;
+    assignments: Observable<Assignment[]> = new Observable<Assignment[]>();
     keywords: Keyword[] = [];
     authors: Author[] = [];
     kindsOfPublication: KindOfPublication[] = [];
@@ -27,7 +30,8 @@ export class PublicationsComponent implements OnInit {
         private publicationService: PublicationService,
         private keywordService: KeywordService,
         private kindOfPublicationService: KindOfPublicationService,
-        private authorService: AuthorService
+        private authorService: AuthorService,
+        private assignmentService: AssignmentService
     ) {
         this.publications = publicationService.listAllPublications();
     }
@@ -49,6 +53,11 @@ export class PublicationsComponent implements OnInit {
 
     onSelectPublication(publication: Publication): void {
         this.currentPublication = publication;
+
+        const key = publication.key;
+        if(key){
+            this.assignments = this.assignmentService.loadAssignments(key);
+        }
     }
 
     onEditPublication(): void {

@@ -17,6 +17,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { KindOfPublication } from 'src/app/models/kind-of-publication';
 import { Author } from 'src/app/models/author';
 import { Snackbar } from 'src/app/helpers/snackbar';
+import { Assignment } from 'src/app/models/assignment';
 
 @Component({
     selector: 'app-publication-view',
@@ -44,6 +45,9 @@ export class PublicationViewComponent implements OnInit {
 
     @Input()
     addingPublication?: boolean;
+
+    @Input()
+    assignments: Observable<Assignment[]> = new Observable<Assignment[]>();
 
     @Output()
     deletePublication = new EventEmitter<Publication>();
@@ -117,6 +121,7 @@ export class PublicationViewComponent implements OnInit {
 
     onEdit(): void {
         this.formGroup.enable();
+        this.formGroup.get('key')?.disable();
     }
 
     removeKeyword(keyword: Keyword): void {
