@@ -4,14 +4,17 @@ table {
 
 .container {
     width: 100%;
+    overflow: auto;
     height: 400px;
+    display: flex;
+    flex-direction: column;
 }
 
 th {
     font-size: larger;
 }
 
-tr{
+tr {
     vertical-align: top;
 }
 
@@ -33,6 +36,10 @@ tr{
     background-color: rgb(170, 170, 170);
 }
 
+.mat-row.disabled {
+    pointer-events: none;
+}
+
 .mat-paginator-sticky {
     bottom: 0px;
     position: sticky;
@@ -42,4 +49,33 @@ tr{
 .mat-form-field {
     font-size: 14px;
     width: 100%;
+}
+
+.form-container {
+    width: 99%;
+    margin: 5px;
+    text-align: right;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 10px;
+}
+
+.btn-container {
+    width: 99%;
+    margin: 5px;
+    text-align: right;
+    display: flex;
+    margin-left: 10px;
+}
+
+button {
+    margin: 5px;
+}
+
+form {
+    width: 100%;
+}
+
+.add-btn {
+    margin-right: 20px;
 }

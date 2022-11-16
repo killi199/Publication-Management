@@ -1,0 +1,19 @@
+<div class="page">
+    <div class="header-div">
+        <h1>Ausleihvorgänge Übersicht</h1>
+    </div>
+
+    <app-assignment-list [assignments]="assignments"></app-assignment-list>
+
+    <div class="button-container">
+        <button matTooltip="edit selection" mat-mini-fab color="primary">
+            <mat-icon>edit</mat-icon>
+        </button>
+
+        <button mat-mini-fab matTooltip="add publication" color="primary">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+
+    <app-assignment-view *ngIf="false"></app-assignment-view>
+</div>

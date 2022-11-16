@@ -1,0 +1,30 @@
+.page {
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid;
+}
+
+.header-div {
+    margin-bottom: 5px;
+    margin-top: 5px;
+    border-bottom: 1px solid;
+}
+
+h1{
+    font-size: 40px;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 99%;
+    margin: 5px;
+}
+
+button {
+    margin: 5px;
+}

@@ -661,9 +661,9 @@ components:
       properties:
         key:
           type: string
-        titel:
+        title:
           type: string
-        author:
+        authors:
           type: array
           items:
             $ref: '#/components/schemas/Author'
@@ -672,7 +672,7 @@ components:
           format: date-time
         publisher:
           type: string
-        kindsOfPublication:
+        kindOfPublication:
           $ref: '#/components/schemas/KindOfPublication'
         ISBN:
           type: string

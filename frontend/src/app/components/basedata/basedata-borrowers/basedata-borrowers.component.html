@@ -1,12 +1,7 @@
-<div class="mat-elevation-z8 container">
+<div class="container">
     <mat-form-field appearance="standard">
         <mat-label>Filter</mat-label>
-        <input
-            matInput
-            (keyup)="applyFilter($event)"
-            placeholder="Ex. Max"
-            #input
-        />
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Max" />
     </mat-form-field>
 
     <table mat-table [dataSource]="dataSource" matSort>
@@ -25,7 +20,9 @@
         </ng-container>
 
         <ng-container matColumnDef="studentnumber">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Studentnumber</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Studentnumber
+            </th>
             <td mat-cell *matCellDef="let element">
                 {{ element.studentnumber }}
             </td>
@@ -38,9 +35,11 @@
         <tr
             mat-row
             (click)="selection.toggle(row)"
+            (click)="selectionChanged(row)"
             [ngClass]="{
                 hovered: row.hovered,
-                highlighted: selection.isSelected(row)
+                highlighted: selection.isSelected(row),
+                disabled: crudState === 'create' || crudState === 'update'
             }"
             (mouseover)="row.hovered = true"
             (mouseout)="row.hovered = false"
@@ -54,4 +53,92 @@
         class="mat-paginator-sticky"
     >
     </mat-paginator>
+</div>
+
+<div class="form-container">
+    <mat-form-field appearance="fill">
+        <mat-label>Surname</mat-label>
+        <input
+            id="input-surname"
+            [disabled]="crudState === 'read'"
+            matInput
+            placeholder="Ex. Mustermann"
+            [value]="selectedRecord?.surname || ''"
+        />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input
+            id="input-name"
+            [disabled]="crudState === 'read'"
+            matInput
+            placeholder="Ex. Max"
+            [value]="selectedRecord?.name || ''"
+        />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Studentnumber</mat-label>
+        <input
+            id="input-studentnumber"
+            [disabled]="crudState === 'read'"
+            matInput
+            placeholder="Ex. 9123"
+            [value]="selectedRecord?.studentnumber || ''"
+        />
+    </mat-form-field>
+
+    <div class="btn-container">
+        <button
+            matTooltip="edit selection"
+            (click)="onEdit()"
+            [disabled]="selectedRecord?.studentnumber === null"
+            *ngIf="crudState === 'read'"
+            mat-mini-fab
+            color="primary"
+        >
+            <mat-icon>edit</mat-icon>
+        </button>
+
+        <button
+            mat-mini-fab
+            matTooltip="save changes"
+            *ngIf="crudState === 'create' || crudState === 'update'"
+            (click)="onSave()"
+            color="primary"
+        >
+            <mat-icon>done</mat-icon>
+        </button>
+
+        <button
+            mat-mini-fab
+            matTooltip="delete borrower"
+            [disabled]="selectedRecord?.studentnumber === null"
+            *ngIf="crudState === 'read'"
+            color="warn"
+            (click)="onDelete(selectedRecord?.studentnumber!)"
+        >
+            <mat-icon>delete</mat-icon>
+        </button>
+
+        <button
+            mat-mini-fab
+            matTooltip="undo changes"
+            (click)="onUndo()"
+            *ngIf="crudState === 'create' || crudState === 'update'"
+            color="primary"
+        >
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <button
+        class="add-btn"
+        mat-mini-fab
+        matTooltip="add borrower"
+        color="primary"
+        (click)="onAdd()"
+        *ngIf="crudState === 'read'"
+    >
+        <mat-icon>add</mat-icon>
+    </button>
 </div>

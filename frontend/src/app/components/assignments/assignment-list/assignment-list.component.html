@@ -1,0 +1,73 @@
+<div class="container">
+    <mat-form-field appearance="standard">
+        <mat-label>Filter</mat-label>
+        <input
+            matInput
+            (keyup)="applyFilter($event)"
+            placeholder="Ex. Mustermann"
+            #input
+        />
+    </mat-form-field>
+    <table mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="publicationKey">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Pub-Key</th>
+            <td mat-cell *matCellDef="let element">{{ element.publicationKey }}</td>
+        </ng-container>
+        
+        <ng-container matColumnDef="surname">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Vorname</th>
+            <td mat-cell *matCellDef="let element">{{ element.borrower.surname }}</td>
+        </ng-container>
+        
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nachname</th>
+            <td mat-cell *matCellDef="let element">{{ element.borrower.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="studentnumber">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Matrikelnummer</th>
+            <td mat-cell *matCellDef="let element">{{ element.borrower.studentnumber }}</td>
+        </ng-container>    
+
+        <ng-container matColumnDef="dateOfAssignment">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Ausleihdatum
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.dateOfAssignment | date: "shortDate" }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dateOfReturn">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Rückgabedatum
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.dateOfReturn | date: "shortDate" }}
+            </td>
+        </ng-container>
+
+        <tr
+            mat-header-row
+            *matHeaderRowDef="displayedColumns; sticky: true"
+        ></tr>
+        <tr
+            mat-row
+            (click)="selection.toggle(row)"
+            [ngClass]="{
+                hovered: row.hovered,
+                highlighted: selection.isSelected(row)
+            }"
+            (mouseover)="row.hovered = true"
+            (mouseout)="row.hovered = false"
+            *matRowDef="let row; columns: displayedColumns"
+        ></tr>
+    </table>
+
+    <mat-paginator
+        [pageSizeOptions]="[10, 25, 50, dataSource.data.length]"
+        showFirstLastButtons
+        class="mat-paginator-sticky"
+    >
+    </mat-paginator>
+</div>

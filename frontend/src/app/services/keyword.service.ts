@@ -16,6 +16,23 @@ export class KeywordService {
         return of(this.keywords);
     }
 
+    update(keyword: Keyword) {
+        const index = this.keywords.map((k) => k.uuid).indexOf(keyword.uuid);
+        if (index !== -1) {
+            this.keywords.splice(index, 1);
+            this.keywords.splice(index, 0, keyword);
+        }
+    }
+    create(keyword: Keyword) {
+        this.keywords.push(keyword);
+    }
+    delete(keyword: Keyword) {
+        const index = this.keywords.indexOf(keyword);
+        if (index !== -1) {
+            this.keywords.splice(index, 1);
+        }
+    }
+
     private generateAllKeywords(): Keyword[] {
         let test1 = new Keyword('1', 'Test1');
         let test2 = new Keyword('2', 'Test2');

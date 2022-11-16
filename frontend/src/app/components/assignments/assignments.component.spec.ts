@@ -1,34 +1,39 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BasedataKeywordsComponent } from './basedata-keywords.component';
+import { AssignmentListComponent } from './assignment-list/assignment-list.component';
+import { AssignmentViewComponent } from './assignment-view/assignment-view.component';
 
-describe('BasedataKeywordsComponent', () => {
-    let component: BasedataKeywordsComponent;
-    let fixture: ComponentFixture<BasedataKeywordsComponent>;
+import { AssignmentsComponent } from './assignments.component';
+
+describe('AssignmentsComponent', () => {
+    let component: AssignmentsComponent;
+    let fixture: ComponentFixture<AssignmentsComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [
-                MatPaginatorModule,
+                HttpClientModule,
                 MatTableModule,
                 MatFormFieldModule,
                 MatInputModule,
-                BrowserAnimationsModule,
-                MatSnackBarModule,
                 MatIconModule,
-                FormsModule,
+                MatPaginatorModule,
+                BrowserAnimationsModule,
             ],
-            declarations: [BasedataKeywordsComponent],
+            declarations: [
+                AssignmentsComponent,
+                AssignmentListComponent,
+                AssignmentViewComponent,
+            ],
         }).compileComponents();
 
-        fixture = TestBed.createComponent(BasedataKeywordsComponent);
+        fixture = TestBed.createComponent(AssignmentsComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
