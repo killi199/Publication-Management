@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { Observable } from 'rxjs';
 import { Snackbar } from 'src/app/helpers/snackbar';
 import { TableInitsComponent } from 'src/app/helpers/table-inits';
 import { CrudState } from 'src/app/models/crud-state';
@@ -11,10 +12,17 @@ export abstract class CrudComponent<T>
     extends TableInitsComponent<T>
     implements OnInit
 {
-    @Input() data: T[] = [];
-    @Output() delete = new EventEmitter<T>();
-    @Output() create = new EventEmitter<T>();
-    @Output() update = new EventEmitter<T>();
+    @Input() 
+    data: Observable<T[]> = new Observable<T[]>();
+
+    @Output() 
+    delete = new EventEmitter<T>();
+
+    @Output() 
+    create = new EventEmitter<T>();
+
+    @Output() 
+    update = new EventEmitter<T>();
 
     crudState: CrudState = CrudState.Read;
     selectedRecord?: T;
@@ -24,7 +32,11 @@ export abstract class CrudComponent<T>
     }
 
     ngOnInit(): void {
-        this.dataSource = new MatTableDataSource(this.data);
+        this.data.subscribe((data) => {
+            this.dataSource.data = data;
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+        });
     }
 
     selectionChanged(selection: T): void {
@@ -44,7 +56,8 @@ export abstract class CrudComponent<T>
                 : this._emitUpdate(recordToSave);
 
         this.snackBar.open(messageType);
-        this.dataSource = new MatTableDataSource(this.data);
+        // Update Verhalten muss gefixt werden. Am besten in dem subscribe des CRUD Operators
+        // this.dataSource = new MatTableDataSource(this.data);
         this.crudState = CrudState.Read;
         this._clearInputFields();
     }
@@ -59,7 +72,8 @@ export abstract class CrudComponent<T>
 
     onDelete(nameOfRecord: string): void {
         this.delete.emit(this.selectedRecord);
-        this.dataSource = new MatTableDataSource(this.data);
+        // Update Verhalten muss gefixt werden. Am besten in dem subscribe des CRUD Operators
+        // this.dataSource = new MatTableDataSource(this.data);
         this.selectedRecord = undefined;
         this.snackBar.open(nameOfRecord + ' deleted!');
     }

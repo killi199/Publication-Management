@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Author } from 'src/app/models/author';
 import { Borrower } from 'src/app/models/borrower';
@@ -8,7 +8,6 @@ import { AuthorService } from 'src/app/services/author.service';
 import { BorrowerService } from 'src/app/services/borrower.service';
 import { KeywordService } from 'src/app/services/keyword.service';
 import { KindOfPublicationService } from 'src/app/services/kind-of-publication.service';
-import { PublicationService } from 'src/app/services/publication.service';
 
 @Component({
     selector: 'app-basedata',
@@ -16,10 +15,10 @@ import { PublicationService } from 'src/app/services/publication.service';
     styleUrls: ['./basedata.component.scss'],
 })
 export class BasedataComponent {
-    kindOfPubs$: Observable<KindOfPublication[]>;
-    keywords$: Observable<Keyword[]>;
-    authors$: Observable<Author[]>;
-    borrowers$: Observable<Borrower[]>;
+    kindOfPubs: Observable<KindOfPublication[]>;
+    keywords: Observable<Keyword[]>;
+    authors: Observable<Author[]>;
+    borrowers: Observable<Borrower[]>;
 
     constructor(
         private kindOfPubService: KindOfPublicationService,
@@ -27,10 +26,10 @@ export class BasedataComponent {
         private borrowerService: BorrowerService,
         private authorService: AuthorService
     ) {
-        this.kindOfPubs$ = kindOfPubService.loadAllKindsOfPublication();
-        this.keywords$ = keywordService.loadAllKeywords();
-        this.authors$ = authorService.listAllAuthors();
-        this.borrowers$ = borrowerService.loadAllBorrowers();
+        this.kindOfPubs = kindOfPubService.loadAllKindsOfPublication();
+        this.keywords = keywordService.loadAllKeywords();
+        this.authors = authorService.listAllAuthors();
+        this.borrowers = borrowerService.loadAllBorrowers();
     }
 
     onDeleteKindOfPublication(kindOfPublication: KindOfPublication) {
@@ -70,14 +69,14 @@ export class BasedataComponent {
     }
 
     onDeleteAuthor(author: Author) {
-        this.authorService.deleteAuthor(author);
+        this.authorService.deleteAuthor(author).subscribe();
     }
 
     onCreateAuthor(author: Author) {
-        this.authorService.saveAuthor(author);
+        this.authorService.saveAuthor(author).subscribe();
     }
 
     onUpdateAuthor(author: Author) {
-        this.authorService.updateAuthor(author);
+        this.authorService.updateAuthor(author).subscribe();
     }
 }

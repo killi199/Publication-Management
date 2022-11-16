@@ -5,7 +5,7 @@
     <mat-tab-group>
         <mat-tab label="Publicationtypes">
             <app-basedata-kinds 
-                [data]="(kindOfPubs$ | async) ?? []"
+                [data]="kindOfPubs"
                 (delete)="onDeleteKindOfPublication($event)"
                 (create)="onCreateKindOfPublication($event)"
                 (update)="onUpdateKindOfPublication($event)"
@@ -13,7 +13,7 @@
         </mat-tab>
         <mat-tab label="Keywords">
             <app-basedata-keywords
-                [data]="(keywords$ | async) ?? []"
+                [data]="keywords"
                 (delete)="onDeleteKeyword($event)"
                 (create)="onCreateKeyword($event)"
                 (update)="onUpdateKeyword($event)"
@@ -21,7 +21,7 @@
         </mat-tab>
         <mat-tab label="Borrowers">
             <app-basedata-borrowers
-                [data]="(borrowers$ | async) ?? []"
+                [data]="borrowers"
                 (delete)="onDeleteBorrower($event)"
                 (create)="onCreateBorrower($event)"
                 (update)="onUpdateBorrower($event)"
@@ -29,7 +29,7 @@
         </mat-tab>
         <mat-tab label="Authors">
             <app-basedata-authors
-                [data]="(authors$ | async) ?? []"
+                [data]="authors"
                 (delete)="onDeleteAuthor($event)"
                 (create)="onCreateAuthor($event)"
                 (update)="onUpdateAuthor($event)"
