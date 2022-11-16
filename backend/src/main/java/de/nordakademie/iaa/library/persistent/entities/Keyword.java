@@ -1,5 +1,7 @@
 package de.nordakademie.iaa.library.persistent.entities;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +15,7 @@ import java.util.UUID;
 public class Keyword {
     @Id
     @GeneratedValue
+    @Type(type="org.hibernate.type.UUIDCharType")
     private UUID uuid;
 
     @Column(unique = true)
