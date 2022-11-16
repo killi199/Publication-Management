@@ -2,16 +2,14 @@ import { Author } from './author';
 import { Keyword } from './keyword';
 import { KindOfPublication } from './kind-of-publication';
 
-export class Publication {
-    constructor(
-        public key?: string | null,
-        public title?: string | null,
-        public authors?: Author[] | null,
-        public dateOfPublication?: Date | null,
-        public publisher?: string | null,
-        public kindOfPublication?: KindOfPublication | null,
-        public isbn?: string | null,
-        public keywords?: Keyword[] | null,
-        public quantity?: number | null
-    ) {}
+export interface Publication {
+    key?: string | null;
+    title?: string | null;
+    authors?: Author[] | null;
+    dateOfPublication?: Date | null;
+    publisher?: string | null;
+    kindOfPublication?: KindOfPublication | null;
+    isbn?: string | null;
+    keywords?: Keyword[] | null;
+    quantity?: number | null;
 }

@@ -30,7 +30,7 @@ export class PublicationViewComponent implements OnInit {
     authorInput!: ElementRef<HTMLInputElement>;
 
     @Input()
-    publication: Publication = new Publication();
+    publication?: Publication;
 
     @Input()
     allKeywords: Keyword[] = [];
@@ -94,7 +94,11 @@ export class PublicationViewComponent implements OnInit {
 
     onCancel(): void {
         this.formGroup.disable();
-        this.formGroup.patchValue(this.publication);
+        if (this.publication) {
+            this.formGroup.patchValue(this.publication);
+        } else {
+            this.formGroup.reset();
+        }
         this._reloadView();
     }
 
@@ -128,7 +132,7 @@ export class PublicationViewComponent implements OnInit {
 
         const value = (event.value || '').trim();
         const filteredKeywords = this._filterKeywords(value as string);
-        
+
         if (filteredKeywords.length === 1) {
             keywords.push(filteredKeywords[0]);
         } else {

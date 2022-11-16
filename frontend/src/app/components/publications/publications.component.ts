@@ -57,10 +57,8 @@ export class PublicationsComponent implements OnInit {
     }
 
     onAddPublication(): void {
+        this.currentPublication = undefined;
         this.addingPublication = true;
-        this.currentPublication = new Publication();
-        this.currentPublication.authors = [];
-        this.currentPublication.keywords = [];
         this.openPublication = !this.openPublication;
     }
 
