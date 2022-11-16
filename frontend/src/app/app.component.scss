@@ -46,6 +46,7 @@ mat-icon {
 .header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background: $header-background;
     color: $font-color;
 }
@@ -53,6 +54,15 @@ mat-icon {
 .logo {
     width: 80px;
     margin-left: 10px;
+}
+
+h1{
+    font-size: 42px;
+    margin-left: 80px;
+}
+
+.nak-logo-text{
+    margin-right: 10px;
 }
 
 .footer {
