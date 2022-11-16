@@ -117,6 +117,7 @@ export class PublicationViewComponent implements OnInit {
 
     onEdit(): void {
         this.formGroup.enable();
+        this.formGroup.get('key')?.disable();
     }
 
     removeKeyword(keyword: Keyword): void {
