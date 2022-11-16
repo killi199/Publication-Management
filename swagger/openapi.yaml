@@ -642,7 +642,7 @@ components:
           type: string
         name:
           type: string
-        studentnumber:
+        studentNumber:
           type: string
     BorrowerCreate:
       type: object
@@ -651,7 +651,7 @@ components:
           type: string
         name:
           type: string
-        studentnumber:
+        studentNumber:
           type: string
     Publication:
       type: object

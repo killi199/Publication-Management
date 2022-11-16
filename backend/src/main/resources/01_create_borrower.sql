@@ -11,7 +11,7 @@ insert into borrower (uuid, name, student_number, surname) values ('bf4620b1-4b6
 insert into borrower (uuid, name, student_number, surname) values ('191c52ab-992d-4629-b37b-e582458ca466', 'Riordan', 2378, 'Waldock') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('8d6df9f9-5167-45f7-9e2b-44d6cf494fae', 'Von Der Empten', 7944, 'Redmell') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('9780185e-a6ff-4b54-8b04-816d254472e8', 'Kitchen', 2263, 'Bradd') ON CONFLICT DO NOTHING;
-insert into borrower (uuid, name, student_number, surname) values ('79a651ed-4492-4f3d-a2c0-c26b156d5c88', 'O ON CONFLICT DO NOTHING ON CONFLICT DO NOTHING;Reilly', 4074, 'Madden') ON CONFLICT DO NOTHING;
+insert into borrower (uuid, name, student_number, surname) values ('79a651ed-4492-4f3d-a2c0-c26b156d5c88', 'Doe', 4074, 'John') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('a8f2ec3e-9772-40d0-a54e-c251157191af', 'Hancell', 6853, 'Robjant') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('290feb8f-4705-4403-98fb-d48622d9e42d', 'Nelthrop', 5896, 'Artus') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('c559fd42-2b63-454f-bdd7-9b60469a5a6b', 'Brend', 5538, 'Forrest') ON CONFLICT DO NOTHING;
@@ -114,7 +114,7 @@ insert into borrower (uuid, name, student_number, surname) values ('9a4244c4-d6a
 insert into borrower (uuid, name, student_number, surname) values ('2a2ac770-bec5-458f-ab27-ce52037edf1b', 'Olsson', 5797, 'Segges') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('09cfaec7-66c6-41cf-8d3a-623c5b2c31e7', 'Basant', 2493, 'Piegrome') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('077f6652-0a7b-440b-b06c-e347eb6f340f', 'Mallam', 9516, 'Bloxsum') ON CONFLICT DO NOTHING;
-insert into borrower (uuid, name, student_number, surname) values ('12a5f7e7-cb36-4003-91a8-9b89e3f8450c', 'Eringey', 8894, 'O ON CONFLICT DO NOTHING ON CONFLICT DO NOTHING;Crotty') ON CONFLICT DO NOTHING;
+insert into borrower (uuid, name, student_number, surname) values ('12a5f7e7-cb36-4003-91a8-9b89e3f8450c', 'Eringey', 8894, 'Crotty') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('a19bcaf3-62bd-4aa2-840f-bb45c6185dbb', 'Rispin', 4764, 'Hamshere') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('e47f9d69-6a32-4804-a833-48c6311b6653', 'Kubyszek', 7383, 'Sweedy') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('4ba2d96a-912e-45fe-ac07-0dc340ee04f6', 'Sturton', 3415, 'Schout') ON CONFLICT DO NOTHING;
@@ -185,7 +185,7 @@ insert into borrower (uuid, name, student_number, surname) values ('19d38bc3-f5d
 insert into borrower (uuid, name, student_number, surname) values ('ef00b2a7-cbe6-4e49-85b2-a5381e79769e', 'Maloney', 6142, 'Barnhill') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('d408eede-d1fa-4976-bfad-b89deaaece53', 'Blockley', 1303, 'Pifford') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('ddcb1fcd-df88-4635-a146-817fd938cff5', 'Jennings', 5017, 'Rizzo') ON CONFLICT DO NOTHING;
-insert into borrower (uuid, name, student_number, surname) values ('3f19be0f-32bc-480d-9b43-e6e34aa84525', 'Pyzer', 3823, 'O ON CONFLICT DO NOTHING ON CONFLICT DO NOTHING;Kinedy') ON CONFLICT DO NOTHING;
+insert into borrower (uuid, name, student_number, surname) values ('3f19be0f-32bc-480d-9b43-e6e34aa84525', 'Pyzer', 3823, 'Kinedy') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('af1f39f6-c047-4270-91b2-882a6f020611', 'Towriss', 8323, 'Janiak') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('faaf765a-728f-4852-b6c0-aceb1f0e2299', 'Pooke', 8873, 'Walter') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('55197fb0-b6a8-4087-8700-215018f77331', 'Bishop', 6250, 'Tesh') ON CONFLICT DO NOTHING;
@@ -231,7 +231,7 @@ insert into borrower (uuid, name, student_number, surname) values ('30105ea2-a58
 insert into borrower (uuid, name, student_number, surname) values ('b65ae654-f42c-49c8-bbfd-c474b8bebe63', 'Vernau', 1776, 'Mountcastle') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('a53e1d46-7ba0-4a8d-ae0b-de73b046b931', 'Stolting', 5938, 'Le Floch') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('01ea8440-fdab-492d-8984-d530e18ca481', 'Yeats', 6987, 'Heimann') ON CONFLICT DO NOTHING;
-insert into borrower (uuid, name, student_number, surname) values ('a557b083-a3e8-4799-ab20-6dd2818d3383', 'D ON CONFLICT DO NOTHING ON CONFLICT DO NOTHING;eye', 4471, 'Deex') ON CONFLICT DO NOTHING;
+insert into borrower (uuid, name, student_number, surname) values ('a557b083-a3e8-4799-ab20-6dd2818d3383', 'eye', 4471, 'Deex') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('1f4867f7-cff9-4008-9d65-e69511d7b76e', 'Poltun', 9956, 'Baleine') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('1df914ed-98eb-42a2-ae74-5b21f4668cec', 'Whiten', 1577, 'Redmile') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('bb60f55f-33ea-4eb6-ae32-3197a09834cb', 'Tooby', 5565, 'Toffel') ON CONFLICT DO NOTHING;
@@ -283,7 +283,7 @@ insert into borrower (uuid, name, student_number, surname) values ('aa1711a8-c7a
 insert into borrower (uuid, name, student_number, surname) values ('fef92780-a01a-41ea-9920-2eb6ceb50448', 'Cannings', 6274, 'Dubbin') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('f726912c-a172-4264-98a5-62e278c0859f', 'Bill', 2807, 'Heineke') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('1cee8186-5fa6-4d38-908e-21df2b17f97a', 'Stopper', 3325, 'Littleton') ON CONFLICT DO NOTHING;
-insert into borrower (uuid, name, student_number, surname) values ('bdad695c-8cb3-4cb0-a949-8226866b4f74', 'M ON CONFLICT DO NOTHING ON CONFLICT DO NOTHING;Barron', 4164, 'Bissill') ON CONFLICT DO NOTHING;
+insert into borrower (uuid, name, student_number, surname) values ('bdad695c-8cb3-4cb0-a949-8226866b4f74', 'Barron', 4164, 'Bissill') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('7f0684df-31d6-45ce-8991-0d3e3c0b1686', 'Helstrom', 3152, 'Hryniewicki') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('84523113-229d-4e93-8816-9d3f3db04c1f', 'Benesevich', 8027, 'Cowdrey') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('1d435bcd-6306-4113-8a8e-6688f0fb1438', 'Eales', 8764, 'Gilbride') ON CONFLICT DO NOTHING;
@@ -316,7 +316,7 @@ insert into borrower (uuid, name, student_number, surname) values ('3a4a865a-71e
 insert into borrower (uuid, name, student_number, surname) values ('c53059b0-4efb-46b6-8237-6ea375b45ab9', 'Tankin', 2798, 'Briscam') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('6dcccc34-ffc6-4272-a94f-0d2354175b39', 'Schnieder', 3757, 'Hindes') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('cdd5b7a3-7e5e-45c9-bd05-50329c979005', 'Hoyle', 1473, 'Gauche') ON CONFLICT DO NOTHING;
-insert into borrower (uuid, name, student_number, surname) values ('f5a06568-b6f4-40c5-8fbb-2a801b3330bb', 'D ON CONFLICT DO NOTHING ON CONFLICT DO NOTHING;Alesco', 9295, 'Markey') ON CONFLICT DO NOTHING;
+insert into borrower (uuid, name, student_number, surname) values ('f5a06568-b6f4-40c5-8fbb-2a801b3330bb', 'Alesco', 9295, 'Markey') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('a177c68f-1894-4061-9b55-66ddc43dc856', 'Schoales', 3162, 'Kilgrove') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('d51c4f11-55f4-4b93-9e4f-d553e5f5c834', 'Lent', 4901, 'Fydoe') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('640c15ef-0d0b-476a-93a6-f5b0c6e0ef21', 'Bassilashvili', 3592, 'Laing') ON CONFLICT DO NOTHING;
@@ -502,7 +502,7 @@ insert into borrower (uuid, name, student_number, surname) values ('450e9687-97f
 insert into borrower (uuid, name, student_number, surname) values ('a0be9318-4684-4eb6-8304-54cc80642d08', 'Roseblade', 3151, 'Matyasik') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('2ee2ff7d-88ac-4bf8-9c83-6224638e124d', 'Bruty', 5970, 'See') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('d1a678d0-c1f7-4716-bc60-6fcb2fd72838', 'Corking', 6739, 'Orbell') ON CONFLICT DO NOTHING;
-insert into borrower (uuid, name, student_number, surname) values ('6a749bc9-cac5-4067-9be0-856f6f29eaaa', 'Neville', 4816, 'O ON CONFLICT DO NOTHING ON CONFLICT DO NOTHING;Hingerty') ON CONFLICT DO NOTHING;
+insert into borrower (uuid, name, student_number, surname) values ('6a749bc9-cac5-4067-9be0-856f6f29eaaa', 'Neville', 4816, 'Hingerty') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('8feef40e-8d4d-496d-aada-df2c85067e41', 'Seamans', 6939, 'Dunhill') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('9e1b4eae-c1b9-4de5-bb4a-78bb52702c8b', 'Pavlenko', 4780, 'Paolotto') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('293d358b-f3eb-40f6-8c4c-557c849ef035', 'Downey', 6525, 'Pressdee') ON CONFLICT DO NOTHING;
@@ -618,7 +618,7 @@ insert into borrower (uuid, name, student_number, surname) values ('790af4ee-055
 insert into borrower (uuid, name, student_number, surname) values ('604efe8a-0fba-4cf8-a893-27d62c26b378', 'MacCumiskey', 6767, 'Messruther') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('98ca138e-daca-486e-b71e-8b25698aa3dc', 'Amy', 2316, 'Thandi') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('314409d0-83ae-42ec-b388-f9714317981e', 'Baldetti', 3303, 'Fowle') ON CONFLICT DO NOTHING;
-insert into borrower (uuid, name, student_number, surname) values ('dbe329a7-def6-4dc3-a133-99a667df19b6', 'O ON CONFLICT DO NOTHING ON CONFLICT DO NOTHING;Dare', 2405, 'Sturge') ON CONFLICT DO NOTHING;
+insert into borrower (uuid, name, student_number, surname) values ('dbe329a7-def6-4dc3-a133-99a667df19b6', 'Dare', 2405, 'Sturge') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('d5876d2e-7760-492c-9594-77eae733d763', 'Huge', 7086, 'Gilchrest') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('f42010cc-9980-4132-bfb9-df4a4ac3c956', 'Mort', 9223, 'Scurry') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('db99806d-5103-405b-aa62-70198b38acf3', 'Brittlebank', 9825, 'Hurtic') ON CONFLICT DO NOTHING;
@@ -646,7 +646,7 @@ insert into borrower (uuid, name, student_number, surname) values ('4f739011-2a7
 insert into borrower (uuid, name, student_number, surname) values ('7b30e109-26b3-401c-b234-248480c9bda0', 'Dearman', 3051, 'Tregear') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('23346f6c-7093-4131-b29a-66312092d6e4', 'Dewis', 7182, 'Hindrick') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('aa7ed807-3596-41e9-b2b8-3dcfdf159131', 'Scrammage', 8753, 'Landrieu') ON CONFLICT DO NOTHING;
-insert into borrower (uuid, name, student_number, surname) values ('df09c5c7-825a-4c72-9b7e-7c3098c00f4e', 'Sandeson', 3774, 'O ON CONFLICT DO NOTHING ON CONFLICT DO NOTHING;Dempsey') ON CONFLICT DO NOTHING;
+insert into borrower (uuid, name, student_number, surname) values ('df09c5c7-825a-4c72-9b7e-7c3098c00f4e', 'Sandeson', 3774, 'Dempsey') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('10864dae-cb67-4d30-b740-87c8f134f7d0', 'Vasilevich', 1823, 'Karczinski') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('3b6082de-4d38-4263-af0c-dc8fcc517001', 'Slimmon', 1550, 'English') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('ff8571f6-6670-4451-b23d-060ca27d81af', 'Carslaw', 6105, 'Parrington') ON CONFLICT DO NOTHING;
@@ -657,7 +657,7 @@ insert into borrower (uuid, name, student_number, surname) values ('4cc5a2f7-86b
 insert into borrower (uuid, name, student_number, surname) values ('da324c55-1b91-479e-823f-4554dcc01fea', 'Huggill', 2563, 'Lampaert') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('8580779e-53ce-44eb-994e-dc80c932fd71', 'Dobeson', 3173, 'MacCaffrey') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('3dd4cb99-6459-418f-9df3-8d1dc10d822b', 'Digan', 9558, 'Aslet') ON CONFLICT DO NOTHING;
-insert into borrower (uuid, name, student_number, surname) values ('41d30ad6-d8ba-4415-a77d-78e1f226aa8b', 'Lewington', 2402, 'O ON CONFLICT DO NOTHING ON CONFLICT DO NOTHING;Lochan') ON CONFLICT DO NOTHING;
+insert into borrower (uuid, name, student_number, surname) values ('41d30ad6-d8ba-4415-a77d-78e1f226aa8b', 'Lewington', 2402, 'Lochan') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('a09095db-9dbe-4514-b97e-f41d6bde10dc', 'Cullon', 5054, 'Duckhouse') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('c5933216-0ae6-4eb8-9a89-08f8a5f29173', 'Abrahamsen', 8369, 'Euplate') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('f00c8b7a-9b80-40f3-b288-f5bb37b9ab18', 'Petera', 5107, 'Langran') ON CONFLICT DO NOTHING;
@@ -688,7 +688,7 @@ insert into borrower (uuid, name, student_number, surname) values ('62201593-30f
 insert into borrower (uuid, name, student_number, surname) values ('b91e94f2-f486-483a-89d5-d3dd83c04c6b', 'Poltone', 3469, 'Saffin') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('23f487cd-dbbe-41dd-8882-45345f5ef4da', 'Hawkslee', 6508, 'Lardez') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('0ee97f94-1d82-40f3-87d3-423a3fd48c81', 'Bidnall', 4012, 'Kisar') ON CONFLICT DO NOTHING;
-insert into borrower (uuid, name, student_number, surname) values ('a2792bce-36ba-4b89-ad66-840c2e770a85', 'L ON CONFLICT DO NOTHING ON CONFLICT DO NOTHING;Hommeau', 2937, 'Eayrs') ON CONFLICT DO NOTHING;
+insert into borrower (uuid, name, student_number, surname) values ('a2792bce-36ba-4b89-ad66-840c2e770a85', 'Hommeau', 2937, 'Eayrs') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('dcc2bf68-e5fc-4db6-8216-6bc89001907d', 'Faers', 9111, 'Belchambers') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('0f096076-7bfc-4426-ad51-8d2ccc97b3ef', 'Haszard', 1284, 'Febre') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('addc9ed2-bbae-4c6e-8077-16aba12444e7', 'Philip', 4040, 'Cooke') ON CONFLICT DO NOTHING;
@@ -759,7 +759,7 @@ insert into borrower (uuid, name, student_number, surname) values ('ccc9ee59-b4a
 insert into borrower (uuid, name, student_number, surname) values ('83505a16-38a3-47d1-9726-9bf9be0249a1', 'Yurenev', 9034, 'Whifen') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('d4423af7-d1a8-4c1c-9142-31b2f0f25402', 'Beaston', 5845, 'Leetham') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('799aa89c-e6ce-4185-baea-c5236f046477', 'Quye', 9870, 'Gonthard') ON CONFLICT DO NOTHING;
-insert into borrower (uuid, name, student_number, surname) values ('6bcf7928-71b2-4df9-abd2-cdb448d0cdde', 'O ON CONFLICT DO NOTHING ON CONFLICT DO NOTHING;Day', 2618, 'Wallenger') ON CONFLICT DO NOTHING;
+insert into borrower (uuid, name, student_number, surname) values ('6bcf7928-71b2-4df9-abd2-cdb448d0cdde', 'Day', 2618, 'Wallenger') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('0abbbca3-0b42-4281-89be-74023bf10354', 'Cumbridge', 6342, 'Morefield') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('409b2278-c090-4843-abd8-7e87aa6dfebf', 'Matkovic', 8041, 'Jewise') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('7d1e55ac-e104-4b61-a013-b87e9ed55060', 'Quenby', 1184, 'Alfonsetto') ON CONFLICT DO NOTHING;
@@ -775,7 +775,7 @@ insert into borrower (uuid, name, student_number, surname) values ('8f1f0656-e1a
 insert into borrower (uuid, name, student_number, surname) values ('0e0697fb-6289-4d7f-9a68-ce898d1596d7', 'Sparry', 9516, 'Rabat') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('21bc5a1c-be46-405f-a55b-c87728fd85af', 'Goulter', 8066, 'Dickerson') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('8929d36d-b01a-4727-8ddf-e3eeb16ab642', 'Durrington', 5387, 'Moffet') ON CONFLICT DO NOTHING;
-insert into borrower (uuid, name, student_number, surname) values ('502d9535-3264-471c-91d2-fc9409685e4c', 'Lockyear', 9663, 'O ON CONFLICT DO NOTHING ON CONFLICT DO NOTHING;Hearn') ON CONFLICT DO NOTHING;
+insert into borrower (uuid, name, student_number, surname) values ('502d9535-3264-471c-91d2-fc9409685e4c', 'Lockyear', 9663, 'Hearn') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('3ccaa671-f2e7-47e4-94e8-16a59b30c56c', 'Slader', 2006, 'Cantopher') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('225c5189-4847-427b-a6e4-12ff8d337101', 'Jolly', 6519, 'Froschauer') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('d33029fc-8f8e-43e5-b340-bf11ff0c8b50', 'Asee', 7587, 'Deesly') ON CONFLICT DO NOTHING;
@@ -791,8 +791,8 @@ insert into borrower (uuid, name, student_number, surname) values ('a82ac503-601
 insert into borrower (uuid, name, student_number, surname) values ('7b502b5e-e444-44a3-a3a7-5377c52d90d7', 'Goaley', 2253, 'Frisch') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('bfc7fc3e-f32b-4af7-b898-244acb572a10', 'Phizaclea', 6626, 'Ledbetter') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('b366e9a1-10c6-42b4-a1ea-4503da265993', 'Glascott', 6175, 'Hammer') ON CONFLICT DO NOTHING;
-insert into borrower (uuid, name, student_number, surname) values ('8fb98849-2581-42c3-a463-3adb9109fd46', 'O ON CONFLICT DO NOTHING ON CONFLICT DO NOTHING;Fielly', 1413, 'Southan') ON CONFLICT DO NOTHING;
-insert into borrower (uuid, name, student_number, surname) values ('e731403b-cca5-49b5-9632-c26cb96a0e25', 'Laurence', 5444, 'O ON CONFLICT DO NOTHING ON CONFLICT DO NOTHING; Mahony') ON CONFLICT DO NOTHING;
+insert into borrower (uuid, name, student_number, surname) values ('8fb98849-2581-42c3-a463-3adb9109fd46', 'Fielly', 1413, 'Southan') ON CONFLICT DO NOTHING;
+insert into borrower (uuid, name, student_number, surname) values ('e731403b-cca5-49b5-9632-c26cb96a0e25', 'Laurence', 5444, 'Mahony') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('eb4d27da-192e-457c-9baa-2645a68fe421', 'Vasishchev', 3043, 'Canellas') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('59be2875-1052-4570-9272-3ef86996d147', 'Eykelhof', 4742, 'Clancey') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('11101af7-d26c-43dd-88aa-c90674451aa8', 'Ritchard', 5978, 'Esser') ON CONFLICT DO NOTHING;
@@ -807,7 +807,7 @@ insert into borrower (uuid, name, student_number, surname) values ('94eebadd-574
 insert into borrower (uuid, name, student_number, surname) values ('965a8613-907e-49c9-af03-9ddd7fafd24d', 'Nials', 7248, 'Matteucci') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('e97a971c-250c-4afd-aa0d-a6146553c63a', 'Caps', 1037, 'Jollie') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('110596e1-361c-4779-9396-4ca89c0bcf0b', 'Brennenstuhl', 7249, 'Thieme') ON CONFLICT DO NOTHING;
-insert into borrower (uuid, name, student_number, surname) values ('d96c8dec-31ee-4008-ba0c-851d80299d38', 'D ON CONFLICT DO NOTHING ON CONFLICT DO NOTHING; Angelo', 6755, 'Crownshaw') ON CONFLICT DO NOTHING;
+insert into borrower (uuid, name, student_number, surname) values ('d96c8dec-31ee-4008-ba0c-851d80299d38', 'Angelo', 6755, 'Crownshaw') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('27830574-f92a-4050-9328-c74e7f17cbdd', 'Arman', 1260, 'Gourdon') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('baadb3a3-3eee-4242-8ff8-d015f1091d3f', 'Negro', 1158, 'Stimson') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('677f62f3-00a3-42c8-924d-1b6adc609f75', 'Grigoriscu', 2793, 'Couldwell') ON CONFLICT DO NOTHING;
@@ -851,7 +851,7 @@ insert into borrower (uuid, name, student_number, surname) values ('e4799d29-213
 insert into borrower (uuid, name, student_number, surname) values ('6374b370-ec68-4a8b-ae3c-c21719a5ef9a', 'Bodman', 3984, 'Bulfield') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('2687581e-8835-4631-9405-c414af271426', 'Juan', 4050, 'Ebden') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('0e1e1e63-db59-4257-9bcf-b5dbc8b9bf25', 'Olin', 6667, 'Budd') ON CONFLICT DO NOTHING;
-insert into borrower (uuid, name, student_number, surname) values ('978159f2-bb61-4c47-bdeb-b04004ae7881', 'Raiment', 6062, 'L ON CONFLICT DO NOTHING ON CONFLICT DO NOTHING; Estrange') ON CONFLICT DO NOTHING;
+insert into borrower (uuid, name, student_number, surname) values ('978159f2-bb61-4c47-bdeb-b04004ae7881', 'Raiment', 6062, 'Estrange') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('94160e4a-2a60-4c7b-b4eb-5c9208de3aa9', 'McGirr', 3692, 'Garrad') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('5359c440-11cc-4fb8-9241-d9a361381bc3', 'Hovenden', 7951, 'Rodenburgh') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('b1508301-a82c-4b13-824b-924d40da4d98', 'Bullene', 4478, 'Skeemor') ON CONFLICT DO NOTHING;
@@ -880,7 +880,7 @@ insert into borrower (uuid, name, student_number, surname) values ('71456e93-84e
 insert into borrower (uuid, name, student_number, surname) values ('4d81582c-5e37-4b78-b11a-9b6d40e41bfb', 'Breeze', 7889, 'Livingstone') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('98656abc-e43a-4e7d-b054-0392d7827ba1', 'Antham', 9067, 'Hrinchishin') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('0a3b7930-43bf-450c-b52e-192d94726465', 'Glide', 8672, 'Stannas') ON CONFLICT DO NOTHING;
-insert into borrower (uuid, name, student_number, surname) values ('9071db8c-68ef-4397-9f46-e54b2361b117', 'Yurshev', 1499, 'O ON CONFLICT DO NOTHING ON CONFLICT DO NOTHING;Hickee') ON CONFLICT DO NOTHING;
+insert into borrower (uuid, name, student_number, surname) values ('9071db8c-68ef-4397-9f46-e54b2361b117', 'Yurshev', 1499, 'Hickee') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('5590594b-b906-4990-a4d9-99a808f1af25', 'Gamet', 6275, 'Tarrant') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('a29acdae-594d-42ed-abfa-ad69bc93eb5e', 'Wenn', 8909, 'Ledwith') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('b718027f-efd1-4e75-b1d4-06eeb4ee636e', 'Pook', 7154, 'Di Franceschi') ON CONFLICT DO NOTHING;
@@ -989,7 +989,7 @@ insert into borrower (uuid, name, student_number, surname) values ('065263a7-72a
 insert into borrower (uuid, name, student_number, surname) values ('c7d65643-3de3-4396-b9cc-8ff89444b79a', 'Southern', 6335, 'Harkins') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('30dab50e-84d5-4b8b-9553-41a35ce854f3', 'Rawood', 6662, 'Rimmer') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('65bb8612-862d-4254-8d7d-c896ab82d413', 'Tant', 2351, 'Gerrill') ON CONFLICT DO NOTHING;
-insert into borrower (uuid, name, student_number, surname) values ('f192fc7c-cc41-4e31-baac-99129f9c155b', 'O ON CONFLICT DO NOTHING ON CONFLICT DO NOTHING;Lunney', 2701, 'McGavigan') ON CONFLICT DO NOTHING;
+insert into borrower (uuid, name, student_number, surname) values ('f192fc7c-cc41-4e31-baac-99129f9c155b', 'Lunney', 2701, 'McGavigan') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('cc1b3044-fb68-4d40-bfb4-c5e133167a25', 'Degli Antoni', 5198, 'McGifford') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('556ff058-fb8e-49c4-84a9-4bbf12552ab9', 'Shewon', 5557, 'Revans') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('c0dcd3ab-07d5-4710-aa39-aebbdc72950f', 'Battershall', 3740, 'Worsfold') ON CONFLICT DO NOTHING;
