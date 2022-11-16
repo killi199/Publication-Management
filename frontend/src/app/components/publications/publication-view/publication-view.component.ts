@@ -96,15 +96,10 @@ export class PublicationViewComponent implements OnInit {
         if (!this.formGroup.valid) return;
 
         this.savePublication.emit(this.formGroup.value);
-        if (this.addingPublication) {
-            this.snackBar.open(
-                this.formGroup.get('title')?.value + ' created!'
-            );
-        } else {
-            this.snackBar.open(
-                this.formGroup.get('title')?.value + ' updated!'
-            );
-        }
+        
+        const title = this.formGroup.get('title')?.value;
+        const crudOperation = this.addingPublication ? ' created!' : ' updated!';
+        this.snackBar.open(title + crudOperation);
 
         this.formGroup.disable();
     }
