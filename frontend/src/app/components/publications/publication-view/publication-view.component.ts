@@ -75,6 +75,7 @@ export class PublicationViewComponent implements OnInit {
     ngOnInit(): void {
         if (this.publication) {
             this.formGroup.disable();
+            this.formGroup.patchValue(this.publication);
         }
 
         this._reloadView();
