@@ -217,4 +217,10 @@
             </button>
         </div>
     </form>
+
+    <h3 class="assignment-header">Ausleihvorgänge:</h3>
+    <app-assignment-list
+        *ngIf="!this.addingPublication"
+        [assignments]="assignments"
+    ></app-assignment-list>
 </div>

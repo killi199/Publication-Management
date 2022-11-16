@@ -38,6 +38,12 @@ export class AssignmentService {
         return of(this.assignments);
     }
 
+    loadAssignments(uuid: string): Observable<Assignment[]> {
+        return of(
+            this.assignments.filter((a) => a.publicationKey === uuid)
+        );
+    }
+
     private generateAllAssignments(): Assignment[] {
         const borrowers: Borrower[] = [
             {
@@ -76,6 +82,13 @@ export class AssignmentService {
                 dateOfReturn: new Date(2023, 1, 14),
                 publicationKey: '221',
             },
+            {
+                uuid: '12345',
+                borrower: borrowers[0],
+                dateOfAssignment: new Date(2022, 10, 23),
+                dateOfReturn: new Date(2023, 1, 1),
+                publicationKey: 'c6b91843-a823-45f2-b125-6c89bdba061f',
+            }
         ];
         return assignments;
     }
