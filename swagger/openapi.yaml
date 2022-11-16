@@ -261,6 +261,35 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Assignment'
+  /assignment/{publicationKey}:
+    get:
+      tags:
+        - Assignment
+      summary: Get all existing assignment
+      description: Get all existing assignment
+      operationId: getAssignment
+      parameters:
+        - name: publicationKey
+          in: path
+          description: Key of the publication
+          required: true
+          schema:
+            type: string
+        - name: showReturned
+          in: query
+          description: show returned assignments
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Successful assignment
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Assignment'
   /assignment/extend/{uuid}:
     post:
       tags:
@@ -283,29 +312,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Assignment'
-  /assignment/extendable/{uuid}:
-    get:
-      tags:
-        - Assignment
-      summary: check if the assignment is extandable
-      operationId: extendableAssignment
-      parameters:
-        - name: uuid
-          in: path
-          description: Uuid of the assignment
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful assignment
-          content:
-            application/json:
-              schema:
-                type: boolean
-            application/xml:
-              schema:
-                type: boolean
   /overdue-notice:
     get:
       tags:

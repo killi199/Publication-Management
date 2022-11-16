@@ -1,5 +1,6 @@
 package de.nordakademie.iaa.library.service.impl;
 
+import de.nordakademie.iaa.library.controller.api.exception.EntityAlreadyExistsException;
 import de.nordakademie.iaa.library.controller.api.exception.EntityDoesNotExistException;
 import de.nordakademie.iaa.library.controller.api.exception.IllegalUsageOfIdentifierException;
 import de.nordakademie.iaa.library.controller.api.exception.MissingFieldException;
@@ -105,10 +106,10 @@ public class AuthorService implements AuthorServiceInterface {
      */
     private void checkRequiredFields(@NotNull AuthorDto authorDto) {
         if (isStringEmpty(authorDto.getName())) {
-            throw new MissingFieldException("");
+            throw new MissingFieldException("name");
         }
         if (isStringEmpty(authorDto.getSurname())) {
-            throw new MissingFieldException("");
+            throw new MissingFieldException("surname");
         }
     }
 

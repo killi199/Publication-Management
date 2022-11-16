@@ -6,7 +6,7 @@ import java.util.UUID;
 
 /**
  * An Assignment describes the lending of Publications.
- * Each Publication can be lend to a Borrower.
+ * Each Publication can be lent to a Borrower.
  */
 @Entity
 public class Assignment {
@@ -22,6 +22,14 @@ public class Assignment {
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE} )
     private Borrower borrower;
+
+    private int extensions;
+
+    private Date borrowedUtil;
+
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Publication publication;
 
 
     public UUID getUuid() {
@@ -62,5 +70,29 @@ public class Assignment {
 
     public void setPublicationLoss(boolean publicationLoss) {
         this.publicationLoss = publicationLoss;
+    }
+
+    public int getExtensions() {
+        return extensions;
+    }
+
+    public void setExtensions(int extensions) {
+        this.extensions = extensions;
+    }
+
+    public Publication getPublication() {
+        return publication;
+    }
+
+    public void setPublication(Publication publication) {
+        this.publication = publication;
+    }
+
+    public Date getBorrowedUtil() {
+        return borrowedUtil;
+    }
+
+    public void setBorrowedUtil(Date borrowedUtil) {
+        this.borrowedUtil = borrowedUtil;
     }
 }

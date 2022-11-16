@@ -16,6 +16,10 @@ public class AssignmentDto {
 
     private BorrowerDto borrower;
 
+    private int extensions;
+
+    private PublicationDto publication;
+
     private boolean publicationLoss;
     public UUID getUuid() {
         return uuid;
@@ -47,6 +51,22 @@ public class AssignmentDto {
 
     public void setBorrower(BorrowerDto borrower) {
         this.borrower = borrower;
+    }
+
+    public int getExtensions() {
+        return extensions;
+    }
+
+    public void setExtensions(int extensions) {
+        this.extensions = extensions;
+    }
+
+    public PublicationDto getPublication() {
+        return publication;
+    }
+
+    public void setPublication(PublicationDto publication) {
+        this.publication = publication;
     }
 
     public boolean isPublicationLoss() {
