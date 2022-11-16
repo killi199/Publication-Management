@@ -15,7 +15,6 @@ public class Warning {
     private UUID uuid;
 
     @ManyToOne
-    @JoinColumn(name = "overdue_notice_uuid")
     private OverdueNotice overdueNotice;
 
     private Date warningDate;
