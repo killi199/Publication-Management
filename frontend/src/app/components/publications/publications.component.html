@@ -42,11 +42,12 @@
     </div>
 
     <app-publication-view
-        *ngIf="currentPublication && openPublication"
+        *ngIf="openPublication"
         [publication]="currentPublication"
         [allKeywords]="keywords"
         [allAuthors]="authors"
         [allKindsOfPublication]="kindsOfPublication"
+        [addingPublication]="addingPublication"
         (deletePublication)="onDeletePublication($event)"
         (savePublication)="onSavePublication($event)"
     ></app-publication-view>

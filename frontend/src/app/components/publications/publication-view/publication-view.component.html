@@ -1,42 +1,41 @@
 <div class="container">
-    <form #form="ngForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
         <mat-form-field appearance="fill">
             <mat-label>Key</mat-label>
             <input
+                placeholder="Ex. NA-123"
                 matInput
                 name="key"
-                [(ngModel)]="publication.key"
-                [readonly]="!editable"
+                formControlName="key"
                 required
             />
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Title</mat-label>
             <input
+                placeholder="Ex. Clean Code"
                 matInput
                 name="title"
-                [(ngModel)]="publication.titel"
-                [readonly]="!editable"
+                formControlName="title"
                 required
             />
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Authors</mat-label>
-            <mat-chip-list #chipListAuthors>
+            <mat-chip-list #chipListAuthors formControlName="authors">
                 <mat-chip
-                    *ngFor="let author of publication.author"
+                    *ngFor="let author of formGroup.get('authors')!.value"
                     (removed)="removeAuthor(author)"
                 >
                     {{ author.surname }} {{ author.name }}
-                    <button matChipRemove [disabled]="!editable">
+                    <button matChipRemove>
                         <mat-icon>cancel</mat-icon>
                     </button>
                 </mat-chip>
                 <input
+                    placeholder="Ex. Mustermann Max"
                     name="authors"
-                    [readonly]="!editable"
-                    placeholder="New Author..."
                     #authorInput
                     [formControl]="authorControl"
                     [matAutocomplete]="autocompleteAuthors"
@@ -62,22 +61,22 @@
         <mat-form-field appearance="fill">
             <mat-label>ISBN</mat-label>
             <input
+                placeholder="Ex. 9780132350884"
+                formControlName="isbn"
                 matInput
                 name="isbn"
-                [(ngModel)]="publication.isbn"
-                [readonly]="!editable"
             />
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Quantity</mat-label>
             <input
+                placeholder="Ex. 42"
                 type="number"
+                formControlName="quantity"
                 min="0"
                 matInput
                 name="quantity"
-                [(ngModel)]="publication.quantity"
-                [readonly]="!editable"
                 required
             />
         </mat-form-field>
@@ -85,26 +84,26 @@
         <mat-form-field appearance="fill">
             <mat-label>Publisher</mat-label>
             <input
+                placeholder="Ex. Prentice Hall"
                 matInput
                 name="publisher"
-                [(ngModel)]="publication.publisher"
-                [readonly]="!editable"
+                formControlName="publisher"
             />
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Date of Publication</mat-label>
             <input
+                placeholder="Ex. 1.8.2008"
                 matInput
                 name="dateOfPublication"
-                [(ngModel)]="publication.dateOfPublication"
-                [readonly]="!editable"
+                formControlName="dateOfPublication"
                 [matDatepicker]="picker"
             />
             <mat-datepicker-toggle
                 matSuffix
                 [for]="picker"
-                [disabled]="!editable"
+                [disabled]="this.formGroup.disabled"
             ></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
@@ -112,11 +111,11 @@
         <mat-form-field appearance="fill">
             <mat-label>Kind of Publication</mat-label>
             <input
+                placeholder="Ex. Book"
                 type="text"
                 name="kindOfPublication"
-                [readonly]="!editable"
                 matInput
-                [formControl]="kindOfPublicationControl"
+                formControlName="kindsOfPublication"
                 [matAutocomplete]="autocompleteKindOfPublication"
             />
             <mat-autocomplete
@@ -137,20 +136,19 @@
 
         <mat-form-field appearance="fill">
             <mat-label>Keywords</mat-label>
-            <mat-chip-list #chipListKeywords>
+            <mat-chip-list #chipListKeywords formControlName="keywords">
                 <mat-chip
-                    *ngFor="let keyword of publication.keywords"
+                    *ngFor="let keyword of formGroup.get('keywords')!.value"
                     (removed)="removeKeyword(keyword)"
                 >
                     {{ keyword.value }}
-                    <button matChipRemove [disabled]="!editable">
+                    <button matChipRemove>
                         <mat-icon>cancel</mat-icon>
                     </button>
                 </mat-chip>
                 <input
+                    placeholder="Ex. Code"
                     name="keywords"
-                    [readonly]="!editable"
-                    placeholder="New keyword..."
                     #keywordInput
                     [formControl]="keywordControl"
                     [matAutocomplete]="autocompleteKeywords"
@@ -175,7 +173,7 @@
 
         <div class="button-container">
             <button
-                *ngIf="!editable"
+                *ngIf="this.formGroup.disabled"
                 type="button"
                 (click)="onEdit()"
                 mat-mini-fab
@@ -186,7 +184,7 @@
             </button>
 
             <button
-                *ngIf="!editable"
+                *ngIf="this.formGroup.disabled"
                 type="button"
                 (click)="onDeletePublication()"
                 mat-mini-fab
@@ -197,25 +195,25 @@
             </button>
 
             <button
-                *ngIf="editable"
+                *ngIf="this.formGroup.enabled"
                 type="submit"
-                [disabled]="form.invalid"
+                [disabled]="formGroup.invalid"
                 mat-mini-fab
                 color="primary"
                 matTooltip="save changes"
             >
-                <mat-icon>save</mat-icon>
+                <mat-icon>done</mat-icon>
             </button>
 
             <button
-                *ngIf="editable"
+                *ngIf="this.formGroup.enabled && !this.addingPublication"
                 type="button"
                 (click)="onCancel()"
                 mat-mini-fab
                 color="primary"
                 matTooltip="undo changes"
             >
-                <mat-icon>undo</mat-icon>
+                <mat-icon>close</mat-icon>
             </button>
         </div>
     </form>

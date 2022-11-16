@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 describe('PublicationViewComponent', () => {
     let component: PublicationViewComponent;
@@ -27,6 +28,7 @@ describe('PublicationViewComponent', () => {
                 MatInputModule,
                 MatIconModule,
                 BrowserAnimationsModule,
+                MatSnackBarModule,
             ],
             declarations: [PublicationViewComponent],
         }).compileComponents();

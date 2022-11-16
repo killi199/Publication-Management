@@ -38,11 +38,10 @@ export class KindOfPublicationService {
     }
 
     private _generateAllKindsOfPublication(): KindOfPublication[] {
-        let test1 = new KindOfPublication('1', 'Book');
-        let test2 = new KindOfPublication('2', 'Article');
-        let test3 = new KindOfPublication('3', 'Thesis');
-        let test4 = new KindOfPublication('4', 'Conference');
-        let test5 = new KindOfPublication('567', 'Sachbuch');
-        return [test1, test2, test3, test4, test5];
+        return [
+            { uuid: '1', value: 'Book' },
+            { uuid: '2', value: 'Journal' },
+            { uuid: '3', value: 'Magazine' },
+        ];
     }
 }
