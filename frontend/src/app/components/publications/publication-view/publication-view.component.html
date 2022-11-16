@@ -206,7 +206,7 @@
             </button>
 
             <button
-                *ngIf="this.formGroup.enabled"
+                *ngIf="this.formGroup.enabled && !this.addingPublication"
                 type="button"
                 (click)="onCancel()"
                 mat-mini-fab

@@ -41,6 +41,9 @@ export class PublicationViewComponent implements OnInit {
     @Input()
     allKindsOfPublication: KindOfPublication[] = [];
 
+    @Input()
+    addingPublication?: boolean;
+
     @Output()
     deletePublication = new EventEmitter<Publication>();
 
