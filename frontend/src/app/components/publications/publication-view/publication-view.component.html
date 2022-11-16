@@ -10,6 +10,7 @@
                 required
             />
         </mat-form-field>
+
         <mat-form-field appearance="fill">
             <mat-label>Title</mat-label>
             <input
@@ -22,40 +23,13 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill">
-            <mat-label>Authors</mat-label>
-            <mat-chip-list #chipListAuthors formControlName="authors">
-                <mat-chip
-                    *ngFor="let author of formGroup.get('authors')!.value"
-                    (removed)="removeAuthor(author)"
-                >
-                    {{ author.surname }} {{ author.name }}
-                    <button matChipRemove>
-                        <mat-icon>cancel</mat-icon>
-                    </button>
-                </mat-chip>
-                <input
-                    placeholder="Ex. Mustermann Max"
-                    name="authors"
-                    #authorInput
-                    [formControl]="authorControl"
-                    [matAutocomplete]="autocompleteAuthors"
-                    [matChipInputFor]="chipListAuthors"
-                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                    (matChipInputTokenEnd)="addAuthor($event)"
-                />
-            </mat-chip-list>
-            <mat-autocomplete
-                #autocompleteAuthors="matAutocomplete"
-                (optionSelected)="selectedAuthor($event)"
-                [displayWith]="displayAuthor"
-            >
-                <mat-option
-                    *ngFor="let author of filteredAuthors | async"
-                    [value]="author"
-                >
-                    {{ author.surname }} {{ author.name }}
-                </mat-option>
-            </mat-autocomplete>
+            <mat-label>Publisher</mat-label>
+            <input
+                placeholder="Ex. Prentice Hall"
+                matInput
+                name="publisher"
+                formControlName="publisher"
+            />
         </mat-form-field>
 
         <mat-form-field appearance="fill">
@@ -78,16 +52,6 @@
                 matInput
                 name="quantity"
                 required
-            />
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label>Publisher</mat-label>
-            <input
-                placeholder="Ex. Prentice Hall"
-                matInput
-                name="publisher"
-                formControlName="publisher"
             />
         </mat-form-field>
 
@@ -167,6 +131,43 @@
                     [value]="keyword"
                 >
                     {{ keyword.value }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Authors</mat-label>
+            <mat-chip-list #chipListAuthors formControlName="authors">
+                <mat-chip
+                    *ngFor="let author of formGroup.get('authors')!.value"
+                    (removed)="removeAuthor(author)"
+                >
+                    {{ author.surname }} {{ author.name }}
+                    <button matChipRemove>
+                        <mat-icon>cancel</mat-icon>
+                    </button>
+                </mat-chip>
+                <input
+                    placeholder="Ex. Mustermann Max"
+                    name="authors"
+                    #authorInput
+                    [formControl]="authorControl"
+                    [matAutocomplete]="autocompleteAuthors"
+                    [matChipInputFor]="chipListAuthors"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                    (matChipInputTokenEnd)="addAuthor($event)"
+                />
+            </mat-chip-list>
+            <mat-autocomplete
+                #autocompleteAuthors="matAutocomplete"
+                (optionSelected)="selectedAuthor($event)"
+                [displayWith]="displayAuthor"
+            >
+                <mat-option
+                    *ngFor="let author of filteredAuthors | async"
+                    [value]="author"
+                >
+                    {{ author.surname }} {{ author.name }}
                 </mat-option>
             </mat-autocomplete>
         </mat-form-field>
