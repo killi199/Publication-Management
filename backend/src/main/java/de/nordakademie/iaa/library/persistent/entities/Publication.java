@@ -3,6 +3,7 @@ package de.nordakademie.iaa.library.persistent.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * A Publication is the main object for a library. It describes things like books, articles, etc.
@@ -14,34 +15,22 @@ public class Publication {
     private String key;
 
     @NotNull
-    private String titel;
+    private String title;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinTable(
-            name = "author_publications",
-            joinColumns = {@JoinColumn(name = "publication_key")},
-            inverseJoinColumns = {@JoinColumn(name = "author_uuid")})
-    private List<Author> author = new ArrayList<>();
+    @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
+    private List<AuthorsPublications> authorsPublications = new ArrayList<>();
 
     private Date dateOfPublication;
 
     private String publisher;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinTable(
-            name = "kind_publications",
-            joinColumns = {@JoinColumn(name = "publication_key")},
-            inverseJoinColumns = {@JoinColumn(name = "kind_uuid")})
-    private List<KindOfPublication> kindsOfPublication = new ArrayList<>();
+    @ManyToOne
+    private KindOfPublication kindOfPublication;
 
     private String ISBN;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinTable(
-            name = "keywords_publications",
-            joinColumns = {@JoinColumn(name = "publication_key")},
-            inverseJoinColumns = {@JoinColumn(name = "keyword_uuid")})
-    private List<Keyword> keywords = new ArrayList<>();
+    @OneToMany(mappedBy = "keyword", fetch = FetchType.EAGER)
+    private List<KeywordsPublications> keywordsPublications = new ArrayList<>();
 
     private int quantity;
 
@@ -53,20 +42,30 @@ public class Publication {
         this.key = key;
     }
 
-    public String getTitel() {
-        return titel;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTitel(String titel) {
-        this.titel = titel;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public List<Author> getAuthor() {
-        return author;
+    public List<AuthorsPublications> getAuthorsPublications() {
+        return authorsPublications;
     }
 
-    public void setAuthor(List<Author> author) {
-        this.author = author;
+    public void setAuthorsPublications(List<AuthorsPublications> authorsPublications) {
+        this.authorsPublications = authorsPublications;
+    }
+
+    @Transient
+    public List<Author> getAuthors() {
+        return getAuthorsPublications().stream().map(AuthorsPublications::getAuthor).collect(Collectors.toList());
+    }
+
+    @Transient
+    public void setAuthors(List<Author> authors) {
+        setAuthorsPublications(authors.stream().map(author -> new AuthorsPublications(this, author)).collect(Collectors.toList()));
     }
 
     public Date getDateOfPublication() {
@@ -85,12 +84,12 @@ public class Publication {
         this.publisher = publisher;
     }
 
-    public List<KindOfPublication> getKindsOfPublication() {
-        return kindsOfPublication;
+    public KindOfPublication getKindOfPublication() {
+        return kindOfPublication;
     }
 
-    public void setKindsOfPublication(List<KindOfPublication> kindsOfPublication) {
-        this.kindsOfPublication = kindsOfPublication;
+    public void setKindOfPublication(KindOfPublication kindOfPublication) {
+        this.kindOfPublication = kindOfPublication;
     }
 
     public String getISBN() {
@@ -101,12 +100,22 @@ public class Publication {
         this.ISBN = ISBN;
     }
 
-    public List<Keyword> getKeywords() {
-        return keywords;
+    public List<KeywordsPublications> getKeywordsPublications() {
+        return keywordsPublications;
     }
 
+    public void setKeywordsPublications(List<KeywordsPublications> keywordsPublications) {
+        this.keywordsPublications = keywordsPublications;
+    }
+
+    @Transient
+    public List<Keyword> getKeywords() {
+        return getKeywordsPublications().stream().map(KeywordsPublications::getKeyword).collect(Collectors.toList());
+    }
+
+    @Transient
     public void setKeywords(List<Keyword> keywords) {
-        this.keywords = keywords;
+        setKeywordsPublications(keywords.stream().map(keyword -> new KeywordsPublications(this, keyword)).collect(Collectors.toList()));
     }
 
     public int getQuantity() {

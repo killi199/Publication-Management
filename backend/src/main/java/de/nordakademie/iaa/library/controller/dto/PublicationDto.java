@@ -15,15 +15,15 @@ public class PublicationDto {
     private String key;
 
     @NotNull
-    private String titel;
+    private String title;
 
-    private List<AuthorDto> author = new ArrayList<>();
+    private List<AuthorDto> authors = new ArrayList<>();
 
     private Date dateOfPublication;
 
     private String publisher;
 
-    private List<KindOfPublicationDto> kindsOfPublication = new ArrayList<>();
+    private KindOfPublicationDto kindOfPublication;
 
     @JsonProperty("ISBN")
     private String ISBN;
@@ -40,20 +40,20 @@ public class PublicationDto {
         this.key = key;
     }
 
-    public String getTitel() {
-        return titel;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTitel(String titel) {
-        this.titel = titel;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public List<AuthorDto> getAuthor() {
-        return author;
+    public List<AuthorDto> getAuthors() {
+        return authors;
     }
 
-    public void setAuthor(List<AuthorDto> author) {
-        this.author = author;
+    public void setAuthors(List<AuthorDto> authors) {
+        this.authors = authors;
     }
 
     public Date getDateOfPublication() {
@@ -72,12 +72,12 @@ public class PublicationDto {
         this.publisher = publisher;
     }
 
-    public List<KindOfPublicationDto> getKindsOfPublication() {
-        return kindsOfPublication;
+    public KindOfPublicationDto getKindOfPublication() {
+        return kindOfPublication;
     }
 
-    public void setKindsOfPublication(List<KindOfPublicationDto> kindOfPublications) {
-        this.kindsOfPublication = kindOfPublications;
+    public void setKindOfPublication(KindOfPublicationDto kindOfPublications) {
+        this.kindOfPublication = kindOfPublications;
     }
 
     public String getISBN() {
