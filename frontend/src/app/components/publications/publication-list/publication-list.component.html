@@ -16,13 +16,13 @@
 
         <ng-container matColumnDef="title">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
-            <td mat-cell *matCellDef="let element">{{ element.titel }}</td>
+            <td mat-cell *matCellDef="let element">{{ element.title }}</td>
         </ng-container>
 
         <ng-container matColumnDef="authors">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Authors</th>
             <td mat-cell *matCellDef="let element">
-                <div *ngFor="let author of element.author">
+                <div *ngFor="let author of element.authors">
                     {{ author.surname }} {{ author.name }}
                 </div>
             </td>
@@ -47,7 +47,7 @@
                 Kind of Publication
             </th>
             <td mat-cell *matCellDef="let element">
-                <div *ngFor="let kind of element.kindsOfPublication">
+                <div *ngFor="let kind of element.kindOfPublication">
                     {{ kind.value }}
                 </div>
             </td>
