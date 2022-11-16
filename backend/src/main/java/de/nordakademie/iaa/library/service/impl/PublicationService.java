@@ -105,8 +105,8 @@ public class PublicationService implements PublicationServiceInterface {
             throw new MissingFieldException("key");
         }
 
-        if (publicationDto.getTitel() == null) {
-            throw new MissingFieldException("titel");
+        if (publicationDto.getTitle() == null) {
+            throw new MissingFieldException("title");
         }
 
         if (publicationDto.getQuantity() < 0) {

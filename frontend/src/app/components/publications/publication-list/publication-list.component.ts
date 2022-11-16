@@ -1,17 +1,6 @@
-import { SelectionModel } from '@angular/cdk/collections';
-import {
-    AfterViewInit,
-    Component,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-    ViewChild,
-} from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Observable } from 'rxjs';
+import { TableInitsComponent } from 'src/app/helpers/table-inits';
 import { Publication } from 'src/app/models/publication';
 
 @Component({
@@ -19,24 +8,14 @@ import { Publication } from 'src/app/models/publication';
     templateUrl: './publication-list.component.html',
     styleUrls: ['./publication-list.component.scss'],
 })
-export class PublicationListComponent implements AfterViewInit, OnInit {
-    @Input() 
-    publications: Observable<Publication[]> = new Observable<Publication[]>;
-    
-    @Output() 
-    showPublication = new EventEmitter<Publication>();
+export class PublicationListComponent extends TableInitsComponent<Publication> {
+    @Input() publications: Observable<Publication[]> = new Observable<
+        Publication[]
+    >();
 
-    @ViewChild(MatSort) 
-    sort: MatSort = new MatSort();
-
-    @ViewChild(MatPaginator) 
-    paginator!: MatPaginator;
-
-    dataSource = new MatTableDataSource<Publication>;
+    @Output() showPublication = new EventEmitter<Publication>();
 
     selectedPublication?: Publication;
-
-    selection = new SelectionModel<Publication>(false, []);
 
     displayedColumns: string[] = [
         'key',
@@ -51,16 +30,11 @@ export class PublicationListComponent implements AfterViewInit, OnInit {
     ];
 
     ngOnInit(): void {
-        this.publications.subscribe(publications => {
+        this.publications.subscribe((publications) => {
             this.dataSource.data = publications;
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
         });
-    }
-
-    ngAfterViewInit(): void {
-        this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
     }
 
     onShowPublication(publication: Publication): void {
@@ -70,15 +44,6 @@ export class PublicationListComponent implements AfterViewInit, OnInit {
         } else {
             this.showPublication.emit(publication);
             this.selectedPublication = publication;
-        }
-    }
-
-    applyFilter(event: Event): void {
-        const filterValue = (event.target as HTMLInputElement).value;
-        this.dataSource.filter = filterValue.trim().toLowerCase();
-
-        if (this.dataSource.paginator) {
-            this.dataSource.paginator.firstPage();
         }
     }
 }

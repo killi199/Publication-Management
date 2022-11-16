@@ -1,8 +1,6 @@
 package de.nordakademie.iaa.library.controller.dto;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 /**
@@ -16,7 +14,7 @@ public class AssignmentDto {
 
     private Date dateOfReturn;
 
-    private List<BorrowerDto> borrowers = new ArrayList<>();
+    private BorrowerDto borrower;
 
 
     public UUID getUuid() {
@@ -43,11 +41,11 @@ public class AssignmentDto {
         this.dateOfReturn = dateOfReturn;
     }
 
-    public List<BorrowerDto> getBorrowers() {
-        return borrowers;
+    public BorrowerDto getBorrower() {
+        return borrower;
     }
 
-    public void setBorrowers(List<BorrowerDto> borrowers) {
-        this.borrowers = borrowers;
+    public void setBorrower(BorrowerDto borrower) {
+        this.borrower = borrower;
     }
 }

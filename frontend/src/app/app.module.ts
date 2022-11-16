@@ -41,6 +41,9 @@ import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 import localeDeExtra from '@angular/common/locales/extra/de';
 import { GermanDateAdapter } from './helpers/german-date-adapter';
+import { AssignmentsComponent } from './components/assignments/assignments.component';
+import { AssignmentListComponent } from './components/assignments/assignment-list/assignment-list.component';
+import { AssignmentViewComponent } from './components/assignments/assignment-view/assignment-view.component';
 
 registerLocaleData(localeDe, 'de-DE', localeDeExtra);
 
@@ -56,6 +59,9 @@ registerLocaleData(localeDe, 'de-DE', localeDeExtra);
         BasedataKeywordsComponent,
         BasedataBorrowersComponent,
         BasedataAuthorsComponent,
+        AssignmentsComponent,
+        AssignmentListComponent,
+        AssignmentViewComponent,
     ],
     imports: [
         BrowserAnimationsModule,

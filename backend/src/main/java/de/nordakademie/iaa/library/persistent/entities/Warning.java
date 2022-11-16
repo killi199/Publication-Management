@@ -1,9 +1,6 @@
 package de.nordakademie.iaa.library.persistent.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.UUID;
 
@@ -18,6 +15,7 @@ public class Warning {
     private UUID uuid;
 
     @ManyToOne
+    @JoinColumn(name = "overdue_notice_uuid")
     private OverdueNotice overdueNotice;
 
     private Date warningDate;

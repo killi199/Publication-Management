@@ -1,9 +1,10 @@
 package de.nordakademie.iaa.library.persistent.entities;
 
-import javax.persistence.*;
-import java.util.ArrayList;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 /**
@@ -20,12 +21,8 @@ public class Assignment {
 
     private Date dateOfReturn;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinTable(
-            name = "borrower_assignments",
-            joinColumns = {@JoinColumn(name = "assignment_uuid")},
-            inverseJoinColumns = {@JoinColumn(name = "borrower_uuid")})
-    private List<Borrower> borrowers = new ArrayList<>();
+    @ManyToOne
+    private Borrower borrower;
 
 
     public UUID getUuid() {
@@ -52,11 +49,11 @@ public class Assignment {
         this.dateOfReturn = dateOfReturn;
     }
 
-    public List<Borrower> getBorrowers() {
-        return borrowers;
+    public Borrower getBorrower() {
+        return borrower;
     }
 
-    public void setBorrowers(List<Borrower> borrowers) {
-        this.borrowers = borrowers;
+    public void setBorrower(Borrower borrower) {
+        this.borrower = borrower;
     }
 }
