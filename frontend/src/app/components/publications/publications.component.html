@@ -11,23 +11,34 @@
 
     <div class="button-container">
         <button
-            matTooltip="edit selection"
-            *ngIf="currentPublication"
-            (click)="onEditPublication()"
+            matTooltip="Zurück"
+            *ngIf="openPublication"
+            (click)="onBack()"
             mat-mini-fab
             color="primary"
         >
-            <mat-icon>edit</mat-icon>
+            <mat-icon>arrow_back</mat-icon>
         </button>
+        <div class="crud-container" *ngIf="!openPublication">
+            <button
+                matTooltip="edit selection"
+                *ngIf="currentPublication"
+                (click)="onEditPublication()"
+                mat-mini-fab
+                color="primary"
+            >
+                <mat-icon>edit</mat-icon>
+            </button>
 
-        <button
-            (click)="onAddPublication()"
-            mat-mini-fab
-            matTooltip="add publication"
-            color="primary"
-        >
-            <mat-icon>add</mat-icon>
-        </button>
+            <button
+                (click)="onAddPublication()"
+                mat-mini-fab
+                matTooltip="add publication"
+                color="primary"
+            >
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
     </div>
 
     <app-publication-view

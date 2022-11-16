@@ -19,10 +19,12 @@ h1{
 }
 
 .button-container {
-    display: flex;
-    justify-content: flex-end;
     width: 99%;
     margin: 5px;
+}
+
+.crud-container{
+    float: right;
 }
 
 button {
