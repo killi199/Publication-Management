@@ -21,7 +21,7 @@ export class PublicationsComponent implements OnInit {
     kindsOfPublication: KindOfPublication[] = [];
     currentPublication?: Publication;
     openPublication: boolean = false;
-    addingPublication: boolean = false;
+    private _addingPublication: boolean = false;
 
     constructor(
         private publicationService: PublicationService,
@@ -52,12 +52,12 @@ export class PublicationsComponent implements OnInit {
     }
 
     onEditPublication(): void {
-        this.addingPublication = false;
+        this._addingPublication = false;
         this.openPublication = !this.openPublication;
     }
 
     onAddPublication(): void {
-        this.addingPublication = true;
+        this._addingPublication = true;
         this.currentPublication = new Publication();
         this.currentPublication.author = [];
         this.currentPublication.keywords = [];
@@ -72,10 +72,16 @@ export class PublicationsComponent implements OnInit {
     }
 
     onSavePublication(publication: Publication): void {
-        if (this.addingPublication) {
+        if (this._addingPublication) {
             this.publicationService.savePublication(publication).subscribe();
         } else {
             this.publicationService.updatePublication(publication).subscribe();
         }
+    }
+
+    onBack(): void{
+        this.openPublication = false;
+        this._addingPublication = false;
+        this.currentPublication = undefined;
     }
 }
