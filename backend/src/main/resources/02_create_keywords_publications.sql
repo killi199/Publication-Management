@@ -15,11 +15,9 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('e6d72
 insert into keywords_publications (publication_key, keyword_uuid) values ('64c13330-7f81-46e9-8c59-1af0c95a336a', 'c4ea9dd1-33ee-41e0-b88f-b0af3398522f') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('1c6819c1-d2f6-44ab-93a5-94b912f32038', '160fc82c-848e-4a89-89cd-cc7ba1318a26') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('11c92022-50e4-4aea-8058-22d54fd04525', 'e4b9ea52-e2b4-4a92-8a36-b591c9370675') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('17abb2ca-4ba9-4235-827f-e6b12bfe866a', 'e7892f99-3e17-4cdb-9b2c-09908d710a83') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('03b517b3-08d0-4e55-ae4c-3ab3aec067f4', '21c388ba-6c29-45c0-bbfa-e17ea2a414f9') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('6fb17a44-f641-4e28-b444-bac9769eff5d', 'ed423be2-a782-4e07-b0f6-dfeb991bd515') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('062147cd-4b98-446f-84de-bf96d3415816', 'db0db294-5509-4496-9ef0-2c89f470b27a') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('6f0933da-c187-4ea9-bc5d-ae474fba4499', '43880193-5c2d-4f5d-8086-0f5482381b6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('9b02e76e-4492-4082-9ba9-5e39cce65926', 'fe3784b8-9c8b-4c42-b448-d2d5fc905005') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('f3f8d571-a00a-4e4f-9cfe-c191edefb524', '46466962-1058-4cb0-b158-16b8c1a86f72') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('81e38c30-8e5a-4615-8f77-1b181bfa70ae', 'f7050daa-69d2-4925-bf14-68332261dd3f') ON CONFLICT DO NOTHING;
@@ -45,13 +43,11 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('d9c12
 insert into keywords_publications (publication_key, keyword_uuid) values ('59c309aa-f933-4704-90d5-d70972730dea', 'f7050daa-69d2-4925-bf14-68332261dd3f') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('f1febcaf-978b-42fd-a47a-fd85a8bb3b67', '41a124c4-444b-4010-81d1-32eb142f3541') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('0760ec87-c875-468c-abe3-1069d6278e40', 'd9692466-4768-4426-b96f-b5b805584a16') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('6e69c942-fd04-474a-b5f0-4043b1b8a67c', 'e7892f99-3e17-4cdb-9b2c-09908d710a83') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('f3911c15-1262-40ab-adf3-0af1163d9220', 'c4ea9dd1-33ee-41e0-b88f-b0af3398522f') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('53cc8720-b8d5-414c-bb14-c0a033a317c1', 'ed423be2-a782-4e07-b0f6-dfeb991bd515') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('91e8d261-51aa-4045-882e-508c17f05533', '0a3a70bb-e443-4a38-ada9-ab1e49d942d9') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('63e298c5-9a25-405e-8f40-bf57be9afaa4', 'ed423be2-a782-4e07-b0f6-dfeb991bd515') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('1c616636-4315-4139-a096-7ca25db47ba2', 'd9692466-4768-4426-b96f-b5b805584a16') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('94c63062-74bd-42af-b654-f3741efd98f3', 'e7892f99-3e17-4cdb-9b2c-09908d710a83') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('9df65d0c-34ff-4d50-8ea6-d54abc0b7f94', '21c388ba-6c29-45c0-bbfa-e17ea2a414f9') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('9865df70-70a8-4081-a13d-baa93d6f61b0', 'b62f8b64-435f-4da9-aa15-477424e20f6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('8911a5f7-36c7-4fbf-9528-dc2baac3c7f6', 'd15d5fd6-255e-488b-9523-05d06fca23ea') ON CONFLICT DO NOTHING;
@@ -75,8 +71,6 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('4cf61
 insert into keywords_publications (publication_key, keyword_uuid) values ('b42cface-e174-4c47-8f32-e529ceb00262', 'd9692466-4768-4426-b96f-b5b805584a16') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('6da84ded-59a4-47cc-8d95-7729d9e6d6c9', 'b62f8b64-435f-4da9-aa15-477424e20f6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('d28abdc7-fb2a-4dfc-8ab5-f1ab9d45be5c', 'ed423be2-a782-4e07-b0f6-dfeb991bd515') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('f15d5e52-7b95-4eb1-bb7f-2a9022982c9c', '43880193-5c2d-4f5d-8086-0f5482381b6a') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('a4561af6-2e81-4f6f-acc4-77ea6e111b09', '43880193-5c2d-4f5d-8086-0f5482381b6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('3889eb4e-dd8f-4b1a-9c73-9ac53152824c', 'bfc1fafc-46e6-41db-9f27-0f6502628ab7') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('3dea93c7-2409-432d-a81e-e90e7a8f898f', '6968a2f3-cb79-40a1-b630-826c91d3af18') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('466dac68-0bce-4fff-b32f-92142c0b28af', '160fc82c-848e-4a89-89cd-cc7ba1318a26') ON CONFLICT DO NOTHING;
@@ -97,12 +91,9 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('d7b31
 insert into keywords_publications (publication_key, keyword_uuid) values ('13c8b012-55ec-4964-ada8-cede3265387a', 'd0cef8c2-e891-4a12-9c40-73c43202fbb5') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('b2299085-ca29-46cd-8b7e-db01d6bcb590', '9f7cdf68-19a3-49f1-8834-aab8cc3a90f0') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('17dcedad-57b6-4a1c-a543-ae84afab75d6', '21c388ba-6c29-45c0-bbfa-e17ea2a414f9') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('1e843e87-984d-4bda-be5d-e5580ceae638', 'e7892f99-3e17-4cdb-9b2c-09908d710a83') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('b66a55a7-ad95-4983-b21b-5e0fa9fdc51e', 'db0db294-5509-4496-9ef0-2c89f470b27a') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('7d34f05a-2577-4839-aeb2-baa4b4821c97', '43880193-5c2d-4f5d-8086-0f5482381b6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('bccfeb33-c1c7-42ca-93d0-c94014a8c6e1', 'b62f8b64-435f-4da9-aa15-477424e20f6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('6b00bb84-75e1-4020-a2f9-230a72e4333d', 'b19094b3-9c61-4b61-b053-c75dabb4a59e') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('e0fc9099-e485-4ef6-b799-87d3a5d168c6', 'e7892f99-3e17-4cdb-9b2c-09908d710a83') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('d9c127b7-012b-4efa-9a3e-3568979b7234', '7b815a7f-b521-4811-887c-54bfdc06c352') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('e0d46f54-95e7-4b5e-8f61-efcb4899bc24', '41a124c4-444b-4010-81d1-32eb142f3541') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('c6955d70-e2cb-43a0-8c7a-18989cfeaa28', 'e4b9ea52-e2b4-4a92-8a36-b591c9370675') ON CONFLICT DO NOTHING;
@@ -110,7 +101,6 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('03b51
 insert into keywords_publications (publication_key, keyword_uuid) values ('8dd84285-a61e-4b88-9542-dad7468b99a9', '7b815a7f-b521-4811-887c-54bfdc06c352') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('7e806e2a-3c01-4c5a-940b-26e0745ff9e7', 'b19094b3-9c61-4b61-b053-c75dabb4a59e') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('91168da9-cdd7-43f6-b900-cd647490ccea', '41a124c4-444b-4010-81d1-32eb142f3541') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('8334dec4-abea-4995-82f9-6a6af5967f85', 'e7892f99-3e17-4cdb-9b2c-09908d710a83') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('4b796cfe-1548-44ed-9c71-a6d9d27d361f', '40cf2350-6649-4ea2-9af9-b3bc940cce89') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('db3806dc-0d5f-44d7-95ef-e43164e3bbe3', 'e8c036f5-c291-46e3-8e8b-f505ed96903c') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('91e8d261-51aa-4045-882e-508c17f05533', 'a0530fdf-6855-456c-92b8-3f56a49b690e') ON CONFLICT DO NOTHING;
@@ -154,7 +144,6 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('0ef77
 insert into keywords_publications (publication_key, keyword_uuid) values ('bc98a455-8189-4f45-8e8e-a0eef18d95c2', 'b19094b3-9c61-4b61-b053-c75dabb4a59e') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('2f01d129-ea59-4343-97c9-b60982832f0c', 'a8521286-0da1-49ea-a424-0ebcf09162d7') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('42828113-d225-410a-92aa-60df019f87bb', 'c4ea9dd1-33ee-41e0-b88f-b0af3398522f') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('6aba5910-25a4-4a70-a478-9df1021a5f07', '43880193-5c2d-4f5d-8086-0f5482381b6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('ef14fe99-1dc3-4e5e-bfb6-d6c887f4986e', '160fc82c-848e-4a89-89cd-cc7ba1318a26') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('1d070b5b-1e98-406e-8859-df6055c83ac4', '055099a6-9e6f-4f9a-9169-974720541576') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('f1febcaf-978b-42fd-a47a-fd85a8bb3b67', '9986bb39-2a28-4ddd-aed0-00c25ed108eb') ON CONFLICT DO NOTHING;
@@ -207,7 +196,6 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('de040
 insert into keywords_publications (publication_key, keyword_uuid) values ('bc5dd1df-a6d2-42ce-82e8-2b7d46b8a0aa', '9986bb39-2a28-4ddd-aed0-00c25ed108eb') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('281e3eb4-1e9d-4a41-89e5-0b1200390ca9', 'd9692466-4768-4426-b96f-b5b805584a16') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('475c9d15-c3c7-4049-9b03-67f48a01da18', 'ed423be2-a782-4e07-b0f6-dfeb991bd515') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('b9c33cea-c1b4-4e54-824f-7a85ba810ed6', 'e7892f99-3e17-4cdb-9b2c-09908d710a83') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('12d0561f-f061-43b7-ac20-5daaccad626e', 'e8c036f5-c291-46e3-8e8b-f505ed96903c') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('7efed5e6-4784-40b3-9424-2fc2dc6b4414', 'db0db294-5509-4496-9ef0-2c89f470b27a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('fdbe81e4-846c-4b9f-8147-69dc908f31f4', 'f0c2495c-5cfd-4bdf-a5eb-12d4767b83d6') ON CONFLICT DO NOTHING;
@@ -216,7 +204,6 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('79ae9
 insert into keywords_publications (publication_key, keyword_uuid) values ('a5aec690-f3fc-4202-95b5-f406a24ae6c1', '518e97af-057e-464d-bf08-a842e2503a0b') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('72112e7e-4181-4148-832a-f46f7409910a', 'd5f3f06c-28f6-40ee-bc78-e93bbc9885a4') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('5818d196-9103-4c8a-8c14-314d22c98c9f', '160fc82c-848e-4a89-89cd-cc7ba1318a26') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('e18955ce-d141-4502-b75c-3468cc18bf8f', '43880193-5c2d-4f5d-8086-0f5482381b6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('d7d4dcc6-d322-4dcb-a566-a1664d255bff', 'fe3784b8-9c8b-4c42-b448-d2d5fc905005') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('34f7b9fc-0ec6-4355-bc3a-a918d2b691f9', '7b815a7f-b521-4811-887c-54bfdc06c352') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('f1febcaf-978b-42fd-a47a-fd85a8bb3b67', 'e4b9ea52-e2b4-4a92-8a36-b591c9370675') ON CONFLICT DO NOTHING;
@@ -232,7 +219,6 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('10899
 insert into keywords_publications (publication_key, keyword_uuid) values ('8e328349-b7c8-4538-aaa4-058a7d0465bd', '518e97af-057e-464d-bf08-a842e2503a0b') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('281e3eb4-1e9d-4a41-89e5-0b1200390ca9', '160fc82c-848e-4a89-89cd-cc7ba1318a26') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('04469d2e-5611-46a5-aeef-4a80061a92d9', '21c388ba-6c29-45c0-bbfa-e17ea2a414f9') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('45ea4177-bcff-4d89-b57f-567a72a1f6bd', '43880193-5c2d-4f5d-8086-0f5482381b6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('ed94691b-fac8-46dc-9ae6-bd9af63471ac', '40cf2350-6649-4ea2-9af9-b3bc940cce89') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('2863eee8-4f80-4a89-97c7-f3dabb6f5389', '9986bb39-2a28-4ddd-aed0-00c25ed108eb') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('e8343c51-c279-4702-b718-3ec7da10e374', 'f7050daa-69d2-4925-bf14-68332261dd3f') ON CONFLICT DO NOTHING;
@@ -257,13 +243,8 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('838ab
 insert into keywords_publications (publication_key, keyword_uuid) values ('414755fa-4e3c-49eb-a6b3-5b5cadd9a89a', 'bfc1fafc-46e6-41db-9f27-0f6502628ab7') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('1128d810-95e7-437c-a931-ce69cfc6d860', 'db0db294-5509-4496-9ef0-2c89f470b27a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('7e033da5-2103-4035-834e-b88a437a8f07', '9986bb39-2a28-4ddd-aed0-00c25ed108eb') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('ac34e478-36cf-4402-80b3-a4a03ca68268', 'e7892f99-3e17-4cdb-9b2c-09908d710a83') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('ee1e2f79-4703-4713-97b3-687e52b49ab8', '160fc82c-848e-4a89-89cd-cc7ba1318a26') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('dc81d868-1852-487b-b586-e183268b9e5b', 'e7892f99-3e17-4cdb-9b2c-09908d710a83') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('6aba5910-25a4-4a70-a478-9df1021a5f07', 'e7892f99-3e17-4cdb-9b2c-09908d710a83') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('b63496ad-a841-4098-8157-be2a8a39f601', '3844dc12-17aa-4b13-baf4-e9674e020882') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('1c616636-4315-4139-a096-7ca25db47ba2', '43880193-5c2d-4f5d-8086-0f5482381b6a') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('84c591b0-4faf-4ae1-a31a-0aa8a34e8488', 'e7892f99-3e17-4cdb-9b2c-09908d710a83') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('fc5c8ea0-4665-45c3-94dd-dc555c3236b5', '9986bb39-2a28-4ddd-aed0-00c25ed108eb') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('01bc17c0-4e46-4445-b9a7-165e583cd9c2', '21c388ba-6c29-45c0-bbfa-e17ea2a414f9') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('b4412313-5b29-44ae-b3eb-00ef715db453', '40cf2350-6649-4ea2-9af9-b3bc940cce89') ON CONFLICT DO NOTHING;
@@ -274,7 +255,6 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('46688
 insert into keywords_publications (publication_key, keyword_uuid) values ('80115db5-f951-4559-8af0-870070ba7ed5', 'a0530fdf-6855-456c-92b8-3f56a49b690e') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('65178611-a985-40e8-be66-f72ab0a9d295', 'd9692466-4768-4426-b96f-b5b805584a16') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('fc5c8ea0-4665-45c3-94dd-dc555c3236b5', '160fc82c-848e-4a89-89cd-cc7ba1318a26') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('76f75d54-01ba-4be9-aa6c-8f6b0625334e', '43880193-5c2d-4f5d-8086-0f5482381b6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('1d473d65-9186-4eb4-864a-2363b1e463e7', 'fe3784b8-9c8b-4c42-b448-d2d5fc905005') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('7d74a2a4-8c00-4e09-8b25-8075b61b7e6b', '0a3a70bb-e443-4a38-ada9-ab1e49d942d9') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('dffd60aa-701c-4eaa-9e7b-363d1d3353af', '055099a6-9e6f-4f9a-9169-974720541576') ON CONFLICT DO NOTHING;
@@ -301,7 +281,6 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('c0ea2
 insert into keywords_publications (publication_key, keyword_uuid) values ('31823f56-207a-4964-b822-4eddb515be20', 'a0530fdf-6855-456c-92b8-3f56a49b690e') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('0d417f28-db39-4cd5-b168-8d89003c6eac', '0a3a70bb-e443-4a38-ada9-ab1e49d942d9') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('4c2fa47f-6b33-4766-9f4d-65ef1ecce39c', 'd5f3f06c-28f6-40ee-bc78-e93bbc9885a4') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('827ca741-1e3d-4219-af9c-af6c9c3c32b5', '43880193-5c2d-4f5d-8086-0f5482381b6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('077ce765-c9c3-4c96-97ea-ae48a5a07e02', '160fc82c-848e-4a89-89cd-cc7ba1318a26') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('05998658-72f9-49ea-ab48-5337abcf1112', 'b62f8b64-435f-4da9-aa15-477424e20f6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('97774389-83a8-430b-a05a-da377ec3f9b8', 'e8c036f5-c291-46e3-8e8b-f505ed96903c') ON CONFLICT DO NOTHING;
@@ -347,21 +326,16 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('68bff
 insert into keywords_publications (publication_key, keyword_uuid) values ('7e033da5-2103-4035-834e-b88a437a8f07', '9f7cdf68-19a3-49f1-8834-aab8cc3a90f0') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('8af2c1fe-9811-47d6-9d47-28d8c8bb9750', '7b815a7f-b521-4811-887c-54bfdc06c352') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('08da3ddf-2a63-42fe-bcab-3d5cc4d2f6c9', 'fe3784b8-9c8b-4c42-b448-d2d5fc905005') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('46688efa-444d-4dbd-95f0-f5a680fb4875', '43880193-5c2d-4f5d-8086-0f5482381b6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('3db91c33-a7d9-4892-a2d2-9d2592d29075', '8fd80d2a-7fc4-418f-9d26-2331d75efa1e') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('42969ec8-d64c-4460-931a-213ad4319d7d', '43880193-5c2d-4f5d-8086-0f5482381b6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('d65a949a-952a-45dd-b0ab-22a6e6064c49', '6968a2f3-cb79-40a1-b630-826c91d3af18') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('30cadee1-d300-4b0f-9ae8-61aebf08bd5a', 'f0c2495c-5cfd-4bdf-a5eb-12d4767b83d6') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('01e9210c-eee6-4f79-bb9a-e72918539e4a', 'f0c2495c-5cfd-4bdf-a5eb-12d4767b83d6') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('4482ea11-1f46-4bdf-9d67-7889fe93b9c7', '3844dc12-17aa-4b13-baf4-e9674e020882') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('3b56946a-794e-476f-9842-5924b9d97f44', '43880193-5c2d-4f5d-8086-0f5482381b6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('dc81d868-1852-487b-b586-e183268b9e5b', '6968a2f3-cb79-40a1-b630-826c91d3af18') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('84f065d1-69f1-40c1-a9bb-76d6624976bf', 'b19094b3-9c61-4b61-b053-c75dabb4a59e') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('b3e4c774-32e4-4415-94af-19a2ccc74d5f', '43880193-5c2d-4f5d-8086-0f5482381b6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('6fc788b2-943e-4de9-8089-cc2079135340', 'b62f8b64-435f-4da9-aa15-477424e20f6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('090a5bd1-bfb4-4c68-8146-468d7fc9208f', 'bfc1fafc-46e6-41db-9f27-0f6502628ab7') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('4048bcbc-db4f-4bba-b9a3-356318bdb698', '7b815a7f-b521-4811-887c-54bfdc06c352') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('998b2bf8-211f-428c-b25f-3b9d6be4ecd5', '43880193-5c2d-4f5d-8086-0f5482381b6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('91260d14-418a-46cf-a440-ff95f191297a', 'e8c036f5-c291-46e3-8e8b-f505ed96903c') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('af609cda-70e5-4b50-98d0-ca6c0f17e828', '5b84e3c4-fea4-4b00-8f67-5828f78d18e9') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('145c2dfc-d2ad-4870-b354-35df29af6e40', '055099a6-9e6f-4f9a-9169-974720541576') ON CONFLICT DO NOTHING;
@@ -373,7 +347,6 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('94104
 insert into keywords_publications (publication_key, keyword_uuid) values ('630717a3-98ae-4bff-b718-0e450648e339', '8522d1ee-088c-4506-99e2-03ebe65f7cd8') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('79ae981c-715f-4791-8057-4588a4934342', '0a3a70bb-e443-4a38-ada9-ab1e49d942d9') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('e15fd462-dd68-4f2c-adbb-8d899c48901c', '518e97af-057e-464d-bf08-a842e2503a0b') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('574ffe60-30f8-4371-93d4-99861127ffdc', 'e7892f99-3e17-4cdb-9b2c-09908d710a83') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('a0c52815-1279-4bdd-b65b-b0ba8fe1a146', 'e4b9ea52-e2b4-4a92-8a36-b591c9370675') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('fbff9eb6-8cd0-4895-bf20-c3ec31e6a104', 'f7050daa-69d2-4925-bf14-68332261dd3f') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('4adcb0ab-3d76-4296-aede-c101366aeedb', '21c388ba-6c29-45c0-bbfa-e17ea2a414f9') ON CONFLICT DO NOTHING;
@@ -387,7 +360,6 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('a5c1c
 insert into keywords_publications (publication_key, keyword_uuid) values ('c0ea2ecc-4411-4122-b7d0-c9d03f73ddf7', 'f0c2495c-5cfd-4bdf-a5eb-12d4767b83d6') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('1c848ddf-4fa4-4393-994d-3333f0fca22f', '518e97af-057e-464d-bf08-a842e2503a0b') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('747f9c8d-fb57-4a6a-ba47-b926c4ed2548', 'ed423be2-a782-4e07-b0f6-dfeb991bd515') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('b44dbafc-a99e-4e48-9cfb-b806a89fd9eb', '43880193-5c2d-4f5d-8086-0f5482381b6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('f72c538c-3771-463e-8006-b0983770e437', 'd0cef8c2-e891-4a12-9c40-73c43202fbb5') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('c23298f7-7412-496a-8673-65e0226a58b9', 'e4b9ea52-e2b4-4a92-8a36-b591c9370675') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('806a8434-2792-4a65-9e51-1029c2d7a830', 'd5f3f06c-28f6-40ee-bc78-e93bbc9885a4') ON CONFLICT DO NOTHING;
@@ -399,7 +371,6 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('d9c12
 insert into keywords_publications (publication_key, keyword_uuid) values ('b08aaf15-2acf-4183-8a1e-5037f4e68d6a', '518e97af-057e-464d-bf08-a842e2503a0b') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('4a81887e-0c7b-41aa-a5a7-161bf37cbd6d', '055099a6-9e6f-4f9a-9169-974720541576') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('767e4745-ca42-4313-a827-d1b4e4cc20db', 'c4ea9dd1-33ee-41e0-b88f-b0af3398522f') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('221766f3-9749-46ca-b13b-d9f53930c659', '43880193-5c2d-4f5d-8086-0f5482381b6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('fe85a785-9037-4376-b558-38d20a2cd4d5', '160fc82c-848e-4a89-89cd-cc7ba1318a26') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('a373ea16-2c90-4d3a-aae3-344e3f36b6c6', 'bfc1fafc-46e6-41db-9f27-0f6502628ab7') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('bb9bd7b0-5b1a-4d8c-a483-6d93fe8fe027', 'ed423be2-a782-4e07-b0f6-dfeb991bd515') ON CONFLICT DO NOTHING;
@@ -446,7 +417,6 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('d7b31
 insert into keywords_publications (publication_key, keyword_uuid) values ('80d71ae5-6f67-4117-afb1-acccf5d11526', '8522d1ee-088c-4506-99e2-03ebe65f7cd8') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('b1996039-dfe7-44a4-8aa9-384bf3b12658', '0a3a70bb-e443-4a38-ada9-ab1e49d942d9') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('827532c8-e466-44d4-bd55-a4498b52d809', '6968a2f3-cb79-40a1-b630-826c91d3af18') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('f6fa9436-44ff-4b38-a676-28608653bbcb', '43880193-5c2d-4f5d-8086-0f5482381b6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('eb36316e-612c-492c-9bcb-c2dd8bfb969a', 'd15d5fd6-255e-488b-9523-05d06fca23ea') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('d9c127b7-012b-4efa-9a3e-3568979b7234', '160fc82c-848e-4a89-89cd-cc7ba1318a26') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('3a1233fb-5293-48ee-bdc2-d88e4baaaeb7', '0a3a70bb-e443-4a38-ada9-ab1e49d942d9') ON CONFLICT DO NOTHING;
@@ -485,7 +455,6 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('80996
 insert into keywords_publications (publication_key, keyword_uuid) values ('e18cec45-5b1a-4f89-8236-0b8c3b897195', 'bfc1fafc-46e6-41db-9f27-0f6502628ab7') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('1887435e-26da-446a-8e57-09efe0800336', 'e8c036f5-c291-46e3-8e8b-f505ed96903c') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('9a05be36-04bf-425e-abbf-fe144581d532', 'd0cef8c2-e891-4a12-9c40-73c43202fbb5') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('21d5a6e3-ffd9-4cee-a462-1d2807269451', '43880193-5c2d-4f5d-8086-0f5482381b6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('5baaf613-067a-4ce0-89bf-f15441bfe3b4', '46466962-1058-4cb0-b158-16b8c1a86f72') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('aad3450c-d14d-40c8-9207-3374616a8c63', 'ed423be2-a782-4e07-b0f6-dfeb991bd515') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('5729a18d-fa11-4915-a5ad-d408ec536580', 'd0cef8c2-e891-4a12-9c40-73c43202fbb5') ON CONFLICT DO NOTHING;
@@ -525,11 +494,8 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('5219e
 insert into keywords_publications (publication_key, keyword_uuid) values ('aa107887-7138-4353-8f97-e3229bbec131', 'fe3784b8-9c8b-4c42-b448-d2d5fc905005') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('35e42bbc-1e61-4dab-88f6-afb8acd546d9', 'fe3784b8-9c8b-4c42-b448-d2d5fc905005') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('f154f950-004e-4fb4-834f-b26ec0b645b8', 'ed423be2-a782-4e07-b0f6-dfeb991bd515') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('92b818a4-5476-4aa8-80ee-9b4e19af24e0', '43880193-5c2d-4f5d-8086-0f5482381b6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('ef4be46d-245d-4e5f-8ccc-09c5a32e8dd3', 'd9692466-4768-4426-b96f-b5b805584a16') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('a5c1cd52-4491-41a7-8519-5ea509a5f231', '0a3a70bb-e443-4a38-ada9-ab1e49d942d9') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('2ce55b30-a15c-4ea5-b9a9-1c496c3c5151', 'e7892f99-3e17-4cdb-9b2c-09908d710a83') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('ed94691b-fac8-46dc-9ae6-bd9af63471ac', '43880193-5c2d-4f5d-8086-0f5482381b6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('7135f2c3-0d8b-4688-9078-d24fcc40ac53', '160fc82c-848e-4a89-89cd-cc7ba1318a26') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('18619648-3f70-4586-95f7-ce2054586d1e', 'a8521286-0da1-49ea-a424-0ebcf09162d7') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('67213e25-d41d-4846-801c-66f4cb03b0b6', 'd9692466-4768-4426-b96f-b5b805584a16') ON CONFLICT DO NOTHING;
@@ -547,7 +513,6 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('79442
 insert into keywords_publications (publication_key, keyword_uuid) values ('f9adc0a5-af5d-44f2-8f9d-e24a21526818', '21c388ba-6c29-45c0-bbfa-e17ea2a414f9') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('d7e7e59f-f5b7-4477-ba2f-56adab943efa', '41a124c4-444b-4010-81d1-32eb142f3541') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('e14192a3-c42f-45f8-966e-4600a99d56ef', '7b815a7f-b521-4811-887c-54bfdc06c352') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('377c6bfb-13f1-41ad-82dc-5e5f24d3d88d', 'e7892f99-3e17-4cdb-9b2c-09908d710a83') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('a25c6aee-9fa3-4ba3-91c9-e19295066cc8', 'd9692466-4768-4426-b96f-b5b805584a16') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('0dc5d001-1d36-4141-89d3-58f9d63c12a6', 'c4ea9dd1-33ee-41e0-b88f-b0af3398522f') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('940c9ac8-42d6-458b-95e8-94a5062392e1', '160fc82c-848e-4a89-89cd-cc7ba1318a26') ON CONFLICT DO NOTHING;
@@ -576,7 +541,6 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('b4167
 insert into keywords_publications (publication_key, keyword_uuid) values ('f8c4b9cf-c36c-46fc-b3c5-08127d6d1efb', '6968a2f3-cb79-40a1-b630-826c91d3af18') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('2a33a5e4-81a5-4d1b-b6c4-7e915c7887a5', '41a124c4-444b-4010-81d1-32eb142f3541') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('ae490730-0b60-4afa-b853-d10340ed7ae2', '0a3a70bb-e443-4a38-ada9-ab1e49d942d9') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('c6b91843-a823-45f2-b125-6c89bdba061f', 'e7892f99-3e17-4cdb-9b2c-09908d710a83') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('04fde04b-ffc5-4ea4-9960-0666e24d1306', 'a8521286-0da1-49ea-a424-0ebcf09162d7') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('9ab8a4b0-3588-4894-bb31-c5fa7ddc9a39', 'd9692466-4768-4426-b96f-b5b805584a16') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('744f4273-21da-418f-baf7-2e013deec5dc', '6968a2f3-cb79-40a1-b630-826c91d3af18') ON CONFLICT DO NOTHING;
@@ -630,17 +594,13 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('fc351
 insert into keywords_publications (publication_key, keyword_uuid) values ('e6277d6f-7286-4e50-9a73-a30c0e3bff69', 'a8521286-0da1-49ea-a424-0ebcf09162d7') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('b06b322a-e5fe-4072-a47b-72acc89c41e2', 'a8521286-0da1-49ea-a424-0ebcf09162d7') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('32c38316-7e4b-4e3d-a235-1156a4f3e3af', 'e4b9ea52-e2b4-4a92-8a36-b591c9370675') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('f6563037-5c5d-419a-9ef4-11bb5f40187b', '43880193-5c2d-4f5d-8086-0f5482381b6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('8af2c1fe-9811-47d6-9d47-28d8c8bb9750', '0a3a70bb-e443-4a38-ada9-ab1e49d942d9') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('281e3eb4-1e9d-4a41-89e5-0b1200390ca9', 'd9692466-4768-4426-b96f-b5b805584a16') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('4f327503-4c09-4f7d-996b-1f0dc65c9f35', 'f7050daa-69d2-4925-bf14-68332261dd3f') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('3dcfc54d-56e1-4ba4-9beb-49141e7867a0', '41a124c4-444b-4010-81d1-32eb142f3541') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('8c552a90-23a0-4b49-888d-301435dad7d6', '43880193-5c2d-4f5d-8086-0f5482381b6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('eb8d893c-5767-43a5-8d8a-97f2a04ce88d', 'bfc1fafc-46e6-41db-9f27-0f6502628ab7') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('3d68e06b-dc7b-4f53-843f-306d1d17c140', 'e8c036f5-c291-46e3-8e8b-f505ed96903c') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('8af2907f-e6a3-4142-a836-87653e1285d4', 'f0c2495c-5cfd-4bdf-a5eb-12d4767b83d6') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('e52c697c-0343-4ee0-9323-ec7fd8c8c8b9', '43880193-5c2d-4f5d-8086-0f5482381b6a') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('01fcf0d7-ace6-435b-a23d-f24d25a5799c', '43880193-5c2d-4f5d-8086-0f5482381b6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('d2588d8f-1cf7-4149-9777-e5d92ae7697b', 'b62f8b64-435f-4da9-aa15-477424e20f6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('fc4746dc-8788-4bb7-a6a3-ca9f799c468b', '3844dc12-17aa-4b13-baf4-e9674e020882') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('d1e547ec-08f3-4104-847b-6893f1159d08', 'fe3784b8-9c8b-4c42-b448-d2d5fc905005') ON CONFLICT DO NOTHING;
@@ -655,7 +615,6 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('817ca
 insert into keywords_publications (publication_key, keyword_uuid) values ('db3806dc-0d5f-44d7-95ef-e43164e3bbe3', 'a8521286-0da1-49ea-a424-0ebcf09162d7') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('c8fc594b-6b7c-48e8-b04e-e9c215fc2f94', '3844dc12-17aa-4b13-baf4-e9674e020882') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('b03fb077-0432-4ff0-94d1-0f159862d013', 'e8c036f5-c291-46e3-8e8b-f505ed96903c') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('be742b49-60e6-404c-a7cb-457068da39ba', 'e7892f99-3e17-4cdb-9b2c-09908d710a83') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('80115db5-f951-4559-8af0-870070ba7ed5', '160fc82c-848e-4a89-89cd-cc7ba1318a26') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('df474a2a-e296-458a-83a5-47bcbf38c54c', 'a8521286-0da1-49ea-a424-0ebcf09162d7') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('6038b475-6bd3-46e7-ac5a-a6b48c7f2f74', '8fd80d2a-7fc4-418f-9d26-2331d75efa1e') ON CONFLICT DO NOTHING;
@@ -665,7 +624,6 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('25a28
 insert into keywords_publications (publication_key, keyword_uuid) values ('b7fb5d1a-00bf-419d-90d9-d96dd45aac91', 'e4b9ea52-e2b4-4a92-8a36-b591c9370675') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('fa59391b-75fc-4eaf-9c50-49619dc827a0', 'e8c036f5-c291-46e3-8e8b-f505ed96903c') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('220d5f35-0904-49b4-bdd8-44ae2be606a8', 'db0db294-5509-4496-9ef0-2c89f470b27a') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('132c15c2-7408-4ea4-ac00-7748d8a80e83', '43880193-5c2d-4f5d-8086-0f5482381b6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('220d5f35-0904-49b4-bdd8-44ae2be606a8', '160fc82c-848e-4a89-89cd-cc7ba1318a26') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('aa107887-7138-4353-8f97-e3229bbec131', '0a3a70bb-e443-4a38-ada9-ab1e49d942d9') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('53cc8720-b8d5-414c-bb14-c0a033a317c1', 'd5f3f06c-28f6-40ee-bc78-e93bbc9885a4') ON CONFLICT DO NOTHING;
@@ -673,7 +631,6 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('1a71d
 insert into keywords_publications (publication_key, keyword_uuid) values ('8777e03c-be73-4cfa-9ba6-e21f9fa549f0', 'a8521286-0da1-49ea-a424-0ebcf09162d7') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('af4c3296-289e-4efe-9e52-6cf972fd23b8', 'ed423be2-a782-4e07-b0f6-dfeb991bd515') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('aee6271d-24ad-46e3-aa4c-0aea19eb0d84', '46466962-1058-4cb0-b158-16b8c1a86f72') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('d5e92e3b-8014-4f7b-bf7e-fdc4545200b6', '43880193-5c2d-4f5d-8086-0f5482381b6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('81e38c30-8e5a-4615-8f77-1b181bfa70ae', 'ed423be2-a782-4e07-b0f6-dfeb991bd515') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('466dac68-0bce-4fff-b32f-92142c0b28af', 'ed423be2-a782-4e07-b0f6-dfeb991bd515') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('24fe2758-d844-46ab-9458-beb412975981', 'a8521286-0da1-49ea-a424-0ebcf09162d7') ON CONFLICT DO NOTHING;
@@ -682,7 +639,6 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('14f61
 insert into keywords_publications (publication_key, keyword_uuid) values ('05c84ad2-e191-4a2a-9c4b-e1c4817af0e6', '40cf2350-6649-4ea2-9af9-b3bc940cce89') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('8911a5f7-36c7-4fbf-9528-dc2baac3c7f6', 'a0530fdf-6855-456c-92b8-3f56a49b690e') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('a869ed6b-3c86-4c10-ab38-36d4893710ae', 'e8c036f5-c291-46e3-8e8b-f505ed96903c') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('8edbddd7-7197-4ec1-92d9-c98ca4f89115', 'e7892f99-3e17-4cdb-9b2c-09908d710a83') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('a2d16aa7-bdff-4281-a4fe-23b3ef7e759f', '40cf2350-6649-4ea2-9af9-b3bc940cce89') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('d9979faa-bbc4-4f60-b053-3e2e123ae153', '160fc82c-848e-4a89-89cd-cc7ba1318a26') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('f5cdda89-cfef-4518-a9c7-b36f3883ccbb', '46466962-1058-4cb0-b158-16b8c1a86f72') ON CONFLICT DO NOTHING;
@@ -696,7 +652,6 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('4dd00
 insert into keywords_publications (publication_key, keyword_uuid) values ('11a398c1-af9a-455e-b774-059245f27c1d', '6968a2f3-cb79-40a1-b630-826c91d3af18') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('91260d14-418a-46cf-a440-ff95f191297a', 'e4b9ea52-e2b4-4a92-8a36-b591c9370675') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('1221d7e6-ca7a-4631-9e66-04c183e35eab', 'b62f8b64-435f-4da9-aa15-477424e20f6a') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('6d61a327-ec1a-4e3d-a649-57d9d488df39', '43880193-5c2d-4f5d-8086-0f5482381b6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('4795e147-19c4-4314-8be4-084dfa4072cd', 'fe3784b8-9c8b-4c42-b448-d2d5fc905005') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('ae490730-0b60-4afa-b853-d10340ed7ae2', 'c4ea9dd1-33ee-41e0-b88f-b0af3398522f') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('46688efa-444d-4dbd-95f0-f5a680fb4875', '41a124c4-444b-4010-81d1-32eb142f3541') ON CONFLICT DO NOTHING;
@@ -712,7 +667,6 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('8dd84
 insert into keywords_publications (publication_key, keyword_uuid) values ('5747a548-e126-4d04-9fec-31248f88f31c', 'db0db294-5509-4496-9ef0-2c89f470b27a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('aa0d61f9-3dc7-4b76-897f-ba206c664177', 'a0530fdf-6855-456c-92b8-3f56a49b690e') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('c1c9c96e-fb43-44d9-8c79-250182d132fd', '055099a6-9e6f-4f9a-9169-974720541576') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('c8501abc-4be2-4e1c-82e6-adbd027f2f2a', 'e7892f99-3e17-4cdb-9b2c-09908d710a83') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('8b65c8e1-e394-4933-9380-5b8c7c1811c4', 'd9692466-4768-4426-b96f-b5b805584a16') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('4cc8f20b-a161-45db-afd0-c540d17b51e4', '40cf2350-6649-4ea2-9af9-b3bc940cce89') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('aee6271d-24ad-46e3-aa4c-0aea19eb0d84', 'f7050daa-69d2-4925-bf14-68332261dd3f') ON CONFLICT DO NOTHING;
@@ -735,7 +689,6 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('36cbf
 insert into keywords_publications (publication_key, keyword_uuid) values ('f5cdda89-cfef-4518-a9c7-b36f3883ccbb', 'b19094b3-9c61-4b61-b053-c75dabb4a59e') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('c84601e9-9163-47c9-9294-e716eb2f8529', 'bfc1fafc-46e6-41db-9f27-0f6502628ab7') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('b1efd54c-12e2-481a-b761-0b5bdb649f40', 'b62f8b64-435f-4da9-aa15-477424e20f6a') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('e6d7275a-cbc8-4981-83e9-480bb8d799c4', 'e7892f99-3e17-4cdb-9b2c-09908d710a83') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('63871f97-d3d5-4724-8a6d-493185356c4d', 'b62f8b64-435f-4da9-aa15-477424e20f6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('2227b17e-2aed-4206-b45a-83ee9dd03a51', 'db0db294-5509-4496-9ef0-2c89f470b27a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('d4532d05-4d97-44d4-bd7d-c7aa6e5eda2e', '21c388ba-6c29-45c0-bbfa-e17ea2a414f9') ON CONFLICT DO NOTHING;
@@ -771,7 +724,6 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('df9bd
 insert into keywords_publications (publication_key, keyword_uuid) values ('7b6ec528-f7fd-495c-a927-da17d3290cc4', 'a8521286-0da1-49ea-a424-0ebcf09162d7') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('86321191-0f8b-48e2-8f6d-b10c0ab1eeec', '5b84e3c4-fea4-4b00-8f67-5828f78d18e9') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('38ab0e92-540c-43f2-aecf-4c4133261a27', '9f7cdf68-19a3-49f1-8834-aab8cc3a90f0') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('575fbac1-5647-42b0-b1a6-6016893109a2', 'e7892f99-3e17-4cdb-9b2c-09908d710a83') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('babe7aac-5d33-426c-859a-d30a55d63703', '9986bb39-2a28-4ddd-aed0-00c25ed108eb') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('68c1cba6-4c48-47ae-88b2-cce685e019e7', 'a0530fdf-6855-456c-92b8-3f56a49b690e') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('34b5b39c-cfb0-403d-90c6-d565098d0aec', '40cf2350-6649-4ea2-9af9-b3bc940cce89') ON CONFLICT DO NOTHING;
@@ -806,7 +758,6 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('3c0ff
 insert into keywords_publications (publication_key, keyword_uuid) values ('2227b17e-2aed-4206-b45a-83ee9dd03a51', 'b19094b3-9c61-4b61-b053-c75dabb4a59e') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('7e033da5-2103-4035-834e-b88a437a8f07', '8522d1ee-088c-4506-99e2-03ebe65f7cd8') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('313b7ddb-2f2f-4abf-84df-c7ab2cc6d7b5', 'a8521286-0da1-49ea-a424-0ebcf09162d7') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('d0104c36-e54b-4975-8be9-c082b6f70f7c', 'e7892f99-3e17-4cdb-9b2c-09908d710a83') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('541b6ccd-8864-4ed7-b297-2c8868deaa79', 'd0cef8c2-e891-4a12-9c40-73c43202fbb5') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('125547da-11ca-4aec-a06a-0758f819a88a', 'e4b9ea52-e2b4-4a92-8a36-b591c9370675') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('2f572bd7-4609-40c1-8a09-6ec021d59c34', '8fd80d2a-7fc4-418f-9d26-2331d75efa1e') ON CONFLICT DO NOTHING;
@@ -872,7 +823,6 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('70047
 insert into keywords_publications (publication_key, keyword_uuid) values ('d4532d05-4d97-44d4-bd7d-c7aa6e5eda2e', '21c388ba-6c29-45c0-bbfa-e17ea2a414f9') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('36d155ea-ce2e-4c35-afbb-4c7f6c5f7886', '5b84e3c4-fea4-4b00-8f67-5828f78d18e9') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('396b1433-479e-4e41-bce6-85c8d1306f9a', '0a3a70bb-e443-4a38-ada9-ab1e49d942d9') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('b0cdd694-d1d2-4906-ad27-20e54c48dcb5', 'e7892f99-3e17-4cdb-9b2c-09908d710a83') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('0c6a2e6d-5b42-44dc-8f2b-f7448394c76e', '8fd80d2a-7fc4-418f-9d26-2331d75efa1e') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('461449a1-f48e-43c8-ba1f-3034971ec277', '8fd80d2a-7fc4-418f-9d26-2331d75efa1e') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('2a6ea6a0-ae36-4719-b221-ed9843946bbc', '160fc82c-848e-4a89-89cd-cc7ba1318a26') ON CONFLICT DO NOTHING;
@@ -922,7 +872,6 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('a5aec
 insert into keywords_publications (publication_key, keyword_uuid) values ('fc5c8ea0-4665-45c3-94dd-dc555c3236b5', '9f7cdf68-19a3-49f1-8834-aab8cc3a90f0') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('8daeb7f6-4e88-4ccf-8c2b-8a28c46f7b0c', 'd9692466-4768-4426-b96f-b5b805584a16') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('82f70e4e-2a88-44f9-8062-e38e82bcccc4', 'a0530fdf-6855-456c-92b8-3f56a49b690e') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('9e240897-4cf1-4850-ad52-681006cf7b1a', '43880193-5c2d-4f5d-8086-0f5482381b6a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('a130480a-8536-4c13-8eb7-8441bc29e083', '6968a2f3-cb79-40a1-b630-826c91d3af18') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('05226650-2091-4a68-9d0a-1ad4d1597fe9', '055099a6-9e6f-4f9a-9169-974720541576') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('4ed3e41f-9d98-41c9-a390-dadae225601b', '40cf2350-6649-4ea2-9af9-b3bc940cce89') ON CONFLICT DO NOTHING;
@@ -936,7 +885,6 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('65f78
 insert into keywords_publications (publication_key, keyword_uuid) values ('6e69c942-fd04-474a-b5f0-4043b1b8a67c', '8fd80d2a-7fc4-418f-9d26-2331d75efa1e') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('9298f346-8d41-460b-b1d2-0f5caf35963c', 'd5f3f06c-28f6-40ee-bc78-e93bbc9885a4') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('06e4f8de-9dc3-4374-921d-35cd28933ddf', '40cf2350-6649-4ea2-9af9-b3bc940cce89') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('ceef4707-1ecd-4611-99db-682e2ad51a3d', 'e7892f99-3e17-4cdb-9b2c-09908d710a83') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('17abb2ca-4ba9-4235-827f-e6b12bfe866a', 'd9692466-4768-4426-b96f-b5b805584a16') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('6cc6b582-2456-4f2d-aa1a-37a31b71c398', 'f7050daa-69d2-4925-bf14-68332261dd3f') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('4e2b3ca0-835a-4280-b512-73d4fc0046dd', '3844dc12-17aa-4b13-baf4-e9674e020882') ON CONFLICT DO NOTHING;
@@ -963,7 +911,6 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('54775
 insert into keywords_publications (publication_key, keyword_uuid) values ('35aca7f6-6ab0-4713-9093-dc9e3852b7ed', '9f7cdf68-19a3-49f1-8834-aab8cc3a90f0') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('b1c1e975-83da-4f0b-8127-00192d76fd81', 'e4b9ea52-e2b4-4a92-8a36-b591c9370675') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('2fb74c6e-be62-4cba-9aa0-d80fde5fbdb4', 'd0cef8c2-e891-4a12-9c40-73c43202fbb5') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('eb8d893c-5767-43a5-8d8a-97f2a04ce88d', 'e7892f99-3e17-4cdb-9b2c-09908d710a83') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('6e69c942-fd04-474a-b5f0-4043b1b8a67c', '6968a2f3-cb79-40a1-b630-826c91d3af18') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('72998018-c610-48f6-a501-ab8128bb6ab7', 'f7050daa-69d2-4925-bf14-68332261dd3f') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('0da33133-0047-47f3-bb21-72d5d5b93076', '6968a2f3-cb79-40a1-b630-826c91d3af18') ON CONFLICT DO NOTHING;
@@ -977,23 +924,19 @@ insert into keywords_publications (publication_key, keyword_uuid) values ('a3068
 insert into keywords_publications (publication_key, keyword_uuid) values ('01bc17c0-4e46-4445-b9a7-165e583cd9c2', '8fd80d2a-7fc4-418f-9d26-2331d75efa1e') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('9e50bd7d-928d-4097-a193-147185b0e90f', '518e97af-057e-464d-bf08-a842e2503a0b') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('e6d7275a-cbc8-4981-83e9-480bb8d799c4', 'a8521286-0da1-49ea-a424-0ebcf09162d7') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('08319e93-dbed-405e-a1c1-5469e313362e', 'e7892f99-3e17-4cdb-9b2c-09908d710a83') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('34c056ca-c45a-4fd9-a213-01dc2692bc70', '3844dc12-17aa-4b13-baf4-e9674e020882') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('e4955b8d-a287-4279-b409-969f67d45276', 'e8c036f5-c291-46e3-8e8b-f505ed96903c') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('5e898330-9b95-4c74-a862-99d8d2543389', 'e7892f99-3e17-4cdb-9b2c-09908d710a83') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('6f19e6dd-d801-4040-a0b3-06a40dc1a5f0', 'f7050daa-69d2-4925-bf14-68332261dd3f') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('91168da9-cdd7-43f6-b900-cd647490ccea', 'c4ea9dd1-33ee-41e0-b88f-b0af3398522f') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('8e7bd698-acde-4281-b03f-aee08ce26535', '6968a2f3-cb79-40a1-b630-826c91d3af18') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('9df31e1a-46b0-425d-8f0d-a6caa62a2407', 'c4ea9dd1-33ee-41e0-b88f-b0af3398522f') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('6b1f5dc8-65e8-4b8c-b398-3b6067e4a2f8', 'db0db294-5509-4496-9ef0-2c89f470b27a') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('d5e92e3b-8014-4f7b-bf7e-fdc4545200b6', 'a0530fdf-6855-456c-92b8-3f56a49b690e') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('a7d45195-9780-473c-abee-c05128863081', 'e7892f99-3e17-4cdb-9b2c-09908d710a83') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('e0861e4a-f911-491d-97fd-956cfdc3cf41', 'f7050daa-69d2-4925-bf14-68332261dd3f') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('ac528b88-a50c-4417-bd94-0442cee3264a', '41a124c4-444b-4010-81d1-32eb142f3541') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('3529c3e3-dca7-4608-ae98-76ca18be689e', '518e97af-057e-464d-bf08-a842e2503a0b') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('30bad656-4956-4b72-910d-2c8e8330b3d7', '7b815a7f-b521-4811-887c-54bfdc06c352') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('c3267f1c-2982-4d64-afec-0a972ad63b53', 'ed423be2-a782-4e07-b0f6-dfeb991bd515') ON CONFLICT DO NOTHING;
-insert into keywords_publications (publication_key, keyword_uuid) values ('9e5fd977-e9cb-4092-9a2c-a9792fbf60ec', 'e7892f99-3e17-4cdb-9b2c-09908d710a83') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('ad918ba0-cb03-40ac-baf9-d0892ef4b997', '055099a6-9e6f-4f9a-9169-974720541576') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('80d71ae5-6f67-4117-afb1-acccf5d11526', 'c4ea9dd1-33ee-41e0-b88f-b0af3398522f') ON CONFLICT DO NOTHING;
 insert into keywords_publications (publication_key, keyword_uuid) values ('7fd4ed88-c972-4844-9971-15e316b9ff36', '160fc82c-848e-4a89-89cd-cc7ba1318a26') ON CONFLICT DO NOTHING;

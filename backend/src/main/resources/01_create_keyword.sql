@@ -26,8 +26,6 @@ insert into keyword (uuid, value) values ('f7050daa-69d2-4925-bf14-68332261dd3f'
 insert into keyword (uuid, value) values ('40cf2350-6649-4ea2-9af9-b3bc940cce89', 'Psychology') ON CONFLICT DO NOTHING;
 insert into keyword (uuid, value) values ('d15d5fd6-255e-488b-9523-05d06fca23ea', 'Thriller') ON CONFLICT DO NOTHING;
 insert into keyword (uuid, value) values ('8522d1ee-088c-4506-99e2-03ebe65f7cd8', 'Horror') ON CONFLICT DO NOTHING;
-insert into keyword (uuid, value) values ('e7892f99-3e17-4cdb-9b2c-09908d710a83', 'Romance') ON CONFLICT DO NOTHING;
-insert into keyword (uuid, value) values ('43880193-5c2d-4f5d-8086-0f5482381b6a', 'Adventure') ON CONFLICT DO NOTHING;
 insert into keyword (uuid, value) values ('e8c036f5-c291-46e3-8e8b-f505ed96903c', 'Children’s') ON CONFLICT DO NOTHING;
 insert into keyword (uuid, value) values ('e4b9ea52-e2b4-4a92-8a36-b591c9370675', 'Health') ON CONFLICT DO NOTHING;
 insert into keyword (uuid, value) values ('d5f3f06c-28f6-40ee-bc78-e93bbc9885a4', 'Cooking') ON CONFLICT DO NOTHING;
