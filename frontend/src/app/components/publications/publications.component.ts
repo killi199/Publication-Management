@@ -37,7 +37,7 @@ export class PublicationsComponent implements OnInit {
             .loadAllKeywords()
             .subscribe((keywords) => (this.keywords = keywords));
         this.authorService
-            .loadAllAuthors()
+            .listAllAuthors()
             .subscribe((authors) => (this.authors = authors));
         this.kindOfPublicationService
             .loadAllKindsOfPublication()
@@ -77,7 +77,7 @@ export class PublicationsComponent implements OnInit {
         }
     }
 
-    onBack(): void{
+    onBack(): void {
         this.openPublication = false;
         this.addingPublication = false;
         this.currentPublication = undefined;

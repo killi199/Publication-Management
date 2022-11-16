@@ -29,7 +29,7 @@ export class BasedataComponent {
     ) {
         this.kindOfPubs$ = kindOfPubService.loadAllKindsOfPublication();
         this.keywords$ = keywordService.loadAllKeywords();
-        this.authors$ = authorService.loadAllAuthors();
+        this.authors$ = authorService.listAllAuthors();
         this.borrowers$ = borrowerService.loadAllBorrowers();
     }
 
@@ -70,14 +70,14 @@ export class BasedataComponent {
     }
 
     onDeleteAuthor(author: Author) {
-        this.authorService.delete(author);
+        this.authorService.deleteAuthor(author);
     }
 
     onCreateAuthor(author: Author) {
-        this.authorService.create(author);
+        this.authorService.saveAuthor(author);
     }
 
     onUpdateAuthor(author: Author) {
-        this.authorService.update(author);
+        this.authorService.updateAuthor(author);
     }
 }
