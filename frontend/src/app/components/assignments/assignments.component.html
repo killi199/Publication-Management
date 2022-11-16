@@ -3,17 +3,45 @@
         <h1>Ausleihvorgänge Übersicht</h1>
     </div>
 
-    <app-assignment-list [assignments]="assignments"></app-assignment-list>
+    <app-assignment-list
+        *ngIf="!openAssignment"
+        [assignments]="assignments"
+        (showAssignment)="onSelect($event)"
+    ></app-assignment-list>
 
     <div class="button-container">
-        <button matTooltip="edit selection" mat-mini-fab color="primary">
-            <mat-icon>edit</mat-icon>
+        <button
+            matTooltip="Zurück"
+            *ngIf="openAssignment"
+            (click)="onBack()"
+            mat-mini-fab
+            color="primary"
+        >
+            <mat-icon>arrow_back</mat-icon>
         </button>
+        <div class="crud-container" *ngIf="!openAssignment">
+            <button
+                matTooltip="Bearbeiten"
+                *ngIf="currentAssignment"
+                (click)="onEdit()"
+                mat-mini-fab
+                color="primary"
+            >
+                <mat-icon>edit</mat-icon>
+            </button>
 
-        <button mat-mini-fab matTooltip="add publication" color="primary">
-            <mat-icon>add</mat-icon>
-        </button>
+            <button
+                (click)="onAdd()"
+                mat-mini-fab
+                matTooltip="Erstellen"
+                color="primary"
+            >
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
     </div>
 
-    <app-assignment-view *ngIf="false"></app-assignment-view>
+    <app-assignment-view
+        *ngIf="currentAssignment && openAssignment"
+    ></app-assignment-view>
 </div>

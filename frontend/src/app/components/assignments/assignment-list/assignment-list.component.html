@@ -53,6 +53,7 @@
         ></tr>
         <tr
             mat-row
+            (click)="onShowAssignment(row)"
             (click)="selection.toggle(row)"
             [ngClass]="{
                 hovered: row.hovered,
