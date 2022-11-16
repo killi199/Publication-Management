@@ -13,7 +13,7 @@ export abstract class TableInitsComponent<Type> implements AfterViewInit {
 
     abstract displayedColumns: string[];
 
-    dataSource!: MatTableDataSource<Type>;
+    dataSource: MatTableDataSource<Type> = new MatTableDataSource<Type>;
     selection = new SelectionModel<Type>(false, []);
 
     ngAfterViewInit() {
