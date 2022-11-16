@@ -11,13 +11,13 @@ import javax.validation.constraints.Null;
 import java.util.List;
 import java.util.UUID;
 
-import static de.nordakademie.iaa.library.controller.api.constants.ApiPath.PUBLICATION_BASE_PATH;
+import static de.nordakademie.iaa.library.controller.api.constants.ApiPath.AUTHOR_BASE_PATH;
 
 /**
  * controller author entity crud operations.
  */
 @RestController
-@RequestMapping(PUBLICATION_BASE_PATH)
+@RequestMapping(AUTHOR_BASE_PATH)
 public class AuthorController {
 
     private final AuthorServiceInterface authorService;
