@@ -9,6 +9,7 @@ import javax.persistence.*;
  * Author Publication relation
  */
 @Entity
+@IdClass(AuthorPublicationsKey.class)
 public class AuthorsPublications {
 
     public AuthorsPublications(Publication publication, Author author) {
@@ -18,27 +19,15 @@ public class AuthorsPublications {
 
     public AuthorsPublications() {}
 
-    @EmbeddedId
-    private AuthorPublicationsKey authorPublicationsKey;
 
-    @MapsId("publicationKey")
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "publication_key")
+    @Id
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Publication publication;
 
-    @MapsId("authorUuid")
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "author_uuid")
+    @Id
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Author author;
 
-
-    public AuthorPublicationsKey getAuthorPublicationsKey() {
-        return authorPublicationsKey;
-    }
-
-    public void setAuthorPublicationsKey(AuthorPublicationsKey authorPublicationsKey) {
-        this.authorPublicationsKey = authorPublicationsKey;
-    }
 
     public Publication getPublication() {
         return publication;

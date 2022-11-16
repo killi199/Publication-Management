@@ -9,6 +9,7 @@ import javax.persistence.*;
  * Keyword Publication relation
  */
 @Entity
+@IdClass(KeywordPublicationsKey.class)
 public class KeywordsPublications {
 
     public KeywordsPublications(Publication publication, Keyword keyword) {
@@ -18,26 +19,13 @@ public class KeywordsPublications {
 
     public KeywordsPublications() {}
 
-    @EmbeddedId
-    private KeywordPublicationsKey keywordPublicationsKey;
 
-    @MapsId("publicationKey")
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "publication_key")
+    @Id
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Publication publication;
-
-    @MapsId("keywordUuid")
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "keyword_uuid")
+    @Id
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Keyword keyword;
-
-    public KeywordPublicationsKey getKeywordPublicationsKey() {
-        return keywordPublicationsKey;
-    }
-
-    public void setKeywordPublicationsKey(KeywordPublicationsKey keywordPublicationsKey) {
-        this.keywordPublicationsKey = keywordPublicationsKey;
-    }
 
     public Publication getPublication() {
         return publication;

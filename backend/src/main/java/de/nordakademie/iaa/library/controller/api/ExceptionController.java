@@ -2,6 +2,8 @@ package de.nordakademie.iaa.library.controller.api;
 
 import de.nordakademie.iaa.library.controller.api.exception.AbstractRestApiException;
 import de.nordakademie.iaa.library.controller.api.exception.RestApiExceptionInterface;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -47,7 +49,10 @@ public class ExceptionController {
      * @return The error text as response
      */
     @ExceptionHandler(value = NullPointerException.class)
-    public ResponseEntity<String> exception(NullPointerException ignored) {
+    public ResponseEntity<String> exception(NullPointerException exception) {
+        Logger logger = LoggerFactory.getLogger(ExceptionController.class.getSimpleName());
+        logger.error("NullPointerException: ", exception);
+
         return new ResponseEntity<>("The server has an invalid state. Please contact the support.", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
