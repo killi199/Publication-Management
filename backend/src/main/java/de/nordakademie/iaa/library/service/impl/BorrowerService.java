@@ -2,6 +2,7 @@ package de.nordakademie.iaa.library.service.impl;
 
 import de.nordakademie.iaa.library.controller.api.exception.EntityAlreadyExistsException;
 import de.nordakademie.iaa.library.controller.api.exception.EntityDoesNotExistException;
+import de.nordakademie.iaa.library.controller.api.exception.IllegalUsageOfIdentifierException;
 import de.nordakademie.iaa.library.controller.api.exception.MissingFieldException;
 import de.nordakademie.iaa.library.controller.dto.BorrowerDto;
 import de.nordakademie.iaa.library.persistent.entities.Borrower;
@@ -57,7 +58,7 @@ public class BorrowerService implements BorrowerServiceInterface {
         checkRequiredFields(borrowerDto);
 
         if (borrowerDto.getUuid() != null) {
-            throw new EntityAlreadyExistsException();
+            throw new IllegalUsageOfIdentifierException();
         }
 
         return createOrUpdate(borrowerDto);
@@ -103,7 +104,7 @@ public class BorrowerService implements BorrowerServiceInterface {
      */
     private void checkRequiredFields(@NotNull BorrowerDto borrowerDto) {
         if (borrowerDto.getStudentNumber() == null) {
-            throw new MissingFieldException("");
+            throw new MissingFieldException("studentNumber");
         }
     }
 
