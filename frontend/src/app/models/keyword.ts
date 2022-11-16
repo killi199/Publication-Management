@@ -1,3 +1,4 @@
-export class Keyword {
-    constructor(public uuid?: string, public value?: string) {}
+export interface Keyword {
+    uuid?: string;
+    value?: string;
 }

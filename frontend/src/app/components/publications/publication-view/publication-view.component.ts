@@ -139,9 +139,7 @@ export class PublicationViewComponent implements OnInit {
         if (filteredKeywords.length === 1) {
             keywords.push(filteredKeywords[0]);
         } else {
-            const keyword = new Keyword();
-            keyword.value = value;
-            keywords.push(keyword);
+            keywords.push({ value: value});
         }
 
         event.chipInput!.clear();

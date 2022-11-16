@@ -34,10 +34,9 @@ export class KeywordService {
     }
 
     private generateAllKeywords(): Keyword[] {
-        let test1 = new Keyword('1', 'Test1');
-        let test2 = new Keyword('2', 'Test2');
-        let test3 = new Keyword('5678', 'Python');
-        let test4 = new Keyword('5679', 'IT');
-        return [test1, test2, test3, test4];
+        return [
+            { uuid: '1', value: 'Code' },
+            { uuid: '2', value: 'C#' },
+        ];
     }
 }
