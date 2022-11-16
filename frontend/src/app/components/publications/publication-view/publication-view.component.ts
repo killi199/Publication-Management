@@ -52,14 +52,18 @@ export class PublicationViewComponent implements OnInit {
     formGroup = new FormGroup({
         key: new FormControl<string>(''),
         title: new FormControl<string>(''),
-        authors: new FormControl<string | Author>(''),
+        authors: new FormControl<Author[]>([]),
         isbn: new FormControl<string>(''),
         quantity: new FormControl<number>(0),
         publisher: new FormControl<string>(''),
         dateOfPublication: new FormControl<Date>(new Date()),
         kindsOfPublication: new FormControl<string | KindOfPublication>(''),
-        keywords: new FormControl<string | Keyword>(''),
+        keywords: new FormControl<Keyword[]>([]),
     });
+
+    keywordControl = new FormControl<string | Keyword>('');
+
+    authorControl = new FormControl<string | Author>('');
 
     filteredKeywords: Observable<Keyword[]> = new Observable<Keyword[]>();
 
@@ -85,7 +89,8 @@ export class PublicationViewComponent implements OnInit {
 
         console.log(this.formGroup.value);
 
-        const kindOfPublication = this.formGroup.get('kindsOfPublication')!.value;
+        const kindOfPublication =
+            this.formGroup.get('kindsOfPublication')!.value;
 
         if (kindOfPublication) {
             this._setValueToKindOfPublication(kindOfPublication);
@@ -142,9 +147,7 @@ export class PublicationViewComponent implements OnInit {
         }
 
         event.chipInput!.clear();
-        this.formGroup.patchValue({
-            keywords: '',
-        });
+        this.keywordControl.setValue('');
     }
 
     addAuthor(event: MatChipInputEvent): void {
@@ -163,18 +166,14 @@ export class PublicationViewComponent implements OnInit {
         }
 
         event.chipInput!.clear();
-        this.formGroup.patchValue({
-            authors: '',
-        });
+        this.authorControl.setValue('');
     }
 
     selectedKeyword(event: MatAutocompleteSelectedEvent): void {
         if (this.publication.keywords) {
             this.publication.keywords.push(event.option.value);
             this.keywordInput.nativeElement.value = '';
-            this.formGroup.patchValue({
-                keywords: '',
-            });
+            this.keywordControl.setValue('');
         }
     }
 
@@ -182,9 +181,7 @@ export class PublicationViewComponent implements OnInit {
         if (this.publication.author) {
             this.publication.author.push(event.option.value);
             this.authorInput.nativeElement.value = '';
-            this.formGroup.patchValue({
-                authors: '',
-            });
+            this.authorControl.setValue('');
         }
     }
 
@@ -229,7 +226,7 @@ export class PublicationViewComponent implements OnInit {
     }
 
     private _reloadView(): void {
-        this.filteredKeywords = this.formGroup.get('keywords')!.valueChanges.pipe(
+        this.filteredKeywords = this.keywordControl.valueChanges.pipe(
             startWith(''),
             map((keyword) => {
                 const value =
@@ -240,7 +237,7 @@ export class PublicationViewComponent implements OnInit {
             })
         );
 
-        this.filteredAuthors = this.formGroup.get('authors')!.valueChanges.pipe(
+        this.filteredAuthors = this.authorControl.valueChanges.pipe(
             startWith(''),
             map((author) => {
                 let value = '';
@@ -257,8 +254,9 @@ export class PublicationViewComponent implements OnInit {
             })
         );
 
-        this.filteredKindsOfPublication =
-            this.formGroup.get('kindsOfPublication')!.valueChanges.pipe(
+        this.filteredKindsOfPublication = this.formGroup
+            .get('kindsOfPublication')!
+            .valueChanges.pipe(
                 startWith(''),
                 map((kindOfPublication) => {
                     const value =
@@ -281,11 +279,12 @@ export class PublicationViewComponent implements OnInit {
         }
     }
 
-    private _setValueToKindOfPublication(value: string | KindOfPublication): void {
+    private _setValueToKindOfPublication(
+        value: string | KindOfPublication
+    ): void {
         if (typeof value === 'string') {
             this.publication.kindsOfPublication = [new KindOfPublication()];
-            this.publication.kindsOfPublication[0].value =
-            value;
+            this.publication.kindsOfPublication[0].value = value;
         } else {
             this.publication.kindsOfPublication = [value];
         }

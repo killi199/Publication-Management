@@ -23,9 +23,9 @@
 
         <mat-form-field appearance="fill">
             <mat-label>Authors</mat-label>
-            <mat-chip-list #chipListAuthors [disabled]="formGroup.disabled">
+            <mat-chip-list #chipListAuthors formControlName="authors">
                 <mat-chip
-                    *ngFor="let author of publication.author"
+                    *ngFor="let author of formGroup.get('authors')!.value"
                     (removed)="removeAuthor(author)"
                 >
                     {{ author.surname }} {{ author.name }}
@@ -37,7 +37,7 @@
                     placeholder="Ex. Mustermann Max"
                     name="authors"
                     #authorInput
-                    formControlName="authors"
+                    [formControl]="authorControl"
                     [matAutocomplete]="autocompleteAuthors"
                     [matChipInputFor]="chipListAuthors"
                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
@@ -137,9 +137,9 @@
 
         <mat-form-field appearance="fill">
             <mat-label>Keywords</mat-label>
-            <mat-chip-list #chipListKeywords [disabled]="formGroup.disabled">
+            <mat-chip-list #chipListKeywords formControlName="keywords">
                 <mat-chip
-                    *ngFor="let keyword of publication.keywords"
+                    *ngFor="let keyword of formGroup.get('keywords')!.value"
                     (removed)="removeKeyword(keyword)"
                 >
                     {{ keyword.value }}
@@ -151,7 +151,7 @@
                     placeholder="Ex. Code"
                     name="keywords"
                     #keywordInput
-                    formControlName="keywords"
+                    [formControl]="keywordControl"
                     [matAutocomplete]="autocompleteKeywords"
                     [matChipInputFor]="chipListKeywords"
                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
