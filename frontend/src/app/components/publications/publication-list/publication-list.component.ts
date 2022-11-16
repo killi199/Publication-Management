@@ -1,9 +1,4 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TableInitsComponent } from 'src/app/helpers/table-inits';
 import { Publication } from 'src/app/models/publication';
@@ -14,11 +9,11 @@ import { Publication } from 'src/app/models/publication';
     styleUrls: ['./publication-list.component.scss'],
 })
 export class PublicationListComponent extends TableInitsComponent<Publication> {
-    @Input()
-    publications: Observable<Publication[]> = new Observable<Publication[]>();
+    @Input() publications: Observable<Publication[]> = new Observable<
+        Publication[]
+    >();
 
-    @Output()
-    showPublication = new EventEmitter<Publication>();
+    @Output() showPublication = new EventEmitter<Publication>();
 
     selectedPublication?: Publication;
 
