@@ -8,20 +8,18 @@ import { CrudComponent } from '../../../helpers/CrudComponent';
     styleUrls: ['../basedata.common.scss'],
 })
 export class BasedataBorrowersComponent extends CrudComponent<Borrower> {
-    displayedColumns: string[] = ['surname', 'name', 'studentnumber'];
+    displayedColumns: string[] = ['surname', 'name', 'studentNumber'];
 
     override _emitCreate(record: Borrower): string {
         if (
             !record.name?.trim() ||
             !record.surname?.trim() ||
-            !record.studentnumber?.trim()
+            !record.studentNumber?.trim()
         )
             return 'Nothing to add!';
 
-        this.create.emit({
-            surname: record.surname,
-            name: record.name,
-            studentnumber: record.studentnumber,
+        this.create!(record).subscribe((a) => {
+            this.dataSource.data.push(a);
         });
         return 'Borrower created!';
     }
@@ -29,16 +27,18 @@ export class BasedataBorrowersComponent extends CrudComponent<Borrower> {
         if (
             this.selectedRecord?.name === record.name &&
             this.selectedRecord?.surname === record.surname &&
-            this.selectedRecord?.studentnumber === record.studentnumber
+            this.selectedRecord?.studentNumber === record.studentNumber
         )
             return 'Nothing to change!';
 
-        this.selectedRecord!.surname = record.surname;
-        this.selectedRecord!.name = record.name;
-        this.selectedRecord!.studentnumber = record.studentnumber;
-        this.update.emit(this.selectedRecord);
-        this.selectedRecord = undefined;
-        this.selection.clear();
+        this.update!(record).subscribe((a) => {
+            this.selectedRecord!.surname = a.surname;
+            this.selectedRecord!.name = a.name;
+            this.selectedRecord!.studentNumber = a.studentNumber;
+            this.selectedRecord = undefined;
+            this.selection.clear();
+        });
+
         return 'Borrower updated!';
     }
 
@@ -48,17 +48,22 @@ export class BasedataBorrowersComponent extends CrudComponent<Borrower> {
         )).value;
         const name = (<HTMLInputElement>document.getElementById('input-name'))
             .value;
-        const studentnumber = (<HTMLInputElement>(
-            document.getElementById('input-studentnumber')
+        const studentNumber = (<HTMLInputElement>(
+            document.getElementById('input-studentNumber')
         )).value;
-        return { surname: surname, name: name, studentnumber: studentnumber };
+        return {
+            uuid: this.selectedRecord?.uuid,
+            surname: surname,
+            name: name,
+            studentNumber: studentNumber,
+        };
     }
 
     override _clearInputFields(): void {
         (<HTMLInputElement>document.getElementById('input-surname')).value = '';
         (<HTMLInputElement>document.getElementById('input-name')).value = '';
         (<HTMLInputElement>(
-            document.getElementById('input-studentnumber')
+            document.getElementById('input-studentNumber')
         )).value = '';
     }
 }

@@ -49,14 +49,14 @@ export class AssignmentService {
             {
                 name: 'Max',
                 surname: 'Schmidth',
-                studentnumber: '4444',
+                studentNumber: '4444',
                 uuid: '1',
             },
-            { name: 'Tom', surname: 'Hmidt', studentnumber: '1444', uuid: '2' },
+            { name: 'Tom', surname: 'Hmidt', studentNumber: '1444', uuid: '2' },
             {
                 name: 'Fabi',
                 surname: 'Chmidt',
-                studentnumber: '544',
+                studentNumber: '544',
                 uuid: '3',
             },
         ];
