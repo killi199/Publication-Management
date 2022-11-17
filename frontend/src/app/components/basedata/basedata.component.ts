@@ -28,7 +28,7 @@ export class BasedataComponent {
     ) {
         this.kindOfPubs = kindOfPubService.loadAllKindsOfPublication();
         this.keywords = keywordService.loadAllKeywords();
-        this.authors = authorService.listAllAuthors();
+        this.authors = authorService.getAll();
         this.borrowers = borrowerService.loadAllBorrowers();
     }
 
@@ -69,14 +69,14 @@ export class BasedataComponent {
     }
 
     onDeleteAuthor(author: Author) {
-        this.authorService.deleteAuthor(author).subscribe();
+        this.authorService.delete(author).subscribe();
     }
 
     createAuthor = (value: Author): Observable<Author> => {
-        return this.authorService.saveAuthor(value);
+        return this.authorService.create(value);
     }
 
     onUpdateAuthor(author: Author) {
-        this.authorService.updateAuthor(author).subscribe();
+        this.authorService.update(author).subscribe();
     }
 }

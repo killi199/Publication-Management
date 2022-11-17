@@ -41,7 +41,7 @@ export class PublicationsComponent implements OnInit {
             .loadAllKeywords()
             .subscribe((keywords) => (this.keywords = keywords));
         this.authorService
-            .listAllAuthors()
+            .getAll()
             .subscribe((authors) => (this.authors = authors));
         this.kindOfPublicationService
             .loadAllKindsOfPublication()
