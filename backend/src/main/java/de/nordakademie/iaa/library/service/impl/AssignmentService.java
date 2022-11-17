@@ -10,6 +10,7 @@ import de.nordakademie.iaa.library.persistent.repository.AssignmentRepository;
 import de.nordakademie.iaa.library.service.AssignmentServiceInterface;
 import de.nordakademie.iaa.library.service.mapper.AssignmentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -23,8 +24,8 @@ import java.util.*;
 @Transactional
 public class AssignmentService implements AssignmentServiceInterface {
 
-    //todo get from rentalPeriode from database
-    int noOfDays = 14;
+    @Value("${assignment.rentalPeriode}")
+    int noOfDays;
     private final AssignmentRepository assignmentRepository;
 
     private final AssignmentMapper assignmentMapper;
