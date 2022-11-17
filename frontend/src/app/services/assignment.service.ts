@@ -8,30 +8,29 @@ import { Borrower } from '../models/borrower';
 })
 export class AssignmentService {
     assignments: Assignment[];
+    counter: number = 0;
 
     constructor() {
         this.assignments = this.generateAllAssignments();
+        this.counter = 0;
     }
 
-    update(assignment: Assignment) {
+    update(assignment: Assignment): Observable<Assignment> {
+        // TODO does not work :(
         const index = this.assignments
             .map((a) => a.uuid)
             .indexOf(assignment.uuid);
         if (index !== -1) {
             this.assignments.splice(index, 1);
             this.assignments.splice(index, 0, assignment);
+            return of(assignment);
         }
+
+        return of(assignment);
     }
 
     create(assignment: Assignment) {
         this.assignments.push(assignment);
-    }
-
-    delete(assignment: Assignment) {
-        const index = this.assignments.indexOf(assignment);
-        if (index !== -1) {
-            this.assignments.splice(index, 1);
-        }
     }
 
     loadAllAssignments(): Observable<Assignment[]> {
@@ -39,9 +38,22 @@ export class AssignmentService {
     }
 
     loadAssignments(uuid: string): Observable<Assignment[]> {
-        return of(
-            this.assignments.filter((a) => a.publicationKey === uuid)
-        );
+        return of(this.assignments.filter((a) => a.publicationKey === uuid));
+    }
+
+    extendAssignment(assignment: Assignment): Observable<Assignment> {
+        // TODO does not work :(
+        if (!assignment.dateOfReturn) return of(assignment);
+        const newDate = new Date(assignment.dateOfReturn);
+        newDate.setFullYear(newDate.getFullYear() + 1);
+        assignment.dateOfReturn = newDate;
+        this.counter = this.counter + 1;
+        return of(assignment);
+    }
+
+    isAssignmentExtendable(assignment: Assignment): Observable<boolean> {
+        // TODO does not work :(
+        return of(this.counter < 3 ? true : false);
     }
 
     private generateAllAssignments(): Assignment[] {

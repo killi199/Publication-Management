@@ -16,6 +16,15 @@ export class AssignmentViewComponent implements OnInit {
     @Input()
     allBorrowers: Borrower[] = [];
 
+    @Input()
+    extendAssignment?: (assignment: Assignment) => Observable<Assignment>;
+
+    @Input()
+    isAssignmentExtandable?: (assignment: Assignment) => Observable<boolean>;
+
+    @Input()
+    update?: (assignment: Assignment) => Observable<Assignment>;
+
     formGroup = new FormGroup({
         publicationKey: new FormControl<string>(''),
         dateOfAssignment: new FormControl<Date>(new Date()),
@@ -35,6 +44,20 @@ export class AssignmentViewComponent implements OnInit {
     }
 
     onSubmit(): void {}
+
+    onExtend(): void {
+        this.extendAssignment!(this.assignment).subscribe((a) => {
+            this.formGroup.patchValue(a);
+        });
+    }
+
+    onReturn(): void {
+        this.assignment.dateOfReturn = new Date();
+        console.log(this.assignment.dateOfReturn);
+        this.update!(this.assignment).subscribe((a) => {
+            this.formGroup.patchValue(a);
+        });
+    }
 
     displayBorrower(borrower: Borrower): string {
         return borrower?.surname && borrower?.name

@@ -44,6 +44,9 @@
     <app-assignment-view
         *ngIf="currentAssignment && openAssignment"
         [assignment]="currentAssignment"
+        [extendAssignment]="extendAssignment"
+        [isAssignmentExtandable]="isAssignmentExtendable"
+        [update]="updateAssignment"
         [allBorrowers]="borrowers"
     ></app-assignment-view>
 </div>

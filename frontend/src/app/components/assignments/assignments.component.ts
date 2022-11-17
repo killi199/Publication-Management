@@ -12,11 +12,18 @@ import { BorrowerService } from 'src/app/services/borrower.service';
 })
 export class AssignmentsComponent implements OnInit {
     assignments: Observable<Assignment[]>;
+    extendAssignment?: (assignment: Assignment) => Observable<Assignment>;
+    isAssignmentExtendable?: (assignment: Assignment) => Observable<boolean>;
+    updateAssignment?: (assignment: Assignment) => Observable<Assignment>;
     openAssignment: boolean = false;
     borrowers: Borrower[] = [];
     currentAssignment?: Assignment;
+    
     constructor(assignmentService: AssignmentService, private borrowerService: BorrowerService) {
         this.assignments = assignmentService.loadAllAssignments();
+        this.extendAssignment = assignmentService.extendAssignment;
+        this.isAssignmentExtendable = assignmentService.isAssignmentExtendable;
+        this.updateAssignment = assignmentService.update;
     }
 
     ngOnInit(): void {

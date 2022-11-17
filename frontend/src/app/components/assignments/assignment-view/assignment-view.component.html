@@ -67,5 +67,28 @@
                 </mat-option>
             </mat-autocomplete>
         </mat-form-field>
+
+        <div class="button-container">
+            <button
+                type="button"
+                (click)="onExtend()"
+                [disabled]="(isAssignmentExtandable!(assignment) | async) === false"
+                mat-mini-fab
+                color="primary"
+                matTooltip="Ausleihvorgänge verlängern"
+            >
+                <mat-icon>av_timer</mat-icon>
+            </button>
+
+            <button
+                type="button"
+                (click)="onReturn()"
+                mat-mini-fab
+                color="primary"
+                matTooltip="Buch zurückgeben"
+            >
+                <mat-icon>assignment_return</mat-icon>
+            </button>
+        </div>
     </form>
 </div>
