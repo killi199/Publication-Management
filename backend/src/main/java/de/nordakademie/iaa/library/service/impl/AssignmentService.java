@@ -1,11 +1,9 @@
 package de.nordakademie.iaa.library.service.impl;
 
-import de.nordakademie.iaa.library.controller.api.exception.EntityDoesNotExistException;
-import de.nordakademie.iaa.library.controller.api.exception.IllegalUsageOfIdentifierException;
-import de.nordakademie.iaa.library.controller.api.exception.MaximumExtensionsException;
-import de.nordakademie.iaa.library.controller.api.exception.MissingFieldException;
+import de.nordakademie.iaa.library.controller.api.exception.*;
 import de.nordakademie.iaa.library.controller.dto.AssignmentDto;
 import de.nordakademie.iaa.library.persistent.entities.Assignment;
+import de.nordakademie.iaa.library.persistent.entities.Publication;
 import de.nordakademie.iaa.library.persistent.repository.AssignmentRepository;
 import de.nordakademie.iaa.library.service.AssignmentServiceInterface;
 import de.nordakademie.iaa.library.service.mapper.AssignmentMapper;
@@ -25,15 +23,20 @@ import java.util.*;
 public class AssignmentService implements AssignmentServiceInterface {
 
     @Value("${assignment.rentalPeriode}")
-    int noOfDays;
+    int rentalPeriode;
     private final AssignmentRepository assignmentRepository;
 
     private final AssignmentMapper assignmentMapper;
 
+    private final PublicationService publicationService;
+
     @Autowired
-    public AssignmentService(AssignmentRepository assignmentRepository, AssignmentMapper assignmentMapper) {
+    public AssignmentService(AssignmentRepository assignmentRepository,
+                             AssignmentMapper assignmentMapper,
+                             PublicationService publicationService) {
         this.assignmentRepository = assignmentRepository;
         this.assignmentMapper = assignmentMapper;
+        this.publicationService = publicationService;
     }
 
     /**
@@ -96,22 +99,47 @@ public class AssignmentService implements AssignmentServiceInterface {
      */
     public AssignmentDto create(@NotNull AssignmentDto assignmentDto) {
 
-        //todo check if borrowable
         checkAndFillRequiredFields(assignmentDto);
 
         if (assignmentDto.getUuid() != null) {
             throw new IllegalUsageOfIdentifierException();
         }
 
+        checkIfBorrowable(assignmentDto.getPublication().getKey());
+
         Assignment assignment = assignmentMapper.assignmentDtoToEntity(assignmentDto);
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(assignment.getDateOfAssignment());
-        calendar.add(Calendar.DAY_OF_YEAR, noOfDays);
-
-        assignment.setBorrowedUtil(calendar.getTime());
+        calendar.add(Calendar.DAY_OF_YEAR, rentalPeriode);
+        Date time = calendar.getTime();
+        assignment.setBorrowedUtil(time);
 
         return createOrUpdate(assignment);
+    }
+
+    /**
+     * Checks if an publication is borrowable
+     *
+     * @param key publication key
+     * @throws PublicationIsNotBorrowableException when all publications are borrowed
+     */
+    private void checkIfBorrowable(String key) {
+
+        Publication publication;
+
+        try {
+            publication = publicationService.getByKey(key);
+        } catch (EntityDoesNotExistException exception) {
+            throw new PublicationIsNotBorrowableException();
+        }
+
+        List<AssignmentDto> assignmentOnPublication = getAllByPublicationKey(key, false);
+
+        // checks if the open assignments are bigger or equal then the quantity of the books
+        if (publication.getQuantity() <= assignmentOnPublication.size()) {
+            throw new PublicationIsNotBorrowableException();
+        }
     }
 
     /**
@@ -157,7 +185,7 @@ public class AssignmentService implements AssignmentServiceInterface {
         //extend the borrowed until date
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(assignment.getBorrowedUtil());
-        calendar.add(Calendar.DAY_OF_YEAR, noOfDays);
+        calendar.add(Calendar.DAY_OF_YEAR, rentalPeriode);
 
         assignment.setBorrowedUtil(calendar.getTime());
 

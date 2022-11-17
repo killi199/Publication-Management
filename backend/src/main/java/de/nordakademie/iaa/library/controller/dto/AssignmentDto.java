@@ -20,6 +20,8 @@ public class AssignmentDto {
 
     private PublicationDto publication;
 
+    private Date borrowedUtil;
+
     private boolean publicationLoss;
     public UUID getUuid() {
         return uuid;
@@ -67,6 +69,14 @@ public class AssignmentDto {
 
     public void setPublication(PublicationDto publication) {
         this.publication = publication;
+    }
+
+    public Date getBorrowedUtil() {
+        return borrowedUtil;
+    }
+
+    public void setBorrowedUtil(Date borrowedUtil) {
+        this.borrowedUtil = borrowedUtil;
     }
 
     public boolean isPublicationLoss() {

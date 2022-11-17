@@ -702,6 +702,13 @@ components:
         dateOfReturn:
           type: string
           format: date-time
+        extension:
+          type: integer
+          format: uint
+          default: 0
+          example: 2
+        publication:
+          $ref: '#/components/schemas/Publication'
         publicationKey:
           type: string
         publicationLoss:
@@ -714,8 +721,13 @@ components:
         dateOfAssignment:
           type: string
           format: date-time
-        publicationKey:
-          type: string
+        extension:
+          type: integer
+          format: uint
+          default: 0
+          example: 2
+        publication:
+          $ref: '#/components/schemas/Publication'
         borrower:
           $ref: '#/components/schemas/Borrower'
     Warning:

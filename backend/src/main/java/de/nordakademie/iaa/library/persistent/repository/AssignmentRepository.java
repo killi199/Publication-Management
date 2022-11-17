@@ -3,6 +3,7 @@ package de.nordakademie.iaa.library.persistent.repository;
 import de.nordakademie.iaa.library.persistent.entities.Assignment;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
@@ -40,7 +41,7 @@ public interface AssignmentRepository extends CrudRepository<Assignment, UUID> {
      * @return List of assignments that are not returned
      */
     @Query("SELECT a FROM Assignment a WHERE a.dateOfReturn IS NULL OR a.dateOfReturn > :now")
-    List<Assignment> findAllUnreturned(Date now);
+    List<Assignment> findAllUnreturned(@Param("now") Date now);
 
     /**
      * find all that are not returned by publication key
@@ -50,5 +51,5 @@ public interface AssignmentRepository extends CrudRepository<Assignment, UUID> {
      * @return List of assignments that are returned
      */
     @Query("SELECT a FROM Assignment a WHERE (a.dateOfReturn IS NULL OR a.dateOfReturn > :now) AND a.publication.key = :key")
-    List<Assignment> findAllUnreturnedByPublication_Key(Date now, String key);
+    List<Assignment> findAllUnreturnedByPublication_Key(@Param("now") Date now,@Param("key") String key);
 }
