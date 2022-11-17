@@ -10,4 +10,7 @@ public class ApiPath {
 
     public static final String BORROWER_BASE_PATH = "/borrower";
 
+
+    public static final String KEYWORD_BASE_PATH = "/keyword";
+
 }

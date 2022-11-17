@@ -1,6 +1,5 @@
 package de.nordakademie.iaa.library.service.impl;
 
-import de.nordakademie.iaa.library.controller.api.exception.EntityAlreadyExistsException;
 import de.nordakademie.iaa.library.controller.api.exception.EntityDoesNotExistException;
 import de.nordakademie.iaa.library.controller.api.exception.IllegalUsageOfIdentifierException;
 import de.nordakademie.iaa.library.controller.api.exception.MissingFieldException;
@@ -16,6 +15,8 @@ import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.UUID;
+
+import static de.nordakademie.iaa.library.service.helper.InputValidator.isStringEmpty;
 
 /**
  * The borrower service provides methods to handle the borrowers
@@ -103,7 +104,7 @@ public class BorrowerService implements BorrowerServiceInterface {
      * @param borrowerDto dto from request
      */
     private void checkRequiredFields(@NotNull BorrowerDto borrowerDto) {
-        if (borrowerDto.getStudentNumber() == null) {
+        if (isStringEmpty(borrowerDto.getStudentNumber())) {
             throw new MissingFieldException("studentNumber");
         }
     }

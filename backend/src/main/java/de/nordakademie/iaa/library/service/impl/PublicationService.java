@@ -16,6 +16,8 @@ import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
+import static de.nordakademie.iaa.library.service.helper.InputValidator.isStringEmpty;
+
 /**
  * The Publication service provides methods to handle the Publications
  */
@@ -101,11 +103,11 @@ public class PublicationService implements PublicationServiceInterface {
      * @param publicationDto dto from request
      */
     private void checkRequiredFields(@NotNull PublicationDto publicationDto) {
-        if (publicationDto.getKey() == null) {
+        if (isStringEmpty(publicationDto.getKey())) {
             throw new MissingFieldException("key");
         }
 
-        if (publicationDto.getTitle() == null) {
+        if (isStringEmpty(publicationDto.getTitle())) {
             throw new MissingFieldException("title");
         }
 
