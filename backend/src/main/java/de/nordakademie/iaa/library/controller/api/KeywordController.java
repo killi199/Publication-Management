@@ -38,7 +38,7 @@ public class KeywordController {
     }
 
     /**
-     * This method will create a keyword. In this case the key has to get set by the user.
+     * This method will create a keyword.
      *
      * @param keywordDto the keyword that should be created
      * @return The created keyword

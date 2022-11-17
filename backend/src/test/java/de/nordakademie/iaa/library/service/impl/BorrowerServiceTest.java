@@ -1,6 +1,7 @@
 package de.nordakademie.iaa.library.service.impl;
 
 import de.nordakademie.iaa.library.controller.api.exception.EntityDoesNotExistException;
+import de.nordakademie.iaa.library.controller.api.exception.IllegalUsageOfIdentifierException;
 import de.nordakademie.iaa.library.controller.api.exception.MissingFieldException;
 import de.nordakademie.iaa.library.controller.dto.BorrowerDto;
 import de.nordakademie.iaa.library.persistent.entities.Borrower;
@@ -42,18 +43,26 @@ class BorrowerServiceTest {
 
 
     @Test
-    void create_nullUUID_throwsMissingFieldException() {
-        borrowerDto.setUuid(null);
+    void create_withoutParameters_throwsMissingFieldException() {
+        assertThrows(MissingFieldException.class, () -> this.borrowerService.create(borrowerDto));
+        verify(borrowerRepository, times(0)).existsById(any());
+    }
+
+    @Test
+    void create_withoutMandatoryParameters_throwsMissingFieldException() {
+        borrowerDto.setSurname("Surname");
+        borrowerDto.setName("Name");
 
         assertThrows(MissingFieldException.class, () -> this.borrowerService.create(borrowerDto));
         verify(borrowerRepository, times(0)).existsById(any());
     }
 
     @Test
-    void create_nullValue_throwsMissingFieldException() {
-        borrowerDto.setUuid(null);
+    void create_withUUID_throwsIllegalUsageOfIdentifierException() {
+        borrowerDto.setUuid(UUID.randomUUID());
+        borrowerDto.setStudentNumber("test");
 
-        assertThrows(MissingFieldException.class, () -> this.borrowerService.create(borrowerDto));
+        assertThrows(IllegalUsageOfIdentifierException.class, () -> this.borrowerService.create(borrowerDto));
         verify(borrowerRepository, times(0)).existsById(any());
     }
 
