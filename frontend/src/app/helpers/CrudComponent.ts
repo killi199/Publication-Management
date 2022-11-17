@@ -68,7 +68,7 @@ export abstract class CrudComponent<T>
     }
 
     onDelete(record: T): void {
-        this.delete!(record).subscribe((a) => {
+        this.delete!(record).subscribe(() => {
             this.dataSource.data = this.dataSource.data.filter(
                 (r) => r !== record
             );

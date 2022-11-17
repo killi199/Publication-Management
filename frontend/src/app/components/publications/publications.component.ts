@@ -38,7 +38,7 @@ export class PublicationsComponent implements OnInit {
 
     ngOnInit(): void {
         this.keywordService
-            .loadAllKeywords()
+            .getAll()
             .subscribe((keywords) => (this.keywords = keywords));
         this.authorService
             .getAll()

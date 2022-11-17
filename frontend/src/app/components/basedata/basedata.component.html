@@ -11,6 +11,9 @@
         <mat-tab label="Keywords">
             <app-basedata-keywords
                 [data]="keywords"
+                [delete]="deleteKeyword"
+                [create]="createKeyword"
+                [update]="updateKeyword"
             ></app-basedata-keywords>
         </mat-tab>
         <mat-tab label="Borrowers">
