@@ -19,11 +19,11 @@ export class AuthorService {
         return this.http.delete(`${ENDPOINT_URL}/${author.uuid}`);
     }
 
-    updateAuthor(publication: Author): Observable<any> {
-        return this.http.put(ENDPOINT_URL, publication);
+    updateAuthor(author: Author): Observable<any> {
+        return this.http.put(ENDPOINT_URL, author);
     }
 
-    saveAuthor(publication: Author): Observable<any> {
-        return this.http.post(ENDPOINT_URL, publication);
+    saveAuthor(author: Author): Observable<any> {
+        return this.http.post(ENDPOINT_URL, author);
     }
 }
