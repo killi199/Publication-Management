@@ -22,7 +22,7 @@ export class BasedataKeywordsComponent extends CrudComponent<Keyword> {
             return 'Nothing to change!';
 
         this.selectedRecord!.value = record.value;
-        this.update.emit(this.selectedRecord);
+        //this.update.emit(this.selectedRecord);
         return record.value + ' updated!';
     }
 

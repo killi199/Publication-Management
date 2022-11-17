@@ -36,7 +36,7 @@ export class BasedataBorrowersComponent extends CrudComponent<Borrower> {
         this.selectedRecord!.surname = record.surname;
         this.selectedRecord!.name = record.name;
         this.selectedRecord!.studentNumber = record.studentNumber;
-        this.update.emit(this.selectedRecord);
+        //this.update.emit(this.selectedRecord);
         this.selectedRecord = undefined;
         this.selection.clear();
         return 'Borrower updated!';

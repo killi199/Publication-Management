@@ -22,7 +22,7 @@ export class BasedataKindsComponent extends CrudComponent<KindOfPublication> {
             return 'Nothing to change!';
 
         this.selectedRecord!.value = record.value;
-        this.update.emit(this.selectedRecord);
+        //this.update.emit(this.selectedRecord);
         return record.value + ' updated!';
     }
 

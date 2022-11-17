@@ -11,17 +11,17 @@ export abstract class CrudComponent<T>
     extends TableInitsComponent<T>
     implements OnInit
 {
-    @Input() 
+    @Input()
     data: Observable<T[]> = new Observable<T[]>();
 
-    @Output() 
+    @Output()
     delete = new EventEmitter<T>();
 
-    @Input() 
+    @Input()
     create?: (value: T) => Observable<T>;
 
-    @Output() 
-    update = new EventEmitter<T>();
+    @Input()
+    update?: (value: T) => Observable<T>;
 
     crudState: CrudState = CrudState.Read;
     selectedRecord?: T;
@@ -55,8 +55,6 @@ export abstract class CrudComponent<T>
                 : this._emitUpdate(recordToSave);
 
         this.snackBar.open(messageType);
-        // Update Verhalten muss gefixt werden. Am besten in dem subscribe des CRUD Operators
-        // this.dataSource = new MatTableDataSource(this.data);
         this.crudState = CrudState.Read;
         this._clearInputFields();
     }
@@ -71,8 +69,6 @@ export abstract class CrudComponent<T>
 
     onDelete(nameOfRecord: string): void {
         this.delete.emit(this.selectedRecord);
-        // Update Verhalten muss gefixt werden. Am besten in dem subscribe des CRUD Operators
-        // this.dataSource = new MatTableDataSource(this.data);
         this.selectedRecord = undefined;
         this.snackBar.open(nameOfRecord + ' deleted!');
     }
