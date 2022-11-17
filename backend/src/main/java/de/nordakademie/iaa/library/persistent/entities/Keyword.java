@@ -1,5 +1,6 @@
 package de.nordakademie.iaa.library.persistent.entities;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
