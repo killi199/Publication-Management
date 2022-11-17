@@ -42,8 +42,7 @@ class PublicationServiceTest {
 
 
     @Test
-    void create_nullKey_throwsMissingFieldException() {
-        publicationDto.setKey(null);
+    void create_withoutParameters_throwsMissingFieldException() {
 
         assertThrows(MissingFieldException.class, () -> this.publicationService.create(publicationDto));
         verify(publicationRepository, times(0)).existsById("test");
@@ -96,9 +95,7 @@ class PublicationServiceTest {
     }
 
     @Test
-    void update_nullKey_throwsMissingFieldException() {
-        publicationDto.setKey(null);
-
+    void update_withoutParameters_throwsMissingFieldException() {
         assertThrows(MissingFieldException.class, () -> this.publicationService.update(publicationDto));
         verify(publicationRepository, times(0)).existsById(any());
     }
