@@ -56,16 +56,16 @@ export class BasedataComponent {
         this.keywordService.update(keyword);
     }
 
-    onDeleteBorrower(borrower: Borrower) {
-        this.borrowerService.delete(borrower);
+    deleteBorrower = (borrower: Borrower): Observable<any> => {
+        return this.borrowerService.delete(borrower);
     }
 
-    onCreateBorrower(borrower: Borrower) {
-        this.borrowerService.create(borrower);
+    createBorrower = (borrower: Borrower): Observable<Borrower> => {
+        return this.borrowerService.create(borrower);
     }
 
-    onUpdateBorrower(borrower: Borrower) {
-        this.borrowerService.update(borrower);
+    updateBorrower = (borrower: Borrower): Observable<Borrower> => {
+        return this.borrowerService.update(borrower);
     }
 
     deleteAuthor = (author: Author): Observable<any> => {

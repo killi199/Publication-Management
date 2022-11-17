@@ -43,7 +43,11 @@ export class BasedataAuthorsComponent extends CrudComponent<Author> {
         )).value;
         const name = (<HTMLInputElement>document.getElementById('input-name'))
             .value;
-        return { uuid: this.selectedRecord?.uuid, surname: surname, name: name };
+        return {
+            uuid: this.selectedRecord?.uuid,
+            surname: surname,
+            name: name,
+        };
     }
 
     override _clearInputFields(): void {

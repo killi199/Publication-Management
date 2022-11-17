@@ -18,11 +18,9 @@ export class BasedataBorrowersComponent extends CrudComponent<Borrower> {
         )
             return 'Nothing to add!';
 
-        //this.create.emit({
-          //  surname: record.surname,
-            //name: record.name,
-           // studentNumber: record.studentNumber,
-        //});
+        this.create!(record).subscribe((a) => {
+            this.dataSource.data.push(a);
+        });
         return 'Borrower created!';
     }
     override _emitUpdate(record: Borrower): string {
@@ -33,12 +31,14 @@ export class BasedataBorrowersComponent extends CrudComponent<Borrower> {
         )
             return 'Nothing to change!';
 
-        this.selectedRecord!.surname = record.surname;
-        this.selectedRecord!.name = record.name;
-        this.selectedRecord!.studentNumber = record.studentNumber;
-        //this.update.emit(this.selectedRecord);
-        this.selectedRecord = undefined;
-        this.selection.clear();
+        this.update!(record).subscribe((a) => {
+            this.selectedRecord!.surname = a.surname;
+            this.selectedRecord!.name = a.name;
+            this.selectedRecord!.studentNumber = a.studentNumber;
+            this.selectedRecord = undefined;
+            this.selection.clear();
+        });
+
         return 'Borrower updated!';
     }
 
@@ -51,7 +51,12 @@ export class BasedataBorrowersComponent extends CrudComponent<Borrower> {
         const studentNumber = (<HTMLInputElement>(
             document.getElementById('input-studentNumber')
         )).value;
-        return { surname: surname, name: name, studentNumber: studentNumber };
+        return {
+            uuid: this.selectedRecord?.uuid,
+            surname: surname,
+            name: name,
+            studentNumber: studentNumber,
+        };
     }
 
     override _clearInputFields(): void {

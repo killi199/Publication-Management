@@ -16,6 +16,9 @@
         <mat-tab label="Borrowers">
             <app-basedata-borrowers
                 [data]="borrowers"
+                [delete]="deleteBorrower"
+                [create]="createBorrower"
+                [update]="updateBorrower"
             ></app-basedata-borrowers>
         </mat-tab>
         <mat-tab label="Authors">

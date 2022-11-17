@@ -69,8 +69,11 @@ export abstract class CrudComponent<T>
 
     onDelete(record: T): void {
         this.delete!(record).subscribe((a) => {
+            this.dataSource.data = this.dataSource.data.filter(
+                (r) => r !== record
+            );
             this.selectedRecord = undefined;
-            this.snackBar.open('object deleted!');
+            this.snackBar.open('Object deleted!');
         });
     }
 
