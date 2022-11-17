@@ -10,11 +10,11 @@
                 formControlName="publicationKey"
                 [matAutocomplete]="autocompletepublicationKey"
             />
-            <mat-autocomplete
-                #autocompletepublicationKey="matAutocomplete"
-            >
+            <mat-autocomplete #autocompletepublicationKey="matAutocomplete">
                 <mat-option
-                    *ngFor="let publicationKey of filteredPublicationKeys | async"
+                    *ngFor="
+                        let publicationKey of filteredPublicationKeys | async
+                    "
                     [value]="publicationKey"
                 >
                     {{ publicationKey }}
@@ -81,9 +81,12 @@
 
         <div class="button-container">
             <button
+                *ngIf="this.formGroup.disabled"
                 type="button"
                 (click)="onExtend()"
-                [disabled]="(isAssignmentExtandable!(assignment) | async) === false"
+                [disabled]="
+                    (isAssignmentExtandable!(assignment) | async) === false
+                "
                 mat-mini-fab
                 color="primary"
                 matTooltip="Ausleihvorgänge verlängern"
@@ -92,6 +95,7 @@
             </button>
 
             <button
+                *ngIf="this.formGroup.disabled"
                 type="button"
                 (click)="onReturn()"
                 mat-mini-fab
@@ -99,6 +103,28 @@
                 matTooltip="Buch zurückgeben"
             >
                 <mat-icon>assignment_return</mat-icon>
+            </button>
+
+            <button
+                *ngIf="this.formGroup.enabled"
+                type="submit"
+                [disabled]="formGroup.invalid"
+                mat-mini-fab
+                color="primary"
+                matTooltip="save changes"
+            >
+                <mat-icon>done</mat-icon>
+            </button>
+
+            <button
+                *ngIf="this.formGroup.enabled"
+                type="button"
+                (click)="onCancel()"
+                mat-mini-fab
+                color="primary"
+                matTooltip="undo changes"
+            >
+                <mat-icon>close</mat-icon>
             </button>
         </div>
     </form>

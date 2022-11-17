@@ -19,6 +19,7 @@ export class AssignmentsComponent implements OnInit {
     openAssignment: boolean = false;
     borrowers: Borrower[] = [];
     publicationKeys: string[] = [];
+    // TODO currentAssignment?: Assignment;
     currentAssignment?: Assignment;
     
     constructor(assignmentService: AssignmentService, private borrowerService: BorrowerService, private publicationService: PublicationService) {

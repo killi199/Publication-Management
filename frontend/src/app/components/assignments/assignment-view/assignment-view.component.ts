@@ -56,6 +56,11 @@ export class AssignmentViewComponent implements OnInit {
         });
     }
 
+    onCancel(): void {
+        this.formGroup.reset();
+        this._reloadView();
+    }
+
     onReturn(): void {
         this.assignment.dateOfReturn = new Date();
         console.log(this.assignment.dateOfReturn);
