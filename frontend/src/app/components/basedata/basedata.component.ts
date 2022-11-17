@@ -68,8 +68,8 @@ export class BasedataComponent {
         this.borrowerService.update(borrower);
     }
 
-    onDeleteAuthor(author: Author) {
-        this.authorService.delete(author).subscribe();
+    deleteAuthor = (author: Author): Observable<any> => {
+        return this.authorService.delete(author);
     }
 
     createAuthor = (author: Author): Observable<Author> => {

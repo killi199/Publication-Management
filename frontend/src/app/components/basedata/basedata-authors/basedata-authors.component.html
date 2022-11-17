@@ -100,7 +100,7 @@
             [disabled]="selectedRecord?.name === null"
             *ngIf="crudState === 'read'"
             color="warn"
-            (click)="onDelete(selectedRecord?.name!)"
+            (click)="onDelete(selectedRecord!)"
         >
             <mat-icon>delete</mat-icon>
         </button>

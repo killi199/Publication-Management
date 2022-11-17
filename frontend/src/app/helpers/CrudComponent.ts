@@ -14,8 +14,8 @@ export abstract class CrudComponent<T>
     @Input()
     data: Observable<T[]> = new Observable<T[]>();
 
-    @Output()
-    delete = new EventEmitter<T>();
+    @Input()
+    delete?: (value: T) => Observable<any>;
 
     @Input()
     create?: (value: T) => Observable<T>;
@@ -67,10 +67,11 @@ export abstract class CrudComponent<T>
         this.selectedRecord = undefined;
     }
 
-    onDelete(nameOfRecord: string): void {
-        this.delete.emit(this.selectedRecord);
-        this.selectedRecord = undefined;
-        this.snackBar.open(nameOfRecord + ' deleted!');
+    onDelete(record: T): void {
+        this.delete!(record).subscribe((a) => {
+            this.selectedRecord = undefined;
+            this.snackBar.open('object deleted!');
+        });
     }
 
     onAdd(): void {
