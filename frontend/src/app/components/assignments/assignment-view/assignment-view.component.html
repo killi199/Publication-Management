@@ -1,1 +1,71 @@
-<p>assignment-view works!</p>
+<div class="container">
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="fill">
+            <mat-label>Key der Publikation</mat-label>
+            <input
+                placeholder="Ex. NA-123"
+                matInput
+                name="publicationKey"
+                formControlName="publicationKey"
+                required
+            />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Verleihdatum</mat-label>
+            <input
+                placeholder="Ex. 1.8.2008"
+                matInput
+                name="dateOfAssignment"
+                formControlName="dateOfAssignment"
+                [matDatepicker]="pickerDateOfAssignment"
+            />
+            <mat-datepicker-toggle
+                matSuffix
+                [for]="pickerDateOfAssignment"
+                [disabled]="this.formGroup.disabled"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #pickerDateOfAssignment></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Rückgabedatum</mat-label>
+            <input
+                placeholder="Ex. 1.8.2008"
+                matInput
+                name="dateOfReturn"
+                formControlName="dateOfReturn"
+                [matDatepicker]="pickerDateOfReturn"
+            />
+            <mat-datepicker-toggle
+                matSuffix
+                [for]="pickerDateOfReturn"
+                [disabled]="this.formGroup.disabled"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #pickerDateOfReturn></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Ausleiher</mat-label>
+            <input
+                placeholder="Ex. Max Mustermann"
+                type="text"
+                name="borrower"
+                matInput
+                formControlName="borrower"
+                [matAutocomplete]="autocompleteBorrower"
+            />
+            <mat-autocomplete
+                #autocompleteBorrower="matAutocomplete"
+                [displayWith]="displayBorrower"
+            >
+                <mat-option
+                    *ngFor="let borrower of filteredBorrowers | async"
+                    [value]="borrower"
+                >
+                    {{ borrower.surname }} {{ borrower.name }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </form>
+</div>

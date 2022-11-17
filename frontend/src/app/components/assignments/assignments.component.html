@@ -43,5 +43,7 @@
 
     <app-assignment-view
         *ngIf="currentAssignment && openAssignment"
+        [assignment]="currentAssignment"
+        [allBorrowers]="borrowers"
     ></app-assignment-view>
 </div>
