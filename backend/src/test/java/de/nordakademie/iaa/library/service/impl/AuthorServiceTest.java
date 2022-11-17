@@ -53,6 +53,8 @@ class AuthorServiceTest {
     @Test
     void create_withUUID_throwsIllegalUsageOfIdentifierException() {
         authorDto.setUuid(UUID.randomUUID());
+        authorDto.setName("Max");
+        authorDto.setSurname("Mustermann");
 
         assertThrows(IllegalUsageOfIdentifierException.class, () -> this.authorService.create(authorDto));
         verify(authorRepository, times(0)).existsById(any());
