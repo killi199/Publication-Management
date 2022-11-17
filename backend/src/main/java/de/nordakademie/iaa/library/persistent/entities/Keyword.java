@@ -4,6 +4,7 @@ package de.nordakademie.iaa.library.persistent.entities;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 /**
@@ -16,6 +17,7 @@ public class Keyword {
     private UUID uuid;
 
     @Column(unique = true)
+    @NotNull
     private String value;
 
     @OneToMany(mappedBy = "keyword", fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, orphanRemoval = true)

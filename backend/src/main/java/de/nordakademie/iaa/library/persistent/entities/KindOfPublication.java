@@ -3,6 +3,7 @@ package de.nordakademie.iaa.library.persistent.entities;
 import javax.persistence.Column;
 import javax.persistence.*;
 import java.util.List;
+import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 /**
@@ -15,6 +16,7 @@ public class KindOfPublication {
     @GeneratedValue
     private UUID uuid;
 
+    @NotNull
     @Column(unique = true)
     private String value;
 

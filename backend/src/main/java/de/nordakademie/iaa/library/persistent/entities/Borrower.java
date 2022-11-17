@@ -4,6 +4,7 @@ import de.nordakademie.iaa.library.controller.api.exception.BorrowerHasOpenAssig
 
 import javax.persistence.*;
 import java.util.List;
+import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 /**
@@ -19,6 +20,7 @@ public class Borrower {
 
     private String name;
 
+    @NotNull
     private String studentNumber;
 
     @OneToMany(mappedBy = "borrower",fetch = FetchType.LAZY)
