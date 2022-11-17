@@ -14,9 +14,8 @@ export class BasedataAuthorsComponent extends CrudComponent<Author> {
         if (!record.name?.trim() || !record.surname?.trim())
             return 'Nothing to add!';
 
-        this.create.emit({
-            surname: record.surname,
-            name: record.name,
+        this.create!(record).subscribe((a) => {
+            this.dataSource.data.push(a);
         });
         return 'Author created!';
     }

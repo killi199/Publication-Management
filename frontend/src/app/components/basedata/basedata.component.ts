@@ -72,8 +72,8 @@ export class BasedataComponent {
         this.authorService.deleteAuthor(author).subscribe();
     }
 
-    onCreateAuthor(author: Author) {
-        this.authorService.saveAuthor(author).subscribe();
+    createAuthor = (value: Author): Observable<Author> => {
+        return this.authorService.saveAuthor(value);
     }
 
     onUpdateAuthor(author: Author) {

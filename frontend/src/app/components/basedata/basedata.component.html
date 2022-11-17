@@ -7,7 +7,6 @@
             <app-basedata-kinds 
                 [data]="kindOfPubs"
                 (delete)="onDeleteKindOfPublication($event)"
-                (create)="onCreateKindOfPublication($event)"
                 (update)="onUpdateKindOfPublication($event)"
             ></app-basedata-kinds>
         </mat-tab>
@@ -15,7 +14,6 @@
             <app-basedata-keywords
                 [data]="keywords"
                 (delete)="onDeleteKeyword($event)"
-                (create)="onCreateKeyword($event)"
                 (update)="onUpdateKeyword($event)"
             ></app-basedata-keywords>
         </mat-tab>
@@ -23,7 +21,6 @@
             <app-basedata-borrowers
                 [data]="borrowers"
                 (delete)="onDeleteBorrower($event)"
-                (create)="onCreateBorrower($event)"
                 (update)="onUpdateBorrower($event)"
             ></app-basedata-borrowers>
         </mat-tab>
@@ -31,7 +28,7 @@
             <app-basedata-authors
                 [data]="authors"
                 (delete)="onDeleteAuthor($event)"
-                (create)="onCreateAuthor($event)"
+                [create]="createAuthor"
                 (update)="onUpdateAuthor($event)"
             ></app-basedata-authors>
         </mat-tab>

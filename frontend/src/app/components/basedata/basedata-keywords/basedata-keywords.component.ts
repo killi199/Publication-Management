@@ -13,7 +13,7 @@ export class BasedataKeywordsComponent extends CrudComponent<Keyword> {
     override _emitCreate(record: Keyword): string {
         if (!record.value?.trim()) return 'Nothing to add!';
 
-        this.create.emit({ value: record.value });
+        //this.create.emit({ value: record.value });
         return record.value + ' created!';
     }
 

@@ -18,11 +18,11 @@ export class BasedataBorrowersComponent extends CrudComponent<Borrower> {
         )
             return 'Nothing to add!';
 
-        this.create.emit({
-            surname: record.surname,
-            name: record.name,
-            studentnumber: record.studentnumber,
-        });
+        //this.create.emit({
+          //  surname: record.surname,
+            //name: record.name,
+           // studentnumber: record.studentnumber,
+        //});
         return 'Borrower created!';
     }
     override _emitUpdate(record: Borrower): string {

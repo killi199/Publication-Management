@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { Snackbar } from 'src/app/helpers/snackbar';
 import { TableInitsComponent } from 'src/app/helpers/table-inits';
@@ -18,8 +17,8 @@ export abstract class CrudComponent<T>
     @Output() 
     delete = new EventEmitter<T>();
 
-    @Output() 
-    create = new EventEmitter<T>();
+    @Input() 
+    create?: (value: T) => Observable<T>;
 
     @Output() 
     update = new EventEmitter<T>();

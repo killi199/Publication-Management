@@ -11,18 +11,23 @@ const ENDPOINT_URL = '/rest/author';
 export class AuthorService {
     constructor(private http: HttpClient) {}
 
+    // TODO oberklasse anlegen
+    // TODO getAll
     listAllAuthors(): Observable<Author[]> {
         return this.http.get<Author[]>(ENDPOINT_URL);
     }
 
+    // TODO delete nennen
     deleteAuthor(author: Author): Observable<any> {
         return this.http.delete(`${ENDPOINT_URL}/${author.uuid}`);
     }
 
-    updateAuthor(author: Author): Observable<any> {
+    // TODO update nennen
+    updateAuthor(author: Author): Observable<Author> {
         return this.http.put(ENDPOINT_URL, author);
     }
 
+    // TODO create nennen
     saveAuthor(author: Author): Observable<any> {
         return this.http.post(ENDPOINT_URL, author);
     }
