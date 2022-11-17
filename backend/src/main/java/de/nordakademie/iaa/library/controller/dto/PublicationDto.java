@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * A Publication is the main object for a library. It describes thinks like books, articles, etc.
+ * A Publication is the main object for a library. It describes things like books, articles, etc.
  */
 public class PublicationDto {
 

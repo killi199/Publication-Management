@@ -13,7 +13,10 @@ export class BasedataKeywordsComponent extends CrudComponent<Keyword> {
     override _emitCreate(record: Keyword): string {
         if (!record.value?.trim()) return 'Nothing to add!';
 
-        this.create.emit({ value: record.value });
+        this.create!(record).subscribe((a) => {
+            this.dataSource.data.push(a);
+        });
+
         return record.value + ' created!';
     }
 
@@ -21,8 +24,12 @@ export class BasedataKeywordsComponent extends CrudComponent<Keyword> {
         if (this.selectedRecord?.value === record.value)
             return 'Nothing to change!';
 
-        this.selectedRecord!.value = record.value;
-        this.update.emit(this.selectedRecord);
+        this.update!(record).subscribe((a) => {
+            this.selectedRecord!.value = a.value;
+            this.selectedRecord = undefined;
+            this.selection.clear();
+        });
+
         return record.value + ' updated!';
     }
 
@@ -30,7 +37,7 @@ export class BasedataKeywordsComponent extends CrudComponent<Keyword> {
         const name = (<HTMLInputElement>(
             document.getElementById('input-value-of-keyword')
         )).value;
-        return { value: name };
+        return { uuid: this.selectedRecord?.uuid, value: name };
     }
 
     override _clearInputFields(): void {

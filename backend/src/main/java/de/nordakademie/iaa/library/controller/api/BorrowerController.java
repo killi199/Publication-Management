@@ -38,7 +38,7 @@ public class BorrowerController {
     }
 
     /**
-     * This method will create a borrower. In this case the key has to get set by the user.
+     * This method will create a borrower.
      *
      * @param borrowerDto the borrower that should be created
      * @return The created borrower

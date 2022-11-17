@@ -112,7 +112,7 @@ class PublicationServiceTest {
     }
 
     @Test
-    void update_negativeQuantity_throwsMissingFieldException() {
+    void update_negativeQuantity_throwsNegativValueIsNotAllowedException() {
         publicationDto.setKey("test");
         publicationDto.setTitle("test");
         publicationDto.setQuantity(-1);

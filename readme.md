@@ -2,11 +2,6 @@
 
 ## Backend und Frontend Starten
 
-Backend bauen:
-
-- `cd backend`
-- `docker build . -t library_backend`
-
 Backend starten:
 
 - `cd docker-compose/backend`

@@ -33,15 +33,15 @@ export class PublicationsComponent implements OnInit {
         private authorService: AuthorService,
         private assignmentService: AssignmentService
     ) {
-        this.publications = publicationService.listAllPublications();
+        this.publications = publicationService.getAll();
     }
 
     ngOnInit(): void {
         this.keywordService
-            .loadAllKeywords()
+            .getAll()
             .subscribe((keywords) => (this.keywords = keywords));
         this.authorService
-            .loadAllAuthors()
+            .getAll()
             .subscribe((authors) => (this.authors = authors));
         this.kindOfPublicationService
             .loadAllKindsOfPublication()
@@ -72,7 +72,7 @@ export class PublicationsComponent implements OnInit {
     }
 
     onDeletePublication(publication: Publication): void {
-        this.publicationService.deletePublication(publication).subscribe(() => {
+        this.publicationService.delete(publication).subscribe(() => {
             this.currentPublication = undefined;
             this.openPublication = false;
         });
@@ -80,13 +80,13 @@ export class PublicationsComponent implements OnInit {
 
     onSavePublication(publication: Publication): void {
         if (this.addingPublication) {
-            this.publicationService.savePublication(publication).subscribe();
+            this.publicationService.create(publication).subscribe();
         } else {
-            this.publicationService.updatePublication(publication).subscribe();
+            this.publicationService.update(publication).subscribe();
         }
     }
 
-    onBack(): void{
+    onBack(): void {
         this.openPublication = false;
         this.addingPublication = false;
         this.currentPublication = undefined;

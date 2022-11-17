@@ -13,7 +13,7 @@ export class BasedataKindsComponent extends CrudComponent<KindOfPublication> {
     override _emitCreate(record: KindOfPublication): string {
         if (!record.value?.trim()) return 'Nothing to add!';
 
-        this.create.emit({ value: record.value });
+        //this.create.emit({ value: record.value });
         return record.value + ' created!';
     }
 
@@ -22,7 +22,7 @@ export class BasedataKindsComponent extends CrudComponent<KindOfPublication> {
             return 'Nothing to change!';
 
         this.selectedRecord!.value = record.value;
-        this.update.emit(this.selectedRecord);
+        //this.update.emit(this.selectedRecord);
         return record.value + ' updated!';
     }
 

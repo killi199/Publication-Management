@@ -1,16 +1,15 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { CrudService } from './crud.service';
 
-import { AuthorService } from './author.service';
-
-describe('AuthorService', () => {
-    let service: AuthorService;
+describe('CrudService', () => {
+    let service: CrudService<any>;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule],
         });
-        service = TestBed.inject(AuthorService);
+        service = TestBed.inject(CrudService);
     });
 
     it('should be created', () => {

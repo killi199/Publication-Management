@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Author } from 'src/app/models/author';
 import { Borrower } from 'src/app/models/borrower';
@@ -8,7 +8,6 @@ import { AuthorService } from 'src/app/services/author.service';
 import { BorrowerService } from 'src/app/services/borrower.service';
 import { KeywordService } from 'src/app/services/keyword.service';
 import { KindOfPublicationService } from 'src/app/services/kind-of-publication.service';
-import { PublicationService } from 'src/app/services/publication.service';
 
 @Component({
     selector: 'app-basedata',
@@ -16,10 +15,10 @@ import { PublicationService } from 'src/app/services/publication.service';
     styleUrls: ['./basedata.component.scss'],
 })
 export class BasedataComponent {
-    kindOfPubs$: Observable<KindOfPublication[]>;
-    keywords$: Observable<Keyword[]>;
-    authors$: Observable<Author[]>;
-    borrowers$: Observable<Borrower[]>;
+    kindOfPubs: Observable<KindOfPublication[]>;
+    keywords: Observable<Keyword[]>;
+    authors: Observable<Author[]>;
+    borrowers: Observable<Borrower[]>;
 
     constructor(
         private kindOfPubService: KindOfPublicationService,
@@ -27,10 +26,10 @@ export class BasedataComponent {
         private borrowerService: BorrowerService,
         private authorService: AuthorService
     ) {
-        this.kindOfPubs$ = kindOfPubService.loadAllKindsOfPublication();
-        this.keywords$ = keywordService.loadAllKeywords();
-        this.authors$ = authorService.loadAllAuthors();
-        this.borrowers$ = borrowerService.loadAllBorrowers();
+        this.kindOfPubs = kindOfPubService.loadAllKindsOfPublication();
+        this.keywords = keywordService.getAll();
+        this.authors = authorService.getAll();
+        this.borrowers = borrowerService.getAll();
     }
 
     onDeleteKindOfPublication(kindOfPublication: KindOfPublication) {
@@ -45,39 +44,39 @@ export class BasedataComponent {
         this.kindOfPubService.update(kindOfPublication);
     }
 
-    onDeleteKeyword(keyword: Keyword) {
-        this.keywordService.delete(keyword);
+    deleteKeyword = (keyword: Keyword): Observable<any> => {
+        return this.keywordService.delete(keyword);
     }
 
-    onCreateKeyword(keyword: Keyword) {
-        this.keywordService.create(keyword);
+    createKeyword = (keyword: Keyword): Observable<Keyword> => {
+        return this.keywordService.create(keyword);
     }
 
-    onUpdateKeyword(keyword: Keyword) {
-        this.keywordService.update(keyword);
+    updateKeyword = (keyword: Keyword): Observable<Keyword> => {
+        return this.keywordService.update(keyword);
     }
 
-    onDeleteBorrower(borrower: Borrower) {
-        this.borrowerService.delete(borrower);
+    deleteBorrower = (borrower: Borrower): Observable<any> => {
+        return this.borrowerService.delete(borrower);
     }
 
-    onCreateBorrower(borrower: Borrower) {
-        this.borrowerService.create(borrower);
+    createBorrower = (borrower: Borrower): Observable<Borrower> => {
+        return this.borrowerService.create(borrower);
     }
 
-    onUpdateBorrower(borrower: Borrower) {
-        this.borrowerService.update(borrower);
+    updateBorrower = (borrower: Borrower): Observable<Borrower> => {
+        return this.borrowerService.update(borrower);
     }
 
-    onDeleteAuthor(author: Author) {
-        this.authorService.delete(author);
+    deleteAuthor = (author: Author): Observable<any> => {
+        return this.authorService.delete(author);
     }
 
-    onCreateAuthor(author: Author) {
-        this.authorService.create(author);
+    createAuthor = (author: Author): Observable<Author> => {
+        return this.authorService.create(author);
     }
 
-    onUpdateAuthor(author: Author) {
-        this.authorService.update(author);
+    updateAuthor = (author: Author): Observable<Author> => {
+        return this.authorService.update(author);
     }
 }

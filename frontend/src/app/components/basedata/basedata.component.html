@@ -5,34 +5,31 @@
     <mat-tab-group>
         <mat-tab label="Publicationtypes">
             <app-basedata-kinds 
-                [data]="(kindOfPubs$ | async) ?? []"
-                (delete)="onDeleteKindOfPublication($event)"
-                (create)="onCreateKindOfPublication($event)"
-                (update)="onUpdateKindOfPublication($event)"
+                [data]="kindOfPubs"
             ></app-basedata-kinds>
         </mat-tab>
         <mat-tab label="Keywords">
             <app-basedata-keywords
-                [data]="(keywords$ | async) ?? []"
-                (delete)="onDeleteKeyword($event)"
-                (create)="onCreateKeyword($event)"
-                (update)="onUpdateKeyword($event)"
+                [data]="keywords"
+                [delete]="deleteKeyword"
+                [create]="createKeyword"
+                [update]="updateKeyword"
             ></app-basedata-keywords>
         </mat-tab>
         <mat-tab label="Borrowers">
             <app-basedata-borrowers
-                [data]="(borrowers$ | async) ?? []"
-                (delete)="onDeleteBorrower($event)"
-                (create)="onCreateBorrower($event)"
-                (update)="onUpdateBorrower($event)"
+                [data]="borrowers"
+                [delete]="deleteBorrower"
+                [create]="createBorrower"
+                [update]="updateBorrower"
             ></app-basedata-borrowers>
         </mat-tab>
         <mat-tab label="Authors">
             <app-basedata-authors
-                [data]="(authors$ | async) ?? []"
-                (delete)="onDeleteAuthor($event)"
-                (create)="onCreateAuthor($event)"
-                (update)="onUpdateAuthor($event)"
+                [data]="authors"
+                [delete]="deleteAuthor"
+                [create]="createAuthor"
+                [update]="updateAuthor"
             ></app-basedata-authors>
         </mat-tab>
     </mat-tab-group>
