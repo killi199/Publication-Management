@@ -19,12 +19,12 @@
             </td>
         </ng-container>
 
-        <ng-container matColumnDef="studentnumber">
+        <ng-container matColumnDef="studentNumber">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
                 Studentnumber
             </th>
             <td mat-cell *matCellDef="let element">
-                {{ element.studentnumber }}
+                {{ element.studentNumber }}
             </td>
         </ng-container>
 
@@ -79,11 +79,11 @@
     <mat-form-field appearance="fill">
         <mat-label>Studentnumber</mat-label>
         <input
-            id="input-studentnumber"
+            id="input-studentNumber"
             [disabled]="crudState === 'read'"
             matInput
             placeholder="Ex. 9123"
-            [value]="selectedRecord?.studentnumber || ''"
+            [value]="selectedRecord?.studentNumber || ''"
         />
     </mat-form-field>
 
@@ -91,7 +91,7 @@
         <button
             matTooltip="edit selection"
             (click)="onEdit()"
-            [disabled]="selectedRecord?.studentnumber === null"
+            [disabled]="selectedRecord?.studentNumber === null"
             *ngIf="crudState === 'read'"
             mat-mini-fab
             color="primary"
@@ -112,10 +112,10 @@
         <button
             mat-mini-fab
             matTooltip="delete borrower"
-            [disabled]="selectedRecord?.studentnumber === null"
+            [disabled]="selectedRecord?.studentNumber === null"
             *ngIf="crudState === 'read'"
             color="warn"
-            (click)="onDelete(selectedRecord?.studentnumber!)"
+            (click)="onDelete(selectedRecord?.studentNumber!)"
         >
             <mat-icon>delete</mat-icon>
         </button>

@@ -29,7 +29,7 @@ export class BasedataComponent {
         this.kindOfPubs = kindOfPubService.loadAllKindsOfPublication();
         this.keywords = keywordService.loadAllKeywords();
         this.authors = authorService.getAll();
-        this.borrowers = borrowerService.loadAllBorrowers();
+        this.borrowers = borrowerService.getAll();
     }
 
     onDeleteKindOfPublication(kindOfPublication: KindOfPublication) {
