@@ -7,7 +7,6 @@ import { CrudService } from './crud.service';
     providedIn: 'root',
 })
 export class AuthorService extends CrudService<Author> {
-
     ENDPOINT_URL = '/rest/author';
 
     constructor(http: HttpClient) {

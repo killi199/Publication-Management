@@ -1,3 +1,3 @@
 export interface Entity {
-    uuid?: string;
+    uuid?: string | null;
 }
