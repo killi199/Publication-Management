@@ -1,12 +1,10 @@
 <div class="page">
     <div class="header-div">
-        <h1>Ausleihvorgänge Übersicht</h1>
+        <h1>Mahnwesen</h1>
     </div>
 
     <app-assignment-list
         *ngIf="!isViewOpen"
-        [assignments]="data"
-        (showAssignment)="onSelect($event)"
     ></app-assignment-list>
 
     <div class="button-container">

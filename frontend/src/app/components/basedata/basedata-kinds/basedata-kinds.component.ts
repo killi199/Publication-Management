@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { KindOfPublication } from 'src/app/models/kind-of-publication';
-import { CrudComponent } from '../../../helpers/CrudComponent';
+import { CrudComponent } from '../../../helpers/crud-component';
 
 @Component({
     selector: 'app-basedata-kinds',

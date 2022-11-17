@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Author } from 'src/app/models/author';
-import { CrudComponent } from '../../../helpers/CrudComponent';
+import { CrudComponent } from '../../../helpers/crud-component';
 
 @Component({
     selector: 'app-basedata-authors',

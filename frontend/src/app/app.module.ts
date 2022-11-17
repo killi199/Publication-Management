@@ -30,7 +30,6 @@ import { AppComponent } from './app.component';
 import { PublicationsComponent } from './components/publications/publications.component';
 import { PublicationListComponent } from './components/publications/publication-list/publication-list.component';
 import { PublicationViewComponent } from './components/publications/publication-view/publication-view.component';
-import { DunningComponent } from './components/dunning/dunning.component';
 import { BasedataComponent } from './components/basedata/basedata.component';
 import { BasedataKindsComponent } from './components/basedata/basedata-kinds/basedata-kinds.component';
 import { BasedataKeywordsComponent } from './components/basedata/basedata-keywords/basedata-keywords.component';
@@ -44,6 +43,7 @@ import { GermanDateAdapter } from './helpers/german-date-adapter';
 import { AssignmentsComponent } from './components/assignments/assignments.component';
 import { AssignmentListComponent } from './components/assignments/assignment-list/assignment-list.component';
 import { AssignmentViewComponent } from './components/assignments/assignment-view/assignment-view.component';
+import { OverdueNoticeComponent } from './components/overdue-notice/overdue-notice.component';
 
 registerLocaleData(localeDe, 'de-DE', localeDeExtra);
 
@@ -53,7 +53,6 @@ registerLocaleData(localeDe, 'de-DE', localeDeExtra);
         PublicationsComponent,
         PublicationListComponent,
         PublicationViewComponent,
-        DunningComponent,
         BasedataComponent,
         BasedataKindsComponent,
         BasedataKeywordsComponent,
@@ -62,6 +61,7 @@ registerLocaleData(localeDe, 'de-DE', localeDeExtra);
         AssignmentsComponent,
         AssignmentListComponent,
         AssignmentViewComponent,
+        OverdueNoticeComponent,
     ],
     imports: [
         BrowserAnimationsModule,
