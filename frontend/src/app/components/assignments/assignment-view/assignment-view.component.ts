@@ -1,4 +1,5 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { outputAst } from '@angular/compiler';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { map, Observable, startWith } from 'rxjs';
 import { Assignment } from 'src/app/models/assignment';
@@ -11,7 +12,7 @@ import { Borrower } from 'src/app/models/borrower';
 })
 export class AssignmentViewComponent implements OnInit {
     @Input()
-    assignment: Assignment = {};
+    assignment?: Assignment;
 
     @Input()
     allBorrowers: Borrower[] = [];
@@ -28,11 +29,14 @@ export class AssignmentViewComponent implements OnInit {
     @Input()
     update?: (assignment: Assignment) => Observable<Assignment>;
 
+    @Input()
+    create?: (assignment: Assignment) => Observable<Assignment>;
+
     formGroup = new FormGroup({
         publicationKey: new FormControl<string>(''),
         dateOfAssignment: new FormControl<Date>(new Date()),
-        dateOfReturn: new FormControl<Date>(new Date()),
-        borrower: new FormControl<string | Borrower>(''),
+        dateOfReturn: new FormControl<Date | undefined>(undefined),
+        borrower: new FormControl<Borrower | undefined>(undefined),
     });
 
     filteredBorrowers: Observable<Borrower[]> = new Observable<Borrower[]>();
@@ -48,9 +52,19 @@ export class AssignmentViewComponent implements OnInit {
         this._reloadView();
     }
 
-    onSubmit(): void {}
+    onSubmit(): void {
+        if (!this.formGroup.valid) return;
+
+        this.create!(this.formGroup.value).subscribe((a) => {
+            this.formGroup.patchValue(a);
+        });
+        
+        this.formGroup.disable();
+    }
 
     onExtend(): void {
+        if(!this.assignment) return;
+
         this.extendAssignment!(this.assignment).subscribe((a) => {
             this.formGroup.patchValue(a);
         });
@@ -62,6 +76,8 @@ export class AssignmentViewComponent implements OnInit {
     }
 
     onReturn(): void {
+        if(!this.assignment) return;
+
         this.assignment.dateOfReturn = new Date();
         console.log(this.assignment.dateOfReturn);
         this.update!(this.assignment).subscribe((a) => {

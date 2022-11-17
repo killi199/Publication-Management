@@ -29,8 +29,14 @@ export class AssignmentService {
         return of(assignment);
     }
 
-    create(assignment: Assignment) {
-        this.assignments.push(assignment);
+    create(assignment: Assignment): Observable<Assignment> {
+        // TODO does not work :(
+        if(assignment.dateOfAssignment) {
+            const newDate = new Date(assignment.dateOfAssignment);
+            assignment.dateOfReturn = new Date(newDate.setFullYear(newDate.getFullYear() + 1));
+            this.assignments.push(assignment);
+        }
+        return of(assignment);
     }
 
     loadAllAssignments(): Observable<Assignment[]> {

@@ -81,7 +81,7 @@
 
         <div class="button-container">
             <button
-                *ngIf="this.formGroup.disabled"
+                *ngIf="this.formGroup.disabled && assignment"
                 type="button"
                 (click)="onExtend()"
                 [disabled]="

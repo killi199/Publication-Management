@@ -16,10 +16,10 @@ export class AssignmentsComponent implements OnInit {
     extendAssignment?: (assignment: Assignment) => Observable<Assignment>;
     isAssignmentExtendable?: (assignment: Assignment) => Observable<boolean>;
     updateAssignment?: (assignment: Assignment) => Observable<Assignment>;
+    createAssignment?: (assignment: Assignment) => Observable<Assignment>;
     openAssignment: boolean = false;
     borrowers: Borrower[] = [];
     publicationKeys: string[] = [];
-    // TODO currentAssignment?: Assignment;
     currentAssignment?: Assignment;
     
     constructor(assignmentService: AssignmentService, private borrowerService: BorrowerService, private publicationService: PublicationService) {
@@ -27,6 +27,7 @@ export class AssignmentsComponent implements OnInit {
         this.extendAssignment = assignmentService.extendAssignment;
         this.isAssignmentExtendable = assignmentService.isAssignmentExtendable;
         this.updateAssignment = assignmentService.update;
+        this.createAssignment = assignmentService.create;
     }
 
     ngOnInit(): void {

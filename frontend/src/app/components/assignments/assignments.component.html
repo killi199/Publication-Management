@@ -42,7 +42,8 @@
     </div>
 
     <app-assignment-view
-        *ngIf="currentAssignment && openAssignment"
+        *ngIf="openAssignment"
+        [create]="createAssignment"
         [assignment]="currentAssignment"
         [extendAssignment]="extendAssignment"
         [isAssignmentExtandable]="isAssignmentExtendable"
