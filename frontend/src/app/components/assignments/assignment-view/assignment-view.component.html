@@ -4,11 +4,22 @@
             <mat-label>Key der Publikation</mat-label>
             <input
                 placeholder="Ex. NA-123"
-                matInput
+                type="text"
                 name="publicationKey"
+                matInput
                 formControlName="publicationKey"
-                required
+                [matAutocomplete]="autocompletepublicationKey"
             />
+            <mat-autocomplete
+                #autocompletepublicationKey="matAutocomplete"
+            >
+                <mat-option
+                    *ngFor="let publicationKey of filteredPublicationKeys | async"
+                    [value]="publicationKey"
+                >
+                    {{ publicationKey }}
+                </mat-option>
+            </mat-autocomplete>
         </mat-form-field>
 
         <mat-form-field appearance="fill">

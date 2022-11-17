@@ -17,6 +17,9 @@ export class AssignmentViewComponent implements OnInit {
     allBorrowers: Borrower[] = [];
 
     @Input()
+    allPublicationKeys: string[] = [];
+
+    @Input()
     extendAssignment?: (assignment: Assignment) => Observable<Assignment>;
 
     @Input()
@@ -33,6 +36,8 @@ export class AssignmentViewComponent implements OnInit {
     });
 
     filteredBorrowers: Observable<Borrower[]> = new Observable<Borrower[]>();
+
+    filteredPublicationKeys: Observable<string[]> = new Observable<string[]>();
 
     ngOnInit(): void {
         if (this.assignment) {
@@ -75,6 +80,12 @@ export class AssignmentViewComponent implements OnInit {
         );
     }
 
+    private _filterPublicationKeys(value: string): string[] {
+        const filterValue = value.toLowerCase();
+    
+        return this.allPublicationKeys.filter(option => option.toLowerCase().includes(filterValue));
+      }
+
     private _reloadView(): void {
         this.filteredBorrowers = this.formGroup
             .get('borrower')!
@@ -94,5 +105,10 @@ export class AssignmentViewComponent implements OnInit {
                         : this.allBorrowers.slice();
                 })
             );
+
+            this.filteredPublicationKeys = this.formGroup.get('publicationKey')!.valueChanges.pipe(
+                startWith(''),
+                map(publicationKey => this._filterPublicationKeys(publicationKey || '')),
+              );
     }
 }
