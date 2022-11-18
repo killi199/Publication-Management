@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Borrower } from 'src/app/models/borrower';
-import { CrudComponent } from '../../../helpers/CrudComponent';
+import { CrudComponent } from '../../../helpers/crud-component';
 
 @Component({
     selector: 'app-basedata-borrowers',

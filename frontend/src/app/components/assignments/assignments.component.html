@@ -4,25 +4,25 @@
     </div>
 
     <app-assignment-list
-        *ngIf="!openAssignment"
-        [assignments]="assignments"
+        *ngIf="!isViewOpen"
+        [assignments]="data"
         (showAssignment)="onSelect($event)"
     ></app-assignment-list>
 
     <div class="button-container">
         <button
             matTooltip="Zurück"
-            *ngIf="openAssignment"
+            *ngIf="isViewOpen"
             (click)="onBack()"
             mat-mini-fab
             color="primary"
         >
             <mat-icon>arrow_back</mat-icon>
         </button>
-        <div class="crud-container" *ngIf="!openAssignment">
+        <div class="crud-container" *ngIf="!isViewOpen">
             <button
                 matTooltip="Bearbeiten"
-                *ngIf="currentAssignment"
+                *ngIf="currentRecord"
                 (click)="onEdit()"
                 mat-mini-fab
                 color="primary"
@@ -42,6 +42,6 @@
     </div>
 
     <app-assignment-view
-        *ngIf="currentAssignment && openAssignment"
+        *ngIf="currentRecord && isViewOpen"
     ></app-assignment-view>
 </div>

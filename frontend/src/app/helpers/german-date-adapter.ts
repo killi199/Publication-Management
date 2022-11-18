@@ -9,6 +9,10 @@ import { NativeDateAdapter } from '@angular/material/core';
     providedIn: 'root',
 })
 export class GermanDateAdapter extends NativeDateAdapter {
+    constructor() {
+        super('');
+    }
+
     override parse(value: any): Date | null {
         if (typeof value === 'string' && value.indexOf('.') > -1) {
             const str = value.split('.');

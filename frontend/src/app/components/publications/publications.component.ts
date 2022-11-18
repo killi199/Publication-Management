@@ -14,7 +14,7 @@ import { PublicationService } from 'src/app/services/publication.service';
 @Component({
     selector: 'app-publications',
     templateUrl: './publications.component.html',
-    styleUrls: ['./publications.component.scss'],
+    styleUrls: ['../../helpers/core-component.scss'],
 })
 export class PublicationsComponent implements OnInit {
     publications: Observable<Publication[]>;
