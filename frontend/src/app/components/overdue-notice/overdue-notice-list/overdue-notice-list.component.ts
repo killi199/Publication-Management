@@ -15,8 +15,8 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
     selectedRecord?: OverdueNotice;
     displayedColumns: string[] = [
         'assignment.publicationKey',
-        'assignment.borrower.name',
         'assignment.borrower.surname',
+        'assignment.borrower.name',
         'assignment.borrower.studentNumber',
         'assignment.dateOfReturn',
         'warningDate',
