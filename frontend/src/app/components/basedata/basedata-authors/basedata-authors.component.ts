@@ -12,13 +12,14 @@ export class BasedataAuthorsComponent extends CrudComponent<Author> {
 
     override _emitCreate(record: Author): string {
         if (!record.name?.trim() || !record.surname?.trim())
-            return 'Nothing to add!';
+            return 'Nichts zum Hinzufügen!';
 
         this.create!(record).subscribe((a) => {
             this.dataSource.data.push(a);
             this.dataSource.data = this.dataSource.data;
         });
-        return 'Author created!';
+
+        return 'Autor erstellt!';
     }
 
     override _emitUpdate(record: Author): string {
@@ -26,7 +27,7 @@ export class BasedataAuthorsComponent extends CrudComponent<Author> {
             this.selectedRecord?.name === record.name &&
             this.selectedRecord?.surname === record.surname
         )
-            return 'Nothing to change!';
+            return 'Nichts zum Ändern!';
 
         this.update!(record).subscribe((a) => {
             this.selectedRecord!.name = a.name;
@@ -35,7 +36,7 @@ export class BasedataAuthorsComponent extends CrudComponent<Author> {
             this.selection.clear();
         });
 
-        return 'Author updated!';
+        return 'Autor geändert!';
     }
 
     override _getRecordFromInputFields(): Author {

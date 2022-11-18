@@ -1,9 +1,9 @@
 <div class="container">
     <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
         <mat-form-field appearance="fill">
-            <mat-label>Key</mat-label>
+            <mat-label>Publikationsschlüssel</mat-label>
             <input
-                placeholder="Ex. NA-123"
+                placeholder="Bsp. NA-123"
                 matInput
                 name="key"
                 formControlName="key"
@@ -12,9 +12,9 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill">
-            <mat-label>Title</mat-label>
+            <mat-label>Titel</mat-label>
             <input
-                placeholder="Ex. Clean Code"
+                placeholder="Bsp. Clean Code"
                 matInput
                 name="title"
                 formControlName="title"
@@ -23,9 +23,9 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill">
-            <mat-label>Publisher</mat-label>
+            <mat-label>Verlag</mat-label>
             <input
-                placeholder="Ex. Prentice Hall"
+                placeholder="Bsp. Prentice Hall"
                 matInput
                 name="publisher"
                 formControlName="publisher"
@@ -35,7 +35,7 @@
         <mat-form-field appearance="fill">
             <mat-label>ISBN</mat-label>
             <input
-                placeholder="Ex. 9780132350884"
+                placeholder="Bsp. 9780132350884"
                 formControlName="isbn"
                 matInput
                 name="isbn"
@@ -43,9 +43,9 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill">
-            <mat-label>Quantity</mat-label>
+            <mat-label>Anzahl</mat-label>
             <input
-                placeholder="Ex. 42"
+                placeholder="Bsp. 42"
                 type="number"
                 formControlName="quantity"
                 min="0"
@@ -56,9 +56,9 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill">
-            <mat-label>Date of Publication</mat-label>
+            <mat-label>Datum der Veröffentlichung</mat-label>
             <input
-                placeholder="Ex. 1.8.2008"
+                placeholder="Bsp. 1.8.2008"
                 matInput
                 name="dateOfPublication"
                 formControlName="dateOfPublication"
@@ -73,9 +73,9 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill">
-            <mat-label>Kind of Publication</mat-label>
+            <mat-label>Art der Publikation</mat-label>
             <input
-                placeholder="Ex. Book"
+                placeholder="Bsp. Buch"
                 type="text"
                 name="kindOfPublication"
                 matInput
@@ -99,7 +99,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill">
-            <mat-label>Keywords</mat-label>
+            <mat-label>Schlagwörter</mat-label>
             <mat-chip-list #chipListKeywords formControlName="keywords">
                 <mat-chip
                     *ngFor="let keyword of formGroup.get('keywords')!.value"
@@ -111,7 +111,7 @@
                     </button>
                 </mat-chip>
                 <input
-                    placeholder="Ex. Code"
+                    placeholder="Bsp. Code"
                     name="keywords"
                     #keywordInput
                     [formControl]="keywordControl"
@@ -136,7 +136,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill">
-            <mat-label>Authors</mat-label>
+            <mat-label>Autoren</mat-label>
             <mat-chip-list #chipListAuthors formControlName="authors">
                 <mat-chip
                     *ngFor="let author of formGroup.get('authors')!.value"
@@ -148,7 +148,7 @@
                     </button>
                 </mat-chip>
                 <input
-                    placeholder="Ex. Mustermann Max"
+                    placeholder="Bsp. Mustermann Max"
                     name="authors"
                     #authorInput
                     [formControl]="authorControl"
@@ -179,7 +179,7 @@
                 (click)="onEdit()"
                 mat-mini-fab
                 color="primary"
-                matTooltip="edit publication"
+                matTooltip="Editieren"
             >
                 <mat-icon>edit</mat-icon>
             </button>
@@ -190,7 +190,7 @@
                 (click)="onDeletePublication()"
                 mat-mini-fab
                 color="warn"
-                matTooltip="delete publication"
+                matTooltip="Löschen"
             >
                 <mat-icon>delete</mat-icon>
             </button>
@@ -201,7 +201,7 @@
                 [disabled]="formGroup.invalid"
                 mat-mini-fab
                 color="primary"
-                matTooltip="save changes"
+                matTooltip="Speichern"
             >
                 <mat-icon>done</mat-icon>
             </button>
@@ -212,7 +212,7 @@
                 (click)="onCancel()"
                 mat-mini-fab
                 color="primary"
-                matTooltip="undo changes"
+                matTooltip="Rückgängig"
             >
                 <mat-icon>close</mat-icon>
             </button>

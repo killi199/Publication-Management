@@ -1,9 +1,9 @@
 <div class="page">
     <div class="header-div">
-        <h1>Base Data</h1>
+        <h1>Stammdaten</h1>
     </div>
     <mat-tab-group>
-        <mat-tab label="Publicationtypes">
+        <mat-tab label="Publikations Arten">
             <app-basedata-kinds 
                 [data]="kindOfPubs"
                 [delete]="deleteKindOfPublication"
@@ -11,7 +11,7 @@
                 [update]="updateKindOfPublication"
             ></app-basedata-kinds>
         </mat-tab>
-        <mat-tab label="Keywords">
+        <mat-tab label="Schlagwörter">
             <app-basedata-keywords
                 [data]="keywords"
                 [delete]="deleteKeyword"
@@ -19,7 +19,7 @@
                 [update]="updateKeyword"
             ></app-basedata-keywords>
         </mat-tab>
-        <mat-tab label="Borrowers">
+        <mat-tab label="Ausleiher">
             <app-basedata-borrowers
                 [data]="borrowers"
                 [delete]="deleteBorrower"
@@ -27,7 +27,7 @@
                 [update]="updateBorrower"
             ></app-basedata-borrowers>
         </mat-tab>
-        <mat-tab label="Authors">
+        <mat-tab label="Autoren">
             <app-basedata-authors
                 [data]="authors"
                 [delete]="deleteAuthor"

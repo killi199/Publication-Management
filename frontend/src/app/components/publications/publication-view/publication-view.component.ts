@@ -80,12 +80,15 @@ export class PublicationViewComponent implements OnInit {
     filteredKindsOfPublication: Observable<KindOfPublication[]> =
         new Observable<KindOfPublication[]>();
 
+    clonedPublication: Publication = {};
+
     constructor(private snackBar: Snackbar) {}
 
     ngOnInit(): void {
         if (this.publication) {
             this.formGroup.disable();
             this.formGroup.patchValue(this.publication);
+            this.clonedPublication = structuredClone(this.publication);
         }
 
         this._reloadView();
@@ -93,17 +96,17 @@ export class PublicationViewComponent implements OnInit {
 
     onDeletePublication(): void {
         this.deletePublication.emit(this.formGroup.getRawValue());
-        this.snackBar.open(this.formGroup.get('title')?.value + ' deleted!');
+        this.snackBar.open('Publikation gelöscht!');
     }
 
     onSubmit(): void {
         if (!this.formGroup.valid) return;
 
         this.savePublication.emit(this.formGroup.getRawValue());
+        this.clonedPublication = structuredClone(this.formGroup.getRawValue());
         
-        const title = this.formGroup.get('title')?.value;
-        const crudOperation = this.addingPublication ? ' created!' : ' updated!';
-        this.snackBar.open(title + crudOperation);
+        const crudOperation = this.addingPublication ? ' erstellt!' : ' geändert!';
+        this.snackBar.open('Publikation ' + crudOperation);
 
         this.formGroup.disable();
     }
@@ -111,12 +114,12 @@ export class PublicationViewComponent implements OnInit {
     onCancel(): void {
         this.formGroup.disable();
         if (this.publication) {
-            this.formGroup.patchValue(this.publication);
+            this.formGroup.patchValue(this.clonedPublication);
         } else {
             this.formGroup.reset();
         }
         this._reloadView();
-        this.snackBar.open('Nothing changed!');
+        this.snackBar.open('Nichts geändert!');
     }
 
     onEdit(): void {

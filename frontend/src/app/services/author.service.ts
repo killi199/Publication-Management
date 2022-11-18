@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Snackbar } from '../helpers/snackbar';
 import { Author } from '../models/author';
 import { CrudService } from './crud.service';
 
@@ -9,7 +10,7 @@ import { CrudService } from './crud.service';
 export class AuthorService extends CrudService<Author> {
     ENDPOINT_URL = '/rest/author';
 
-    constructor(http: HttpClient) {
-        super(http);
+    constructor(http: HttpClient, snackBar: Snackbar) {
+        super(http, snackBar);
     }
 }
