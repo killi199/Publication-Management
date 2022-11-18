@@ -3,6 +3,6 @@ import { Warning } from './warning';
 
 export interface OverdueNotice {
     uuid: string;
-    assignments: Assignment[];
+    assignment: Assignment;
     warnings: Warning[];
 }

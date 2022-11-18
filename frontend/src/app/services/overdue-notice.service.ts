@@ -12,7 +12,7 @@ export class OverdueNoticeService {
     getAll(): Observable<OverdueNotice[]> {
         const borrower: Borrower = {
             uuid: 'studenuuid-test123',
-            studentnumber: '434',
+            studentNumber: '434',
             name: 'Max',
             surname: 'Mustermann',
         };
@@ -25,12 +25,12 @@ export class OverdueNoticeService {
         };
         const warning: Warning = {
             uuid: 'warning-uuid-test123',
-            overdueNoticeUui: 'UUIDAF-123-#222',
+            overdueNoticeUuid: 'UUIDAF-123-#222',
             warningDate: new Date(2022, 1, 1),
         };
         const overdueNotice: OverdueNotice = {
             uuid: 'UUIDAF-123-#222',
-            assignments: [assignment],
+            assignment: assignment,
             warnings: [warning],
         };
         return of([overdueNotice]);

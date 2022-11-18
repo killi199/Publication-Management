@@ -1,5 +1,5 @@
 export interface Warning {
     uuid: string;
-    overdueNoticeUui: string;
+    overdueNoticeUuid: string;
     warningDate: Date;
 }

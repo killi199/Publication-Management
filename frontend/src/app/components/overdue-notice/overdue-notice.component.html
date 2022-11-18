@@ -1,45 +1,21 @@
 <div class="page">
     <div class="header-div">
-        <h1>Mahnwesen</h1>
+        <h1>Mahnungswesen</h1>
     </div>
 
-    <app-assignment-list
-        *ngIf="!isViewOpen"
-    ></app-assignment-list>
+    <app-overdue-notice-list *ngIf="!isViewOpen" [overdueNotices]="data"  ></app-overdue-notice-list>
 
     <div class="button-container">
-        <button
-            matTooltip="Zurück"
-            *ngIf="isViewOpen"
-            (click)="onBack()"
-            mat-mini-fab
-            color="primary"
-        >
-            <mat-icon>arrow_back</mat-icon>
-        </button>
-        <div class="crud-container" *ngIf="!isViewOpen">
+        <div class="crud-container">
             <button
-                matTooltip="Bearbeiten"
-                *ngIf="currentRecord"
+                matTooltip="mahnen"
+                *ngIf="!currentRecord"
                 (click)="onEdit()"
                 mat-mini-fab
-                color="primary"
+                color="warn"
             >
-                <mat-icon>edit</mat-icon>
-            </button>
-
-            <button
-                (click)="onAdd()"
-                mat-mini-fab
-                matTooltip="Erstellen"
-                color="primary"
-            >
-                <mat-icon>add</mat-icon>
+                <mat-icon>assignment_late</mat-icon>
             </button>
         </div>
     </div>
-
-    <app-assignment-view
-        *ngIf="currentRecord && isViewOpen"
-    ></app-assignment-view>
 </div>

@@ -44,6 +44,7 @@ import { AssignmentsComponent } from './components/assignments/assignments.compo
 import { AssignmentListComponent } from './components/assignments/assignment-list/assignment-list.component';
 import { AssignmentViewComponent } from './components/assignments/assignment-view/assignment-view.component';
 import { OverdueNoticeComponent } from './components/overdue-notice/overdue-notice.component';
+import { OverdueNoticeListComponent } from './components/overdue-notice/overdue-notice-list/overdue-notice-list.component';
 
 registerLocaleData(localeDe, 'de-DE', localeDeExtra);
 
@@ -62,6 +63,7 @@ registerLocaleData(localeDe, 'de-DE', localeDeExtra);
         AssignmentListComponent,
         AssignmentViewComponent,
         OverdueNoticeComponent,
+        OverdueNoticeListComponent,
     ],
     imports: [
         BrowserAnimationsModule,
