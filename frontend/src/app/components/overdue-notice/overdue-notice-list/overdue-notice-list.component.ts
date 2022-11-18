@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TableInitsComponent } from 'src/app/helpers/table-inits';
 import { OverdueNotice } from 'src/app/models/overdue-notice';
@@ -10,6 +10,9 @@ import { OverdueNotice } from 'src/app/models/overdue-notice';
 })
 export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotice> {
     @Input() overdueNotices: Observable<OverdueNotice[]> = new Observable<OverdueNotice[]>();
+    @Output() checkRecord = new EventEmitter<CheckWarnstatusEvent>();
+
+    selectedRecord?: OverdueNotice;
     displayedColumns: string[] = [
         'assignment.publicationKey',
         'assignment.borrower.name',
@@ -38,4 +41,22 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
             this.dataSource.sort = this.sort;
         });
     }
+    
+    onCheckWarnstatus(overdueNotice: OverdueNotice): void {
+        if (overdueNotice === this.selectedRecord) {
+            this.checkRecord.emit(undefined);
+            this.selectedRecord = undefined;
+        } else {
+            const warnable = this.isWarnReady(overdueNotice);
+            const deleteable = overdueNotice.warnings.length >= 3;
+            this.checkRecord.emit({overdueNotice: overdueNotice, warnable: warnable, deleteable: deleteable});
+            this.selectedRecord = overdueNotice;
+        }
+    }
+}
+
+export interface CheckWarnstatusEvent{
+    overdueNotice: OverdueNotice;
+    warnable: boolean;
+    deleteable: boolean;
 }

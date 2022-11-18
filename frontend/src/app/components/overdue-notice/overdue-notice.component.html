@@ -6,13 +6,14 @@
     <app-overdue-notice-list
         *ngIf="!isViewOpen"
         [overdueNotices]="data"
+        (checkRecord)="onCheckWarnstatus($event)"
     ></app-overdue-notice-list>
 
     <div class="button-container">
         <div class="crud-container">
             <button
                 matTooltip="mahnen"
-                *ngIf="currentRecord"
+                [disabled]="!(currentRecord && warnable)"
                 (click)="onEdit()"
                 mat-mini-fab
                 color="primary"
@@ -21,7 +22,7 @@
             </button>
             <button
                 matTooltip="Verlust melden"
-                *ngIf="!currentRecord"
+                [disabled]="!(currentRecord && deleteable)"
                 (click)="onEdit()"
                 mat-mini-fab
                 color="warn"

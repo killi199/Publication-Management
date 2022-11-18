@@ -48,6 +48,16 @@ export class OverdueNoticeService {
             assignment: assignment,
             warnings: [],
         };
-        return of([overdueNotice1, overdueNotice2, overdueNotice3]);
+        const overdueNotice4: OverdueNotice = {
+            uuid: 'UUIDAF-123-#222',
+            assignment: assignment,
+            warnings: [warning1, warning1, warning1],
+        };
+        const overdueNotice5: OverdueNotice = {
+            uuid: 'UUIDAF-123-#222',
+            assignment: assignment,
+            warnings: [warning1, warning1, warning2, warning1],
+        };
+        return of([overdueNotice1, overdueNotice2, overdueNotice3, overdueNotice4, overdueNotice5]);
     }
 }

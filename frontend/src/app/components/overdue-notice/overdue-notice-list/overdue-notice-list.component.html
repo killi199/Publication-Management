@@ -88,7 +88,8 @@
             *matHeaderRowDef="displayedColumns; sticky: true"
         ></tr>
         <tr
-            mat-row
+            mat-row          
+            (click)="onCheckWarnstatus(row)"
             (click)="selection.toggle(row)"
             [ngClass]="{
                 hovered: row.hovered,
