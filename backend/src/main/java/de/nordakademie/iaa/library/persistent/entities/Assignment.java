@@ -1,9 +1,6 @@
 package de.nordakademie.iaa.library.persistent.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.UUID;
 
@@ -21,7 +18,7 @@ public class Assignment {
 
     private Date dateOfReturn;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE} )
     private Borrower borrower;
 
 

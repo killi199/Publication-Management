@@ -1,8 +1,7 @@
 package de.nordakademie.iaa.library.persistent.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -20,6 +19,12 @@ public class Borrower {
 
     private String studentNumber;
 
+    @OneToMany(mappedBy = "borrower",fetch = FetchType.LAZY)
+    private List<Assignment> assignments;
+    @PreRemove
+    private void preRemove() {
+        getAssignments().forEach( publication -> publication.setBorrower(null));
+    }
     public UUID getUuid() {
         return uuid;
     }
@@ -50,5 +55,13 @@ public class Borrower {
 
     public void setStudentNumber(String studentNumber) {
         this.studentNumber = studentNumber;
+    }
+
+    public List<Assignment> getAssignments() {
+        return assignments;
+    }
+
+    public void setAssignments(List<Assignment> assignments) {
+        this.assignments = assignments;
     }
 }

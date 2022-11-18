@@ -18,7 +18,7 @@ public class KindOfPublication {
     @Column(unique = true)
     private String value;
 
-    @OneToMany(mappedBy = "kindOfPublication",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "kindOfPublication",fetch = FetchType.LAZY)
     private List<Publication> publications;
 
     @PreRemove

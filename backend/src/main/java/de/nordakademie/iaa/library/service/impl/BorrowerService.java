@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import static de.nordakademie.iaa.library.service.helper.InputValidator.isStringEmpty;
@@ -93,12 +94,8 @@ public class BorrowerService implements BorrowerServiceInterface {
      * This method should not be called with null values.
      */
     public void delete(@NotNull UUID uuid) {
-        Borrower borrower = new Borrower();
-        borrower.setUuid(uuid);
-
-        //todo verify that no assignment exists
-
-        borrowerRepository.delete(borrower);
+        Optional<Borrower> borrowerOptional = borrowerRepository.findById(uuid);
+        borrowerOptional.ifPresent(borrowerRepository::delete);
     }
 
     /**
