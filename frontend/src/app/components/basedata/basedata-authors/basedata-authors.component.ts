@@ -16,6 +16,7 @@ export class BasedataAuthorsComponent extends CrudComponent<Author> {
 
         this.create!(record).subscribe((a) => {
             this.dataSource.data.push(a);
+            this.dataSource.data = this.dataSource.data;
         });
         return 'Author created!';
     }

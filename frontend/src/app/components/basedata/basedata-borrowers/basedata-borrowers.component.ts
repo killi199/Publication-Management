@@ -20,6 +20,7 @@ export class BasedataBorrowersComponent extends CrudComponent<Borrower> {
 
         this.create!(record).subscribe((a) => {
             this.dataSource.data.push(a);
+            this.dataSource.data = this.dataSource.data;
         });
         return 'Borrower created!';
     }

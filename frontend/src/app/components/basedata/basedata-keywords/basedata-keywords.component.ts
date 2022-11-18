@@ -15,6 +15,7 @@ export class BasedataKeywordsComponent extends CrudComponent<Keyword> {
 
         this.create!(record).subscribe((a) => {
             this.dataSource.data.push(a);
+            this.dataSource.data = this.dataSource.data;
         });
 
         return record.value + ' created!';
