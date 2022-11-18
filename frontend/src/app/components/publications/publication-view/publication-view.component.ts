@@ -65,7 +65,7 @@ export class PublicationViewComponent implements OnInit {
         quantity: new FormControl<number>(0),
         publisher: new FormControl<string>(''),
         dateOfPublication: new FormControl<Date>(new Date()),
-        kindsOfPublication: new FormControl<string | KindOfPublication>(''),
+        kindOfPublication: new FormControl<KindOfPublication | undefined>(undefined),
         keywords: new FormControl<Keyword[]>([]),
     });
 
@@ -268,7 +268,7 @@ export class PublicationViewComponent implements OnInit {
         );
 
         this.filteredKindsOfPublication = this.formGroup
-            .get('kindsOfPublication')!
+            .get('kindOfPublication')!
             .valueChanges.pipe(
                 startWith(''),
                 map((kindOfPublication) => {
