@@ -5,7 +5,7 @@ import java.util.UUID;
 
 /**
  * An Assignment describes the lending of Publications.
- * Each Publication can be lend to a Borrower.
+ * Each Publication can be lent to a Borrower.
  */
 public class AssignmentDto {
     private UUID uuid;

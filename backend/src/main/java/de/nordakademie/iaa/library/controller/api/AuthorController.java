@@ -38,7 +38,7 @@ public class AuthorController {
     }
 
     /**
-     * This method will create a author. In this case the key has to get set by the user.
+     * This method will create an author.
      *
      * @param authorDto the author that should be created
      * @return The created author
@@ -49,7 +49,7 @@ public class AuthorController {
     }
 
     /**
-     * This method will update a author. The key is necessary to find the author that should be updated.
+     * This method will update an author. The key is necessary to find the author that should be updated.
      *
      * @param authorDto the author that should be updated
      * @return The updated author
@@ -60,7 +60,7 @@ public class AuthorController {
     }
 
     /**
-     * This method will delete a author. The key is necessary to find the author that should be deleted.
+     * This method will delete an author. The key is necessary to find the author that should be deleted.
      *
      * @param uuid the author that should be deleted
      * @return only the status code

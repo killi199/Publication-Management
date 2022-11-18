@@ -1,8 +1,9 @@
 import { Author } from './author';
+import { Entity } from './entity';
 import { Keyword } from './keyword';
 import { KindOfPublication } from './kind-of-publication';
 
-export interface Publication {
+export interface Publication extends Entity {
     key?: string | null;
     title?: string | null;
     authors?: Author[] | null;

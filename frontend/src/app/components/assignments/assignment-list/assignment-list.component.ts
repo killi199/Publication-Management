@@ -20,7 +20,7 @@ export class AssignmentListComponent
 
     displayedColumns: string[] = [
         'publicationKey',
-        'studentnumber',
+        'studentNumber',
         'surname',
         'name',
         'dateOfReturn',
