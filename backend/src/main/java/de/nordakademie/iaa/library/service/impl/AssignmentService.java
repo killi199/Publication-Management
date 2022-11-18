@@ -113,7 +113,7 @@ public class AssignmentService implements AssignmentServiceInterface {
         calendar.setTime(assignment.getDateOfAssignment());
         calendar.add(Calendar.DAY_OF_YEAR, rentalPeriode);
         Date time = calendar.getTime();
-        assignment.setBorrowedUtil(time);
+        assignment.setLatestReturnDate(time);
 
         return createOrUpdate(assignment);
     }
@@ -164,7 +164,7 @@ public class AssignmentService implements AssignmentServiceInterface {
 
         // set extensions and borrowedUtil to database values
         assignment.setExtensions(assignmentOld.getExtensions());
-        assignment.setBorrowedUtil(assignmentOld.getBorrowedUtil());
+        assignment.setLatestReturnDate(assignmentOld.getLatestReturnDate());
 
         return createOrUpdate(assignment);
     }
@@ -184,10 +184,10 @@ public class AssignmentService implements AssignmentServiceInterface {
 
         //extend the borrowed until date
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(assignment.getBorrowedUtil());
+        calendar.setTime(assignment.getLatestReturnDate());
         calendar.add(Calendar.DAY_OF_YEAR, rentalPeriode);
 
-        assignment.setBorrowedUtil(calendar.getTime());
+        assignment.setLatestReturnDate(calendar.getTime());
 
         //todo delete overdue notice
 

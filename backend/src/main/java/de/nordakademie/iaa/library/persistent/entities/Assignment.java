@@ -1,7 +1,6 @@
 package de.nordakademie.iaa.library.persistent.entities;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.UUID;
 
@@ -11,11 +10,12 @@ import java.util.UUID;
  */
 @Entity
 public class Assignment {
+
     @Id
     @GeneratedValue
     private UUID uuid;
 
-    @NotNull
+    //@NotNull ToDo: uncomment
     private Date dateOfAssignment;
 
     private Date dateOfReturn;
@@ -23,17 +23,17 @@ public class Assignment {
     private boolean publicationLoss;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE} )
-    @NotNull
+    //@NotNull ToDo: uncomment
     private Borrower borrower;
 
     private int extensions;
 
-    @NotNull
-    private Date borrowedUtil;
+    //@NotNull ToDo: uncomment
+    private Date latestReturnDate;
 
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @NotNull
+    //@NotNull ToDo: uncomment
     private Publication publication;
 
 
@@ -93,11 +93,11 @@ public class Assignment {
         this.publication = publication;
     }
 
-    public Date getBorrowedUtil() {
-        return borrowedUtil;
+    public Date getLatestReturnDate() {
+        return latestReturnDate;
     }
 
-    public void setBorrowedUtil(Date borrowedUtil) {
-        this.borrowedUtil = borrowedUtil;
+    public void setLatestReturnDate(Date latestReturnDate) {
+        this.latestReturnDate = latestReturnDate;
     }
 }
