@@ -18,7 +18,7 @@ public class OverdueNotice {
     @ManyToOne
     private Assignment assignment;
 
-    @OneToMany(mappedBy = "overdueNotice")
+    @OneToMany(mappedBy = "overdueNotice", fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<Warning> warning = new ArrayList<>();
 
     public UUID getUuid() {

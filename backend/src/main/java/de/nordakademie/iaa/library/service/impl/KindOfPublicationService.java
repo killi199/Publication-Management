@@ -15,12 +15,13 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import static de.nordakademie.iaa.library.service.helper.InputValidator.isStringEmpty;
 
 /**
- * The kindOfPublication service provides methods to handle the keywords
+ * The kindOfPublication service provides methods to handle the kindOfPublication
  */
 @Service
 @Transactional
@@ -43,8 +44,8 @@ public class KindOfPublicationService implements KindOfPublicationServiceInterfa
      * @return all kindOfPublications
      */
     public List<KindOfPublicationDto> getAll() {
-        List<KindOfPublication> keywords = kindOfPublicationRepository.findAll();
-        return kindOfPublicationMapper.kindOfPublicationEntitiesToDtos(keywords);
+        List<KindOfPublication> kindOfPublication = kindOfPublicationRepository.findAll();
+        return kindOfPublicationMapper.kindOfPublicationEntitiesToDtos(kindOfPublication);
     }
 
     /**
@@ -94,9 +95,8 @@ public class KindOfPublicationService implements KindOfPublicationServiceInterfa
      *             This method should not be called with null values.
      */
     public void delete(@NotNull UUID uuid) {
-        KindOfPublication keyword = new KindOfPublication();
-        keyword.setUuid(uuid);
-        kindOfPublicationRepository.delete(keyword);
+        Optional<KindOfPublication> kindOfPublicationOptional = kindOfPublicationRepository.findById(uuid);
+        kindOfPublicationOptional.ifPresent(kindOfPublicationRepository::delete);
     }
 
     /**
@@ -123,8 +123,8 @@ public class KindOfPublicationService implements KindOfPublicationServiceInterfa
             throw new EntityAlreadyExistsException();
         }
 
-        KindOfPublication keyword = kindOfPublicationMapper.kindOfPublicationDtoToEntity(kindOfPublicationDto);
+        KindOfPublication kindOfPublication = kindOfPublicationMapper.kindOfPublicationDtoToEntity(kindOfPublicationDto);
 
-        return kindOfPublicationMapper.kindOfPublicationEntityToDto(kindOfPublicationRepository.save(keyword));
+        return kindOfPublicationMapper.kindOfPublicationEntityToDto(kindOfPublicationRepository.save(kindOfPublication));
     }
 }

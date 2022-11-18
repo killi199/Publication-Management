@@ -1,10 +1,9 @@
 package de.nordakademie.iaa.library.persistent.entities;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -18,6 +17,9 @@ public class Keyword {
 
     @Column(unique = true)
     private String value;
+
+    @OneToMany(mappedBy = "keyword", fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, orphanRemoval = true)
+    private List<KeywordsPublications> keywordsPublications = new ArrayList<>();
 
     public UUID getUuid() {
         return uuid;
@@ -33,5 +35,13 @@ public class Keyword {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public List<KeywordsPublications> getKeywordsPublications() {
+        return keywordsPublications;
+    }
+
+    public void setKeywordsPublications(List<KeywordsPublications> keywordsPublications) {
+        this.keywordsPublications = keywordsPublications;
     }
 }

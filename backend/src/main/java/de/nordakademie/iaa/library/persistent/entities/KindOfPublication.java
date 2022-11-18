@@ -1,9 +1,8 @@
 package de.nordakademie.iaa.library.persistent.entities;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -19,6 +18,14 @@ public class KindOfPublication {
     @Column(unique = true)
     private String value;
 
+    @OneToMany(mappedBy = "kindOfPublication",fetch = FetchType.EAGER)
+    private List<Publication> publications;
+
+    @PreRemove
+    private void preRemove() {
+        getPublications().forEach( publication -> publication.setKindOfPublication(null));
+    }
+
     public UUID getUuid() {
         return uuid;
     }
@@ -33,5 +40,13 @@ public class KindOfPublication {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public List<Publication> getPublications() {
+        return publications;
+    }
+
+    public void setPublications(List<Publication> publications) {
+        this.publications = publications;
     }
 }

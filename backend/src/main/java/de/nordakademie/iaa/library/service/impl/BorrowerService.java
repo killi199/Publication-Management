@@ -95,6 +95,9 @@ public class BorrowerService implements BorrowerServiceInterface {
     public void delete(@NotNull UUID uuid) {
         Borrower borrower = new Borrower();
         borrower.setUuid(uuid);
+
+        //todo verify that no assignment exists
+
         borrowerRepository.delete(borrower);
     }
 

@@ -24,7 +24,7 @@ public class Publication {
 
     private String publisher;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL} )
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE} )
     private KindOfPublication kindOfPublication;
 
     private String ISBN;
