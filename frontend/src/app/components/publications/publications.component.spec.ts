@@ -4,6 +4,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PublicationListComponent } from './publication-list/publication-list.component';
@@ -25,6 +26,7 @@ describe('PublicationsComponent', () => {
                 MatIconModule,
                 MatPaginatorModule,
                 BrowserAnimationsModule,
+                MatSnackBarModule,
             ],
             declarations: [
                 PublicationsComponent,
