@@ -205,16 +205,6 @@ export class PublicationViewComponent implements OnInit {
         return kindOfPublication?.value ?? '';
     }
 
-    displayKeyword(keyword: Keyword): string {
-        return keyword?.value ?? '';
-    }
-
-    displayAuthor(author: Author): string {
-        return author?.surname && author?.name
-            ? author.surname + author.name
-            : '';
-    }
-
     private _filterKeywords(value: string): Keyword[] {
         const filterValue = value.toLowerCase();
 

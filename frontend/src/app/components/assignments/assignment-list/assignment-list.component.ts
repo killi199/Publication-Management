@@ -23,8 +23,8 @@ export class AssignmentListComponent
         'studentNumber',
         'surname',
         'name',
-        'dateOfReturn',
         'dateOfAssignment',
+        'dateOfReturn',
     ];
 
     selectedAssignment?: Assignment;
