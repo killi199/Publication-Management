@@ -1,23 +1,38 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { OverdueNoticeListComponent } from './overdue-notice-list.component';
 
 describe('OverdueNoticeListComponent', () => {
-  let component: OverdueNoticeListComponent;
-  let fixture: ComponentFixture<OverdueNoticeListComponent>;
+    let component: OverdueNoticeListComponent;
+    let fixture: ComponentFixture<OverdueNoticeListComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ OverdueNoticeListComponent ]
-    })
-    .compileComponents();
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [
+                {
+                    MatTableModule,
+                    MatFormFieldModule,
+                    MatInputModule,
+                    MatIconModule,
+                    MatPaginatorModule,
+                    BrowserAnimationsModule,
+                },
+            ],
+            declarations: [OverdueNoticeListComponent],
+        }).compileComponents();
 
-    fixture = TestBed.createComponent(OverdueNoticeListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+        fixture = TestBed.createComponent(OverdueNoticeListComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });
