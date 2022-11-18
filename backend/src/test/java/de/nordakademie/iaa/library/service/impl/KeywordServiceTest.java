@@ -59,8 +59,6 @@ class KeywordServiceTest {
 
     @Test
     void create_works() {
-
-        keywordDto.setUuid(null);
         keywordDto.setValue("test");
 
         when(this.keywordRepository.save(keyword)).thenReturn(keyword);
@@ -74,15 +72,13 @@ class KeywordServiceTest {
     }
 
     @Test
-    void update_nullKey_throwsMissingFieldException() {
-        keywordDto.setUuid(null);
-
+    void update_withoutParameters_throwsMissingFieldException() {
         assertThrows(MissingFieldException.class, () -> this.keywordService.update(keywordDto));
         verify(keywordRepository, times(0)).existsById(any());
     }
 
     @Test
-    void update_nullTitle_throwsMissingFieldException() {
+    void update_onlyWithUUID_throwsMissingFieldException() {
         UUID uuid = UUID.randomUUID();
 
         keywordDto.setUuid(uuid);

@@ -20,7 +20,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.times;
 
 @ExtendWith(MockitoExtension.class)
 class AuthorServiceTest {
@@ -78,8 +77,6 @@ class AuthorServiceTest {
 
     @Test
     void create_works() {
-
-        authorDto.setUuid(null);
         authorDto.setName("Max");
         authorDto.setSurname("Mustermann");
 
@@ -95,8 +92,6 @@ class AuthorServiceTest {
 
     @Test
     void update_nullKey_throwsMissingFieldException() {
-        authorDto.setUuid(null);
-
         assertThrows(MissingFieldException.class, () -> this.authorService.update(authorDto));
         verify(authorRepository, times(0)).existsById(any());
     }

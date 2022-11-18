@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Keyword } from 'src/app/models/keyword';
-import { CrudComponent } from '../../../helpers/CrudComponent';
+import { CrudComponent } from '../../../helpers/crud-component';
 
 @Component({
     selector: 'app-basedata-keywords',
@@ -15,6 +15,7 @@ export class BasedataKeywordsComponent extends CrudComponent<Keyword> {
 
         this.create!(record).subscribe((a) => {
             this.dataSource.data.push(a);
+            this.dataSource.data = this.dataSource.data;
         });
 
         return record.value + ' created!';

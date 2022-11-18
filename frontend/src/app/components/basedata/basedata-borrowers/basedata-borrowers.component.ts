@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Borrower } from 'src/app/models/borrower';
-import { CrudComponent } from '../../../helpers/CrudComponent';
+import { CrudComponent } from '../../../helpers/crud-component';
 
 @Component({
     selector: 'app-basedata-borrowers',
@@ -20,6 +20,7 @@ export class BasedataBorrowersComponent extends CrudComponent<Borrower> {
 
         this.create!(record).subscribe((a) => {
             this.dataSource.data.push(a);
+            this.dataSource.data = this.dataSource.data;
         });
         return 'Borrower created!';
     }

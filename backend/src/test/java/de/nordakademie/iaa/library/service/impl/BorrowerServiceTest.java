@@ -68,8 +68,6 @@ class BorrowerServiceTest {
 
     @Test
     void create_works() {
-
-        borrowerDto.setUuid(null);
         borrowerDto.setStudentNumber("test");
 
         when(this.borrowerRepository.save(borrower)).thenReturn(borrower);
@@ -83,15 +81,13 @@ class BorrowerServiceTest {
     }
 
     @Test
-    void update_nullKey_throwsMissingFieldException() {
-        borrowerDto.setUuid(null);
-
+    void update_withoutParameters_throwsMissingFieldException() {
         assertThrows(MissingFieldException.class, () -> this.borrowerService.update(borrowerDto));
         verify(borrowerRepository, times(0)).existsById(any());
     }
 
     @Test
-    void update_nullTitle_throwsMissingFieldException() {
+    void update_onlyWithUUID_throwsMissingFieldException() {
         UUID uuid = UUID.randomUUID();
 
         borrowerDto.setUuid(uuid);

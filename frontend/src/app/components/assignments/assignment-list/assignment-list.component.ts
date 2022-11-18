@@ -6,7 +6,7 @@ import { Assignment } from 'src/app/models/assignment';
 @Component({
     selector: 'app-assignment-list',
     templateUrl: './assignment-list.component.html',
-    styleUrls: ['./assignment-list.component.scss'],
+    styleUrls: ['../../../helpers/list-component.scss'],
 })
 export class AssignmentListComponent
     extends TableInitsComponent<Assignment>

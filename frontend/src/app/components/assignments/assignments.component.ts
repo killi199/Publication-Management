@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
+import { CoreComponent } from 'src/app/helpers/core-component';
 import { Assignment } from 'src/app/models/assignment';
 import { Borrower } from 'src/app/models/borrower';
 import { AssignmentService } from 'src/app/services/assignment.service';
@@ -9,7 +10,7 @@ import { PublicationService } from 'src/app/services/publication.service';
 @Component({
     selector: 'app-assignments',
     templateUrl: './assignments.component.html',
-    styleUrls: ['./assignments.component.scss'],
+    styleUrls: ['../../helpers/core-component.scss'],
 })
 export class AssignmentsComponent implements OnInit {
     assignments: Observable<Assignment[]>;
@@ -42,18 +43,5 @@ export class AssignmentsComponent implements OnInit {
     onBack(): void {
         this.currentAssignment = undefined;
         this.openAssignment = false;
-    }
-
-    onEdit(): void {
-        this.openAssignment = true;
-    }
-
-    onAdd(): void {
-        this.currentAssignment = undefined;
-        this.openAssignment = true;
-    }
-
-    onSelect(assignment: Assignment): void {
-        this.currentAssignment = assignment;
     }
 }

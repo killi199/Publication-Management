@@ -14,7 +14,7 @@ import { PublicationService } from 'src/app/services/publication.service';
 @Component({
     selector: 'app-publications',
     templateUrl: './publications.component.html',
-    styleUrls: ['./publications.component.scss'],
+    styleUrls: ['../../helpers/core-component.scss'],
 })
 export class PublicationsComponent implements OnInit {
     publications: Observable<Publication[]>;
@@ -44,7 +44,7 @@ export class PublicationsComponent implements OnInit {
             .getAll()
             .subscribe((authors) => (this.authors = authors));
         this.kindOfPublicationService
-            .loadAllKindsOfPublication()
+            .getAll()
             .subscribe(
                 (kindsOfPublication) =>
                     (this.kindsOfPublication = kindsOfPublication)
@@ -54,9 +54,8 @@ export class PublicationsComponent implements OnInit {
     onSelectPublication(publication: Publication): void {
         this.currentPublication = publication;
 
-        const key = publication.key;
-        if(key){
-            this.assignments = this.assignmentService.loadAssignments(key);
+        if(publication?.key){
+            this.assignments = this.assignmentService.loadAssignments(publication.key);
         }
     }
 

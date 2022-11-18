@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Author } from 'src/app/models/author';
-import { CrudComponent } from '../../../helpers/CrudComponent';
+import { CrudComponent } from '../../../helpers/crud-component';
 
 @Component({
     selector: 'app-basedata-authors',
@@ -16,6 +16,7 @@ export class BasedataAuthorsComponent extends CrudComponent<Author> {
 
         this.create!(record).subscribe((a) => {
             this.dataSource.data.push(a);
+            this.dataSource.data = this.dataSource.data;
         });
         return 'Author created!';
     }
