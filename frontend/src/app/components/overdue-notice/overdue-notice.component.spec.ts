@@ -16,14 +16,12 @@ describe('OverdueNoticeComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [
-                {
-                    MatTableModule,
-                    MatFormFieldModule,
-                    MatInputModule,
-                    MatIconModule,
-                    MatPaginatorModule,
-                    BrowserAnimationsModule,
-                },
+                MatTableModule,
+                MatFormFieldModule,
+                MatInputModule,
+                MatIconModule,
+                MatPaginatorModule,
+                BrowserAnimationsModule,
             ],
             declarations: [OverdueNoticeComponent, OverdueNoticeListComponent],
         }).compileComponents();
