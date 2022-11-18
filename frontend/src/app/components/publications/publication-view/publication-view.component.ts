@@ -80,12 +80,15 @@ export class PublicationViewComponent implements OnInit {
     filteredKindsOfPublication: Observable<KindOfPublication[]> =
         new Observable<KindOfPublication[]>();
 
+    clonedPublication: Publication = {};
+
     constructor(private snackBar: Snackbar) {}
 
     ngOnInit(): void {
         if (this.publication) {
             this.formGroup.disable();
             this.formGroup.patchValue(this.publication);
+            this.clonedPublication = structuredClone(this.publication);
         }
 
         this._reloadView();
@@ -100,6 +103,7 @@ export class PublicationViewComponent implements OnInit {
         if (!this.formGroup.valid) return;
 
         this.savePublication.emit(this.formGroup.getRawValue());
+        this.clonedPublication = structuredClone(this.formGroup.getRawValue());
         
         const title = this.formGroup.get('title')?.value;
         const crudOperation = this.addingPublication ? ' created!' : ' updated!';
@@ -111,7 +115,7 @@ export class PublicationViewComponent implements OnInit {
     onCancel(): void {
         this.formGroup.disable();
         if (this.publication) {
-            this.formGroup.patchValue(this.publication);
+            this.formGroup.patchValue(this.clonedPublication);
         } else {
             this.formGroup.reset();
         }
