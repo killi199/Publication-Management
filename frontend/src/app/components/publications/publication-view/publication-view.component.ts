@@ -92,14 +92,14 @@ export class PublicationViewComponent implements OnInit {
     }
 
     onDeletePublication(): void {
-        this.deletePublication.emit(this.formGroup.value);
+        this.deletePublication.emit(this.formGroup.getRawValue());
         this.snackBar.open(this.formGroup.get('title')?.value + ' deleted!');
     }
 
     onSubmit(): void {
         if (!this.formGroup.valid) return;
 
-        this.savePublication.emit(this.formGroup.value);
+        this.savePublication.emit(this.formGroup.getRawValue());
         
         const title = this.formGroup.get('title')?.value;
         const crudOperation = this.addingPublication ? ' created!' : ' updated!';
