@@ -15,6 +15,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
@@ -40,6 +42,22 @@ class PublicationServiceTest {
         this.publication = new Publication();
     }
 
+
+    @Test
+    void getByKey_foundNoPublication_throwsEntityDoesNotExistException() {
+
+        when(this.publicationRepository.findById("test")).thenReturn(Optional.empty());
+
+        assertThrows(EntityDoesNotExistException.class, () -> this.publicationService.getByKey("test"));
+    }
+
+    @Test
+    void getByKey_works() {
+
+        when(this.publicationRepository.findById("test")).thenReturn(Optional.of(publication));
+
+        assertEquals(publication, this.publicationService.getByKey("test"));
+    }
 
     @Test
     void create_withoutParameters_throwsMissingFieldException() {

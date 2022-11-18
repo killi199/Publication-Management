@@ -154,7 +154,7 @@ public class AssignmentService implements AssignmentServiceInterface {
 
         checkAndFillRequiredFields(assignmentDto);
 
-        if (assignmentDto.getUuid() == null || !assignmentRepository.existsById(assignmentDto.getUuid())) {
+        if (assignmentDto.getUuid() == null) {
             throw new EntityDoesNotExistException();
         }
 
@@ -203,6 +203,10 @@ public class AssignmentService implements AssignmentServiceInterface {
     private void checkAndFillRequiredFields(@NotNull AssignmentDto assignmentDto) {
         if (assignmentDto.getDateOfAssignment() == null) {
             assignmentDto.setDateOfAssignment(new Date());
+        }
+
+        if (assignmentDto.getDateOfReturn() != null && assignmentDto.getDateOfAssignment().after(assignmentDto.getDateOfReturn())) {
+            throw new ReturnBeforeAssignmentException();
         }
 
         if (assignmentDto.getPublication() == null || assignmentDto.getPublication().getKey() == null) {

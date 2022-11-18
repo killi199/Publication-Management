@@ -40,7 +40,7 @@ public interface AssignmentRepository extends CrudRepository<Assignment, UUID> {
      * @param now Date right now
      * @return List of assignments that are not returned
      */
-    @Query("SELECT a FROM Assignment a WHERE a.dateOfReturn IS NULL OR a.dateOfReturn > :now")
+    @Query("SELECT a FROM Assignment a WHERE (a.dateOfReturn IS NULL and a.publicationLoss = false) OR a.dateOfReturn > :now")
     List<Assignment> findAllUnreturned(@Param("now") Date now);
 
     /**
@@ -50,6 +50,6 @@ public interface AssignmentRepository extends CrudRepository<Assignment, UUID> {
      * @param key publication key
      * @return List of assignments that are returned
      */
-    @Query("SELECT a FROM Assignment a WHERE (a.dateOfReturn IS NULL OR a.dateOfReturn > :now) AND a.publication.key = :key")
+    @Query("SELECT a FROM Assignment a WHERE ((a.dateOfReturn IS NULL and a.publicationLoss = false) OR a.dateOfReturn > :now) AND a.publication.key = :key")
     List<Assignment> findAllUnreturnedByPublication_Key(@Param("now") Date now,@Param("key") String key);
 }
