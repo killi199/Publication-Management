@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { Snackbar } from '../helpers/snackbar';
 import { KindOfPublication } from '../models/kind-of-publication';
 import { CrudService } from './crud.service';
 
@@ -10,7 +11,7 @@ import { CrudService } from './crud.service';
 export class KindOfPublicationService extends CrudService<KindOfPublication> {
     ENDPOINT_URL = '/rest/kind-of-publication';
 
-    constructor(http: HttpClient) {
-        super(http);
+    constructor(http: HttpClient, snackBar: Snackbar) {
+        super(http, snackBar);
     }
 }

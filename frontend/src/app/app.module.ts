@@ -5,7 +5,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -45,6 +45,7 @@ import { AssignmentListComponent } from './components/assignments/assignment-lis
 import { AssignmentViewComponent } from './components/assignments/assignment-view/assignment-view.component';
 import { OverdueNoticeComponent } from './components/overdue-notice/overdue-notice.component';
 import { OverdueNoticeListComponent } from './components/overdue-notice/overdue-notice-list/overdue-notice-list.component';
+import { getGermanPaginatorIntl } from './helpers/german-paginator-intl';
 
 registerLocaleData(localeDe, 'de-DE', localeDeExtra);
 
@@ -95,6 +96,7 @@ registerLocaleData(localeDe, 'de-DE', localeDeExtra);
     providers: [
         { provide: LOCALE_ID, useValue: 'de-DE' },
         {provide: DateAdapter, useClass: GermanDateAdapter},
+        {provide: MatPaginatorIntl, useValue: getGermanPaginatorIntl()},
     ],
     bootstrap: [AppComponent],
 })
