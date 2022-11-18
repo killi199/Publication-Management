@@ -32,9 +32,9 @@ export class AssignmentsComponent implements OnInit {
 
     ngOnInit(): void {
         this.borrowerService
-            .loadAllBorrowers()
+            .getAll()
             .subscribe((borrowers) => (this.borrowers = borrowers));
-        this.publicationService.listAllPublications().subscribe((publications) => (this.publicationKeys = publications.map((p) => {
+        this.publicationService.getAll().subscribe((publications) => (this.publicationKeys = publications.map((p) => {
             return p.key ? p.key : "";
         })));
     }
