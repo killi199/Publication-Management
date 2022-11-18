@@ -44,7 +44,7 @@ export class PublicationsComponent implements OnInit {
             .getAll()
             .subscribe((authors) => (this.authors = authors));
         this.kindOfPublicationService
-            .loadAllKindsOfPublication()
+            .getAll()
             .subscribe(
                 (kindsOfPublication) =>
                     (this.kindsOfPublication = kindsOfPublication)

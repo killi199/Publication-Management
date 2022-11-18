@@ -6,6 +6,9 @@
         <mat-tab label="Publicationtypes">
             <app-basedata-kinds 
                 [data]="kindOfPubs"
+                [delete]="deleteKindOfPublication"
+                [create]="createKindOfPublication"
+                [update]="updateKindOfPublication"
             ></app-basedata-kinds>
         </mat-tab>
         <mat-tab label="Keywords">

@@ -26,22 +26,22 @@ export class BasedataComponent {
         private borrowerService: BorrowerService,
         private authorService: AuthorService
     ) {
-        this.kindOfPubs = kindOfPubService.loadAllKindsOfPublication();
+        this.kindOfPubs = kindOfPubService.getAll();
         this.keywords = keywordService.getAll();
         this.authors = authorService.getAll();
         this.borrowers = borrowerService.getAll();
     }
 
-    onDeleteKindOfPublication(kindOfPublication: KindOfPublication) {
-        this.kindOfPubService.delete(kindOfPublication);
+    deleteKindOfPublication = (kindOfPublication: KindOfPublication): Observable<any> => {
+        return this.kindOfPubService.delete(kindOfPublication);
     }
 
-    onCreateKindOfPublication(kindOfPublication: KindOfPublication) {
-        this.kindOfPubService.create(kindOfPublication);
+    createKindOfPublication = (kindOfPublication: KindOfPublication): Observable<KindOfPublication> => {
+        return this.kindOfPubService.create(kindOfPublication);
     }
 
-    onUpdateKindOfPublication(kindOfPublication: KindOfPublication) {
-        this.kindOfPubService.update(kindOfPublication);
+    updateKindOfPublication = (kindOfPublication: KindOfPublication): Observable<KindOfPublication> => {
+        return this.kindOfPubService.update(kindOfPublication);
     }
 
     deleteKeyword = (keyword: Keyword): Observable<any> => {
