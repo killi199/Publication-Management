@@ -1,3 +1,4 @@
+/*
 insert into warning (uuid, warning_date, overdue_notice_uuid) values ('84a82236-1c63-4434-bb0f-fb48a3c21846', '2022-09-15 01:20:37', 'aeeb05c7-7a0c-448a-81a4-24c5df3f9c14') ON CONFLICT DO NOTHING;
 insert into warning (uuid, warning_date, overdue_notice_uuid) values ('4822a001-2c71-49f8-9a29-6c9356e4118d', '2022-09-18 17:56:57', 'cde492f3-675a-4f17-9a5a-1dd131bbc34f') ON CONFLICT DO NOTHING;
 insert into warning (uuid, warning_date, overdue_notice_uuid) values ('525c8476-3042-4f98-a152-39ea5c600ae4', '2022-10-27 09:36:17', '72f5934f-044b-470e-9390-1075c749745c') ON CONFLICT DO NOTHING;
@@ -995,3 +996,4 @@ insert into warning (uuid, warning_date, overdue_notice_uuid) values ('c00f878c-
 insert into warning (uuid, warning_date, overdue_notice_uuid) values ('61270167-4ecd-4c33-8e6c-bfcd28a9b8b8', '2022-09-24 16:03:42', 'fd4fed2c-ea22-47ac-bef3-7ef69d730c96') ON CONFLICT DO NOTHING;
 insert into warning (uuid, warning_date, overdue_notice_uuid) values ('d2637a26-0bdd-4b39-a661-2d55e4ccda96', '2022-09-21 17:41:49', '4ee3fc42-f9c9-4b0a-a6ef-c589193daafe') ON CONFLICT DO NOTHING;
 insert into warning (uuid, warning_date, overdue_notice_uuid) values ('785e98a8-ed32-43c9-bd2b-3f6cd0e728b0', '2022-10-11 06:49:27', '5cc80c00-3019-46e2-84bd-76b1053dd84f') ON CONFLICT DO NOTHING;
+*/
