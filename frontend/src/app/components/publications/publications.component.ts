@@ -54,9 +54,8 @@ export class PublicationsComponent implements OnInit {
     onSelectPublication(publication: Publication): void {
         this.currentPublication = publication;
 
-        const key = publication.key;
-        if(key){
-            this.assignments = this.assignmentService.loadAssignments(key);
+        if(publication?.key){
+            this.assignments = this.assignmentService.loadAssignments(publication.key);
         }
     }
 
