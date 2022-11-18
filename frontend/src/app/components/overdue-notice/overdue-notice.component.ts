@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CoreComponent } from 'src/app/helpers/core-component';
-import { OverdueNotice } from 'src/app/models/overdue-notice';
+import { OverdueNotice } from "src/app/models/overdue-notice";
 import { OverdueNoticeService } from 'src/app/services/overdue-notice.service';
 import { CheckWarnstatusEvent } from './overdue-notice-list/overdue-notice-list.component';
 

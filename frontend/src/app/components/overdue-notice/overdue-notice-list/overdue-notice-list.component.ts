@@ -8,7 +8,7 @@ import { OverdueNotice } from 'src/app/models/overdue-notice';
     templateUrl: './overdue-notice-list.component.html',
     styleUrls: ['../../../helpers/list-component.scss'],
 })
-export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotice> {
+export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotice> implements OnInit {
     @Input() overdueNotices: Observable<OverdueNotice[]> = new Observable<OverdueNotice[]>();
     @Output() checkRecord = new EventEmitter<CheckWarnstatusEvent>();
 
@@ -24,14 +24,17 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
         'isReadyToWarn',
     ];
 
-    calculateDateDifferences = (warningDate: Date) => {
+    isWarnable(warningDate: Date | null): boolean {
+        if (!warningDate) return true;
         const today = new Date();
         const diffInDays = Math.floor((today.getTime() - warningDate?.getTime()) / (24 * 60 * 60 * 1000));
-        return diffInDays >= 7 || warningDate == null ? 'ja' : 'nein';
-    };
+        return diffInDays >= 7;
+    }
 
-    isWarnReady(event: OverdueNotice): boolean {
-        return this.calculateDateDifferences(event.warnings.slice(-1)[0]?.warningDate) == 'ja';
+    getLatestWarningDate(overdueNotice: OverdueNotice): Date | null {
+        return overdueNotice.warnings.length > 0
+            ? overdueNotice.warnings.reduce((a, b) => (a.warningDate > b.warningDate ? a : b)).warningDate
+            : null;
     }
 
     ngOnInit(): void {
@@ -41,21 +44,22 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
             this.dataSource.sort = this.sort;
         });
     }
-    
+
     onCheckWarnstatus(overdueNotice: OverdueNotice): void {
         if (overdueNotice === this.selectedRecord) {
             this.checkRecord.emit(undefined);
             this.selectedRecord = undefined;
         } else {
-            const warnable = this.isWarnReady(overdueNotice);
+            const dateOfLastWarning = this.getLatestWarningDate(overdueNotice);
+            const warnable = this.isWarnable(dateOfLastWarning);
             const deleteable = overdueNotice.warnings.length >= 3;
-            this.checkRecord.emit({overdueNotice: overdueNotice, warnable: warnable, deleteable: deleteable});
+            this.checkRecord.emit({ overdueNotice: overdueNotice, warnable: warnable, deleteable: deleteable });
             this.selectedRecord = overdueNotice;
         }
     }
 }
 
-export interface CheckWarnstatusEvent{
+export interface CheckWarnstatusEvent {
     overdueNotice: OverdueNotice;
     warnable: boolean;
     deleteable: boolean;

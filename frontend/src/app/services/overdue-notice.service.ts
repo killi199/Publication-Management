@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Assignment } from '../models/assignment';
 import { Borrower } from '../models/borrower';
-import { OverdueNotice } from '../models/overdue-notice';
+import { OverdueNotice } from "../models/overdue-notice";
 import { Warning } from '../models/warning';
 
 @Injectable({
@@ -36,7 +36,7 @@ export class OverdueNoticeService {
         const overdueNotice1: OverdueNotice = {
             uuid: 'UUIDAF-123-#222',
             assignment: assignment,
-            warnings: [warning1,warning2],
+            warnings: [warning1, warning2],
         };
         const overdueNotice2: OverdueNotice = {
             uuid: 'UUIDAF-123-#222',
@@ -56,8 +56,13 @@ export class OverdueNoticeService {
         const overdueNotice5: OverdueNotice = {
             uuid: 'UUIDAF-123-#222',
             assignment: assignment,
-            warnings: [warning1, warning1, warning2, warning1],
+            warnings: [warning1, warning1, warning2, warning1]
         };
-        return of([overdueNotice1, overdueNotice2, overdueNotice3, overdueNotice4, overdueNotice5]);
+        const overdueNotice6: OverdueNotice = {
+            uuid: 'UUIDAF-123-#222',
+            assignment: assignment,
+            warnings: [warning2, warning1, warning1, warning2, warning1, warning2],
+        };
+        return of([overdueNotice1, overdueNotice2, overdueNotice3, overdueNotice4, overdueNotice5, overdueNotice6]);
     }
 }
