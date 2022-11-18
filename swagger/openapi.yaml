@@ -698,6 +698,8 @@ components:
           format: date-time
         publicationKey:
           type: string
+        publicationLoss:
+          type: boolean
         borrower:
           $ref: '#/components/schemas/Borrower'
     AssignmentCreate:
