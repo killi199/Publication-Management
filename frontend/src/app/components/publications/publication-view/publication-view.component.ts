@@ -65,7 +65,7 @@ export class PublicationViewComponent implements OnInit {
         quantity: new FormControl<number>(0),
         publisher: new FormControl<string>(''),
         dateOfPublication: new FormControl<Date>(new Date()),
-        kindsOfPublication: new FormControl<string | KindOfPublication>(''),
+        kindOfPublication: new FormControl<KindOfPublication | undefined>(undefined),
         keywords: new FormControl<Keyword[]>([]),
     });
 
@@ -92,14 +92,14 @@ export class PublicationViewComponent implements OnInit {
     }
 
     onDeletePublication(): void {
-        this.deletePublication.emit(this.formGroup.value);
+        this.deletePublication.emit(this.formGroup.getRawValue());
         this.snackBar.open(this.formGroup.get('title')?.value + ' deleted!');
     }
 
     onSubmit(): void {
         if (!this.formGroup.valid) return;
 
-        this.savePublication.emit(this.formGroup.value);
+        this.savePublication.emit(this.formGroup.getRawValue());
         
         const title = this.formGroup.get('title')?.value;
         const crudOperation = this.addingPublication ? ' created!' : ' updated!';
@@ -268,7 +268,7 @@ export class PublicationViewComponent implements OnInit {
         );
 
         this.filteredKindsOfPublication = this.formGroup
-            .get('kindsOfPublication')!
+            .get('kindOfPublication')!
             .valueChanges.pipe(
                 startWith(''),
                 map((kindOfPublication) => {
