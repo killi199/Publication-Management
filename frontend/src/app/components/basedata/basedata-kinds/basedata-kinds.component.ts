@@ -15,6 +15,7 @@ export class BasedataKindsComponent extends CrudComponent<KindOfPublication> {
 
         this.create!(record).subscribe((a) => {
             this.dataSource.data.push(a);
+            this.dataSource.data = this.dataSource.data;
         });
 
         return record.value + ' created!';
