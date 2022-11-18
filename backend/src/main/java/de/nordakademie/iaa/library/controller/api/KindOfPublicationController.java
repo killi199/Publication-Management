@@ -28,7 +28,7 @@ public class KindOfPublicationController {
     }
 
     /**
-     * This method will fetch all kindOfPublications from the database.
+     * This method will fetch all kindOfPublications.
      *
      * @return a list of kindOfPublications
      */
