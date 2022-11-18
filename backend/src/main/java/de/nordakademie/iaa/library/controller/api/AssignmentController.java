@@ -51,7 +51,7 @@ public class AssignmentController {
     }
 
     /**
-     * This method will create a assignment. In this case the key has to get set by the user.
+     * This method will create a assignment.
      *
      * @param assignmentDto the assignment that should be created
      * @return The created assignment
@@ -62,7 +62,7 @@ public class AssignmentController {
     }
 
     /**
-     * This method will update a assignment. The key is necessary to find the assignment that should be updated.
+     * This method will update a assignment. The uuid is necessary to find the assignment that should be updated.
      *
      * @param assignmentDto the assignment that should be updated
      * @return The updated assignment
