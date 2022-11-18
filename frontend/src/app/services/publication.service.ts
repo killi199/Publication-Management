@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
+import { Snackbar } from '../helpers/snackbar';
 import { Publication } from '../models/publication';
 import { CrudService } from './crud.service';
 
@@ -11,12 +12,16 @@ export class PublicationService extends CrudService<Publication> {
     ENDPOINT_URL: string = '/rest/publication';
     private httpintern: HttpClient;
 
-    constructor(http: HttpClient) {
-        super(http);
+    constructor(http: HttpClient, snackBar: Snackbar) {
+        super(http, snackBar);
         this.httpintern = http;
     }
 
     override delete(value: Publication): Observable<any> {
-        return this.httpintern.delete(`${this.ENDPOINT_URL}/${value.key}`);
+        return this.httpintern.delete(`${this.ENDPOINT_URL}/${value.uuid}`).pipe(
+            catchError((err: HttpErrorResponse) => {
+                throw this.handleError(err);
+            })
+        );;
     }
 }
