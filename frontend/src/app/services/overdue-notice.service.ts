@@ -23,16 +23,31 @@ export class OverdueNoticeService {
             dateOfReturn: new Date(2019, 1, 1),
             borrower: borrower,
         };
-        const warning: Warning = {
+        const warning1: Warning = {
             uuid: 'warning-uuid-test123',
             overdueNoticeUuid: 'UUIDAF-123-#222',
-            warningDate: new Date(2022, 1, 1),
+            warningDate: new Date(2022, 10, 10),
         };
-        const overdueNotice: OverdueNotice = {
+        const warning2: Warning = {
+            uuid: 'warning-uuid-test123',
+            overdueNoticeUuid: 'UUIDAF-123-#222',
+            warningDate: new Date(2022, 10, 17),
+        };
+        const overdueNotice1: OverdueNotice = {
             uuid: 'UUIDAF-123-#222',
             assignment: assignment,
-            warnings: [warning],
+            warnings: [warning1,warning2],
         };
-        return of([overdueNotice]);
+        const overdueNotice2: OverdueNotice = {
+            uuid: 'UUIDAF-123-#222',
+            assignment: assignment,
+            warnings: [warning1],
+        };
+        const overdueNotice3: OverdueNotice = {
+            uuid: 'UUIDAF-123-#222',
+            assignment: assignment,
+            warnings: [],
+        };
+        return of([overdueNotice1, overdueNotice2, overdueNotice3]);
     }
 }

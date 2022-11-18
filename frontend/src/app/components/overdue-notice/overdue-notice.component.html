@@ -3,18 +3,30 @@
         <h1>Mahnungswesen</h1>
     </div>
 
-    <app-overdue-notice-list *ngIf="!isViewOpen" [overdueNotices]="data"  ></app-overdue-notice-list>
+    <app-overdue-notice-list
+        *ngIf="!isViewOpen"
+        [overdueNotices]="data"
+    ></app-overdue-notice-list>
 
     <div class="button-container">
         <div class="crud-container">
             <button
                 matTooltip="mahnen"
+                *ngIf="currentRecord"
+                (click)="onEdit()"
+                mat-mini-fab
+                color="primary"
+            >
+                <mat-icon>assignment_late</mat-icon>
+            </button>
+            <button
+                matTooltip="Verlust melden"
                 *ngIf="!currentRecord"
                 (click)="onEdit()"
                 mat-mini-fab
                 color="warn"
             >
-                <mat-icon>assignment_late</mat-icon>
+                <mat-icon>delete_forever</mat-icon>
             </button>
         </div>
     </div>
