@@ -4,7 +4,7 @@
         <input
             matInput
             (keyup)="applyFilter($event)"
-            placeholder="Ex. Journal"
+            placeholder="Bsp. Zeitschrift"
         />
     </mat-form-field>
     <table mat-table [dataSource]="dataSource" matSort>
@@ -51,7 +51,7 @@
             id="input-value-of-pub"
             [disabled]="crudState === 'read'"
             matInput
-            placeholder="Ex. Hausarbeit"
+            placeholder="Bsp. Hausarbeit"
             [value]="selectedRecord?.value || ''"
             #input
         />

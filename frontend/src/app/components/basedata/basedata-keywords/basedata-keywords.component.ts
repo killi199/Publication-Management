@@ -11,7 +11,7 @@ export class BasedataKeywordsComponent extends CrudComponent<Keyword> {
     displayedColumns: string[] = ['keyword'];
 
     override _emitCreate(record: Keyword): string {
-        if (!record.value?.trim()) return 'Nichts zum hinzufügen!';
+        if (!record.value?.trim()) return 'Nichts zum Hinzufügen!';
 
         this.create!(record).subscribe((a) => {
             this.dataSource.data.push(a);
@@ -23,7 +23,7 @@ export class BasedataKeywordsComponent extends CrudComponent<Keyword> {
 
     override _emitUpdate(record: Keyword): string {
         if (this.selectedRecord?.value === record.value)
-            return 'Nichts zum ändern!';
+            return 'Nichts zum Ändern!';
 
         this.update!(record).subscribe((a) => {
             this.selectedRecord!.value = a.value;

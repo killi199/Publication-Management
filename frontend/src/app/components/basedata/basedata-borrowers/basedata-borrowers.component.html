@@ -1,7 +1,7 @@
 <div class="container">
     <mat-form-field appearance="standard">
         <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Max" />
+        <input matInput (keyup)="applyFilter($event)" placeholder="Bsp. Max" />
     </mat-form-field>
 
     <table mat-table [dataSource]="dataSource" matSort>
@@ -62,7 +62,7 @@
             id="input-surname"
             [disabled]="crudState === 'read'"
             matInput
-            placeholder="Ex. Mustermann"
+            placeholder="Bsp. Mustermann"
             [value]="selectedRecord?.surname || ''"
         />
     </mat-form-field>
@@ -72,7 +72,7 @@
             id="input-name"
             [disabled]="crudState === 'read'"
             matInput
-            placeholder="Ex. Max"
+            placeholder="Bsp. Max"
             [value]="selectedRecord?.name || ''"
         />
     </mat-form-field>
@@ -82,7 +82,7 @@
             id="input-studentNumber"
             [disabled]="crudState === 'read'"
             matInput
-            placeholder="Ex. 9123"
+            placeholder="Bsp. 9123"
             [value]="selectedRecord?.studentNumber || ''"
         />
     </mat-form-field>

@@ -16,7 +16,7 @@ export class BasedataBorrowersComponent extends CrudComponent<Borrower> {
             !record.surname?.trim() ||
             !record.studentNumber?.trim()
         )
-            return 'Nichts zum hinzufügen!';
+            return 'Nichts zum Hinzufügen!';
 
         this.create!(record).subscribe((a) => {
             this.dataSource.data.push(a);
@@ -31,7 +31,7 @@ export class BasedataBorrowersComponent extends CrudComponent<Borrower> {
             this.selectedRecord?.surname === record.surname &&
             this.selectedRecord?.studentNumber === record.studentNumber
         )
-            return 'Nichts zum ändern!';
+            return 'Nichts zum Ändern!';
 
         this.update!(record).subscribe((a) => {
             this.selectedRecord!.surname = a.surname;

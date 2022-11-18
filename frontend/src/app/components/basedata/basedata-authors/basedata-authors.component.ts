@@ -12,7 +12,7 @@ export class BasedataAuthorsComponent extends CrudComponent<Author> {
 
     override _emitCreate(record: Author): string {
         if (!record.name?.trim() || !record.surname?.trim())
-            return 'Nichts zum hinzufügen!';
+            return 'Nichts zum Hinzufügen!';
 
         this.create!(record).subscribe((a) => {
             this.dataSource.data.push(a);
@@ -27,7 +27,7 @@ export class BasedataAuthorsComponent extends CrudComponent<Author> {
             this.selectedRecord?.name === record.name &&
             this.selectedRecord?.surname === record.surname
         )
-            return 'Nichts zum ändern!';
+            return 'Nichts zum Ändern!';
 
         this.update!(record).subscribe((a) => {
             this.selectedRecord!.name = a.name;

@@ -4,7 +4,7 @@
         <input
             matInput
             (keyup)="applyFilter($event)"
-            placeholder="Ex. Max"
+            placeholder="Bsp. Max"
         />
     </mat-form-field>
 
@@ -57,7 +57,7 @@
             id="input-surname"
             [disabled]="crudState === 'read'"
             matInput
-            placeholder="Ex. Mustermann"
+            placeholder="Bsp. Mustermann"
             [value]="selectedRecord?.surname || ''"
         />
     </mat-form-field>
@@ -67,7 +67,7 @@
             id="input-name"
             [disabled]="crudState === 'read'"
             matInput
-            placeholder="Ex. Max"
+            placeholder="Bsp. Max"
             [value]="selectedRecord?.name || ''"
         />
     </mat-form-field>

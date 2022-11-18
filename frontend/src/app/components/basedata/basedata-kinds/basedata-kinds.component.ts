@@ -11,7 +11,7 @@ export class BasedataKindsComponent extends CrudComponent<KindOfPublication> {
     displayedColumns: string[] = ['kindOfPublication'];
 
     override _emitCreate(record: KindOfPublication): string {
-        if (!record.value?.trim()) return 'Nichts zum hinzufügen!';
+        if (!record.value?.trim()) return 'Nichts zum Hinzufügen!';
 
         this.create!(record).subscribe((a) => {
             this.dataSource.data.push(a);
@@ -23,7 +23,7 @@ export class BasedataKindsComponent extends CrudComponent<KindOfPublication> {
 
     override _emitUpdate(record: KindOfPublication): string {
         if (this.selectedRecord?.value === record.value)
-            return 'Nichts zum ändern!';
+            return 'Nichts zum Ändern!';
 
         this.update!(record).subscribe((a) => {
             this.selectedRecord!.value = a.value;

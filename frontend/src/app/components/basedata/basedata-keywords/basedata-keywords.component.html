@@ -1,7 +1,7 @@
 <div class="container">
     <mat-form-field appearance="standard">
         <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Java" />
+        <input matInput (keyup)="applyFilter($event)" placeholder="Bsp. Java" />
     </mat-form-field>
 
     <table mat-table [dataSource]="dataSource" matSort>
@@ -46,7 +46,7 @@
             id="input-value-of-keyword"
             [disabled]="crudState === 'read'"
             matInput
-            placeholder="Ex. Java"
+            placeholder="Bsp. Java"
             [value]="selectedRecord?.value || ''"
             #input
         />
