@@ -1,6 +1,6 @@
 <div class="page">
     <div class="header-div">
-        <h1>Publication Management</h1>
+        <h1>Publikationen</h1>
     </div>
 
     <app-publication-list
@@ -21,7 +21,7 @@
         </button>
         <div class="crud-container" *ngIf="!openPublication">
             <button
-                matTooltip="edit selection"
+                matTooltip="Editieren"
                 *ngIf="currentPublication"
                 (click)="onEditPublication()"
                 mat-mini-fab
@@ -33,7 +33,7 @@
             <button
                 (click)="onAddPublication()"
                 mat-mini-fab
-                matTooltip="add publication"
+                matTooltip="Hinzufügen"
                 color="primary"
             >
                 <mat-icon>add</mat-icon>

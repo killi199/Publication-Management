@@ -16,13 +16,14 @@ export class BasedataBorrowersComponent extends CrudComponent<Borrower> {
             !record.surname?.trim() ||
             !record.studentNumber?.trim()
         )
-            return 'Nothing to add!';
+            return 'Nichts zum Hinzufügen!';
 
         this.create!(record).subscribe((a) => {
             this.dataSource.data.push(a);
             this.dataSource.data = this.dataSource.data;
         });
-        return 'Borrower created!';
+
+        return 'Ausleiher erstellt!';
     }
     override _emitUpdate(record: Borrower): string {
         if (
@@ -30,7 +31,7 @@ export class BasedataBorrowersComponent extends CrudComponent<Borrower> {
             this.selectedRecord?.surname === record.surname &&
             this.selectedRecord?.studentNumber === record.studentNumber
         )
-            return 'Nothing to change!';
+            return 'Nichts zum Ändern!';
 
         this.update!(record).subscribe((a) => {
             this.selectedRecord!.surname = a.surname;
@@ -40,7 +41,7 @@ export class BasedataBorrowersComponent extends CrudComponent<Borrower> {
             this.selection.clear();
         });
 
-        return 'Borrower updated!';
+        return 'Ausleiher geändert!';
     }
 
     override _getRecordFromInputFields(): Borrower {

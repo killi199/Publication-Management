@@ -1,6 +1,6 @@
 <div class="page">
     <div class="header-div">
-        <h1>Ausleihvorgänge Übersicht</h1>
+        <h1>Ausleihvorgänge</h1>
     </div>
 
     <app-assignment-list
@@ -21,7 +21,7 @@
         </button>
         <div class="crud-container" *ngIf="!isViewOpen">
             <button
-                matTooltip="Bearbeiten"
+                matTooltip="Editieren"
                 *ngIf="currentRecord"
                 (click)="onEdit()"
                 mat-mini-fab
@@ -33,7 +33,7 @@
             <button
                 (click)="onAdd()"
                 mat-mini-fab
-                matTooltip="Erstellen"
+                matTooltip="Hinzufügen"
                 color="primary"
             >
                 <mat-icon>add</mat-icon>

@@ -60,7 +60,7 @@ export abstract class CrudComponent<T>
     }
 
     onUndo(): void {
-        this.snackBar.open('Nothing changed!');
+        this.snackBar.open('Nichts geändert!');
         this.crudState = CrudState.Read;
         this._clearInputFields();
         this.selection.clear();
@@ -73,7 +73,7 @@ export abstract class CrudComponent<T>
                 (r) => r !== record
             );
             this.selectedRecord = undefined;
-            this.snackBar.open('Object deleted!');
+            this.snackBar.open('Gelöscht!');
         });
     }
 
