@@ -11,19 +11,19 @@ export class BasedataKindsComponent extends CrudComponent<KindOfPublication> {
     displayedColumns: string[] = ['kindOfPublication'];
 
     override _emitCreate(record: KindOfPublication): string {
-        if (!record.value?.trim()) return 'Nothing to add!';
+        if (!record.value?.trim()) return 'Nichts zum hinzufügen!';
 
         this.create!(record).subscribe((a) => {
             this.dataSource.data.push(a);
             this.dataSource.data = this.dataSource.data;
         });
 
-        return record.value + ' created!';
+        return 'Art der Publikation erstellt!';
     }
 
     override _emitUpdate(record: KindOfPublication): string {
         if (this.selectedRecord?.value === record.value)
-            return 'Nothing to change!';
+            return 'Nichts zum ändern!';
 
         this.update!(record).subscribe((a) => {
             this.selectedRecord!.value = a.value;
@@ -31,7 +31,7 @@ export class BasedataKindsComponent extends CrudComponent<KindOfPublication> {
             this.selection.clear();
         });
 
-        return record.value + ' updated!';
+        return 'Art der Publikation geändert!';
     }
 
     override _getRecordFromInputFields(): KindOfPublication {

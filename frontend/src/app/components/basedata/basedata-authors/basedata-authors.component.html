@@ -10,7 +10,7 @@
 
     <table mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="surname">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Surname</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nachname</th>
             <td mat-cell *matCellDef="let element">
                 {{ element.surname }}
             </td>
@@ -52,7 +52,7 @@
 
 <div class="form-container">
     <mat-form-field appearance="fill">
-        <mat-label>Surname</mat-label>
+        <mat-label>Nachname</mat-label>
         <input
             id="input-surname"
             [disabled]="crudState === 'read'"
@@ -74,7 +74,7 @@
 
     <div class="btn-container">
         <button
-            matTooltip="edit selection"
+            matTooltip="Editieren"
             (click)="onEdit()"
             [disabled]="selectedRecord?.name === null"
             *ngIf="crudState === 'read'"
@@ -86,7 +86,7 @@
 
         <button
             mat-mini-fab
-            matTooltip="save changes"
+            matTooltip="Speichern"
             *ngIf="crudState === 'create' || crudState === 'update'"
             (click)="onSave()"
             color="primary"
@@ -96,7 +96,7 @@
 
         <button
             mat-mini-fab
-            matTooltip="delete author"
+            matTooltip="Löschen"
             [disabled]="selectedRecord?.name === null"
             *ngIf="crudState === 'read'"
             color="warn"
@@ -107,7 +107,7 @@
 
         <button
             mat-mini-fab
-            matTooltip="undo changes"
+            matTooltip="Rückgängig"
             (click)="onUndo()"
             *ngIf="crudState === 'create' || crudState === 'update'"
             color="primary"
@@ -119,7 +119,7 @@
     <button
         class="add-btn"
         mat-mini-fab
-        matTooltip="add author"
+        matTooltip="Hinzufügen"
         color="primary"
         (click)="onAdd()"
         *ngIf="crudState === 'read'"

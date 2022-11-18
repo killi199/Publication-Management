@@ -1,6 +1,6 @@
 <div class="page">
     <div class="header-div">
-        <h1>Mahnungswesen</h1>
+        <h1>Mahnwesen</h1>
     </div>
 
     <app-overdue-notice-list *ngIf="!isViewOpen" [overdueNotices]="data"  ></app-overdue-notice-list>
@@ -8,7 +8,7 @@
     <div class="button-container">
         <div class="crud-container">
             <button
-                matTooltip="mahnen"
+                matTooltip="Mahnen"
                 *ngIf="!currentRecord"
                 (click)="onEdit()"
                 mat-mini-fab

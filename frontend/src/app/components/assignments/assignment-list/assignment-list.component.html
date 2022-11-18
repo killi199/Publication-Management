@@ -10,17 +10,17 @@
     </mat-form-field>
     <table mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="publicationKey">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Pub-Key</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Publikationsschlüssel</th>
             <td mat-cell *matCellDef="let element">{{ element.publicationKey }}</td>
         </ng-container>
         
         <ng-container matColumnDef="surname">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Vorname</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nachname</th>
             <td mat-cell *matCellDef="let element">{{ element.borrower.surname }}</td>
         </ng-container>
         
         <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nachname</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Vorname</th>
             <td mat-cell *matCellDef="let element">{{ element.borrower.name }}</td>
         </ng-container>
 

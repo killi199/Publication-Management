@@ -11,19 +11,19 @@ export class BasedataKeywordsComponent extends CrudComponent<Keyword> {
     displayedColumns: string[] = ['keyword'];
 
     override _emitCreate(record: Keyword): string {
-        if (!record.value?.trim()) return 'Nothing to add!';
+        if (!record.value?.trim()) return 'Nichts zum hinzufügen!';
 
         this.create!(record).subscribe((a) => {
             this.dataSource.data.push(a);
             this.dataSource.data = this.dataSource.data;
         });
 
-        return record.value + ' created!';
+        return 'Schlagwort erstellt!';
     }
 
     override _emitUpdate(record: Keyword): string {
         if (this.selectedRecord?.value === record.value)
-            return 'Nothing to change!';
+            return 'Nichts zum ändern!';
 
         this.update!(record).subscribe((a) => {
             this.selectedRecord!.value = a.value;
@@ -31,7 +31,7 @@ export class BasedataKeywordsComponent extends CrudComponent<Keyword> {
             this.selection.clear();
         });
 
-        return record.value + ' updated!';
+        return 'Schlagwort geändert!';
     }
 
     override _getRecordFromInputFields(): Keyword {
