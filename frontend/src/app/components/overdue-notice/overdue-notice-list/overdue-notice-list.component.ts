@@ -2,23 +2,24 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TableInitsComponent } from 'src/app/helpers/table-inits';
 import { OverdueNotice } from 'src/app/models/overdue-notice';
+import { OverdueNoticeEvent } from './check-warnstatus-event';
 
 @Component({
     selector: 'app-overdue-notice-list',
     templateUrl: './overdue-notice-list.component.html',
-    styleUrls: ['../../../helpers/list-component.scss'],
+    styleUrls: ['../../../helpers/list-component.scss', './overdue-notice-list.component.scss'],
 })
 export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotice> implements OnInit {
     @Input() overdueNotices: Observable<OverdueNotice[]> = new Observable<OverdueNotice[]>();
-    @Output() checkRecord = new EventEmitter<CheckWarnstatusEvent>();
+    @Output() selectRecord = new EventEmitter<OverdueNoticeEvent>();
 
     selectedRecord?: OverdueNotice;
     displayedColumns: string[] = [
-        'assignment.publicationKey',
-        'assignment.borrower.surname',
-        'assignment.borrower.name',
-        'assignment.borrower.studentNumber',
-        'assignment.dateOfReturn',
+        'publicationKey',
+        'surname',
+        'name',
+        'studentNumber',
+        'dateOfReturn',
         'warningDate',
         'amountOfwarnings',
         'isReadyToWarn',
@@ -45,22 +46,16 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
         });
     }
 
-    onCheckWarnstatus(overdueNotice: OverdueNotice): void {
+    onEmitSelectRecord(overdueNotice: OverdueNotice): void {
         if (overdueNotice === this.selectedRecord) {
-            this.checkRecord.emit(undefined);
+            this.selectRecord.emit(undefined);
             this.selectedRecord = undefined;
         } else {
             const dateOfLastWarning = this.getLatestWarningDate(overdueNotice);
             const warnable = this.isWarnable(dateOfLastWarning);
             const deleteable = overdueNotice.warnings.length >= 3;
-            this.checkRecord.emit({ overdueNotice: overdueNotice, warnable: warnable, deleteable: deleteable });
+            this.selectRecord.emit({ overdueNotice: overdueNotice, warnable: warnable, deleteable: deleteable });
             this.selectedRecord = overdueNotice;
         }
     }
-}
-
-export interface CheckWarnstatusEvent {
-    overdueNotice: OverdueNotice;
-    warnable: boolean;
-    deleteable: boolean;
 }

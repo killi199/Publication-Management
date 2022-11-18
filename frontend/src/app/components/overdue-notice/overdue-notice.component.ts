@@ -1,27 +1,25 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CoreComponent } from 'src/app/helpers/core-component';
-import { OverdueNotice } from "src/app/models/overdue-notice";
+import { OverdueNotice } from 'src/app/models/overdue-notice';
 import { OverdueNoticeService } from 'src/app/services/overdue-notice.service';
-import { CheckWarnstatusEvent } from './overdue-notice-list/overdue-notice-list.component';
+import { OverdueNoticeEvent } from './overdue-notice-list/check-warnstatus-event';
 
 @Component({
     selector: 'app-overdue-notice',
     templateUrl: './overdue-notice.component.html',
     styleUrls: ['../../helpers/core-component.scss'],
 })
-export class OverdueNoticeComponent extends CoreComponent<OverdueNotice> {
+export class OverdueNoticeComponent {
     data: Observable<OverdueNotice[]>;
-
+    currentRecord?: OverdueNotice;
     warnable: boolean = false;
     deleteable: boolean = false;
 
     constructor(service: OverdueNoticeService) {
-        super();
         this.data = service.getAll();
     }
 
-    onCheckWarnstatus(event: CheckWarnstatusEvent): void {
+    onSetSelection(event: OverdueNoticeEvent): void {
         this.currentRecord = event?.overdueNotice;
         this.warnable = event?.warnable;
         this.deleteable = event?.deleteable;
