@@ -1,5 +1,7 @@
 package de.nordakademie.iaa.library.persistent.entities;
 
+import de.nordakademie.iaa.library.controller.api.exception.BorrowerHasOpenAssignmentException;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.UUID;
@@ -21,9 +23,19 @@ public class Borrower {
 
     @OneToMany(mappedBy = "borrower",fetch = FetchType.LAZY)
     private List<Assignment> assignments;
+
+    /**
+     * Set the borrower null in all assignments, if the borrower has no open assignments.
+     */
     @PreRemove
     private void preRemove() {
-        getAssignments().forEach( publication -> publication.setBorrower(null));
+        getAssignments().forEach( assignment -> {
+            if (assignment.getDateOfReturn() == null && !assignment.isPublicationLoss()) {
+                throw new BorrowerHasOpenAssignmentException();
+            }
+
+            assignment.setBorrower(null);
+        });
     }
     public UUID getUuid() {
         return uuid;

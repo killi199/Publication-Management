@@ -18,6 +18,8 @@ public class Assignment {
 
     private Date dateOfReturn;
 
+    private boolean publicationLoss;
+
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE} )
     private Borrower borrower;
 
@@ -52,5 +54,13 @@ public class Assignment {
 
     public void setBorrower(Borrower borrower) {
         this.borrower = borrower;
+    }
+
+    public boolean isPublicationLoss() {
+        return publicationLoss;
+    }
+
+    public void setPublicationLoss(boolean publicationLoss) {
+        this.publicationLoss = publicationLoss;
     }
 }

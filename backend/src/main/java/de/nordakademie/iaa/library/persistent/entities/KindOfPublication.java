@@ -21,6 +21,9 @@ public class KindOfPublication {
     @OneToMany(mappedBy = "kindOfPublication",fetch = FetchType.LAZY)
     private List<Publication> publications;
 
+    /**
+     * Set kind of publication to null in every publication.
+     */
     @PreRemove
     private void preRemove() {
         getPublications().forEach( publication -> publication.setKindOfPublication(null));
