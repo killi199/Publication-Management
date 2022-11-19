@@ -70,12 +70,12 @@ class BorrowerServiceTest {
     void create_works() {
         borrowerDto.setStudentNumber("test");
 
-        when(this.borrowerRepository.save(borrower)).thenReturn(borrower);
+        when(this.borrowerRepository.saveAndRefresh(borrower)).thenReturn(borrower);
         when(this.borrowerMapper.borrowerDtoToEntity(borrowerDto)).thenReturn(borrower);
         when(this.borrowerMapper.borrowerEntityToDto(borrower)).thenReturn(borrowerDto);
 
         assertEquals(borrowerDto, this.borrowerService.create(borrowerDto));
-        verify(borrowerRepository, times(1)).save(borrower);
+        verify(borrowerRepository, times(1)).saveAndRefresh(borrower);
         verify(borrowerMapper, times(1)).borrowerDtoToEntity(borrowerDto);
         verify(borrowerMapper, times(1)).borrowerEntityToDto(borrower);
     }
@@ -118,13 +118,13 @@ class BorrowerServiceTest {
         borrowerDto.setStudentNumber("test");
 
         when(this.borrowerRepository.existsById(uuid)).thenReturn(true);
-        when(this.borrowerRepository.save(borrower)).thenReturn(borrower);
+        when(this.borrowerRepository.saveAndRefresh(borrower)).thenReturn(borrower);
         when(this.borrowerMapper.borrowerDtoToEntity(borrowerDto)).thenReturn(borrower);
         when(this.borrowerMapper.borrowerEntityToDto(borrower)).thenReturn(borrowerDto);
 
         assertEquals(borrowerDto, this.borrowerService.update(borrowerDto));
         verify(borrowerRepository, times(1)).existsById(uuid);
-        verify(borrowerRepository, times(1)).save(borrower);
+        verify(borrowerRepository, times(1)).saveAndRefresh(borrower);
         verify(borrowerMapper, times(1)).borrowerDtoToEntity(borrowerDto);
         verify(borrowerMapper, times(1)).borrowerEntityToDto(borrower);
     }

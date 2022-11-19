@@ -6,12 +6,10 @@ import { Publication } from 'src/app/models/publication';
 @Component({
     selector: 'app-publication-list',
     templateUrl: './publication-list.component.html',
-    styleUrls: ['./publication-list.component.scss'],
+    styleUrls: ['../../../helpers/list-component.scss'],
 })
 export class PublicationListComponent extends TableInitsComponent<Publication> implements OnInit {
-    @Input() publications: Observable<Publication[]> = new Observable<
-        Publication[]
-    >();
+    @Input() publications: Observable<Publication[]> = new Observable<Publication[]>();
 
     @Output() showPublication = new EventEmitter<Publication>();
 
@@ -45,5 +43,22 @@ export class PublicationListComponent extends TableInitsComponent<Publication> i
             this.showPublication.emit(publication);
             this.selectedPublication = publication;
         }
+    }
+
+    override _defineFilterPredicate(): (data: Publication, filter: string) => boolean {
+        // TODO: Date fehlt, brauche hier das short-date format
+        return (data: Publication, filter: string): boolean => {
+            const allValuesInOneString =
+                '' +
+                data.authors?.map((a) => '' + a.name + a.surname).join(' ') +
+                data.key +
+                data.title +
+                data.publisher +
+                data.kindOfPublication?.value +
+                data.isbn +
+                data.keywords?.map((k) => k.value).join(' ') +
+                data.quantity;
+            return allValuesInOneString?.trim().toLowerCase().includes(filter) ?? false;
+        };
     }
 }

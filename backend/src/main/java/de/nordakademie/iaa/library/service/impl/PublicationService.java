@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Optional;
 
 import static de.nordakademie.iaa.library.service.helper.InputValidator.isStringEmpty;
 
@@ -43,6 +44,23 @@ public class PublicationService implements PublicationServiceInterface {
     public List<PublicationDto> getAll() {
         List<Publication> publications = publicationRepository.findAll();
         return publicationMapper.publicationEntitiesToDtos(publications);
+    }
+
+    /**
+     * get a Publication by its key
+     *
+     * @param key key of publication
+     * @return publication if found
+     * @throws EntityDoesNotExistException when not found
+     */
+    public Publication getByKey(String key) {
+        Optional<Publication> publicationOptional = publicationRepository.findById(key);
+
+        if (publicationOptional.isEmpty()) {
+            throw new EntityDoesNotExistException();
+        }
+
+        return publicationOptional.get();
     }
 
     /**
@@ -127,6 +145,6 @@ public class PublicationService implements PublicationServiceInterface {
     private PublicationDto createOrUpdate(@NotNull PublicationDto publicationDto) {
         Publication publication = publicationMapper.publicationDtoToEntity(publicationDto);
 
-        return publicationMapper.publicationEntityToDto(publicationRepository.save(publication));
+        return publicationMapper.publicationEntityToDto(publicationRepository.saveAndRefresh(publication));
     }
 }

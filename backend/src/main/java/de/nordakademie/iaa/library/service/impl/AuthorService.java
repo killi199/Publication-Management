@@ -105,10 +105,10 @@ public class AuthorService implements AuthorServiceInterface {
      */
     private void checkRequiredFields(@NotNull AuthorDto authorDto) {
         if (isStringEmpty(authorDto.getName())) {
-            throw new MissingFieldException("");
+            throw new MissingFieldException("name");
         }
         if (isStringEmpty(authorDto.getSurname())) {
-            throw new MissingFieldException("");
+            throw new MissingFieldException("surname");
         }
     }
 
@@ -123,6 +123,6 @@ public class AuthorService implements AuthorServiceInterface {
     private AuthorDto createOrUpdate(@NotNull AuthorDto authorDto) {
         Author author = authorMapper.authorDtoToEntity(authorDto);
 
-        return authorMapper.authorEntityToDto(authorRepository.save(author));
+        return authorMapper.authorEntityToDto(authorRepository.saveAndRefresh(author));
     }
 }

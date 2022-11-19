@@ -12,7 +12,7 @@ import { KindOfPublicationService } from 'src/app/services/kind-of-publication.s
 @Component({
     selector: 'app-basedata',
     templateUrl: './basedata.component.html',
-    styleUrls: ['../../helpers/core-component.scss'],
+    styleUrls: ['../../helpers/core-component.scss', './basedata.component.scss'],
 })
 export class BasedataComponent {
     kindOfPubs: Observable<KindOfPublication[]>;

@@ -5,8 +5,14 @@
 
 @import '@angular/material/theming';
 
-$app-primary: mat-palette($mat-indigo);
-$app-accent:  mat-palette($mat-pink, A200, A100, A400);
+$app-primary1: mat-palette($mat-indigo, 500);
+$app-primary2: mat-palette($mat-indigo, 700);
+$app-accent1:  mat-palette($mat-indigo, 50);
+$app-accent2:  mat-palette($mat-indigo, 100);
+$app-warn: mat-palette($mat-pink, 100);
 
-$primary: mat-color($app-primary);
-$accent: mat-color($app-accent);
+$primary1: mat-color($app-primary1);
+$primary2: mat-color($app-primary2);
+$accent1: mat-color($app-accent1);
+$accent2: mat-color($app-accent2);
+$warn: mat-color($app-warn);

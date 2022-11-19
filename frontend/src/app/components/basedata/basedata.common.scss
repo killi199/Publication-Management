@@ -1,55 +1,12 @@
-table {
-    width: 100%;
-}
-
 .container {
     width: 100%;
     overflow: auto;
-    height: 400px;
+    overflow-x: hidden;
+    height: 90%;
     display: flex;
     flex-direction: column;
 }
 
-th {
-    font-size: larger;
-}
-
-tr {
-    vertical-align: top;
-}
-
-.mat-row:hover .mat-cell {
-    border-color: currentColor;
-}
-
-.mat-row .mat-cell {
-    border-bottom: 1px solid transparent;
-    border-top: 1px solid transparent;
-    cursor: pointer;
-}
-
-.mat-row.hovered {
-    background-color: rgb(208, 208, 208);
-}
-
-.mat-row.highlighted {
-    background-color: rgb(170, 170, 170);
-}
-
-.mat-row.disabled {
-    pointer-events: none;
-}
-
-.mat-paginator-sticky {
-    bottom: 0px;
-    position: sticky;
-    z-index: 10;
-}
-
-.mat-form-field {
-    font-size: 14px;
-    width: 100%;
-}
 
 .form-container {
     width: 99%;
@@ -58,6 +15,7 @@ tr {
     display: flex;
     justify-content: space-between;
     margin-left: 10px;
+    align-items: flex-end;
 }
 
 .btn-container {
@@ -70,12 +28,21 @@ tr {
 
 button {
     margin: 5px;
+    height: 50px;
+    width: 50px;
 }
 
-form {
+mat-icon {
+    font-size: 35px;
     width: 100%;
+    height: 100%;
 }
 
 .add-btn {
     margin-right: 20px;
 }
+
+mat-form-field{
+    margin-right: 10px;
+}
+

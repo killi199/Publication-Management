@@ -80,12 +80,12 @@ class AuthorServiceTest {
         authorDto.setName("Max");
         authorDto.setSurname("Mustermann");
 
-        when(this.authorRepository.save(author)).thenReturn(author);
+        when(this.authorRepository.saveAndRefresh(author)).thenReturn(author);
         when(this.authorMapper.authorDtoToEntity(authorDto)).thenReturn(author);
         when(this.authorMapper.authorEntityToDto(author)).thenReturn(authorDto);
 
         assertEquals(authorDto, this.authorService.create(authorDto));
-        verify(authorRepository, times(1)).save(author);
+        verify(authorRepository, times(1)).saveAndRefresh(author);
         verify(authorMapper, times(1)).authorDtoToEntity(authorDto);
         verify(authorMapper, times(1)).authorEntityToDto(author);
     }
@@ -130,13 +130,13 @@ class AuthorServiceTest {
         authorDto.setSurname("Mustermann");
 
         when(this.authorRepository.existsById(uuid)).thenReturn(true);
-        when(this.authorRepository.save(author)).thenReturn(author);
+        when(this.authorRepository.saveAndRefresh(author)).thenReturn(author);
         when(this.authorMapper.authorDtoToEntity(authorDto)).thenReturn(author);
         when(this.authorMapper.authorEntityToDto(author)).thenReturn(authorDto);
 
         assertEquals(authorDto, this.authorService.update(authorDto));
         verify(authorRepository, times(1)).existsById(uuid);
-        verify(authorRepository, times(1)).save(author);
+        verify(authorRepository, times(1)).saveAndRefresh(author);
         verify(authorMapper, times(1)).authorDtoToEntity(authorDto);
         verify(authorMapper, times(1)).authorEntityToDto(author);
     }

@@ -1,6 +1,7 @@
 package de.nordakademie.iaa.library.persistent.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.UUID;
 
@@ -15,8 +16,10 @@ public class Warning {
     private UUID uuid;
 
     @ManyToOne
+    @NotNull
     private OverdueNotice overdueNotice;
 
+    @NotNull
     private Date warningDate;
 
     public UUID getUuid() {
