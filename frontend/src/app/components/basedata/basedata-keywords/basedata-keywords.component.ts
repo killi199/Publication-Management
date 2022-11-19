@@ -46,4 +46,12 @@ export class BasedataKeywordsComponent extends CrudComponent<Keyword> {
             document.getElementById('input-value-of-keyword')
         )).value = '';
     }
+
+    protected override _defineFilterPredicate(): (data: Keyword, filter: string) => boolean {
+        return (data: Keyword, filter: string): boolean => {
+            const allValuesInOneString = '';
+
+            return allValuesInOneString.trim().toLowerCase().includes(filter) ?? false;
+        };
+    }
 }

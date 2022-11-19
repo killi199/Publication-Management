@@ -22,8 +22,7 @@ export class BasedataKindsComponent extends CrudComponent<KindOfPublication> {
     }
 
     override _emitUpdate(record: KindOfPublication): string {
-        if (this.selectedRecord?.value === record.value)
-            return 'Nichts zum Ändern!';
+        if (this.selectedRecord?.value === record.value) return 'Nichts zum Ändern!';
 
         this.update!(record).subscribe((a) => {
             this.selectedRecord!.value = a.value;
@@ -35,15 +34,19 @@ export class BasedataKindsComponent extends CrudComponent<KindOfPublication> {
     }
 
     override _getRecordFromInputFields(): KindOfPublication {
-        var name = (<HTMLInputElement>(
-            document.getElementById('input-value-of-pub')
-        )).value;
+        var name = (<HTMLInputElement>document.getElementById('input-value-of-pub')).value;
         return { uuid: this.selectedRecord?.uuid, value: name };
     }
 
     override _clearInputFields(): void {
-        (<HTMLInputElement>(
-            document.getElementById('input-value-of-pub')
-        )).value = '';
+        (<HTMLInputElement>document.getElementById('input-value-of-pub')).value = '';
+    }
+
+    protected override _defineFilterPredicate(): (data: KindOfPublication, filter: string) => boolean {
+        return (data: KindOfPublication, filter: string): boolean => {
+            const allValuesInOneString = '';
+
+            return allValuesInOneString.trim().toLowerCase().includes(filter) ?? false;
+        };
     }
 }

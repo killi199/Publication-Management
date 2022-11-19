@@ -13,8 +13,12 @@ export abstract class TableInitsComponent<Type> implements AfterViewInit {
 
     abstract displayedColumns: string[];
 
-    dataSource: MatTableDataSource<Type> = new MatTableDataSource<Type>;
+    dataSource: MatTableDataSource<Type> = new MatTableDataSource<Type>();
     selection = new SelectionModel<Type>(false, []);
+
+    constructor() {
+        this.dataSource.filterPredicate = this._defineFilterPredicate();
+    }
 
     ngAfterViewInit() {
         this.dataSource.sort = this.sort;
@@ -29,4 +33,6 @@ export abstract class TableInitsComponent<Type> implements AfterViewInit {
             this.dataSource.paginator.firstPage();
         }
     }
+
+    protected abstract _defineFilterPredicate(): (data: Type, filter: string) => boolean;
 }

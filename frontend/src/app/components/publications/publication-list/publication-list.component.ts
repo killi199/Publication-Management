@@ -27,11 +27,6 @@ export class PublicationListComponent extends TableInitsComponent<Publication> i
         'quantity',
     ];
 
-    constructor() {
-        super();
-        this._filterSpecifications();
-    }
-
     ngOnInit(): void {
         this.publications.subscribe((publications) => {
             this.dataSource.data = publications;
@@ -50,9 +45,9 @@ export class PublicationListComponent extends TableInitsComponent<Publication> i
         }
     }
 
-    private _filterSpecifications(): void {
+    override _defineFilterPredicate(): (data: Publication, filter: string) => boolean {
         // TODO: Date fehlt, brauche hier das short-date format
-        this.dataSource.filterPredicate = (data: Publication, filter: string): boolean => {
+        return (data: Publication, filter: string): boolean => {
             const allValuesInOneString =
                 '' +
                 data.authors?.map((a) => '' + a.name + a.surname).join(' ') +

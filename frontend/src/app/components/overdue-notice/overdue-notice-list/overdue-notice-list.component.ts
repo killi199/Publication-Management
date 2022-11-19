@@ -25,11 +25,6 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
         'isReadyToWarn',
     ];
 
-    constructor() {
-        super();
-        this._filterSpecifications();
-    }
-
     isWarnable(warningDate: Date | null): boolean {
         if (!warningDate) return true;
         const today = new Date();
@@ -64,9 +59,8 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
         }
     }
 
-    private _filterSpecifications(): void {
-        // TODO: Date fehlt, brauche hier das short-date format
-        this.dataSource.filterPredicate = (data: OverdueNotice, filter: string): boolean => {
+    protected _defineFilterPredicate(): (data: OverdueNotice, filter: string) => boolean {
+        return (data: OverdueNotice, filter: string): boolean => {
             const iswarnableDisplayValue = this.isWarnable(this.getLatestWarningDate(data)) ? 'Ja' : 'Nein';
             const allValuesInOneString =
                 '' +

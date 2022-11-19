@@ -8,7 +8,7 @@ import { CrudComponent } from '../../../helpers/crud-component';
     styleUrls: ['../basedata.common.scss'],
 })
 export class BasedataBorrowersComponent extends CrudComponent<Borrower> {
-    displayedColumns: string[] = ['surname', 'name', 'studentNumber'];
+      displayedColumns: string[] = ['surname', 'name', 'studentNumber'];
 
     override _emitCreate(record: Borrower): string {
         if (
@@ -67,5 +67,13 @@ export class BasedataBorrowersComponent extends CrudComponent<Borrower> {
         (<HTMLInputElement>(
             document.getElementById('input-studentNumber')
         )).value = '';
+    }
+
+    protected override _defineFilterPredicate(): (data: Borrower, filter: string) => boolean {
+        return (data: Borrower, filter: string): boolean => {
+            const allValuesInOneString = '';
+
+            return allValuesInOneString.trim().toLowerCase().includes(filter) ?? false;
+        };
     }
 }

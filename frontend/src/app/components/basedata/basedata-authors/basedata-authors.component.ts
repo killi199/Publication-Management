@@ -56,4 +56,12 @@ export class BasedataAuthorsComponent extends CrudComponent<Author> {
         (<HTMLInputElement>document.getElementById('input-surname')).value = '';
         (<HTMLInputElement>document.getElementById('input-name')).value = '';
     }
+
+    protected override _defineFilterPredicate(): (data: Author, filter: string) => boolean {
+        return (data: Author, filter: string): boolean => {
+            const allValuesInOneString = '';
+
+            return allValuesInOneString.trim().toLowerCase().includes(filter) ?? false;
+        };
+    }
 }

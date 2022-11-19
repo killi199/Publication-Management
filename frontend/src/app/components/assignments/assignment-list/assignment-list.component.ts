@@ -24,11 +24,6 @@ export class AssignmentListComponent extends TableInitsComponent<Assignment> imp
 
     selectedAssignment?: Assignment;
 
-    constructor() {
-        super();
-        this._filterSpecifications();
-    }
-
     ngOnInit(): void {
         this.assignments.subscribe((assignments) => {
             this.dataSource.data = assignments;
@@ -47,9 +42,9 @@ export class AssignmentListComponent extends TableInitsComponent<Assignment> imp
         }
     }
 
-    private _filterSpecifications(): void {
+    protected _defineFilterPredicate(): (data: Assignment, filter: string) => boolean {
         // TODO: 2 Dates fehlen, brauche hier das short-date format
-        this.dataSource.filterPredicate = (data: Assignment, filter: string): boolean => {
+        return (data: Assignment, filter: string): boolean => {
             const allValuesInOneString =
                 '' + data.publicationKey + data.borrower.studentNumber + data.borrower.name + data.borrower.surname;
             return allValuesInOneString?.trim().toLowerCase().includes(filter) ?? false;
