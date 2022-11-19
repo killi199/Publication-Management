@@ -47,8 +47,9 @@
             [disabled]="crudState === 'read'"
             matInput
             placeholder="Bsp. Java"
-            [value]="selectedRecord.value || ''"
-            #input
+            [(ngModel)]="selectedRecord.value"
+            #keyword="ngModel"
+            required
         />
     </mat-form-field>
 
@@ -70,6 +71,7 @@
             *ngIf="crudState === 'create' || crudState === 'update'"
             (click)="onSave()"
             color="primary"
+            [disabled]="!keyword.valid"
         >
             <mat-icon>done</mat-icon>
         </button>

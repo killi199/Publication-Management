@@ -52,8 +52,9 @@
             [disabled]="crudState === 'read'"
             matInput
             placeholder="Bsp. Hausarbeit"
-            [value]="selectedRecord?.value || ''"
-            #input
+            [(ngModel)]="selectedRecord.value"
+            #kindOfPublication="ngModel"
+            required
         />
     </mat-form-field>
 
@@ -75,6 +76,7 @@
             *ngIf="crudState === 'create' || crudState === 'update'"
             (click)="onSave()"
             color="primary"
+            [disabled]="!kindOfPublication.valid"
         >
             <mat-icon>done</mat-icon>
         </button>

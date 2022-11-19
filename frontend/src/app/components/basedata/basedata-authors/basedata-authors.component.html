@@ -58,7 +58,9 @@
             [disabled]="crudState === 'read'"
             matInput
             placeholder="Bsp. Mustermann"
-            [value]="selectedRecord.surname || ''"
+            [(ngModel)]="selectedRecord.surname"
+            #surname="ngModel"
+            required
         />
     </mat-form-field>
     <mat-form-field appearance="fill">
@@ -68,7 +70,9 @@
             [disabled]="crudState === 'read'"
             matInput
             placeholder="Bsp. Max"
-            [value]="selectedRecord.name || ''"
+            [(ngModel)]="selectedRecord.name"
+            #name="ngModel"
+            required
         />
     </mat-form-field>
 
@@ -90,6 +94,7 @@
             *ngIf="crudState === 'create' || crudState === 'update'"
             (click)="onSave()"
             color="primary"
+            [disabled]="!surname.valid || !name.valid"
         >
             <mat-icon>done</mat-icon>
         </button>
