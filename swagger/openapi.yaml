@@ -707,7 +707,7 @@ components:
           format: uint
           default: 0
           example: 2
-        borrowedUtil:
+        latestReturnDate:
           type: string
           format: date-time
         publication:
