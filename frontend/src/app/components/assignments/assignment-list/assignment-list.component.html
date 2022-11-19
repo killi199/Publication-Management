@@ -11,7 +11,7 @@
     <table mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="publicationKey">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Publikationsschlüssel</th>
-            <td mat-cell *matCellDef="let element">{{ element.publicationKey }}</td>
+            <td mat-cell *matCellDef="let element">{{ element.publication.key }}</td>
         </ng-container>
         
         <ng-container matColumnDef="surname">

@@ -64,7 +64,7 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
             const iswarnableDisplayValue = this.isWarnable(this.getLatestWarningDate(data)) ? 'Ja' : 'Nein';
             const allValuesInOneString =
                 '' +
-                data.assignment.publicationKey +
+                data.assignment.publication?.key +
                 data.assignment.borrower?.studentNumber +
                 data.assignment.borrower?.name +
                 data.assignment.borrower?.surname +

@@ -1,9 +1,10 @@
 import { Borrower } from "./borrower";
+import { Publication } from "./publication";
 
 export interface Assignment{
     uuid?: string | null;
     dateOfAssignment?: Date | null;
     dateOfReturn?: Date | null;
-    publicationKey?: string | null;
+    publication?: Publication | null;
     borrower?: Borrower | null;
 }

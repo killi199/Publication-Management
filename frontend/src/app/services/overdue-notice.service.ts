@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { Assignment } from '../models/assignment';
 import { Borrower } from '../models/borrower';
 import { OverdueNotice } from "../models/overdue-notice";
+import { Publication } from '../models/publication';
 import { Warning } from '../models/warning';
 
 @Injectable({
@@ -16,9 +17,13 @@ export class OverdueNoticeService {
             name: 'Max',
             surname: 'Mustermann',
         };
+        const publication: Publication = {
+            uuid: 'publicationuuid-test123',
+            title: 'Testbuch',
+        }
         const assignment: Assignment = {
             uuid: 'assignment-UUID-test123',
-            publicationKey: 'pubkeyTest123',
+            publication: publication,
             dateOfAssignment: new Date(2018, 12, 22),
             dateOfReturn: new Date(2019, 1, 1),
             borrower: borrower,
