@@ -63,7 +63,7 @@
             [disabled]="crudState === 'read'"
             matInput
             placeholder="Bsp. Mustermann"
-            [value]="selectedRecord?.surname || ''"
+            [value]="selectedRecord.surname || ''"
         />
     </mat-form-field>
     <mat-form-field appearance="fill">
@@ -73,7 +73,7 @@
             [disabled]="crudState === 'read'"
             matInput
             placeholder="Bsp. Max"
-            [value]="selectedRecord?.name || ''"
+            [value]="selectedRecord.name || ''"
         />
     </mat-form-field>
     <mat-form-field appearance="fill">
@@ -83,7 +83,7 @@
             [disabled]="crudState === 'read'"
             matInput
             placeholder="Bsp. 9123"
-            [value]="selectedRecord?.studentNumber || ''"
+            [value]="selectedRecord.studentNumber || ''"
         />
     </mat-form-field>
 
@@ -91,7 +91,7 @@
         <button
             matTooltip="Editieren"
             (click)="onEdit()"
-            [disabled]="selectedRecord?.studentNumber === null"
+            [disabled]="selectedRecord.studentNumber === null"
             *ngIf="crudState === 'read'"
             mat-mini-fab
             color="primary"
@@ -112,7 +112,7 @@
         <button
             mat-mini-fab
             matTooltip="Löschen"
-            [disabled]="selectedRecord?.studentNumber === null"
+            [disabled]="selectedRecord.studentNumber === null"
             *ngIf="crudState === 'read'"
             color="warn"
             (click)="onDelete(selectedRecord!)"

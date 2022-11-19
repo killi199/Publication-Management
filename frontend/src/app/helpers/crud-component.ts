@@ -24,7 +24,7 @@ export abstract class CrudComponent<T>
     update?: (value: T) => Observable<T>;
 
     crudState: CrudState = CrudState.Read;
-    selectedRecord?: T;
+    selectedRecord: T = {} as T;
 
     constructor(private snackBar: Snackbar) {
         super();
@@ -40,7 +40,7 @@ export abstract class CrudComponent<T>
 
     selectionChanged(selection: T): void {
         this.selectedRecord =
-            this.selectedRecord === selection ? undefined : selection;
+            this.selectedRecord === selection ? {} as T : selection;
     }
 
     onEdit(): void {
@@ -48,23 +48,22 @@ export abstract class CrudComponent<T>
     }
 
     onSave(): void {
-        const recordToSave = this._getRecordFromInputFields();
         let messageType =
             this.crudState === CrudState.Create
-                ? this._emitCreate(recordToSave)
-                : this._emitUpdate(recordToSave);
+                ? this.onCreate()
+                : this.onUpdate();
 
         this.snackBar.open(messageType);
         this.crudState = CrudState.Read;
-        this._clearInputFields();
+        this.selectedRecord = {} as T;
     }
 
     onUndo(): void {
         this.snackBar.open('Nichts geändert!');
         this.crudState = CrudState.Read;
-        this._clearInputFields();
+        this.selectedRecord = {} as T;
         this.selection.clear();
-        this.selectedRecord = undefined;
+        this.selectedRecord = {} as T;
     }
 
     onDelete(record: T): void {
@@ -72,19 +71,33 @@ export abstract class CrudComponent<T>
             this.dataSource.data = this.dataSource.data.filter(
                 (r) => r !== record
             );
-            this.selectedRecord = undefined;
+            this.selectedRecord = {} as T;
             this.snackBar.open('Gelöscht!');
         });
     }
 
     onAdd(): void {
         this.crudState = CrudState.Create;
-        this.selectedRecord = undefined;
+        this.selectedRecord = {} as T;
         this.selection.clear();
     }
 
-    protected abstract _emitCreate(record: T): string;
-    protected abstract _emitUpdate(record: T): string;
-    protected abstract _getRecordFromInputFields(): T;
-    protected abstract _clearInputFields(): void;
+    onCreate(): string {
+        this.create!(this.selectedRecord).subscribe((a) => {
+            this.selectedRecord = {} as T;
+            this.dataSource.data.push(a);
+            this.dataSource.data = this.dataSource.data;
+        });
+
+        return 'Erstellt!';
+    }
+
+    onUpdate(): string {
+        this.update!(this.selectedRecord).subscribe((a) => {
+            this.selectedRecord = {} as T;
+            this.selection.clear();
+        });
+
+        return 'Geändert!';
+    };
 }
