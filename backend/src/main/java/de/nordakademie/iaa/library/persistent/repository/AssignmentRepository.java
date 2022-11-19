@@ -36,19 +36,19 @@ public interface AssignmentRepository extends CustomBaseRepository<Assignment, U
     /**
      * find all that are not returned
      *
-     * @param now Date right now
+     * @param untilDate Date by which the assignments have not been returned
      * @return List of assignments that are not returned
      */
-    @Query("SELECT a FROM Assignment a WHERE (a.dateOfReturn IS NULL and a.publicationLoss = false) OR a.dateOfReturn > :now")
-    List<Assignment> findAllUnreturned(@Param("now") Date now);
+    @Query("SELECT a FROM Assignment a WHERE (a.dateOfReturn IS NULL and a.publicationLoss = false) OR a.dateOfReturn > :untilDate")
+    List<Assignment> findAllUnreturned(@Param("untilDate") Date untilDate);
 
     /**
      * find all that are not returned by publication key
      *
-     * @param now Date right now
+     * @param untilDate Date by which the assignments have not been returned
      * @param key publication key
      * @return List of assignments that are returned
      */
-    @Query("SELECT a FROM Assignment a WHERE ((a.dateOfReturn IS NULL and a.publicationLoss = false) OR a.dateOfReturn > :now) AND a.publication.key = :key")
-    List<Assignment> findAllUnreturnedByPublication_Key(@Param("now") Date now,@Param("key") String key);
+    @Query("SELECT a FROM Assignment a WHERE ((a.dateOfReturn IS NULL and a.publicationLoss = false) OR a.dateOfReturn > :untilDate) AND a.publication.key = :key")
+    List<Assignment> findAllUnreturnedByPublication_Key(@Param("untilDate") Date untilDate,@Param("key") String key);
 }

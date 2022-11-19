@@ -101,13 +101,13 @@ class PublicationServiceTest {
         publicationDto.setTitle("test");
 
         when(this.publicationRepository.existsById("test")).thenReturn(false);
-        when(this.publicationRepository.save(publication)).thenReturn(publication);
+        when(this.publicationRepository.saveAndRefresh(publication)).thenReturn(publication);
         when(this.publicationMapper.publicationDtoToEntity(publicationDto)).thenReturn(publication);
         when(this.publicationMapper.publicationEntityToDto(publication)).thenReturn(publicationDto);
 
         assertEquals(publicationDto, this.publicationService.create(publicationDto));
         verify(publicationRepository, times(1)).existsById("test");
-        verify(publicationRepository, times(1)).save(publication);
+        verify(publicationRepository, times(1)).saveAndRefresh(publication);
         verify(publicationMapper, times(1)).publicationDtoToEntity(publicationDto);
         verify(publicationMapper, times(1)).publicationEntityToDto(publication);
     }
@@ -153,13 +153,13 @@ class PublicationServiceTest {
         publicationDto.setTitle("test");
 
         when(this.publicationRepository.existsById("test")).thenReturn(true);
-        when(this.publicationRepository.save(publication)).thenReturn(publication);
+        when(this.publicationRepository.saveAndRefresh(publication)).thenReturn(publication);
         when(this.publicationMapper.publicationDtoToEntity(publicationDto)).thenReturn(publication);
         when(this.publicationMapper.publicationEntityToDto(publication)).thenReturn(publicationDto);
 
         assertEquals(publicationDto, this.publicationService.update(publicationDto));
         verify(publicationRepository, times(1)).existsById("test");
-        verify(publicationRepository, times(1)).save(publication);
+        verify(publicationRepository, times(1)).saveAndRefresh(publication);
         verify(publicationMapper, times(1)).publicationDtoToEntity(publicationDto);
         verify(publicationMapper, times(1)).publicationEntityToDto(publication);
     }

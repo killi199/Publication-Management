@@ -223,25 +223,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Assignment'
-    put:
-      tags:
-        - Assignment
-      summary: Update a existing assignment
-      description: Update a existing assignment
-      operationId: updateAssignment
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Assignment'
-        required: true
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Assignment'
     post:
       tags:
         - Assignment
@@ -281,6 +262,35 @@ paths:
           required: false
           schema:
             type: boolean
+      responses:
+        '200':
+          description: Successful assignment
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Assignment'
+  /assignment/return/{uuid}:
+    post:
+      tags:
+        - Assignment
+      summary: return the assignment
+      operationId: returnAssignment
+      parameters:
+        - name: uuid
+          in: path
+          description: Uuid of the assignment
+          required: true
+          schema:
+            type: string
+        - name: dateOfReturn
+          in: query
+          description: returndate
+          required: false
+          schema:
+            type: string
+            format: date-time
       responses:
         '200':
           description: Successful assignment
@@ -707,7 +717,7 @@ components:
           format: uint
           default: 0
           example: 2
-        latestReturnDate:
+        borrowedUtil:
           type: string
           format: date-time
         publication:

@@ -5,6 +5,6 @@ import org.springframework.http.HttpStatus;
 public class PublicationIsNotBorrowableException extends AbstractRestApiException {
 
     public PublicationIsNotBorrowableException() {
-        super(HttpStatus.BAD_REQUEST, "All publications of this type are already borrowed or the publication does not exists.");
+        super(HttpStatus.BAD_REQUEST, "All publications of this type are already borrowed or the publication does not exist.");
     }
 }

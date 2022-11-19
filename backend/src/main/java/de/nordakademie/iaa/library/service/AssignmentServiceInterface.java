@@ -3,6 +3,7 @@ package de.nordakademie.iaa.library.service;
 import de.nordakademie.iaa.library.controller.dto.AssignmentDto;
 
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -34,12 +35,13 @@ public interface AssignmentServiceInterface {
     AssignmentDto create(AssignmentDto assignmentDto);
 
     /**
-     * update a assignment
+     * set the date of return of an assignment
      *
-     * @param assignmentDto the assignment that should be updated
+     * @param assignmentUUID the assignment that should be updated
+     * @param returnDate the date of return of the assignment
      * @return the updated assignment
      */
-    AssignmentDto update(AssignmentDto assignmentDto);
+    AssignmentDto returnAssignment(UUID assignmentUUID, Date returnDate);
 
     /**
      * Extends the assignment

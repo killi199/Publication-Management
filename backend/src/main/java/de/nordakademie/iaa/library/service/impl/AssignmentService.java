@@ -23,7 +23,7 @@ import java.util.*;
 public class AssignmentService implements AssignmentServiceInterface {
 
     @Value("${assignment.rentalPeriode}")
-    int rentalPeriode;
+    int rentalPeriod;
 
     @Value("${assignment.maxExtensionNumber:2}")
     int maxExtensionNumber;
@@ -114,7 +114,7 @@ public class AssignmentService implements AssignmentServiceInterface {
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(assignment.getDateOfAssignment());
-        calendar.add(Calendar.DAY_OF_YEAR, rentalPeriode);
+        calendar.add(Calendar.DAY_OF_YEAR, rentalPeriod);
         Date time = calendar.getTime();
         assignment.setLatestReturnDate(time);
 
@@ -122,7 +122,7 @@ public class AssignmentService implements AssignmentServiceInterface {
     }
 
     /**
-     * Checks if an publication is borrowable
+     * Checks if a publication is borrowable
      *
      * @param key publication key
      * @throws PublicationIsNotBorrowableException when all publications are borrowed
@@ -146,35 +146,27 @@ public class AssignmentService implements AssignmentServiceInterface {
     }
 
     /**
-     * update a assignment
+     * set the date of return of an assignment
      *
-     * @param assignmentDto the assignment that should be updated
+     * @param assignmentUUID the assignment that should be updated
+     * @param returnDate the date of return of the assignment, default is now
      * @return the updated assignment
-     * \@NotNull is here for documentation and does nothing.
-     * This method should not be called with null values.
      */
-    public AssignmentDto update(@NotNull AssignmentDto assignmentDto) {
+    @Override
+    public AssignmentDto returnAssignment(UUID assignmentUUID, Date returnDate) {
+        Assignment assignment = getAssignmentByUuid(assignmentUUID);
 
-        if (assignmentDto.getUuid() == null) {
-            throw new EntityDoesNotExistException();
-        }
-        Assignment assignmentOld = getAssignmentByUuid(assignmentDto.getUuid());
-
-        // set extensions, latestReturnDate, dateOfAssignment and publicationLoss to database values
-        assignmentDto.setExtensions(assignmentOld.getExtensions());
-        assignmentDto.setLatestReturnDate(assignmentOld.getLatestReturnDate());
-        assignmentDto.setDateOfAssignment(assignmentOld.getDateOfAssignment());
-        assignmentDto.setPublicationLoss(assignmentOld.isPublicationLoss());
-
-        // check has to be after the set of the dateOfAssignment, so that the returned date can be validated correctly
-        checkAndFillRequiredFields(assignmentDto);
-
-        Assignment assignment = assignmentMapper.assignmentDtoToEntity(assignmentDto);
-
+        assignment.setDateOfReturn(returnDate == null ? new Date() : returnDate);
 
         return createOrUpdate(assignment);
     }
 
+    /**
+     * Extends the assignment
+     *
+     * @param assignmentUUID the assignment identifier
+     * @return the extended assignment
+     */
     @Override
     public AssignmentDto extend(UUID assignmentUUID) {
 
@@ -191,7 +183,7 @@ public class AssignmentService implements AssignmentServiceInterface {
         //extend the borrowed until date
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(assignment.getLatestReturnDate());
-        calendar.add(Calendar.DAY_OF_YEAR, rentalPeriode);
+        calendar.add(Calendar.DAY_OF_YEAR, rentalPeriod);
 
         assignment.setLatestReturnDate(calendar.getTime());
 
@@ -221,7 +213,7 @@ public class AssignmentService implements AssignmentServiceInterface {
     }
 
     /**
-     * create or updates a assignment
+     * create or updates an assignment
      *
      * @param assignment the assignment that should be created or updated
      * @return the created or updated assignment

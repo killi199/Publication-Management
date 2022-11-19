@@ -13,6 +13,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,6 +30,11 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
+@ContextConfiguration
+@TestPropertySource(properties = {
+        "assignment.rentalPeriode=14",
+        "assignment.maxExtensionNumber=2"
+})
 class AssignmentServiceTest {
 
     @InjectMocks
@@ -89,7 +96,7 @@ class AssignmentServiceTest {
     @Test
     void create_withoutPublication_ThrowsMissingFieldException() {
         assertThrows(MissingFieldException.class, () -> this.assignmentService.create(assignmentDto));
-        verify(this.assignmentRepository, times(0)).save(any());
+        verify(this.assignmentRepository, times(0)).saveAndRefresh(any());
     }
 
     @Test
@@ -98,7 +105,7 @@ class AssignmentServiceTest {
         assignmentDto.setPublication(publicationDto);
 
         assertThrows(MissingFieldException.class, () -> this.assignmentService.create(assignmentDto));
-        verify(this.assignmentRepository, times(0)).save(any());
+        verify(this.assignmentRepository, times(0)).saveAndRefresh(any());
     }
 
 
@@ -110,7 +117,7 @@ class AssignmentServiceTest {
         assignmentDto.setUuid(UUID.randomUUID());
 
         assertThrows(IllegalUsageOfIdentifierException.class, () -> this.assignmentService.create(assignmentDto));
-        verify(this.assignmentRepository, times(0)).save(any());
+        verify(this.assignmentRepository, times(0)).saveAndRefresh(any());
     }
 
     @Test
@@ -122,7 +129,7 @@ class AssignmentServiceTest {
         when(this.publicationService.getByKey("test")).thenThrow(new EntityDoesNotExistException());
 
         assertThrows(PublicationIsNotBorrowableException.class, () -> this.assignmentService.create(assignmentDto));
-        verify(this.assignmentRepository, times(0)).save(any());
+        verify(this.assignmentRepository, times(0)).saveAndRefresh(any());
     }
 
     @Test
@@ -139,7 +146,7 @@ class AssignmentServiceTest {
                 .thenReturn(new ArrayList<>());
 
         assertThrows(PublicationIsNotBorrowableException.class, () -> this.assignmentService.create(assignmentDto));
-        verify(this.assignmentRepository, times(0)).save(any());
+        verify(this.assignmentRepository, times(0)).saveAndRefresh(any());
     }
 
     @Test
@@ -167,115 +174,52 @@ class AssignmentServiceTest {
         when(this.assignmentService.getAllByPublicationKey("test", false))
                 .thenReturn(new ArrayList<>());
         when(this.assignmentMapper.assignmentDtoToEntity(assignmentDto)).thenReturn(assignment);
-        when(this.assignmentRepository.save(assignment)).thenReturn(assignment);
+        when(this.assignmentRepository.saveAndRefresh(assignment)).thenReturn(assignment);
         when(this.assignmentMapper.assignmentEntityToDto(assignment)).thenReturn(assignmentDto);
 
         assignmentDto.setLatestReturnDate(latestReturnDate);
         assertEquals(assignmentDto, this.assignmentService.create(assignmentDto));
 
-        verify(this.assignmentRepository, times(1)).save(assignment);
+        verify(this.assignmentRepository, times(1)).saveAndRefresh(assignment);
     }
 
     @Test
-    void update_withoutPublication_ThrowsMissingFieldException() {
-        assertThrows(MissingFieldException.class, () -> this.assignmentService.create(assignmentDto));
-        verify(this.assignmentRepository, times(0)).save(any());
+    void returnAssignment_withoutUUID_EntityDoesNotExistException() {
+        assertThrows(EntityDoesNotExistException.class, () -> this.assignmentService.returnAssignment(null, null));
+        verify(this.assignmentRepository, times(0)).saveAndRefresh(any());
     }
 
     @Test
-    void update_withoutPublicationKey_ThrowsMissingFieldException() {
-        PublicationDto publicationDto = new PublicationDto();
-        assignmentDto.setPublication(publicationDto);
-
-        assertThrows(MissingFieldException.class, () -> this.assignmentService.update(assignmentDto));
-        verify(this.assignmentRepository, times(0)).save(any());
-    }
-
-
-    @Test
-    void update_withoutUuid_EntityDoesNotExistException() {
-        PublicationDto publicationDto = new PublicationDto();
-        publicationDto.setKey("test");
-        assignmentDto.setPublication(publicationDto);
-
-        assertThrows(EntityDoesNotExistException.class, () -> this.assignmentService.update(assignmentDto));
-        verify(this.assignmentRepository, times(0)).save(any());
-    }
-
-
-    @Test
-    void update_notExistingAssignment_throwsEntityDoesNotExistException() throws ParseException {
-
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        Date dateOfAssignment = formatter.parse("2022-9-05 05:55:13");
-
+    void returnAssignment_withoutDate_Works() {
         UUID uuid = UUID.randomUUID();
-        PublicationDto publicationDto = new PublicationDto();
-        publicationDto.setKey("test");
-        assignmentDto.setUuid(uuid);
-        assignmentDto.setPublication(publicationDto);
-        assignmentDto.setUuid(UUID.randomUUID());
-        assignmentDto.setExtensions(1);
 
-        Publication publication = new Publication();
-        publication.setKey("test");
-
-        assignment.setPublication(publication);
-        assignment.setDateOfAssignment(dateOfAssignment);
-        assignmentDto.setUuid(UUID.randomUUID());
-        assignmentDto.setExtensions(1);
-
-        when(assignmentMapper.assignmentDtoToEntity(assignmentDto)).thenReturn(assignment);
-        when(assignmentRepository.findById(any())).thenReturn(Optional.empty());
-
-        assertThrows(EntityDoesNotExistException.class, () -> this.assignmentService.update(assignmentDto));
-        verify(this.assignmentRepository, times(0)).save(any());
-    }
-
-    @Test
-    void update_works() throws ParseException {
-
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        Date dateOfAssignment = formatter.parse("2022-9-05 05:55:13");
-        Date latestReturnDate = formatter.parse("2022-9-20 05:55:13");
-
-        UUID uuid = UUID.randomUUID();
-        PublicationDto publicationDto = new PublicationDto();
-        publicationDto.setKey("test");
-        assignmentDto.setUuid(uuid);
-        assignmentDto.setPublication(publicationDto);
-        assignmentDto.setUuid(UUID.randomUUID());
-        assignmentDto.setExtensions(1);
-
-        Publication publication = new Publication();
-        publication.setKey("test");
-
-        assignment.setPublication(publication);
-        assignment.setDateOfAssignment(dateOfAssignment);
-        assignmentDto.setUuid(UUID.randomUUID());
-        assignmentDto.setExtensions(1);
-
-        when(assignmentMapper.assignmentDtoToEntity(assignmentDto)).thenReturn(assignment);
-
-        assignment.setLatestReturnDate(latestReturnDate);
-        assignment.setExtensions(3);
+        assignment.setUuid(uuid);
         when(assignmentRepository.findById(any())).thenReturn(Optional.of(assignment));
-        when(assignmentRepository.save(assignment)).thenReturn(assignment);
 
-        assignmentDto.setLatestReturnDate(latestReturnDate);
-        assignmentDto.setExtensions(3);
-        when(assignmentMapper.assignmentEntityToDto(assignment)).thenReturn(assignmentDto);
+        this.assignmentService.returnAssignment(uuid, null);
 
-        assertEquals(assignmentDto, this.assignmentService.update(assignmentDto));
-        verify(this.assignmentRepository, times(1)).save(any());
+        verify(this.assignmentRepository, times(1)).saveAndRefresh(any());
+    }
+    @Test
+    void returnAssignment_withDate_Works() throws ParseException {
+        UUID uuid = UUID.randomUUID();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        Date returnDate = formatter.parse("2022-9-05T05:55:13.123Z");
+
+        assignment.setUuid(uuid);
+        when(assignmentRepository.findById(any())).thenReturn(Optional.of(assignment));
+
+        this.assignmentService.returnAssignment(uuid, returnDate);
+
+        verify(this.assignmentRepository, times(1)).saveAndRefresh(any());
     }
 
     @Test
     void extend_withToMuchExtension_throwMaximumExtensionsException() throws ParseException {
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        Date dateOfAssignment = formatter.parse("2022-9-05 05:55:13");
-        Date latestReturnDate = formatter.parse("2022-9-20 05:55:13");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        Date dateOfAssignment = formatter.parse("2022-9-05T05:55:13.123Z");
+        Date latestReturnDate = formatter.parse("2022-9-20T05:55:13.456Z");
 
         UUID uuid = UUID.randomUUID();
         Publication publication = new Publication();
@@ -292,13 +236,14 @@ class AssignmentServiceTest {
         assertThrows(MaximumExtensionsException.class, () -> this.assignmentService.extend(uuid));
     }
 
+    /*
     @Test
     void extend_works() throws ParseException {
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        Date dateOfAssignment = formatter.parse("2022-9-05 05:55:13");
-        Date latestReturnDate = formatter.parse("2022-9-20 05:55:13");
-        Date latestReturnExtended = formatter.parse("2022-10-5 05:55:13");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        Date dateOfAssignment = formatter.parse("2022-9-05T05:55:13.123Z");
+        Date latestReturnDate = formatter.parse("2022-9-20T05:55:13.456Z");
+        Date latestReturnExtended = formatter.parse("2022-10-5T05:55:13.456Z");
 
         UUID uuid = UUID.randomUUID();
         Publication publication = new Publication();
@@ -316,6 +261,6 @@ class AssignmentServiceTest {
 
         assignment.setLatestReturnDate(latestReturnExtended);
         assignment.setExtensions(2);
-        verify(this.assignmentRepository,times(1)).save(assignment);
-    }
+        verify(this.assignmentRepository,times(1)).saveAndRefresh(assignment);
+    }*/
 }
