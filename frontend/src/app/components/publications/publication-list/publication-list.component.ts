@@ -6,7 +6,7 @@ import { Publication } from 'src/app/models/publication';
 @Component({
     selector: 'app-publication-list',
     templateUrl: './publication-list.component.html',
-    styleUrls: ['./publication-list.component.scss'],
+    styleUrls: ['../../../helpers/list-component.scss'],
 })
 export class PublicationListComponent extends TableInitsComponent<Publication> implements OnInit {
     @Input() publications: Observable<Publication[]> = new Observable<Publication[]>();

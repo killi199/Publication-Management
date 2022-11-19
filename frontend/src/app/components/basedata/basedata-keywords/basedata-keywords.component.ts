@@ -5,7 +5,7 @@ import { CrudComponent } from '../../../helpers/crud-component';
 @Component({
     selector: 'app-basedata-keywords',
     templateUrl: './basedata-keywords.component.html',
-    styleUrls: ['../basedata.common.scss'],
+    styleUrls: ['../../../helpers/list-component.scss', '../basedata.common.scss'],
 })
 export class BasedataKeywordsComponent extends CrudComponent<Keyword> {
     displayedColumns: string[] = ['keyword'];
@@ -22,8 +22,7 @@ export class BasedataKeywordsComponent extends CrudComponent<Keyword> {
     }
 
     override _emitUpdate(record: Keyword): string {
-        if (this.selectedRecord?.value === record.value)
-            return 'Nichts zum Ändern!';
+        if (this.selectedRecord?.value === record.value) return 'Nichts zum Ändern!';
 
         this.update!(record).subscribe((a) => {
             this.selectedRecord!.value = a.value;
@@ -35,16 +34,12 @@ export class BasedataKeywordsComponent extends CrudComponent<Keyword> {
     }
 
     override _getRecordFromInputFields(): Keyword {
-        const name = (<HTMLInputElement>(
-            document.getElementById('input-value-of-keyword')
-        )).value;
+        const name = (<HTMLInputElement>document.getElementById('input-value-of-keyword')).value;
         return { uuid: this.selectedRecord?.uuid, value: name };
     }
 
     override _clearInputFields(): void {
-        (<HTMLInputElement>(
-            document.getElementById('input-value-of-keyword')
-        )).value = '';
+        (<HTMLInputElement>document.getElementById('input-value-of-keyword')).value = '';
     }
 
     protected override _defineFilterPredicate(): (data: Keyword, filter: string) => boolean {

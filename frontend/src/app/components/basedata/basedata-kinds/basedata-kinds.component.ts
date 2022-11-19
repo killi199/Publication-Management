@@ -5,7 +5,7 @@ import { CrudComponent } from '../../../helpers/crud-component';
 @Component({
     selector: 'app-basedata-kinds',
     templateUrl: './basedata-kinds.component.html',
-    styleUrls: ['../basedata.common.scss'],
+    styleUrls: ['../../../helpers/list-component.scss', '../basedata.common.scss'],
 })
 export class BasedataKindsComponent extends CrudComponent<KindOfPublication> {
     displayedColumns: string[] = ['kindOfPublication'];
