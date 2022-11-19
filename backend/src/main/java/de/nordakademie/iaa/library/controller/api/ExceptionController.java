@@ -10,6 +10,8 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import javax.validation.ConstraintViolationException;
+
 /**
  * This controller will handle all exceptions in this application, caused by the controllerAdvice annotation.
  * Each response has to pass this controller
@@ -57,5 +59,20 @@ public class ExceptionController {
         logger.error("NullPointerException: ", exception);
 
         return new ResponseEntity<>("The server has an invalid state. Please contact the support.", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    /**
+     *
+     * This handles the ConstraintViolationException which occurs most frequently when a child entity does not exist in our case.
+     * All ConstraintViolationException concerning the existent of the object itself will be caught before.
+     *
+     * @return The error text as response
+     */
+    @ExceptionHandler(value = ConstraintViolationException.class)
+    public ResponseEntity<String> exception(ConstraintViolationException exception) {
+        Logger logger = LoggerFactory.getLogger(ExceptionController.class.getSimpleName());
+        logger.error("Constraint Exception: ", exception);
+
+        return new ResponseEntity<>("One or more constraints does not exist. Please make sure to create all correlating entities first.", HttpStatus.BAD_REQUEST);
     }
 }

@@ -42,7 +42,7 @@ public class AuthorService implements AuthorServiceInterface {
      * @return all authors
      */
     public List<AuthorDto> getAll() {
-        List<Author> authors = authorRepository.findAll();
+        List<Author> authors = authorRepository.findAllByOrderBySurname();
         return authorMapper.authorEntitiesToDtos(authors);
     }
 
@@ -123,6 +123,6 @@ public class AuthorService implements AuthorServiceInterface {
     private AuthorDto createOrUpdate(@NotNull AuthorDto authorDto) {
         Author author = authorMapper.authorDtoToEntity(authorDto);
 
-        return authorMapper.authorEntityToDto(authorRepository.saveAndRefresh(author));
+        return authorMapper.authorEntityToDto(authorRepository.save(author));
     }
 }

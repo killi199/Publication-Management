@@ -2,9 +2,9 @@ package de.nordakademie.iaa.library.persistent.entities;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
-import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 /**
@@ -20,7 +20,7 @@ public class Keyword {
     @NotNull
     private String value;
 
-    @OneToMany(mappedBy = "keyword", fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, orphanRemoval = true)
+    @OneToMany(mappedBy = "keyword", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST}, orphanRemoval = true)
     private List<KeywordsPublications> keywordsPublications = new ArrayList<>();
 
     public UUID getUuid() {

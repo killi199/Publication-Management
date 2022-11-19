@@ -29,6 +29,8 @@ public class PublicationDto {
 
     private int quantity;
 
+    private boolean deleted = false;
+
     public String getKey() {
         return key;
     }
@@ -99,5 +101,13 @@ public class PublicationDto {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 }

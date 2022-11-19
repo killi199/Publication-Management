@@ -1,14 +1,24 @@
 package de.nordakademie.iaa.library.persistent.entities;
 
+import org.hibernate.annotations.SQLDelete;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
  * A Publication is the main object for a library. It describes things like books, articles, etc.
+ * A Publication can only be softly deleted. Caused by its correlation to the assignments and the fact that we want to
+ * show all historical assignments.
+ * A deleted publication has always a quantity of 0.
+ * We also will not set a standard behavior that only the not deleted publications will be visible.
+ * This is only relevant for one Endpoint and for this one we will write an own query.
  */
 @Entity
+@SQLDelete(sql = "UPDATE publication SET deleted=true, quantity=0 WHERE key=?")
 public class Publication {
 
     @Id
@@ -17,22 +27,28 @@ public class Publication {
     @NotNull
     private String title;
 
-    @OneToMany(mappedBy = "publication", fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, orphanRemoval = true)
+    @OneToMany(mappedBy = "publication", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<AuthorsPublications> authorsPublications = new ArrayList<>();
 
     private Date dateOfPublication;
 
     private String publisher;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE} )
+    @ManyToOne(fetch = FetchType.LAZY)
     private KindOfPublication kindOfPublication;
 
     private String ISBN;
 
-    @OneToMany(mappedBy = "publication", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "publication", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<KeywordsPublications> keywordsPublications = new ArrayList<>();
 
+
+    @Column(columnDefinition = "integer default 0")
     private int quantity;
+
+    @NotNull
+    @Column(columnDefinition = "boolean default false")
+    private boolean deleted;
 
     public String getKey() {
         return key;
@@ -124,5 +140,13 @@ public class Publication {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 }

@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 
 /**
- * Author Publication relation
+ * Author Publication relation this is exact definition of the relation is needed so that a combined key can be defined.
  */
 @Entity
 @IdClass(AuthorPublicationsKey.class)
@@ -21,11 +21,11 @@ public class AuthorsPublications {
 
 
     @Id
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Publication publication;
 
     @Id
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Author author;
 
 

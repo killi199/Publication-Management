@@ -61,12 +61,12 @@ class KeywordServiceTest {
     void create_works() {
         keywordDto.setValue("test");
 
-        when(this.keywordRepository.saveAndRefresh(keyword)).thenReturn(keyword);
+        when(this.keywordRepository.save(keyword)).thenReturn(keyword);
         when(this.keywordMapper.keywordDtoToEntity(keywordDto)).thenReturn(keyword);
         when(this.keywordMapper.keywordEntityToDto(keyword)).thenReturn(keywordDto);
 
         assertEquals(keywordDto, this.keywordService.create(keywordDto));
-        verify(keywordRepository, times(1)).saveAndRefresh(keyword);
+        verify(keywordRepository, times(1)).save(keyword);
         verify(keywordMapper, times(1)).keywordDtoToEntity(keywordDto);
         verify(keywordMapper, times(1)).keywordEntityToDto(keyword);
     }
@@ -109,13 +109,13 @@ class KeywordServiceTest {
         keywordDto.setValue("test");
 
         when(this.keywordRepository.existsById(uuid)).thenReturn(true);
-        when(this.keywordRepository.saveAndRefresh(keyword)).thenReturn(keyword);
+        when(this.keywordRepository.save(keyword)).thenReturn(keyword);
         when(this.keywordMapper.keywordDtoToEntity(keywordDto)).thenReturn(keyword);
         when(this.keywordMapper.keywordEntityToDto(keyword)).thenReturn(keywordDto);
 
         assertEquals(keywordDto, this.keywordService.update(keywordDto));
         verify(keywordRepository, times(1)).existsById(uuid);
-        verify(keywordRepository, times(1)).saveAndRefresh(keyword);
+        verify(keywordRepository, times(1)).save(keyword);
         verify(keywordMapper, times(1)).keywordDtoToEntity(keywordDto);
         verify(keywordMapper, times(1)).keywordEntityToDto(keyword);
     }

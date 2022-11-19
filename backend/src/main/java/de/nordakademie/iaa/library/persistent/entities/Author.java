@@ -23,7 +23,7 @@ public class Author {
     @NotNull
     private String name;
 
-    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, orphanRemoval = true)
+    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST}, orphanRemoval = true)
     private List<AuthorsPublications> authorsPublications = new ArrayList<>();
 
     public UUID getUuid() {

@@ -15,10 +15,9 @@ public interface KindOfPublicationRepository extends CustomBaseRepository<KindOf
 
 
     /**
-     * This will overwrite the findAll method so that it returns a list and not an iterable
+     * Find all order by value
      */
-    @Override
-    List<KindOfPublication> findAll();
+    List<KindOfPublication> findAllByOrderByValue();
 
     List<KindOfPublication> findByValue(String value);
 }

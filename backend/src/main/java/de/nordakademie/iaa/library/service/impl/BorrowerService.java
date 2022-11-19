@@ -43,7 +43,7 @@ public class BorrowerService implements BorrowerServiceInterface {
      * @return all borrowers
      */
     public List<BorrowerDto> getAll() {
-        List<Borrower> borrowers = borrowerRepository.findAll();
+        List<Borrower> borrowers = borrowerRepository.findAllByOrderByStudentNumber();
         return borrowerMapper.borrowerEntitiesToDtos(borrowers);
     }
 
@@ -120,6 +120,6 @@ public class BorrowerService implements BorrowerServiceInterface {
     private BorrowerDto createOrUpdate(@NotNull BorrowerDto borrowerDto) {
         Borrower borrower = borrowerMapper.borrowerDtoToEntity(borrowerDto);
 
-        return borrowerMapper.borrowerEntityToDto(borrowerRepository.saveAndRefresh(borrower));
+        return borrowerMapper.borrowerEntityToDto(borrowerRepository.save(borrower));
     }
 }

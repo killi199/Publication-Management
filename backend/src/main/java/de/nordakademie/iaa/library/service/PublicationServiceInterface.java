@@ -15,7 +15,7 @@ public interface PublicationServiceInterface {
      *
      * @return all Publications
      */
-    List<PublicationDto> getAll();
+    List<PublicationDto> getAll(boolean showDeleted);
 
     /**
      * create a Publication

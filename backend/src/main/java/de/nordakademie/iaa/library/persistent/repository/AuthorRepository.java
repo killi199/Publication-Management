@@ -15,8 +15,7 @@ public interface AuthorRepository extends CustomBaseRepository<Author, UUID> {
 
 
     /**
-     * This will overwrite the findAll method so that it returns a list and not an iterable
+     * find all ordered by surname
      */
-    @Override
-    List<Author> findAll();
+    List<Author> findAllByOrderBySurname();
 }

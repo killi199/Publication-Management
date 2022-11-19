@@ -43,7 +43,7 @@ public class KeywordService implements KeywordServiceInterface {
      * @return all keywords
      */
     public List<KeywordDto> getAll() {
-        List<Keyword> keywords = keywordRepository.findAll();
+        List<Keyword> keywords = keywordRepository.findAllByOrderByValue();
         return keywordMapper.keywordEntitiesToDtos(keywords);
     }
 
@@ -125,6 +125,6 @@ public class KeywordService implements KeywordServiceInterface {
 
         Keyword keyword = keywordMapper.keywordDtoToEntity(keywordDto);
 
-        return keywordMapper.keywordEntityToDto(keywordRepository.saveAndRefresh(keyword));
+        return keywordMapper.keywordEntityToDto(keywordRepository.save(keyword));
     }
 }

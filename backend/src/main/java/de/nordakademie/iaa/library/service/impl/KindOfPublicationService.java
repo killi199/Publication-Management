@@ -44,7 +44,7 @@ public class KindOfPublicationService implements KindOfPublicationServiceInterfa
      * @return all kindOfPublications
      */
     public List<KindOfPublicationDto> getAll() {
-        List<KindOfPublication> kindOfPublication = kindOfPublicationRepository.findAll();
+        List<KindOfPublication> kindOfPublication = kindOfPublicationRepository.findAllByOrderByValue();
         return kindOfPublicationMapper.kindOfPublicationEntitiesToDtos(kindOfPublication);
     }
 
@@ -125,6 +125,6 @@ public class KindOfPublicationService implements KindOfPublicationServiceInterfa
 
         KindOfPublication kindOfPublication = kindOfPublicationMapper.kindOfPublicationDtoToEntity(kindOfPublicationDto);
 
-        return kindOfPublicationMapper.kindOfPublicationEntityToDto(kindOfPublicationRepository.saveAndRefresh(kindOfPublication));
+        return kindOfPublicationMapper.kindOfPublicationEntityToDto(kindOfPublicationRepository.save(kindOfPublication));
     }
 }
