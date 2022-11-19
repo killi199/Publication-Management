@@ -1,6 +1,7 @@
 package de.nordakademie.iaa.library.persistent.repository;
 
 import de.nordakademie.iaa.library.persistent.entities.OverdueNotice;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +15,14 @@ import java.util.List;
 @Repository
 public interface OverdueNoticeRepository extends CrudRepository<OverdueNotice, String> {
 
+    /**
+     * This will overwrite the findAll method so that it returns a list and not an iterable
+     */
     @Override
+    @Query("SELECT DISTINCT o FROM OverdueNotice o " +
+            "LEFT OUTER JOIN FETCH o.warning " +
+            "LEFT OUTER JOIN FETCH o.assignment a " +
+            "LEFT OUTER JOIN FETCH a.publication " +
+            "LEFT OUTER JOIN FETCH a.borrower ")
     List<OverdueNotice> findAll();
 }

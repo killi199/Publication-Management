@@ -28,7 +28,7 @@ public class OverdueNoticeController {
     }
 
     /**
-     * This method will fetch all OverdueNotices from the database.
+     * This method will fetch all OverdueNotices.
      *
      * @return a list of OverdueNotices
      */
