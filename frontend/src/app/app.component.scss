@@ -44,7 +44,7 @@ mat-list-item {
 
 button {
     width: 100%;
-    display: flex;
+    display: flex;    
 }
 
 mat-icon {
@@ -62,6 +62,7 @@ mat-icon {
 .logo {
     width: 80px;
     margin-left: 10px;
+    filter: drop-shadow(3px 3px 2px rgba(0,0,0,.15));
 }
 
 h1 {
@@ -71,6 +72,7 @@ h1 {
 
 .nak-logo-text {
     margin-right: 10px;
+    filter: drop-shadow(3px 3px 2px rgba(0,0,0,.15));
 }
 
 .footer {
