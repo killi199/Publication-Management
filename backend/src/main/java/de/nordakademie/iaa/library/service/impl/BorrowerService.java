@@ -120,6 +120,6 @@ public class BorrowerService implements BorrowerServiceInterface {
     private BorrowerDto createOrUpdate(@NotNull BorrowerDto borrowerDto) {
         Borrower borrower = borrowerMapper.borrowerDtoToEntity(borrowerDto);
 
-        return borrowerMapper.borrowerEntityToDto(borrowerRepository.save(borrower));
+        return borrowerMapper.borrowerEntityToDto(borrowerRepository.saveAndRefresh(borrower));
     }
 }

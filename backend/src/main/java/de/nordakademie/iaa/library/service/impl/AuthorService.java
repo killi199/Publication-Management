@@ -1,6 +1,5 @@
 package de.nordakademie.iaa.library.service.impl;
 
-import de.nordakademie.iaa.library.controller.api.exception.EntityAlreadyExistsException;
 import de.nordakademie.iaa.library.controller.api.exception.EntityDoesNotExistException;
 import de.nordakademie.iaa.library.controller.api.exception.IllegalUsageOfIdentifierException;
 import de.nordakademie.iaa.library.controller.api.exception.MissingFieldException;
@@ -124,6 +123,6 @@ public class AuthorService implements AuthorServiceInterface {
     private AuthorDto createOrUpdate(@NotNull AuthorDto authorDto) {
         Author author = authorMapper.authorDtoToEntity(authorDto);
 
-        return authorMapper.authorEntityToDto(authorRepository.save(author));
+        return authorMapper.authorEntityToDto(authorRepository.saveAndRefresh(author));
     }
 }

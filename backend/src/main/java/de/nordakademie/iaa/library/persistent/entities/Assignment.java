@@ -17,13 +17,14 @@ public class Assignment {
     private UUID uuid;
 
     @NotNull
+    @Column(updatable = false)
     private Date dateOfAssignment;
 
     private Date dateOfReturn;
 
     private boolean publicationLoss;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
+    @ManyToOne(fetch = FetchType.LAZY)
     private Borrower borrower;
 
     private int extensions;
@@ -32,7 +33,7 @@ public class Assignment {
     private Date latestReturnDate;
 
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
     private Publication publication;
 
@@ -100,4 +101,5 @@ public class Assignment {
     public void setLatestReturnDate(Date latestReturnDate) {
         this.latestReturnDate = latestReturnDate;
     }
+
 }

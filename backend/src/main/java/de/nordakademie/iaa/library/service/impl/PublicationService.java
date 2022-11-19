@@ -145,6 +145,6 @@ public class PublicationService implements PublicationServiceInterface {
     private PublicationDto createOrUpdate(@NotNull PublicationDto publicationDto) {
         Publication publication = publicationMapper.publicationDtoToEntity(publicationDto);
 
-        return publicationMapper.publicationEntityToDto(publicationRepository.save(publication));
+        return publicationMapper.publicationEntityToDto(publicationRepository.saveAndRefresh(publication));
     }
 }

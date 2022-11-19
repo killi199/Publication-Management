@@ -155,19 +155,22 @@ public class AssignmentService implements AssignmentServiceInterface {
      */
     public AssignmentDto update(@NotNull AssignmentDto assignmentDto) {
 
-        checkAndFillRequiredFields(assignmentDto);
-
         if (assignmentDto.getUuid() == null) {
             throw new EntityDoesNotExistException();
         }
+        Assignment assignmentOld = getAssignmentByUuid(assignmentDto.getUuid());
+
+        // set extensions, latestReturnDate, dateOfAssignment and publicationLoss to database values
+        assignmentDto.setExtensions(assignmentOld.getExtensions());
+        assignmentDto.setLatestReturnDate(assignmentOld.getLatestReturnDate());
+        assignmentDto.setDateOfAssignment(assignmentOld.getDateOfAssignment());
+        assignmentDto.setPublicationLoss(assignmentOld.isPublicationLoss());
+
+        // check has to be after the set of the dateOfAssignment, so that the returned date can be validated correctly
+        checkAndFillRequiredFields(assignmentDto);
 
         Assignment assignment = assignmentMapper.assignmentDtoToEntity(assignmentDto);
 
-        Assignment assignmentOld = getAssignmentByUuid(assignment.getUuid());
-
-        // set extensions and borrowedUtil to database values
-        assignment.setExtensions(assignmentOld.getExtensions());
-        assignment.setLatestReturnDate(assignmentOld.getLatestReturnDate());
 
         return createOrUpdate(assignment);
     }
@@ -226,6 +229,6 @@ public class AssignmentService implements AssignmentServiceInterface {
      * This method should not be called with null values.
      */
     private AssignmentDto createOrUpdate(@NotNull Assignment assignment) {
-        return assignmentMapper.assignmentEntityToDto(assignmentRepository.save(assignment));
+        return assignmentMapper.assignmentEntityToDto(assignmentRepository.saveAndRefresh(assignment));
     }
 }

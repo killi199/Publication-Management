@@ -125,6 +125,6 @@ public class KindOfPublicationService implements KindOfPublicationServiceInterfa
 
         KindOfPublication kindOfPublication = kindOfPublicationMapper.kindOfPublicationDtoToEntity(kindOfPublicationDto);
 
-        return kindOfPublicationMapper.kindOfPublicationEntityToDto(kindOfPublicationRepository.save(kindOfPublication));
+        return kindOfPublicationMapper.kindOfPublicationEntityToDto(kindOfPublicationRepository.saveAndRefresh(kindOfPublication));
     }
 }
