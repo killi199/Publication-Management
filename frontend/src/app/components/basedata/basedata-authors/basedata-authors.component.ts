@@ -59,8 +59,7 @@ export class BasedataAuthorsComponent extends CrudComponent<Author> {
 
     protected override _defineFilterPredicate(): (data: Author, filter: string) => boolean {
         return (data: Author, filter: string): boolean => {
-            const allValuesInOneString = '';
-
+            const allValuesInOneString = '' + data.surname + data.name;
             return allValuesInOneString.trim().toLowerCase().includes(filter) ?? false;
         };
     }

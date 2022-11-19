@@ -71,8 +71,7 @@ export class BasedataBorrowersComponent extends CrudComponent<Borrower> {
 
     protected override _defineFilterPredicate(): (data: Borrower, filter: string) => boolean {
         return (data: Borrower, filter: string): boolean => {
-            const allValuesInOneString = '';
-
+            const allValuesInOneString = '' + data.name + data.surname + data.studentNumber;
             return allValuesInOneString.trim().toLowerCase().includes(filter) ?? false;
         };
     }

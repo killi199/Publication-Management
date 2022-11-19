@@ -44,8 +44,7 @@ export class BasedataKindsComponent extends CrudComponent<KindOfPublication> {
 
     protected override _defineFilterPredicate(): (data: KindOfPublication, filter: string) => boolean {
         return (data: KindOfPublication, filter: string): boolean => {
-            const allValuesInOneString = '';
-
+            const allValuesInOneString = '' + data.value;
             return allValuesInOneString.trim().toLowerCase().includes(filter) ?? false;
         };
     }
