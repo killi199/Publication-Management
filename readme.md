@@ -1,13 +1,6 @@
 # Hausarbeit IAA A19b Gruppe 5
 
-## Backend und Frontend Starten
+## Anwendung starten
 
-Backend starten:
-
-- `cd docker-compose/backend`
+- `cd docker-compose/application`
 - `docker-compose up`
-
-Frontend starten:
-
-- `cd frontend`
-- `ng serve`
