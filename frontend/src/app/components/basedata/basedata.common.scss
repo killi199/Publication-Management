@@ -1,6 +1,7 @@
 .container {
     width: 100%;
     overflow: auto;
+    overflow-x: hidden;
     height: 90%;
     display: flex;
     flex-direction: column;
@@ -14,6 +15,7 @@
     display: flex;
     justify-content: space-between;
     margin-left: 10px;
+    align-items: flex-end;
 }
 
 .btn-container {
@@ -26,13 +28,21 @@
 
 button {
     margin: 5px;
+    height: 50px;
+    width: 50px;
 }
 
-form {
+mat-icon {
+    font-size: 35px;
     width: 100%;
+    height: 100%;
 }
 
 .add-btn {
     margin-right: 20px;
+}
+
+mat-form-field{
+    margin-right: 10px;
 }
 
