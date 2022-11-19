@@ -6,7 +6,9 @@
 @import '@angular/material/theming';
 
 $app-primary: mat-palette($mat-indigo);
-$app-accent:  mat-palette($mat-pink, A200, A100, A400);
+$app-accent:  mat-palette($mat-pink, A100);
+$app-warn: mat-palette($mat-orange, 200);
 
 $primary: mat-color($app-primary);
 $accent: mat-color($app-accent);
+$warn: mat-color($app-warn);

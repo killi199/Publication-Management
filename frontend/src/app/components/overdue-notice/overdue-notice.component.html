@@ -3,18 +3,28 @@
         <h1>Mahnwesen</h1>
     </div>
 
-    <app-overdue-notice-list *ngIf="!isViewOpen" [overdueNotices]="data"  ></app-overdue-notice-list>
+    <app-overdue-notice-list
+        [overdueNotices]="data"
+        (selectRecord)="onSetSelection($event)"
+    ></app-overdue-notice-list>
 
     <div class="button-container">
         <div class="crud-container">
             <button
                 matTooltip="Mahnen"
-                *ngIf="!currentRecord"
-                (click)="onEdit()"
+                [disabled]="!(currentRecord && warnable)"
+                mat-mini-fab
+                color="primary"
+            >
+                <mat-icon>assignment_late</mat-icon>
+            </button>
+            <button
+                matTooltip="Verlust melden"
+                [disabled]="!(currentRecord && deleteable)"
                 mat-mini-fab
                 color="warn"
             >
-                <mat-icon>assignment_late</mat-icon>
+                <mat-icon>delete_forever</mat-icon>
             </button>
         </div>
     </div>
