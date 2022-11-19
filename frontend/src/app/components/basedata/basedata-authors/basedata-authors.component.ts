@@ -5,14 +5,13 @@ import { CrudComponent } from '../../../helpers/crud-component';
 @Component({
     selector: 'app-basedata-authors',
     templateUrl: './basedata-authors.component.html',
-    styleUrls: ['../basedata.common.scss'],
+    styleUrls: ['../../../helpers/list-component.scss', '../basedata.common.scss'],
 })
 export class BasedataAuthorsComponent extends CrudComponent<Author> {
     displayedColumns: string[] = ['surname', 'name'];
 
     override _emitCreate(record: Author): string {
-        if (!record.name?.trim() || !record.surname?.trim())
-            return 'Nichts zum Hinzufügen!';
+        if (!record.name?.trim() || !record.surname?.trim()) return 'Nichts zum Hinzufügen!';
 
         this.create!(record).subscribe((a) => {
             this.dataSource.data.push(a);
@@ -23,10 +22,7 @@ export class BasedataAuthorsComponent extends CrudComponent<Author> {
     }
 
     override _emitUpdate(record: Author): string {
-        if (
-            this.selectedRecord?.name === record.name &&
-            this.selectedRecord?.surname === record.surname
-        )
+        if (this.selectedRecord?.name === record.name && this.selectedRecord?.surname === record.surname)
             return 'Nichts zum Ändern!';
 
         this.update!(record).subscribe((a) => {
@@ -40,11 +36,8 @@ export class BasedataAuthorsComponent extends CrudComponent<Author> {
     }
 
     override _getRecordFromInputFields(): Author {
-        const surname = (<HTMLInputElement>(
-            document.getElementById('input-surname')
-        )).value;
-        const name = (<HTMLInputElement>document.getElementById('input-name'))
-            .value;
+        const surname = (<HTMLInputElement>document.getElementById('input-surname')).value;
+        const name = (<HTMLInputElement>document.getElementById('input-name')).value;
         return {
             uuid: this.selectedRecord?.uuid,
             surname: surname,
@@ -55,5 +48,12 @@ export class BasedataAuthorsComponent extends CrudComponent<Author> {
     override _clearInputFields(): void {
         (<HTMLInputElement>document.getElementById('input-surname')).value = '';
         (<HTMLInputElement>document.getElementById('input-name')).value = '';
+    }
+
+    protected override _defineFilterPredicate(): (data: Author, filter: string) => boolean {
+        return (data: Author, filter: string): boolean => {
+            const allValuesInOneString = '' + data.surname + data.name;
+            return allValuesInOneString.trim().toLowerCase().includes(filter) ?? false;
+        };
     }
 }

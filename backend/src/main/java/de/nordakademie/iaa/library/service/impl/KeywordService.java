@@ -125,6 +125,6 @@ public class KeywordService implements KeywordServiceInterface {
 
         Keyword keyword = keywordMapper.keywordDtoToEntity(keywordDto);
 
-        return keywordMapper.keywordEntityToDto(keywordRepository.save(keyword));
+        return keywordMapper.keywordEntityToDto(keywordRepository.saveAndRefresh(keyword));
     }
 }

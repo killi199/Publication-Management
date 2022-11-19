@@ -5,17 +5,13 @@ import { CrudComponent } from '../../../helpers/crud-component';
 @Component({
     selector: 'app-basedata-borrowers',
     templateUrl: './basedata-borrowers.component.html',
-    styleUrls: ['../basedata.common.scss'],
+    styleUrls: ['../../../helpers/list-component.scss', '../basedata.common.scss'],
 })
 export class BasedataBorrowersComponent extends CrudComponent<Borrower> {
     displayedColumns: string[] = ['surname', 'name', 'studentNumber'];
 
     override _emitCreate(record: Borrower): string {
-        if (
-            !record.name?.trim() ||
-            !record.surname?.trim() ||
-            !record.studentNumber?.trim()
-        )
+        if (!record.name?.trim() || !record.surname?.trim() || !record.studentNumber?.trim())
             return 'Nichts zum Hinzufügen!';
 
         this.create!(record).subscribe((a) => {
@@ -45,14 +41,9 @@ export class BasedataBorrowersComponent extends CrudComponent<Borrower> {
     }
 
     override _getRecordFromInputFields(): Borrower {
-        const surname = (<HTMLInputElement>(
-            document.getElementById('input-surname')
-        )).value;
-        const name = (<HTMLInputElement>document.getElementById('input-name'))
-            .value;
-        const studentNumber = (<HTMLInputElement>(
-            document.getElementById('input-studentNumber')
-        )).value;
+        const surname = (<HTMLInputElement>document.getElementById('input-surname')).value;
+        const name = (<HTMLInputElement>document.getElementById('input-name')).value;
+        const studentNumber = (<HTMLInputElement>document.getElementById('input-studentNumber')).value;
         return {
             uuid: this.selectedRecord?.uuid,
             surname: surname,
@@ -64,8 +55,13 @@ export class BasedataBorrowersComponent extends CrudComponent<Borrower> {
     override _clearInputFields(): void {
         (<HTMLInputElement>document.getElementById('input-surname')).value = '';
         (<HTMLInputElement>document.getElementById('input-name')).value = '';
-        (<HTMLInputElement>(
-            document.getElementById('input-studentNumber')
-        )).value = '';
+        (<HTMLInputElement>document.getElementById('input-studentNumber')).value = '';
+    }
+
+    protected override _defineFilterPredicate(): (data: Borrower, filter: string) => boolean {
+        return (data: Borrower, filter: string): boolean => {
+            const allValuesInOneString = '' + data.name + data.surname + data.studentNumber;
+            return allValuesInOneString.trim().toLowerCase().includes(filter) ?? false;
+        };
     }
 }

@@ -83,8 +83,8 @@ export abstract class CrudComponent<T>
         this.selection.clear();
     }
 
-    abstract _emitCreate(record: T): string;
-    abstract _emitUpdate(record: T): string;
-    abstract _getRecordFromInputFields(): T;
-    abstract _clearInputFields(): void;
+    protected abstract _emitCreate(record: T): string;
+    protected abstract _emitUpdate(record: T): string;
+    protected abstract _getRecordFromInputFields(): T;
+    protected abstract _clearInputFields(): void;
 }

@@ -58,4 +58,22 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
             this.selectedRecord = overdueNotice;
         }
     }
+
+    protected _defineFilterPredicate(): (data: OverdueNotice, filter: string) => boolean {
+        return (data: OverdueNotice, filter: string): boolean => {
+            const iswarnableDisplayValue = this.isWarnable(this.getLatestWarningDate(data)) ? 'Ja' : 'Nein';
+            const allValuesInOneString =
+                '' +
+                data.assignment.publicationKey +
+                data.assignment.borrower.studentNumber +
+                data.assignment.borrower.name +
+                data.assignment.borrower.surname +
+                data.assignment.dateOfReturn +
+                // this.getLatestWarningDate(data) +
+                data.warnings.length +
+                iswarnableDisplayValue;
+
+            return allValuesInOneString.trim().toLowerCase().includes(filter) ?? false;
+        };
+    }
 }

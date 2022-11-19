@@ -1,9 +1,9 @@
 package de.nordakademie.iaa.library.persistent.entities;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
+import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 /**
@@ -16,8 +16,20 @@ public class KindOfPublication {
     @GeneratedValue
     private UUID uuid;
 
+    @NotNull
     @Column(unique = true)
     private String value;
+
+    @OneToMany(mappedBy = "kindOfPublication",fetch = FetchType.LAZY)
+    private List<Publication> publications;
+
+    /**
+     * Set kind of publication to null in every publication.
+     */
+    @PreRemove
+    private void preRemove() {
+        getPublications().forEach( publication -> publication.setKindOfPublication(null));
+    }
 
     public UUID getUuid() {
         return uuid;
@@ -33,5 +45,13 @@ public class KindOfPublication {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public List<Publication> getPublications() {
+        return publications;
+    }
+
+    public void setPublications(List<Publication> publications) {
+        this.publications = publications;
     }
 }

@@ -38,7 +38,10 @@ public class ExceptionController {
      * @return The error text as response
      */
     @ExceptionHandler(value = HttpMessageNotReadableException.class)
-    public ResponseEntity<String> exception(HttpMessageNotReadableException ignored) {
+    public ResponseEntity<String> exception(HttpMessageNotReadableException exception) {
+        Logger logger = LoggerFactory.getLogger(ExceptionController.class.getSimpleName());
+        logger.error("Bad Request: ", exception);
+
         return new ResponseEntity<>("The format of one or more values is not valid.", HttpStatus.BAD_REQUEST);
     }
 

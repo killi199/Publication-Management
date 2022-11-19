@@ -1,3 +1,4 @@
+@import "../../theme.scss";
 
 table {
     width: 100%;
@@ -17,7 +18,7 @@ table {
 }
 
 th {
-    font-size: larger;
+    font-size: larger !important;
 }
 
 tr {
@@ -35,11 +36,11 @@ tr {
 }
 
 .mat-row.hovered {
-    background-color: rgb(208, 208, 208);
+    background-color: $accent1;
 }
 
 .mat-row.highlighted {
-    background-color: rgb(170, 170, 170);
+    background-color: $accent2;
 }
 
 .mat-paginator-sticky {

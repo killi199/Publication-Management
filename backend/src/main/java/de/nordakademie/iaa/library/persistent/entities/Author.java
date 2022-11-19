@@ -3,6 +3,10 @@ package de.nordakademie.iaa.library.persistent.entities;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -14,9 +18,13 @@ public class Author {
     @GeneratedValue
     private UUID uuid;
 
+    @NotNull
     private String surname;
-
+    @NotNull
     private String name;
+
+    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, orphanRemoval = true)
+    private List<AuthorsPublications> authorsPublications = new ArrayList<>();
 
     public UUID getUuid() {
         return uuid;
@@ -40,5 +48,13 @@ public class Author {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<AuthorsPublications> getAuthorsPublications() {
+        return authorsPublications;
+    }
+
+    public void setAuthorsPublications(List<AuthorsPublications> authorsPublications) {
+        this.authorsPublications = authorsPublications;
     }
 }
