@@ -55,7 +55,7 @@ export class PublicationsComponent implements OnInit {
         this.currentPublication = publication;
 
         if(publication?.key){
-            this.assignments = this.assignmentService.loadAssignments(publication.key);
+            this.assignments = this.assignmentService.getAllCoressponding(publication.key);
         }
     }
 

@@ -23,7 +23,7 @@ export class AssignmentsComponent implements OnInit {
     currentRecord?: Assignment;
     
     constructor(assignmentService: AssignmentService, private borrowerService: BorrowerService, private publicationService: PublicationService) {
-        this.data = assignmentService.loadAllAssignments();
+        this.data = assignmentService.getAll();
         this.extendAssignment = assignmentService.extendAssignment;
         this.isAssignmentExtendable = assignmentService.isAssignmentExtendable;
         this.updateAssignment = assignmentService.update;

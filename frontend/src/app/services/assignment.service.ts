@@ -21,7 +21,7 @@ export class AssignmentService {
         return of(assignment);
     }
 
-    loadAllAssignments(): Observable<Assignment[]> {
+    getAll(): Observable<Assignment[]> {
         return this.http.get<Assignment[]>(ENDPOINT_URL).pipe(
             catchError((err: HttpErrorResponse) => {
                 throw this._handleError(err);
@@ -29,7 +29,7 @@ export class AssignmentService {
         );
     }
 
-    loadAssignments(uuid: string): Observable<Assignment[]> {
+    getAllCoressponding(uuid: string): Observable<Assignment[]> {
         return this.http.get<Assignment[]>(`${ENDPOINT_URL}/${uuid}`).pipe(
             catchError((err: HttpErrorResponse) => {
                 throw this._handleError(err);
