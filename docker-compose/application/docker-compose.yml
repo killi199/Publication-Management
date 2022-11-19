@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:14.1-alpine
+    container_name: libraryDb
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+  backend:
+    depends_on:
+      - db
+    container_name: libraryBackend
+    restart: on-failure
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://libraryDb:5432/postgres
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+    build: ../../backend
+    ports:
+      - "8080:8080"
+  frontend:
+    depends_on:
+      - backend
+    container_name: libraryFrontend
+    restart: on-failure
+    build: ../../frontend
+    ports:
+      - "80:80"
+volumes:
+  db:
