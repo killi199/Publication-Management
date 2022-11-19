@@ -8,13 +8,8 @@ import { Assignment } from 'src/app/models/assignment';
     templateUrl: './assignment-list.component.html',
     styleUrls: ['../../../helpers/list-component.scss'],
 })
-export class AssignmentListComponent
-    extends TableInitsComponent<Assignment>
-    implements OnInit
-{
-    @Input() assignments: Observable<Assignment[]> = new Observable<
-        Assignment[]
-    >();
+export class AssignmentListComponent extends TableInitsComponent<Assignment> implements OnInit {
+    @Input() assignments: Observable<Assignment[]> = new Observable<Assignment[]>();
 
     @Output() showAssignment = new EventEmitter<Assignment>();
 
@@ -28,6 +23,11 @@ export class AssignmentListComponent
     ];
 
     selectedAssignment?: Assignment;
+
+    constructor() {
+        super();
+        this._filterSpecifications();
+    }
 
     ngOnInit(): void {
         this.assignments.subscribe((assignments) => {
@@ -45,5 +45,14 @@ export class AssignmentListComponent
             this.showAssignment.emit(assignment);
             this.selectedAssignment = assignment;
         }
+    }
+
+    private _filterSpecifications(): void {
+        // TODO: 2 Dates fehlen, brauche hier das short-date format
+        this.dataSource.filterPredicate = (data: Assignment, filter: string): boolean => {
+            const allValuesInOneString =
+                '' + data.publicationKey + data.borrower.studentNumber + data.borrower.name + data.borrower.surname;
+            return allValuesInOneString?.trim().toLowerCase().includes(filter) ?? false;
+        };
     }
 }

@@ -51,31 +51,19 @@ export class PublicationListComponent extends TableInitsComponent<Publication> i
     }
 
     private _filterSpecifications(): void {
+        // TODO: Date fehlt, brauche hier das short-date format
         this.dataSource.filterPredicate = (data: Publication, filter: string): boolean => {
-            const keyFilter = this._include(data.key, filter);
-            const titleFilter = this._include(data.title, filter);
-            const authorFilter = this._include(data.authors?.map((a) => '' + a.name + a.surname).join(' '), filter);
-            // TODO: iwie an das short-Date Format rankommen und dann wie gehabt zum string machen und gucken ob der filter im string steckt..
-            // const dateOfPublicationFilter = data.dateOfPublication;
-            const publisherFilter = this._include(data.publisher, filter);
-            const kindOfPubFilter = this._include(data.kindOfPublication?.value, filter);
-            const isbnFilter = this._include(data.isbn, filter);
-            const keywordFilter = this._include(data.keywords?.map((k) => k.value).join(' '), filter);
-            const quantityFilter = this._include(data.quantity?.toString(), filter);
-            return (
-                keyFilter ||
-                titleFilter ||
-                authorFilter ||
-                publisherFilter ||
-                kindOfPubFilter ||
-                isbnFilter ||
-                keywordFilter ||
-                quantityFilter
-            );
+            const allValuesInOneString =
+                '' +
+                data.authors?.map((a) => '' + a.name + a.surname).join(' ') +
+                data.key +
+                data.title +
+                data.publisher +
+                data.kindOfPublication?.value +
+                data.isbn +
+                data.keywords?.map((k) => k.value).join(' ') +
+                data.quantity;
+            return allValuesInOneString?.trim().toLowerCase().includes(filter) ?? false;
         };
-    }
-
-    private _include(dataValue: string | undefined | null, filter: string): boolean {
-        return dataValue?.trim().toLowerCase().includes(filter) ?? false;
     }
 }
