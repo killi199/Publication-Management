@@ -1,8 +1,10 @@
 package de.nordakademie.iaa.library.persistent.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import de.nordakademie.iaa.library.controller.api.exception.BorrowerHasOpenAssignmentException;
+
+import javax.persistence.*;
+import java.util.List;
+import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 /**
@@ -18,8 +20,25 @@ public class Borrower {
 
     private String name;
 
+    @NotNull
     private String studentNumber;
 
+    @OneToMany(mappedBy = "borrower",fetch = FetchType.LAZY)
+    private List<Assignment> assignments;
+
+    /**
+     * Set the borrower null in all assignments, if the borrower has no open assignments.
+     */
+    @PreRemove
+    private void preRemove() {
+        getAssignments().forEach( assignment -> {
+            if (assignment.getDateOfReturn() == null && !assignment.isPublicationLoss()) {
+                throw new BorrowerHasOpenAssignmentException();
+            }
+
+            assignment.setBorrower(null);
+        });
+    }
     public UUID getUuid() {
         return uuid;
     }
@@ -50,5 +69,13 @@ public class Borrower {
 
     public void setStudentNumber(String studentNumber) {
         this.studentNumber = studentNumber;
+    }
+
+    public List<Assignment> getAssignments() {
+        return assignments;
+    }
+
+    public void setAssignments(List<Assignment> assignments) {
+        this.assignments = assignments;
     }
 }

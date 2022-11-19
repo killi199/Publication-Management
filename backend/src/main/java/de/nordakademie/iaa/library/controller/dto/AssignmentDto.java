@@ -8,6 +8,7 @@ import java.util.UUID;
  * Each Publication can be lent to a Borrower.
  */
 public class AssignmentDto {
+
     private UUID uuid;
 
     private Date dateOfAssignment;
@@ -16,7 +17,13 @@ public class AssignmentDto {
 
     private BorrowerDto borrower;
 
+    private int extensions;
 
+    private PublicationDto publication;
+
+    private Date latestReturnDate;
+
+    private boolean publicationLoss;
     public UUID getUuid() {
         return uuid;
     }
@@ -47,5 +54,37 @@ public class AssignmentDto {
 
     public void setBorrower(BorrowerDto borrower) {
         this.borrower = borrower;
+    }
+
+    public int getExtensions() {
+        return extensions;
+    }
+
+    public void setExtensions(int extensions) {
+        this.extensions = extensions;
+    }
+
+    public PublicationDto getPublication() {
+        return publication;
+    }
+
+    public void setPublication(PublicationDto publication) {
+        this.publication = publication;
+    }
+
+    public Date getLatestReturnDate() {
+        return latestReturnDate;
+    }
+
+    public void setLatestReturnDate(Date latestReturnDate) {
+        this.latestReturnDate = latestReturnDate;
+    }
+
+    public boolean isPublicationLoss() {
+        return publicationLoss;
+    }
+
+    public void setPublicationLoss(boolean publicationLoss) {
+        this.publicationLoss = publicationLoss;
     }
 }

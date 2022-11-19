@@ -223,25 +223,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Assignment'
-    put:
-      tags:
-        - Assignment
-      summary: Update a existing assignment
-      description: Update a existing assignment
-      operationId: updateAssignment
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Assignment'
-        required: true
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Assignment'
     post:
       tags:
         - Assignment
@@ -261,6 +242,64 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Assignment'
+  /assignment/{publicationKey}:
+    get:
+      tags:
+        - Assignment
+      summary: Get all existing assignment
+      description: Get all existing assignment
+      operationId: getAssignmentByPubKey
+      parameters:
+        - name: publicationKey
+          in: path
+          description: Key of the publication
+          required: true
+          schema:
+            type: string
+        - name: showReturned
+          in: query
+          description: show returned assignments
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Successful assignment
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Assignment'
+  /assignment/return/{uuid}:
+    post:
+      tags:
+        - Assignment
+      summary: return the assignment
+      operationId: returnAssignment
+      parameters:
+        - name: uuid
+          in: path
+          description: Uuid of the assignment
+          required: true
+          schema:
+            type: string
+        - name: dateOfReturn
+          in: query
+          description: returndate
+          required: false
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Successful assignment
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Assignment'
   /assignment/extend/{uuid}:
     post:
       tags:
@@ -283,29 +322,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Assignment'
-  /assignment/extendable/{uuid}:
-    get:
-      tags:
-        - Assignment
-      summary: check if the assignment is extandable
-      operationId: extendableAssignment
-      parameters:
-        - name: uuid
-          in: path
-          description: Uuid of the assignment
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful assignment
-          content:
-            application/json:
-              schema:
-                type: boolean
-            application/xml:
-              schema:
-                type: boolean
   /overdue-notice:
     get:
       tags:
@@ -696,8 +712,16 @@ components:
         dateOfReturn:
           type: string
           format: date-time
-        publicationKey:
+        extension:
+          type: integer
+          format: uint
+          default: 0
+          example: 2
+        borrowedUtil:
           type: string
+          format: date-time
+        publication:
+          $ref: '#/components/schemas/Publication'
         borrower:
           $ref: '#/components/schemas/Borrower'
     AssignmentCreate:
@@ -706,8 +730,13 @@ components:
         dateOfAssignment:
           type: string
           format: date-time
-        publicationKey:
-          type: string
+        extension:
+          type: integer
+          format: uint
+          default: 0
+          example: 2
+        publication:
+          $ref: '#/components/schemas/Publication'
         borrower:
           $ref: '#/components/schemas/Borrower'
     Warning:

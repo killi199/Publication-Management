@@ -1,28 +1,41 @@
 package de.nordakademie.iaa.library.persistent.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.UUID;
 
 /**
  * An Assignment describes the lending of Publications.
- * Each Publication can be lend to a Borrower.
+ * Each Publication can be lent to a Borrower.
  */
 @Entity
 public class Assignment {
+
     @Id
     @GeneratedValue
     private UUID uuid;
 
+    @NotNull
+    @Column(updatable = false)
     private Date dateOfAssignment;
 
     private Date dateOfReturn;
 
-    @ManyToOne
+    private boolean publicationLoss;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Borrower borrower;
+
+    private int extensions;
+
+    @NotNull
+    private Date latestReturnDate;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @NotNull
+    private Publication publication;
 
 
     public UUID getUuid() {
@@ -56,4 +69,37 @@ public class Assignment {
     public void setBorrower(Borrower borrower) {
         this.borrower = borrower;
     }
+
+    public boolean isPublicationLoss() {
+        return publicationLoss;
+    }
+
+    public void setPublicationLoss(boolean publicationLoss) {
+        this.publicationLoss = publicationLoss;
+    }
+
+    public int getExtensions() {
+        return extensions;
+    }
+
+    public void setExtensions(int extensions) {
+        this.extensions = extensions;
+    }
+
+    public Publication getPublication() {
+        return publication;
+    }
+
+    public void setPublication(Publication publication) {
+        this.publication = publication;
+    }
+
+    public Date getLatestReturnDate() {
+        return latestReturnDate;
+    }
+
+    public void setLatestReturnDate(Date latestReturnDate) {
+        this.latestReturnDate = latestReturnDate;
+    }
+
 }

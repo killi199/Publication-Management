@@ -61,12 +61,12 @@ class KindOfPublicationServiceTest {
     void create_works() {
         kindOfPublicationDto.setValue("test");
 
-        when(this.kindOfPublicationRepository.save(kindOfPublication)).thenReturn(kindOfPublication);
+        when(this.kindOfPublicationRepository.saveAndRefresh(kindOfPublication)).thenReturn(kindOfPublication);
         when(this.kindOfPublicationMapper.kindOfPublicationDtoToEntity(kindOfPublicationDto)).thenReturn(kindOfPublication);
         when(this.kindOfPublicationMapper.kindOfPublicationEntityToDto(kindOfPublication)).thenReturn(kindOfPublicationDto);
 
         assertEquals(kindOfPublicationDto, this.kindOfPublicationService.create(kindOfPublicationDto));
-        verify(kindOfPublicationRepository, times(1)).save(kindOfPublication);
+        verify(kindOfPublicationRepository, times(1)).saveAndRefresh(kindOfPublication);
         verify(kindOfPublicationMapper, times(1)).kindOfPublicationDtoToEntity(kindOfPublicationDto);
         verify(kindOfPublicationMapper, times(1)).kindOfPublicationEntityToDto(kindOfPublication);
     }
@@ -109,13 +109,13 @@ class KindOfPublicationServiceTest {
         kindOfPublicationDto.setValue("test");
 
         when(this.kindOfPublicationRepository.existsById(uuid)).thenReturn(true);
-        when(this.kindOfPublicationRepository.save(kindOfPublication)).thenReturn(kindOfPublication);
+        when(this.kindOfPublicationRepository.saveAndRefresh(kindOfPublication)).thenReturn(kindOfPublication);
         when(this.kindOfPublicationMapper.kindOfPublicationDtoToEntity(kindOfPublicationDto)).thenReturn(kindOfPublication);
         when(this.kindOfPublicationMapper.kindOfPublicationEntityToDto(kindOfPublication)).thenReturn(kindOfPublicationDto);
 
         assertEquals(kindOfPublicationDto, this.kindOfPublicationService.update(kindOfPublicationDto));
         verify(kindOfPublicationRepository, times(1)).existsById(uuid);
-        verify(kindOfPublicationRepository, times(1)).save(kindOfPublication);
+        verify(kindOfPublicationRepository, times(1)).saveAndRefresh(kindOfPublication);
         verify(kindOfPublicationMapper, times(1)).kindOfPublicationDtoToEntity(kindOfPublicationDto);
         verify(kindOfPublicationMapper, times(1)).kindOfPublicationEntityToDto(kindOfPublication);
     }

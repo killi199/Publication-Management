@@ -8,6 +8,8 @@ public class ApiPath {
 
     public static final String AUTHOR_BASE_PATH = "/author";
 
+    public static final String ASSIGNMENT_BASE_PATH = "/assignment";
+
     public static final String BORROWER_BASE_PATH = "/borrower";
 
     public static final String KEYWORD_BASE_PATH = "/keyword";
