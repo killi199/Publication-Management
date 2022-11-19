@@ -97,7 +97,7 @@
         <button
             matTooltip="Editieren"
             (click)="onEdit()"
-            [disabled]="selectedRecord.studentNumber === null"
+            [disabled]="!selectedRecord.studentNumber"
             *ngIf="crudState === 'read'"
             mat-mini-fab
             color="primary"
@@ -119,7 +119,7 @@
         <button
             mat-mini-fab
             matTooltip="Löschen"
-            [disabled]="selectedRecord.studentNumber === null"
+            [disabled]="!selectedRecord.studentNumber"
             *ngIf="crudState === 'read'"
             color="warn"
             (click)="onDelete(selectedRecord!)"
