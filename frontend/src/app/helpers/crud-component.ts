@@ -7,10 +7,7 @@ import { CrudState } from 'src/app/models/crud-state';
 @Component({
     template: '',
 })
-export abstract class CrudComponent<T>
-    extends TableInitsComponent<T>
-    implements OnInit
-{
+export abstract class CrudComponent<T> extends TableInitsComponent<T> implements OnInit {
     @Input()
     data: Observable<T[]> = new Observable<T[]>();
 
@@ -39,8 +36,7 @@ export abstract class CrudComponent<T>
     }
 
     selectionChanged(selection: T): void {
-        this.selectedRecord =
-            this.selectedRecord === selection ? {} as T : selection;
+        this.selectedRecord = this.selectedRecord === selection ? ({} as T) : selection;
     }
 
     onEdit(): void {
@@ -48,10 +44,7 @@ export abstract class CrudComponent<T>
     }
 
     onSave(): void {
-        let messageType =
-            this.crudState === CrudState.Create
-                ? this.onCreate()
-                : this.onUpdate();
+        let messageType = this.crudState === CrudState.Create ? this.onCreate() : this.onUpdate();
 
         this.snackBar.open(messageType);
         this.crudState = CrudState.Read;
@@ -68,9 +61,7 @@ export abstract class CrudComponent<T>
 
     onDelete(record: T): void {
         this.delete!(record).subscribe(() => {
-            this.dataSource.data = this.dataSource.data.filter(
-                (r) => r !== record
-            );
+            this.dataSource.data = this.dataSource.data.filter((r) => r !== record);
             this.selectedRecord = {} as T;
             this.snackBar.open('Gelöscht!');
         });
@@ -99,5 +90,5 @@ export abstract class CrudComponent<T>
         });
 
         return 'Geändert!';
-    };
+    }
 }

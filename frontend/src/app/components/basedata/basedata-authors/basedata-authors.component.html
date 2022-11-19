@@ -1,11 +1,7 @@
 <div class="container">
     <mat-form-field appearance="standard">
         <mat-label>Filter</mat-label>
-        <input
-            matInput
-            (keyup)="applyFilter($event)"
-            placeholder="Bsp. Max"
-        />
+        <input matInput (keyup)="applyFilter($event)" placeholder="Bsp. Max" />
     </mat-form-field>
 
     <table mat-table [dataSource]="dataSource" matSort>
@@ -29,7 +25,7 @@
         ></tr>
         <tr
             mat-row
-            (click)="selection.toggle(row)"            
+            (click)="selection.toggle(row)"
             (click)="selectionChanged(row)"
             [ngClass]="{
                 hovered: row.hovered,
@@ -132,4 +128,3 @@
         <mat-icon>add</mat-icon>
     </button>
 </div>
-

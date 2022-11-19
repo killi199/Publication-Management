@@ -6,7 +6,9 @@
 
     <table mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="keyword">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Schlagwort</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Schlagwort
+            </th>
             <td mat-cell *matCellDef="let element">
                 {{ element.value }}
             </td>
@@ -32,7 +34,7 @@
     </table>
 
     <mat-paginator
-    [pageSizeOptions]="[10, 25, 50, 100]"
+        [pageSizeOptions]="[10, 25, 50, 100]"
         showFirstLastButtons
         class="mat-paginator-sticky"
     >
