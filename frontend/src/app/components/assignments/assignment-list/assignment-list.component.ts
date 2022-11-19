@@ -46,7 +46,7 @@ export class AssignmentListComponent extends TableInitsComponent<Assignment> imp
         // TODO: 2 Dates fehlen, brauche hier das short-date format
         return (data: Assignment, filter: string): boolean => {
             const allValuesInOneString =
-                '' + data.publicationKey + data.borrower.studentNumber + data.borrower.name + data.borrower.surname;
+                '' + data.publicationKey + data.borrower?.studentNumber + data.borrower?.name + data.borrower?.surname;
             return allValuesInOneString?.trim().toLowerCase().includes(filter) ?? false;
         };
     }

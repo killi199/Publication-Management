@@ -65,9 +65,9 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
             const allValuesInOneString =
                 '' +
                 data.assignment.publicationKey +
-                data.assignment.borrower.studentNumber +
-                data.assignment.borrower.name +
-                data.assignment.borrower.surname +
+                data.assignment.borrower?.studentNumber +
+                data.assignment.borrower?.name +
+                data.assignment.borrower?.surname +
                 data.assignment.dateOfReturn +
                 // this.getLatestWarningDate(data) +
                 data.warnings.length +
