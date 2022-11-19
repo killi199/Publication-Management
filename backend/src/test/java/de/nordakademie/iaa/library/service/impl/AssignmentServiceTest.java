@@ -49,7 +49,6 @@ class AssignmentServiceTest {
     private AssignmentDto assignmentDto;
     private Assignment assignment;
 
-
     @BeforeEach
     void setUpBeforeEach() {
         ReflectionTestUtils.setField(assignmentService, "rentalPeriod", 14);
@@ -159,10 +158,8 @@ class AssignmentServiceTest {
         publicationDto.setKey("test");
         publicationDto.setQuantity(1);
 
-
         assignmentDto.setPublication(publicationDto);
         assignmentDto.setDateOfAssignment(dateOfAssignment);
-
 
         Date latestReturnDate = formatter.parse("2022-9-20 05:55:13");
 
@@ -239,7 +236,6 @@ class AssignmentServiceTest {
 
         assertThrows(MaximumExtensionsException.class, () -> this.assignmentService.extend(uuid));
     }
-
 
     @Test
     void extend_works() throws ParseException {

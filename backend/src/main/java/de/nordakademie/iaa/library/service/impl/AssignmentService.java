@@ -2,6 +2,7 @@ package de.nordakademie.iaa.library.service.impl;
 
 import de.nordakademie.iaa.library.controller.api.exception.*;
 import de.nordakademie.iaa.library.controller.dto.AssignmentDto;
+import de.nordakademie.iaa.library.controller.dto.PublicationDto;
 import de.nordakademie.iaa.library.controller.dto.LatestReturnDateForAssignmentDateDto;
 import de.nordakademie.iaa.library.controller.dto.PublicationDto;
 import de.nordakademie.iaa.library.persistent.entities.Assignment;
@@ -325,6 +326,4 @@ public class AssignmentService implements AssignmentServiceInterface {
 
         return assignmentMapper.assignmentEntityToDto(assignment);
     }
-
-
 }
