@@ -24,6 +24,9 @@ public class AssignmentService implements AssignmentServiceInterface {
 
     @Value("${assignment.rentalPeriode}")
     int rentalPeriode;
+
+    @Value("${assignment.maxExtensionNumber:2}")
+    int maxExtensionNumber;
     private final AssignmentRepository assignmentRepository;
 
     private final AssignmentMapper assignmentMapper;
@@ -174,7 +177,7 @@ public class AssignmentService implements AssignmentServiceInterface {
 
         Assignment assignment = getAssignmentByUuid(assignmentUUID);
 
-        if (assignment.getExtensions() >= 2) {
+        if (assignment.getExtensions() >= maxExtensionNumber) {
             throw new MaximumExtensionsException();
         }
 

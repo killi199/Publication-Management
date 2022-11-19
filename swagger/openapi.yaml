@@ -267,7 +267,7 @@ paths:
         - Assignment
       summary: Get all existing assignment
       description: Get all existing assignment
-      operationId: getAssignment
+      operationId: getAssignmentByPubKey
       parameters:
         - name: publicationKey
           in: path
@@ -707,12 +707,11 @@ components:
           format: uint
           default: 0
           example: 2
+        borrowedUtil:
+          type: string
+          format: date-time
         publication:
           $ref: '#/components/schemas/Publication'
-        publicationKey:
-          type: string
-        publicationLoss:
-          type: boolean
         borrower:
           $ref: '#/components/schemas/Borrower'
     AssignmentCreate:
