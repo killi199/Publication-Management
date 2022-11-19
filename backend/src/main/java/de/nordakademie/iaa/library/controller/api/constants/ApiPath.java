@@ -2,7 +2,8 @@ package de.nordakademie.iaa.library.controller.api.constants;
 
 public class ApiPath {
 
-    private ApiPath() {}
+    private ApiPath() {
+    }
 
     public static final String PUBLICATION_BASE_PATH = "/publication";
 
@@ -16,4 +17,5 @@ public class ApiPath {
 
     public static final String KIND_OF_PUBLICATION_BASE_PATH = "/kind-of-publication";
 
+    public static final String OVERDUE_NOTICE_BASE_PATH = "/overdue-notice";
 }
