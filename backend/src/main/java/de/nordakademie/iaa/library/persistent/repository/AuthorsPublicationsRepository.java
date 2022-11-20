@@ -2,14 +2,13 @@ package de.nordakademie.iaa.library.persistent.repository;
 
 import de.nordakademie.iaa.library.persistent.entities.AuthorsPublications;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface AuthorsPublicationsRepository extends CrudRepository<AuthorsPublications, UUID> {
+public interface AuthorsPublicationsRepository extends CustomBaseRepository<AuthorsPublications, UUID> {
 
     /**
      * find all author publications

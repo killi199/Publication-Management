@@ -18,4 +18,5 @@ public class ApiPath {
     public static final String KIND_OF_PUBLICATION_BASE_PATH = "/kind-of-publication";
 
     public static final String OVERDUE_NOTICE_BASE_PATH = "/overdue-notice";
+    public static final String WARNING_BASE_PATH = "/overdue-notice/warning";
 }

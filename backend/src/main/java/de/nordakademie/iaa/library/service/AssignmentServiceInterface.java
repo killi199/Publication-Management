@@ -19,6 +19,14 @@ public interface AssignmentServiceInterface {
      */
     List<AssignmentDto> getAll(boolean showReturned);
 
+
+    /**
+     * Marks an assignment as lost
+     *
+     * @param uuid
+     */
+    void markAssignmentAsLost(UUID uuid);
+
     /**
      * get all assignments
      *

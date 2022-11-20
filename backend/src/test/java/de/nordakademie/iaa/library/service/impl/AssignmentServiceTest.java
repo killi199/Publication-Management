@@ -40,6 +40,9 @@ class AssignmentServiceTest {
     @Mock
     private AssignmentMapper assignmentMapper;
 
+    @Mock
+    private OverdueNoticeService overdueNoticeService;
+
     @InjectMocks
     private AssignmentService assignmentService;
 

@@ -322,6 +322,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Assignment'
+  /assignment/publication-lost/{uuid}:
+    post:
+      tags:
+        - Assignment
+      summary: mark the assignment as lost
+      operationId: publicationLostAssignment
+      parameters:
+        - name: uuid
+          in: path
+          description: Uuid of the assignment
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful assignment
   /overdue-notice:
     get:
       tags:
@@ -345,26 +361,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/OverdueNotice'
-  /overdue-notice/{uuid}:
-    delete:
-      tags:
-        - Overdue notice
-      summary: Delete a overdue notice caused by loss
-      operationId: deleteOverdueNotice
-      parameters:
-        - name: uuid
-          in: path
-          description: Uuid of the overdue notice
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                type: string
   /overdue-notice/warning/{overdueNoticeUuid}:
     post:
       tags:
@@ -744,8 +740,6 @@ components:
       properties:
         uuid:
           type: string
-        overdueNoticeUuid:
-          type: string
         warningDate:
           type: string
           format: date-time
@@ -756,8 +750,19 @@ components:
           type: string
         assignment:
           $ref: '#/components/schemas/Assignment'
+        closedAt:
+          type: string
+          format: date-time
+        openedAt:
+          type: string
+          format: date-time
+        overdueNoticeState:
+          type: string
+          enum: [OPENED,CLOSED]
         warnings:
-          $ref: '#/components/schemas/Warning'
+          type: array
+          items:
+            $ref: '#/components/schemas/Warning'
     EntityAlreadyExistsException:
       type: string
       enum: ["The entity you try to create already exits. You can override it if you want."]
