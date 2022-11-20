@@ -8,34 +8,52 @@
     </div>
 </div>
 
-<mat-sidenav-container class="main-container">
-    <mat-sidenav mode="side" opened>
-        <mat-list class="list">
-            <mat-list-item>
-                <button mat-icon-button [routerLink]="'/overdue-notice'">
-                    <mat-icon>running_with_errors</mat-icon>
-                    Mahnwesen
-                </button>
-            </mat-list-item>
-            <mat-list-item>
-                <button mat-icon-button [routerLink]="'/publications'">
-                    <mat-icon>menu_book</mat-icon>
-                    Publikationen
-                </button>
-            </mat-list-item>
-            <mat-list-item>
-                <button mat-icon-button [routerLink]="'/assignments'">
-                    <mat-icon>assignment</mat-icon>
-                    Ausleihvorgänge
-                </button>
-            </mat-list-item>
-            <mat-list-item>
-                <button mat-icon-button [routerLink]="'/basedata'">
-                    <mat-icon>storage</mat-icon>
-                    Stammdaten
-                </button>
-            </mat-list-item>
-        </mat-list>
+<mat-sidenav-container class="main-container" autosize>
+    <mat-sidenav disableClose mode="side" opened>
+        <div class="list">
+            <button
+                mat-icon-button
+                [routerLink]="'/overdue-notice'"
+                routerLinkActive="active"
+            >
+                <mat-icon>running_with_errors</mat-icon>
+                <span *ngIf="!showMiniNav">Mahnwesen</span>
+            </button>
+
+            <button
+                mat-icon-button
+                [routerLink]="'/publications'"
+                routerLinkActive="active"
+            >
+                <mat-icon>menu_book</mat-icon>
+                <span *ngIf="!showMiniNav">Publikationen</span>
+            </button>
+
+            <button
+                mat-icon-button
+                [routerLink]="'/assignments'"
+                routerLinkActive="active"
+            >
+                <mat-icon>assignment</mat-icon>
+                <span *ngIf="!showMiniNav">Ausleihvorgänge</span>
+            </button>
+
+            <button
+                mat-icon-button
+                [routerLink]="'/basedata'"
+                routerLinkActive="active"
+            >
+                <mat-icon>storage</mat-icon>
+                <span *ngIf="!showMiniNav">Stammdaten</span>
+            </button>
+        </div>
+        <button *ngIf="!showMiniNav" mat-icon-button (click)="showMiniNav = !showMiniNav">
+            <mat-icon><span> keyboard_double_arrow_left </span></mat-icon>
+            <span>Einklappen</span>
+        </button>
+        <button *ngIf="showMiniNav" mat-icon-button (click)="showMiniNav = !showMiniNav">
+            <mat-icon><span> keyboard_double_arrow_right </span></mat-icon>
+        </button>
     </mat-sidenav>
     <mat-sidenav-content>
         <div class="content">
