@@ -1,6 +1,5 @@
-import { outputAst } from '@angular/compiler';
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, NgForm } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { map, Observable, startWith } from 'rxjs';
 import { Assignment } from 'src/app/models/assignment';
 import { Borrower } from 'src/app/models/borrower';
@@ -36,10 +35,10 @@ export class AssignmentViewComponent implements OnInit {
     formGroup = new FormGroup({
         publication: new FormControl<Publication | undefined>(undefined),
         dateOfAssignment: new FormControl<Date>(new Date()),
-        dateOfReturn: new FormControl<Date | undefined>({value: undefined, disabled: true}),
-        latestReturnDate: new FormControl<Date | undefined>({value: undefined, disabled: true}),
+        dateOfReturn: new FormControl<Date | undefined>({ value: undefined, disabled: true }),
+        latestReturnDate: new FormControl<Date | undefined>({ value: undefined, disabled: true }),
         borrower: new FormControl<Borrower | undefined>(undefined),
-        extensions: new FormControl<number>({value: 0, disabled: true}),
+        extensions: new FormControl<number>({ value: 0, disabled: true }),
     });
 
     filteredBorrowers: Observable<Borrower[]> = new Observable<Borrower[]>();
@@ -58,16 +57,46 @@ export class AssignmentViewComponent implements OnInit {
     onSubmit(): void {
         if (!this.formGroup.valid) return;
 
+        if (typeof this.formGroup.value.borrower === 'string') {
+            this.formGroup.value.borrower = this.getCorrectBorrower(this.formGroup.value.borrower);
+        }
+
+        if (typeof this.formGroup.value.publication === 'string') {
+            this.formGroup.value.publication = this.getCorrectPublication(this.formGroup.value.publication);
+        }
+
         this.create!(this.formGroup.value).subscribe((a) => {
             this.formGroup.patchValue(a);
             this.formGroup.disable();
             this.assignment = a;
         });
-        
+    }
+
+    getCorrectBorrower(borrower: string): Borrower {
+        const value = borrower.trim();
+        console.log(value);
+        const filteredBorrower = this._filterBorrowers(value as string);
+
+        if (filteredBorrower.length === 1) {
+            return filteredBorrower[0];
+        }
+
+        return {} as Borrower;
+    }
+
+    getCorrectPublication(publication: string): Publication {
+        const value = publication.trim();
+        const filteredPublications = this._filterPublications(value as string);
+
+        if (filteredPublications.length === 1) {
+            return filteredPublications[0];
+        }
+
+        return {} as Publication;
     }
 
     onExtend(): void {
-        if(!this.assignment) return;
+        if (!this.assignment) return;
 
         this.extendAssignment!(this.assignment).subscribe((a) => {
             this.formGroup.patchValue(a);
@@ -80,7 +109,7 @@ export class AssignmentViewComponent implements OnInit {
     }
 
     onReturn(): void {
-        if(!this.assignment) return;
+        if (!this.assignment) return;
 
         this.assignment.dateOfReturn = new Date();
         console.log(this.assignment.dateOfReturn);
@@ -89,13 +118,11 @@ export class AssignmentViewComponent implements OnInit {
         });
     }
 
-    displayBorrower(borrower: Borrower | string): string {
+    displayBorrower(borrower: Borrower): string {
         if (typeof borrower === 'string') {
             return borrower;
         }
-        return borrower?.surname && borrower?.name
-            ? borrower.surname + ' ' + borrower.name
-            : '';
+        return borrower?.surname && borrower?.name ? borrower.surname + ' ' + borrower.name : '';
     }
 
     displayPublication(publication: Publication): string {
@@ -104,59 +131,45 @@ export class AssignmentViewComponent implements OnInit {
 
     private _filterBorrowers(value: string): Borrower[] {
         const filterValue = value.toLowerCase();
-
-        return this.allBorrowers.filter(
-            (borrower) =>
-                borrower.surname?.toLowerCase().includes(filterValue) ||
-                borrower.name?.toLowerCase().includes(filterValue)
+        return this.allBorrowers.filter((borrower) =>
+            (borrower.surname + ' ' + borrower.name).toLowerCase().includes(filterValue)
         );
     }
 
     private _filterPublications(value: string): Publication[] {
         const filterValue = value.toLowerCase();
-
-        return this.allPublications.filter(
-            (publication) =>
-            publication.key?.toLowerCase().includes(filterValue)
-        );
+        return this.allPublications.filter((publication) => publication.key?.toLowerCase().includes(filterValue));
     }
+
     private _reloadView(): void {
-        this.filteredBorrowers = this.formGroup
-            .get('borrower')!
-            .valueChanges.pipe(
-                startWith(''),
-                map((borrower) => {
-                    let value = '';
+        this.filteredBorrowers = this.formGroup.get('borrower')!.valueChanges.pipe(
+            startWith(''),
+            map((borrower) => {
+                let value = '';
 
-                    if (typeof borrower === 'string') {
-                        value = borrower;
-                    } else if (borrower?.surname && borrower?.name) {
-                        value = borrower?.surname + borrower?.name;
-                    }
+                if (typeof borrower === 'string') {
+                    value = borrower;
+                } else if (borrower?.surname && borrower?.name) {
+                    value = borrower?.surname + borrower?.name;
+                }
 
-                    return value
-                        ? this._filterBorrowers(value as string)
-                        : this.allBorrowers.slice();
-                })
-            );
+                return value ? this._filterBorrowers(value as string) : this.allBorrowers.slice();
+            })
+        );
 
-            this.filteredPublication = this.formGroup
-            .get('publication')!
-            .valueChanges.pipe(
-                startWith(''),
-                map((publication) => {
-                    let value = '';
+        this.filteredPublication = this.formGroup.get('publication')!.valueChanges.pipe(
+            startWith(''),
+            map((publication) => {
+                let value = '';
 
-                    if (typeof publication === 'string') {
-                        value = publication;
-                    } else if (publication?.key) {
-                        value = publication?.key;
-                    }
+                if (typeof publication === 'string') {
+                    value = publication;
+                } else if (publication?.key) {
+                    value = publication?.key;
+                }
 
-                    return value
-                        ? this._filterPublications(value as string)
-                        : this.allPublications.slice();
-                })
-            );
+                return value ? this._filterPublications(value as string) : this.allPublications.slice();
+            })
+        );
     }
 }
