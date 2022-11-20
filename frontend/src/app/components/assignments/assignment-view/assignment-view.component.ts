@@ -36,8 +36,10 @@ export class AssignmentViewComponent implements OnInit {
     formGroup = new FormGroup({
         publication: new FormControl<Publication | undefined>(undefined),
         dateOfAssignment: new FormControl<Date>(new Date()),
-        dateOfReturn: new FormControl<Date | undefined>(undefined),
+        dateOfReturn: new FormControl<Date | undefined>({value: undefined, disabled: true}),
+        latestReturnDate: new FormControl<Date | undefined>({value: undefined, disabled: true}),
         borrower: new FormControl<Borrower | undefined>(undefined),
+        extensions: new FormControl<number>({value: 0, disabled: true}),
     });
 
     filteredBorrowers: Observable<Borrower[]> = new Observable<Borrower[]>();
@@ -58,9 +60,10 @@ export class AssignmentViewComponent implements OnInit {
 
         this.create!(this.formGroup.value).subscribe((a) => {
             this.formGroup.patchValue(a);
+            this.formGroup.disable();
+            this.assignment = a;
         });
         
-        this.formGroup.disable();
     }
 
     onExtend(): void {

@@ -9,15 +9,14 @@
                 matInput
                 formControlName="publication"
                 [matAutocomplete]="autocompletepublication"
+                required
             />
             <mat-autocomplete
                 #autocompletepublication="matAutocomplete"
                 [displayWith]="displayPublication"
             >
                 <mat-option
-                    *ngFor="
-                        let publication of filteredPublication | async
-                    "
+                    *ngFor="let publication of filteredPublication | async"
                     [value]="publication"
                 >
                     {{ publication.key }}
@@ -26,7 +25,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill">
-            <mat-label>Verleihdatum</mat-label>
+            <mat-label>Ausleihdatum</mat-label>
             <input
                 placeholder="Ex. 1.8.2008"
                 matInput
@@ -43,23 +42,6 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill">
-            <mat-label>Rückgabedatum</mat-label>
-            <input
-                placeholder="Ex. 1.8.2008"
-                matInput
-                name="dateOfReturn"
-                formControlName="dateOfReturn"
-                [matDatepicker]="pickerDateOfReturn"
-            />
-            <mat-datepicker-toggle
-                matSuffix
-                [for]="pickerDateOfReturn"
-                [disabled]="this.formGroup.disabled"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #pickerDateOfReturn></mat-datepicker>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
             <mat-label>Ausleiher</mat-label>
             <input
                 placeholder="Ex. Mustermann Max"
@@ -68,6 +50,7 @@
                 matInput
                 formControlName="borrower"
                 [matAutocomplete]="autocompleteBorrower"
+                required
             />
             <mat-autocomplete
                 #autocompleteBorrower="matAutocomplete"
@@ -80,6 +63,46 @@
                     {{ borrower.surname }} {{ borrower.name }}
                 </mat-option>
             </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Rückgabedatum</mat-label>
+            <input
+                matInput
+                name="dateOfReturn"
+                formControlName="dateOfReturn"
+                [matDatepicker]="pickerDateOfReturn"
+            />
+            <mat-datepicker-toggle
+                matSuffix
+                [for]="pickerDateOfReturn"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #pickerDateOfReturn></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Verlängerungen</mat-label>
+            <input
+                matInput
+                type="text"
+                name="extensions"
+                formControlName="extensions"
+            />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Späteste Abgabe</mat-label>
+            <input
+                matInput
+                name="latestReturnDate"
+                formControlName="latestReturnDate"
+                [matDatepicker]="pickerLatestReturnDate"
+            />
+            <mat-datepicker-toggle
+                matSuffix
+                [for]="pickerLatestReturnDate"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #pickerLatestReturnDate></mat-datepicker>
         </mat-form-field>
 
         <div class="button-container">
