@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
 import { Snackbar } from '../helpers/snackbar';
 import { Assignment } from '../models/assignment';
-import { Borrower } from '../models/borrower';
 
 const ENDPOINT_URL: string = '/rest/assignment';
 
@@ -18,7 +17,11 @@ export class AssignmentService {
     }
 
     create(assignment: Assignment): Observable<Assignment> {
-        return of(assignment);
+        return this.http.post<Assignment>(ENDPOINT_URL, assignment).pipe(
+            catchError((err: HttpErrorResponse) => {
+                throw this._handleError(err);
+            })
+        );
     }
 
     getAll(): Observable<Assignment[]> {
@@ -29,7 +32,7 @@ export class AssignmentService {
         );
     }
 
-    getAllCoressponding(uuid: string): Observable<Assignment[]> {
+    getAllByPubKey(uuid: string): Observable<Assignment[]> {
         return this.http.get<Assignment[]>(`${ENDPOINT_URL}/${uuid}`).pipe(
             catchError((err: HttpErrorResponse) => {
                 throw this._handleError(err);

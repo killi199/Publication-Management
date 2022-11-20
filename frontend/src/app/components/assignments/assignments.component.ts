@@ -14,26 +14,34 @@ import { PublicationService } from 'src/app/services/publication.service';
 })
 export class AssignmentsComponent implements OnInit {
     data: Observable<Assignment[]>;
-    extendAssignment?: (assignment: Assignment) => Observable<Assignment>;
-    isAssignmentExtendable?: (assignment: Assignment) => Observable<boolean>;
-    updateAssignment?: (assignment: Assignment) => Observable<Assignment>;
-    createAssignment?: (assignment: Assignment) => Observable<Assignment>;
     isViewOpen: boolean = false;
     borrowers: Borrower[] = [];
     publications: Publication[] = [];
     currentRecord?: Assignment;
 
     constructor(
-        assignmentService: AssignmentService,
+        private assignmentService: AssignmentService,
         private borrowerService: BorrowerService,
         private publicationService: PublicationService
     ) {
         this.data = assignmentService.getAll();
-        this.extendAssignment = assignmentService.extendAssignment;
-        this.isAssignmentExtendable = assignmentService.isAssignmentExtendable;
-        this.updateAssignment = assignmentService.update;
-        this.createAssignment = assignmentService.create;
     }
+
+    extendAssignment = (assignment: Assignment): Observable<any> => {
+        return this.assignmentService.extendAssignment(assignment);
+    };
+
+    isAssignmentExtendable = (assignment: Assignment): Observable<boolean> => {
+        return this.assignmentService.isAssignmentExtendable(assignment);
+    };
+
+    updateAssignment = (assignment: Assignment): Observable<Assignment> => {
+        return this.assignmentService.update(assignment);
+    };
+
+    createAssignment = (assignment: Assignment): Observable<Assignment> => {
+        return this.assignmentService.create(assignment);
+    };
 
     ngOnInit(): void {
         this.borrowerService.getAll().subscribe((borrowers) => (this.borrowers = borrowers));
