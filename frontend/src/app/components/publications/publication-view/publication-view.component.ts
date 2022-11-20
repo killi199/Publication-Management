@@ -102,6 +102,10 @@ export class PublicationViewComponent implements OnInit {
     onSubmit(): void {
         if (!this.formGroup.valid) return;
 
+        if (typeof this.formGroup.value.kindOfPublication === 'string') {
+            this.formGroup.value.kindOfPublication = this.getCorrectKindOfPublication(this.formGroup.value.kindOfPublication);
+        }
+
         this.savePublication.emit(this.formGroup.getRawValue());
         this.clonedPublication = structuredClone(this.formGroup.getRawValue());
         
@@ -109,6 +113,17 @@ export class PublicationViewComponent implements OnInit {
         this.snackBar.open('Publikation ' + crudOperation);
 
         this.formGroup.disable();
+    }
+
+    getCorrectKindOfPublication(kindOfPublication: string): KindOfPublication {
+        const value = kindOfPublication.trim();
+        const filteredKindsOfPublication = this._filterKindsOfPublication(value as string);
+
+        if (filteredKindsOfPublication.length === 1) {
+            return filteredKindsOfPublication[0];
+        }
+
+        return {value: kindOfPublication} as KindOfPublication;
     }
 
     onCancel(): void {
