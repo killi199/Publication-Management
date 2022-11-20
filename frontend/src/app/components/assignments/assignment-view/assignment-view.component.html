@@ -74,10 +74,7 @@
                 formControlName="dateOfReturn"
                 [matDatepicker]="pickerDateOfReturn"
             />
-            <mat-datepicker-toggle
-                matSuffix
-                [for]="pickerDateOfReturn"
-            ></mat-datepicker-toggle>
+            <mat-hint>DD.MM.JJJJ</mat-hint>
             <mat-datepicker #pickerDateOfReturn></mat-datepicker>
         </mat-form-field>
 
@@ -99,10 +96,7 @@
                 formControlName="latestReturnDate"
                 [matDatepicker]="pickerLatestReturnDate"
             />
-            <mat-datepicker-toggle
-                matSuffix
-                [for]="pickerLatestReturnDate"
-            ></mat-datepicker-toggle>
+            <mat-hint>DD.MM.JJJJ</mat-hint>
             <mat-datepicker #pickerLatestReturnDate></mat-datepicker>
         </mat-form-field>
 
