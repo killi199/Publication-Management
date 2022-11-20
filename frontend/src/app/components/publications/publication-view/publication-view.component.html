@@ -219,7 +219,6 @@
     <div *ngIf="hasAssignments" class="assignment-container">
         <h3 class="assignment-header">Ausleihvorgänge:</h3>
         <app-assignment-list
-            *ngIf="!this.addingPublication"
             [assignments]="assignments"
         ></app-assignment-list>
     </div>
