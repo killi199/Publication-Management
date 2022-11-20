@@ -1,5 +1,6 @@
-export interface Warning {
-    uuid: string;
+import { Entity } from './entity';
+
+export interface Warning extends Entity {
     overdueNoticeUuid: string;
     warningDate: Date;
 }
