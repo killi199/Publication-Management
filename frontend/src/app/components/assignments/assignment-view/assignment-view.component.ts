@@ -78,9 +78,11 @@ export class AssignmentViewComponent implements OnInit {
 
         if (filteredBorrower.length === 1) {
             return filteredBorrower[0];
+        } else {
+            const surname = value.split(' ')[0];
+            const name = value.split(' ')[1];
+            return { surname: surname, name: name } as Borrower;
         }
-
-        return {} as Borrower;
     }
 
     getCorrectPublication(publication: string): Publication {
@@ -91,7 +93,7 @@ export class AssignmentViewComponent implements OnInit {
             return filteredPublications[0];
         }
 
-        return {} as Publication;
+        return { key: publication } as Publication;
     }
 
     onExtend(): void {
@@ -130,9 +132,10 @@ export class AssignmentViewComponent implements OnInit {
 
     private _filterBorrowers(value: string): Borrower[] {
         const filterValue = value.toLowerCase();
-        return this.allBorrowers.filter((borrower) =>
-            (borrower.surname + ' ' + borrower.name).toLowerCase().includes(filterValue) ||
-            (borrower.name + ' ' + borrower.surname).toLowerCase().includes(filterValue)
+        return this.allBorrowers.filter(
+            (borrower) =>
+                (borrower.surname + ' ' + borrower.name).toLowerCase().includes(filterValue) ||
+                (borrower.name + ' ' + borrower.surname).toLowerCase().includes(filterValue)
         );
     }
 
