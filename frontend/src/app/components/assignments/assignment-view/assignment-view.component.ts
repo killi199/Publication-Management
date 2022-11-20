@@ -98,6 +98,7 @@ export class AssignmentViewComponent implements OnInit {
 
         this.extend!(this.assignment.uuid).subscribe((a) => {
             this.formGroup.patchValue(a);
+            this.assignment = a;
         });
     }
 
@@ -109,9 +110,9 @@ export class AssignmentViewComponent implements OnInit {
     onReturn(): void {
         if (!this.assignment?.uuid) return;
 
-        this.assignment.dateOfReturn = new Date();
         this.returnAssignment!(this.assignment.uuid).subscribe((a) => {
             this.formGroup.patchValue(a);
+            this.assignment = a;
         });
     }
 
