@@ -20,6 +20,8 @@ export class AssignmentListComponent extends TableInitsComponent<Assignment> imp
         'studentNumber',
         'dateOfAssignment',
         'dateOfReturn',
+        'latestReturnDate',
+        'extensions',
     ];
 
     selectedAssignment?: Assignment;

@@ -5,6 +5,9 @@ export interface Assignment{
     uuid?: string | null;
     dateOfAssignment?: Date | null;
     dateOfReturn?: Date | null;
-    publication?: Publication | null;
     borrower?: Borrower | null;
+    extensions?: number | null;
+    publication?: Publication | null;
+    latestReturnDate?: Date | null;
+    publicationLoss?: boolean | null;
 }
