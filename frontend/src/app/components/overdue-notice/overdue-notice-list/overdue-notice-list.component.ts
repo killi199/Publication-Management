@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TableInitsComponent } from 'src/app/helpers/table-inits';
 import { OverdueNotice } from 'src/app/models/overdue-notice';
-import { OverdueNoticeEvent } from './check-warnstatus-event';
 import { GermanDateAdapter } from 'src/app/helpers/german-date-adapter';
 import { Warning } from 'src/app/models/warning';
 import { Snackbar } from 'src/app/helpers/snackbar';
@@ -121,24 +120,20 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
     protected override _defineSortingAccessor(): (data: OverdueNotice, property: string) => string {
         return (data: OverdueNotice, property: string) => {
             switch (property) {
-                case 'publicationKey': {
-                    return data.assignment.publicationKey;
-                }
-
                 case 'surname': {
-                    return data.assignment.borrower.surname;
+                    return data.assignment?.borrower?.surname ?? '';
                 }
 
                 case 'name': {
-                    return data.assignment.borrower.name;
+                    return data.assignment?.borrower?.name ?? '';
                 }
 
                 case 'studentNumber': {
-                    return data.assignment.borrower.studentNumber;
+                    return data.assignment?.borrower?.studentNumber ?? '';
                 }
 
                 case 'dateOfReturn': {
-                    return data.assignment.dateOfReturn.toDateString();
+                    return data.assignment?.dateOfReturn?.toDateString() ?? '';
                 }
 
                 case 'warningDate': {
@@ -146,7 +141,7 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
                 }
 
                 case 'amountOfwarnings': {
-                    return data.warnings.length.toString();
+                    return data.warnings?.length.toString() ?? '';
                 }
 
                 case 'isReadyToWarn': {
@@ -160,7 +155,7 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
         };
     }
 
-    private _convertDate(date: Date | null): string {
+    private _convertDate(date: Date | null | undefined): string {
         const germanDateAdapter: GermanDateAdapter = new GermanDateAdapter();
         return date ? germanDateAdapter.formatDateToShortString(date) : '-';
     }
