@@ -16,4 +16,10 @@ export class BasedataKindsComponent extends CrudComponent<KindOfPublication> {
             return allValuesInOneString.trim().toLowerCase().includes(filter) ?? false;
         };
     }
+
+    protected override _defineSortingAccessor(): (data: KindOfPublication, property: string) => string {
+        return (data: KindOfPublication, property: string) => {
+            return data.value ?? '';
+        };
+    }
 }

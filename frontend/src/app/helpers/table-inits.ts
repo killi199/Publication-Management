@@ -18,6 +18,7 @@ export abstract class TableInitsComponent<Type> implements AfterViewInit {
 
     constructor() {
         this.dataSource.filterPredicate = this._defineFilterPredicate();
+        this.dataSource.sortingDataAccessor = this._defineSortingAccessor();
     }
 
     ngAfterViewInit() {
@@ -35,4 +36,5 @@ export abstract class TableInitsComponent<Type> implements AfterViewInit {
     }
 
     protected abstract _defineFilterPredicate(): (data: Type, filter: string) => boolean;
+    protected abstract _defineSortingAccessor(): (data: Type, property: string) => string;
 }

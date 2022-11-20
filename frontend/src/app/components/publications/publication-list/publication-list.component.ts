@@ -10,9 +10,11 @@ import { Publication } from 'src/app/models/publication';
     styleUrls: ['../../../helpers/list-component.scss'],
 })
 export class PublicationListComponent extends TableInitsComponent<Publication> implements OnInit {
-    @Input() publications: Observable<Publication[]> = new Observable<Publication[]>();
+    @Input()
+    publications: Observable<Publication[]> = new Observable<Publication[]>();
 
-    @Output() showPublication = new EventEmitter<Publication>();
+    @Output()
+    showPublication = new EventEmitter<Publication>();
 
     selectedPublication?: Publication;
 
@@ -46,7 +48,7 @@ export class PublicationListComponent extends TableInitsComponent<Publication> i
         }
     }
 
-    override _defineFilterPredicate(): (data: Publication, filter: string) => boolean {
+    protected override _defineFilterPredicate(): (data: Publication, filter: string) => boolean {
         const germanDateAdapter: GermanDateAdapter = new GermanDateAdapter();
         return (data: Publication, filter: string): boolean => {
             const dateOfPub = data.dateOfPublication;
@@ -63,6 +65,54 @@ export class PublicationListComponent extends TableInitsComponent<Publication> i
                 data.keywords?.map((k) => k.value).join(' ') +
                 data.quantity;
             return allValuesInOneString?.trim().toLowerCase().includes(filter) ?? false;
+        };
+    }
+
+    protected override _defineSortingAccessor(): (data: Publication, property: string) => string {
+        return (data: Publication, property: string) => {
+            switch (property) {
+                case 'kindOfPublication': {
+                    return data.kindOfPublication?.value ?? '';
+                }
+
+                case 'key': {
+                    return data.key ?? '';
+                }
+
+                case 'title': {
+                    return data.title ?? '';
+                }
+
+                case 'authors': {
+                    const authorFirstSurname = data.authors?.map((a) => a.surname)[0];
+                    return authorFirstSurname ?? '';
+                }
+
+                case 'dateOfPublication': {
+                    return data.dateOfPublication?.toString() ?? '';
+                }
+
+                case 'publisher': {
+                    return data.publisher ?? '';
+                }
+
+                case 'isbn': {
+                    return data.isbn ?? '';
+                }
+
+                case 'keywords': {
+                    const firstKeyword = data.keywords?.map((k) => k.value)[0];
+                    return firstKeyword ?? '';
+                }
+
+                case 'quantity': {
+                    return data.quantity?.toString() ?? '';
+                }
+
+                default: {
+                    return '';
+                }
+            }
         };
     }
 }
