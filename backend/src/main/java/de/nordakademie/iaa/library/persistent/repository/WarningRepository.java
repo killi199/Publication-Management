@@ -12,6 +12,9 @@ import java.util.UUID;
 @Repository
 public interface WarningRepository extends CustomBaseRepository<Warning, UUID> {
 
-
+    /**
+     * counts all warnings based on the overdue notice
+     * @param uuid overdue notice uuid
+     */
     int countAllByOverdueNoticeUuid(UUID uuid);
 }
