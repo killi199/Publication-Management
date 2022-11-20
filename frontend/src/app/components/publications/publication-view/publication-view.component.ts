@@ -128,7 +128,7 @@ export class PublicationViewComponent implements OnInit {
     }
 
     removeKeyword(keyword: Keyword): void {
-        const keywords = this.formGroup.get('keywords')?.value;
+        const keywords = this.formGroup.value.keywords;
         if (!keywords) return;
 
         const index = keywords.indexOf(keyword);
@@ -138,7 +138,7 @@ export class PublicationViewComponent implements OnInit {
     }
 
     removeAuthor(author: Author): void {
-        const authors = this.formGroup.get('authors')?.value;
+        const authors = this.formGroup.value.authors;
         if (!authors) return;
 
         const index = authors.indexOf(author);
@@ -148,7 +148,7 @@ export class PublicationViewComponent implements OnInit {
     }
 
     addKeyword(event: MatChipInputEvent): void {
-        const keywords = this.formGroup.get('keywords')?.value;
+        const keywords = this.formGroup.value.keywords;
         if (!keywords) return;
 
         const value = (event.value || '').trim();
@@ -165,7 +165,7 @@ export class PublicationViewComponent implements OnInit {
     }
 
     addAuthor(event: MatChipInputEvent): void {
-        const authors = this.formGroup.get('authors')?.value;
+        const authors = this.formGroup.value.authors;
         if (!authors) return;
 
         const value = (event.value || '').trim();
@@ -184,7 +184,7 @@ export class PublicationViewComponent implements OnInit {
     }
 
     selectedKeyword(event: MatAutocompleteSelectedEvent): void {
-        const keywords = this.formGroup.get('keywords')?.value;
+        const keywords = this.formGroup.value.keywords;
         if (!keywords) return;
 
         keywords.push(event.option.value);
@@ -193,7 +193,7 @@ export class PublicationViewComponent implements OnInit {
     }
 
     selectedAuthor(event: MatAutocompleteSelectedEvent): void {
-        const authors = this.formGroup.get('authors')?.value;
+        const authors = this.formGroup.value.authors;
         if (!authors) return;
 
         authors.push(event.option.value);
