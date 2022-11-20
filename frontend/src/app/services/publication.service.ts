@@ -18,7 +18,7 @@ export class PublicationService extends CrudService<Publication> {
     }
 
     override delete(value: Publication): Observable<any> {
-        return this.httpintern.delete(`${this.ENDPOINT_URL}/${value.uuid}`).pipe(
+        return this.httpintern.delete(`${this.ENDPOINT_URL}/${value.key}`).pipe(
             catchError((err: HttpErrorResponse) => {
                 throw this.handleError(err);
             })

@@ -1,5 +1,4 @@
-import { OverdueNotice } from 'src/app/models/overdue-notice';
-
+import { OverdueNotice } from "src/app/models/overdue-notice";
 
 export interface OverdueNoticeEvent {
     overdueNotice: OverdueNotice;

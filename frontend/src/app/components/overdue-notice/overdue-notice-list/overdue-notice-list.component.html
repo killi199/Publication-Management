@@ -14,7 +14,7 @@
                 Publikationsschlüssel
             </th>
             <td mat-cell *matCellDef="let element">
-                {{ element.assignment.publicationKey }}
+                {{ element.assignment.publication.key }}
             </td>
         </ng-container>
 
@@ -65,7 +65,7 @@
                 Anzahl Mahnungen
             </th>
             <td mat-cell *matCellDef="let element">
-                {{ element.warnings.length }}
+                {{ element.warnings?.length }}
             </td>
         </ng-container>
 
@@ -102,5 +102,5 @@
         showFirstLastButtons
         class="mat-paginator-sticky"
     >
-    </mat-paginator>
+    </mat-paginator>  
 </div>
