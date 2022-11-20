@@ -21,10 +21,7 @@ export class AssignmentViewComponent implements OnInit {
     allPublications: Publication[] = [];
 
     @Input()
-    extendAssignment?: (assignment: Assignment) => Observable<Assignment>;
-
-    @Input()
-    isAssignmentExtandable?: (assignment: Assignment) => Observable<boolean>;
+    extend?: (uuid: string) => Observable<Assignment>;
 
     @Input()
     returnAssignment?: (uuid: string) => Observable<Assignment>;
@@ -97,9 +94,9 @@ export class AssignmentViewComponent implements OnInit {
     }
 
     onExtend(): void {
-        if (!this.assignment) return;
+        if (!this.assignment?.uuid) return;
 
-        this.extendAssignment!(this.assignment).subscribe((a) => {
+        this.extend!(this.assignment.uuid).subscribe((a) => {
             this.formGroup.patchValue(a);
         });
     }

@@ -44,12 +44,12 @@ export class AssignmentService {
         );
     }
 
-    extendAssignment(assignment: Assignment): Observable<Assignment> {
-        return of(assignment);
-    }
-
-    isAssignmentExtendable(assignment: Assignment): Observable<boolean> {
-        return of(true);
+    extend(uuid: string): Observable<Assignment> {
+        return this.http.post<Assignment>(`${ENDPOINT_URL}/extend/${uuid}`, null).pipe(
+            catchError((err: HttpErrorResponse) => {
+                throw this._handleError(err);
+            })
+        );
     }
 
     private _handleError(err: HttpErrorResponse): HttpErrorResponse {

@@ -27,12 +27,8 @@ export class AssignmentsComponent implements OnInit {
         this.data = assignmentService.getAll();
     }
 
-    extendAssignment = (assignment: Assignment): Observable<any> => {
-        return this.assignmentService.extendAssignment(assignment);
-    };
-
-    isAssignmentExtendable = (assignment: Assignment): Observable<boolean> => {
-        return this.assignmentService.isAssignmentExtendable(assignment);
+    extend = (uuid: string): Observable<any> => {
+        return this.assignmentService.extend(uuid);
     };
 
     returnAssignment = (uuid: string): Observable<Assignment> => {
