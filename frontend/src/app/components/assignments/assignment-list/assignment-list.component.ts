@@ -86,6 +86,12 @@ export class AssignmentListComponent extends TableInitsComponent<Assignment> imp
                 case 'dateOfReturn': {
                     return data.dateOfReturn?.toString() ?? '';
                 }
+                case 'latestReturnDate': {
+                    return data.latestReturnDate?.toString() ?? '';
+                }
+                case 'extensions': {
+                    return data.extensions?.toString() ?? '';
+                }
                 default: {
                     return '';
                 }
