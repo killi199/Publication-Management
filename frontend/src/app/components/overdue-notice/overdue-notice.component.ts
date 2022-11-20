@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { OverdueNotice } from 'src/app/models/overdue-notice';
+import { Warning } from 'src/app/models/warning';
 import { AssignmentService } from 'src/app/services/assignment.service';
 import { OverdueNoticeService } from 'src/app/services/overdue-notice.service';
+import { OverdueNoticeEvent } from './overdue-notice-list/overdue-notice-event';
 
 @Component({
     selector: 'app-overdue-notice',
@@ -10,17 +12,34 @@ import { OverdueNoticeService } from 'src/app/services/overdue-notice.service';
     styleUrls: ['../../helpers/core-component.scss'],
 })
 export class OverdueNoticeComponent {
+    onLossSubject: Subject<void> = new Subject<void>();
+    onWarnSubject: Subject<Warning> = new Subject<Warning>();
     data: Observable<OverdueNotice[]>;
+    currentRecord?: OverdueNotice;
+    warnable: boolean = false;
+    deleteable: boolean = false;
 
     constructor(private overdueNoticeService: OverdueNoticeService, private assignmentService: AssignmentService) {
         this.data = overdueNoticeService.getAll();
     }
 
-    publicationLost = (uuid: string): Observable<any> => {
-        return this.assignmentService.publicationLost(uuid);
+    onLoss() {
+        if (!this.currentRecord?.uuid) return;
+        this.assignmentService.publicationLost(this.currentRecord?.uuid).subscribe(() => {
+            this.onLossSubject.next();
+        });
     }
 
-    createWarning = (uuid: string): Observable<any> => {
-        return this.overdueNoticeService.createWarning(uuid);
+    onWarn() {
+        if (!this.currentRecord?.uuid) return;
+        this.overdueNoticeService.createWarning(this.currentRecord?.uuid).subscribe((w) => {
+            this.onWarnSubject.next(w);
+        });
+    }
+
+    onSetSelection(event: OverdueNoticeEvent): void {
+        this.currentRecord = event?.overdueNotice;
+        this.warnable = event?.warnable;
+        this.deleteable = event?.deleteable;
     }
 }

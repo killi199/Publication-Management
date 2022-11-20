@@ -5,7 +5,31 @@
 
     <app-overdue-notice-list
         [overdueNotices]="data"
-        [createWarning]="createWarning"
-        [publicationLost]="publicationLost"
+        [updateDataOnWarn]="onWarnSubject.asObservable()"
+        [updateDataOnLoss]="onLossSubject.asObservable()"
+        (selectRecord)="onSetSelection($event)"
     ></app-overdue-notice-list>
+
+    <div class="button-container">
+        <div class="crud-container">
+            <button
+                matTooltip="Mahnen"
+                [disabled]="!(currentRecord && warnable)"
+                mat-mini-fab
+                color="primary"
+                (click)="onWarn()"
+            >
+                <mat-icon>assignment_late</mat-icon>
+            </button>
+            <button
+                matTooltip="Verlust melden"
+                [disabled]="!(currentRecord && deleteable)"
+                mat-mini-fab
+                color="warn"                
+                (click)="onLoss()"
+            >
+                <mat-icon>delete_forever</mat-icon>
+            </button>
+        </div>
+    </div>
 </div>
