@@ -35,7 +35,7 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
     }
 
     getLatestWarningDate(overdueNotice: OverdueNotice): Date | null {
-        return overdueNotice.warnings.length > 0
+        return overdueNotice.warnings && overdueNotice.warnings.length > 0
             ? overdueNotice.warnings.reduce((a, b) => (a.warningDate > b.warningDate ? a : b)).warningDate
             : null;
     }
@@ -55,7 +55,7 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
         } else {
             const dateOfLastWarning = this.getLatestWarningDate(overdueNotice);
             const warnable = this.isWarnable(dateOfLastWarning);
-            const deleteable = overdueNotice.warnings.length >= 3;
+            const deleteable = (overdueNotice.warnings && overdueNotice.warnings.length >= 3) ?? false;
             this.selectRecord.emit({ overdueNotice: overdueNotice, warnable: warnable, deleteable: deleteable });
             this.selectedRecord = overdueNotice;
         }
@@ -66,25 +66,25 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
             const iswarnableDisplayValue = this.isWarnable(this.getLatestWarningDate(data)) ? 'Ja' : 'Nein';
             const latestWarndate = this.getLatestWarningDate(data);
             const latestWarndateShort = this._convertDate(latestWarndate)
-            const dateOfReturn = data.assignment.dateOfReturn;
+            const dateOfReturn = data.assignment?.dateOfReturn;
             const dateOfReturnShort = this._convertDate(dateOfReturn);
             const allValuesInOneString =
                 '' +
-                data.assignment.publicationKey +
-                data.assignment.borrower.studentNumber +
-                data.assignment.borrower.name +
-                data.assignment.borrower.surname +
-                data.assignment.dateOfReturn +
+                data.assignment?.publicationKey +
+                data.assignment?.borrower.studentNumber +
+                data.assignment?.borrower.name +
+                data.assignment?.borrower.surname +
+                data.assignment?.dateOfReturn +
                 latestWarndateShort +
                 dateOfReturnShort +
-                data.warnings.length +
+                data.warnings?.length +
                 iswarnableDisplayValue;
 
             return allValuesInOneString.trim().toLowerCase().includes(filter) ?? false;
         };
     }
 
-    private _convertDate(date: Date | null): string {
+    private _convertDate(date: Date | null | undefined): string {
         const germanDateAdapter: GermanDateAdapter = new GermanDateAdapter();
         return date ? germanDateAdapter.formatDateToShortString(date) : '-';
     }
