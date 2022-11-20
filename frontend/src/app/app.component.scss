@@ -30,20 +30,24 @@ img {
 
 .list {
     margin-top: 5px;
-    height: 92%;
     padding: 5px;
     display: flex;
-    flex-direction: column;    
-    background-color: $accent1;
+    flex-direction: column;
 }
 
 mat-sidenav {
+    background-color: $accent1 !important;
     box-shadow: 0px 3px 5px -1px rgb(0 0 0 / 8%),
         0px 6px 10px 0px rgb(0 0 0 / 6%), 0px 1px 18px 0px rgb(0 0 0 / 4%);
 }
 
+::ng-deep .mat-drawer-inner-container {    
+    display: flex;
+    flex-direction: column;
+    place-content: space-between;
+}
 
-button {    
+button {
     margin-top: 5px;
     margin-bottom: 5px;
     width: 100%;
@@ -60,7 +64,7 @@ button:hover {
     background: $accent2;
 }
 
-.active{
+.active {
     color: $warn2;
     background: $primary1;
 }
@@ -85,7 +89,6 @@ mat-icon {
     filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.15));
 }
 
-
 h1 {
     font-size: 42px;
     margin-left: 80px;
@@ -104,4 +107,10 @@ h1 {
     background-color: $footer-background;
     color: $font-color;
     text-align: end;
+}
+
+.sidenav-content{
+    display: flex;
+    flex-direction: column;
+    place-content: space-between;
 }
