@@ -1,9 +1,9 @@
 <div class="container">
     <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
         <mat-form-field appearance="fill">
-            <mat-label>Key der Publikation</mat-label>
+            <mat-label>Publikationsschlüssel</mat-label>
             <input
-                placeholder="Ex. NA-123"
+                placeholder="Bsp. NA-123"
                 type="text"
                 name="publication"
                 matInput
@@ -27,7 +27,7 @@
         <mat-form-field appearance="fill">
             <mat-label>Ausleihdatum</mat-label>
             <input
-                placeholder="Ex. 1.8.2008"
+                placeholder="Bsp. 1.8.2008"
                 matInput
                 name="dateOfAssignment"
                 formControlName="dateOfAssignment"
@@ -45,7 +45,7 @@
         <mat-form-field appearance="fill">
             <mat-label>Ausleiher</mat-label>
             <input
-                placeholder="Ex. Mustermann Max"
+                placeholder="Bsp. Mustermann Max"
                 type="text"
                 name="borrower"
                 matInput
@@ -108,7 +108,7 @@
                 [disabled]="this.formGroup.value.dateOfReturn || this.formGroup.value.extensions! >= 2"
                 mat-mini-fab
                 color="primary"
-                matTooltip="Ausleihvorgänge verlängern"
+                matTooltip="Verlängern"
             >
                 <mat-icon>av_timer</mat-icon>
             </button>
@@ -120,7 +120,7 @@
                 [disabled]="this.formGroup.value.dateOfReturn"
                 mat-mini-fab
                 color="primary"
-                matTooltip="Buch zurückgeben"
+                matTooltip="Zurückgeben"
             >
                 <mat-icon>assignment_return</mat-icon>
             </button>
@@ -131,7 +131,7 @@
                 [disabled]="formGroup.invalid"
                 mat-mini-fab
                 color="primary"
-                matTooltip="save changes"
+                matTooltip="Speichern"
             >
                 <mat-icon>done</mat-icon>
             </button>
@@ -142,7 +142,7 @@
                 (click)="onCancel()"
                 mat-mini-fab
                 color="primary"
-                matTooltip="undo changes"
+                matTooltip="Rückgängig"
             >
                 <mat-icon>close</mat-icon>
             </button>
