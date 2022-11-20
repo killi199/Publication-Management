@@ -7,4 +7,9 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
     title = 'frontend';
+    showMiniNav: boolean = false;
+
+    changeSidenav(){
+        this.showMiniNav = !this.showMiniNav;
+    }
 }

@@ -29,7 +29,12 @@ img {
 }
 
 .list {
-    display: inline-grid;
+    margin-top: 5px;
+    height: 92%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;    
+    background-color: $accent1;
 }
 
 mat-sidenav {
@@ -37,12 +42,10 @@ mat-sidenav {
         0px 6px 10px 0px rgb(0 0 0 / 6%), 0px 1px 18px 0px rgb(0 0 0 / 4%);
 }
 
-mat-list-item {
+
+button {    
     margin-top: 5px;
     margin-bottom: 5px;
-}
-
-button {
     width: 100%;
     height: 45px;
     display: flex;
@@ -54,7 +57,12 @@ button {
 }
 
 button:hover {
-    background: $primary;
+    background: $accent2;
+}
+
+.active{
+    color: $warn2;
+    background: $primary1;
 }
 
 mat-icon {
@@ -77,10 +85,6 @@ mat-icon {
     filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.15));
 }
 
-.active{
-    color: $warn;
-    background: $accent;
-}
 
 h1 {
     font-size: 42px;
