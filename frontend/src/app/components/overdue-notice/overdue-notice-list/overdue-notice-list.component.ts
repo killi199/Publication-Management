@@ -30,7 +30,7 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
     isWarnable(warningDate: Date | null): boolean {
         if (!warningDate) return true;
         const today = new Date();
-        const diffInDays = Math.floor((today.getTime() - warningDate?.getTime()) / (24 * 60 * 60 * 1000));
+        const diffInDays = Math.floor((today.getTime() - new Date(warningDate).getTime()) / (24 * 60 * 60 * 1000));
         return diffInDays >= 7;
     }
 
@@ -70,10 +70,10 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
             const dateOfReturnShort = this._convertDate(dateOfReturn);
             const allValuesInOneString =
                 '' +
-                data.assignment?.publicationKey +
-                data.assignment?.borrower.studentNumber +
-                data.assignment?.borrower.name +
-                data.assignment?.borrower.surname +
+                data.assignment?.publication?.key +
+                data.assignment?.borrower?.studentNumber +
+                data.assignment?.borrower?.name +
+                data.assignment?.borrower?.surname +
                 data.assignment?.dateOfReturn +
                 latestWarndateShort +
                 dateOfReturnShort +
