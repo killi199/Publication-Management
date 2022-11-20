@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { map, Observable, startWith } from 'rxjs';
+import { Snackbar } from 'src/app/helpers/snackbar';
 import { Assignment } from 'src/app/models/assignment';
 import { Borrower } from 'src/app/models/borrower';
 import { Publication } from 'src/app/models/publication';
@@ -42,6 +43,8 @@ export class AssignmentViewComponent implements OnInit {
 
     filteredPublication: Observable<Publication[]> = new Observable<Publication[]>();
 
+    constructor(private snackBar: Snackbar) {}
+
     ngOnInit(): void {
         if (this.assignment) {
             this.formGroup.disable();
@@ -66,6 +69,7 @@ export class AssignmentViewComponent implements OnInit {
             this.formGroup.patchValue(a);
             this.formGroup.disable();
             this.assignment = a;
+            this.snackBar.open('Vorgang erstellt!');
         });
     }
 
@@ -99,6 +103,7 @@ export class AssignmentViewComponent implements OnInit {
         this.extend!(this.assignment.uuid).subscribe((a) => {
             this.formGroup.patchValue(a);
             this.assignment = a;
+            this.snackBar.open('Vorgang verlängert!');
         });
     }
 
@@ -113,6 +118,7 @@ export class AssignmentViewComponent implements OnInit {
         this.returnAssignment!(this.assignment.uuid).subscribe((a) => {
             this.formGroup.patchValue(a);
             this.assignment = a;
+            this.snackBar.open('Buch zurückgegeben!');
         });
     }
 
