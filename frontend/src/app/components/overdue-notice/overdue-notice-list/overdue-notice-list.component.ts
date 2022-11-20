@@ -87,7 +87,7 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
         return (data: OverdueNotice, property: string) => {
             switch (property) {
                 case 'publicationKey': {
-                    return data.assignment.dateOfReturn.toDateString();
+                    return data.assignment.publicationKey;
                 }
 
                 case 'surname': {
