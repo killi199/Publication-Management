@@ -29,8 +29,16 @@ public interface OverdueNoticeRepository extends CrudRepository<OverdueNotice, S
             "LEFT OUTER JOIN FETCH a.borrower " +
             "WHERE o.openedAt < :now " +
             "AND (:showClosed = true " +
+            "OR o.closedAt is null " +
             "OR o.closedAt > :now)")
     List<OverdueNotice> findAllOpenOverdueNotices(@Param("now") Date now, @Param("showClosed") boolean showClosed);
+
+    @Query("SELECT CASE WHEN count(o) > 0 THEN true ELSE false END " +
+            "FROM OverdueNotice o " +
+            "WHERE o.uuid = :uuid " +
+            "AND o.openedAt < :now " +
+            "AND (o.closedAt is null OR o.closedAt > :now) ")
+    boolean isOverdueNoticeOpen(@Param("uuid") UUID uuid, @Param("now") Date now);
 
     /**
      * Deletes all reserved overdue notices for assignment.

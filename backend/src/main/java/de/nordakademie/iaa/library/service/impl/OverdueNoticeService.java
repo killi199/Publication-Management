@@ -78,6 +78,14 @@ public class OverdueNoticeService implements OverdueNoticeServiceInterface {
         return overdueNotices;
     }
 
+    /**
+     *  Checks if an overdue notice is open
+     *
+     * @param uuid the uuid for the overdue notice
+     */
+    public boolean isOpen(UUID uuid) {
+        return overdueNoticeRepository.isOverdueNoticeOpen(uuid, new Date());
+    }
 
     /**
      * This method deletes all overdue notices that are not opened yet and
