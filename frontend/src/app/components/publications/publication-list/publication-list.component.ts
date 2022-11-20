@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
+import { GermanDateAdapter } from 'src/app/helpers/german-date-adapter';
 import { TableInitsComponent } from 'src/app/helpers/table-inits';
 import { Publication } from 'src/app/models/publication';
 
@@ -46,8 +47,10 @@ export class PublicationListComponent extends TableInitsComponent<Publication> i
     }
 
     override _defineFilterPredicate(): (data: Publication, filter: string) => boolean {
-        // TODO: Date fehlt, brauche hier das short-date format
+        const germanDateAdapter: GermanDateAdapter = new GermanDateAdapter();
         return (data: Publication, filter: string): boolean => {
+            const dateOfPub = data.dateOfPublication;
+            const dateOfPubShort = dateOfPub ? germanDateAdapter.formatDateToShortString(dateOfPub) : '-';
             const allValuesInOneString =
                 '' +
                 data.authors?.map((a) => '' + a.name + a.surname).join(' ') +
@@ -56,6 +59,7 @@ export class PublicationListComponent extends TableInitsComponent<Publication> i
                 data.publisher +
                 data.kindOfPublication?.value +
                 data.isbn +
+                dateOfPubShort +
                 data.keywords?.map((k) => k.value).join(' ') +
                 data.quantity;
             return allValuesInOneString?.trim().toLowerCase().includes(filter) ?? false;
