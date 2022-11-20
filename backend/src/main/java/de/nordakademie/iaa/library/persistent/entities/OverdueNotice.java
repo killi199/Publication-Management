@@ -21,7 +21,7 @@ public class OverdueNotice {
     private Assignment assignment;
 
     @OneToMany(mappedBy = "overdueNotice", fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, orphanRemoval = true)
-    private List<Warning> warning = new ArrayList<>();
+    private List<Warning> warnings = new ArrayList<>();
 
     public UUID getUuid() {
         return uuid;
@@ -39,11 +39,11 @@ public class OverdueNotice {
         this.assignment = assignment;
     }
 
-    public List<Warning> getWarning() {
-        return warning;
+    public List<Warning> getWarnings() {
+        return warnings;
     }
 
-    public void setWarning(List<Warning> warning) {
-        this.warning = warning;
+    public void setWarnings(List<Warning> warnings) {
+        this.warnings = warnings;
     }
 }

@@ -13,7 +13,7 @@ public class OverdueNoticeDto {
 
     private AssignmentDto assignment;
 
-    private List<WarningDto> warning = new ArrayList<>();
+    private List<WarningDto> warnings = new ArrayList<>();
 
     public UUID getUuid() {
         return uuid;
@@ -31,11 +31,11 @@ public class OverdueNoticeDto {
         this.assignment = assignment;
     }
 
-    public List<WarningDto> getWarning() {
-        return warning;
+    public List<WarningDto> getWarnings() {
+        return warnings;
     }
 
-    public void setWarning(List<WarningDto> warning) {
-        this.warning = warning;
+    public void setWarnings(List<WarningDto> warnings) {
+        this.warnings = warnings;
     }
 }
