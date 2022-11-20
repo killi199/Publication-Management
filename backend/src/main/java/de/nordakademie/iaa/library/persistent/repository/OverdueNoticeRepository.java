@@ -20,7 +20,7 @@ public interface OverdueNoticeRepository extends CrudRepository<OverdueNotice, S
      */
     @Override
     @Query("SELECT DISTINCT o FROM OverdueNotice o " +
-            "LEFT OUTER JOIN FETCH o.warning " +
+            "LEFT OUTER JOIN FETCH o.warnings " +
             "LEFT OUTER JOIN FETCH o.assignment a " +
             "LEFT OUTER JOIN FETCH a.publication " +
             "LEFT OUTER JOIN FETCH a.borrower ")
