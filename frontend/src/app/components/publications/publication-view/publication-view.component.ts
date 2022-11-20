@@ -97,13 +97,30 @@ export class PublicationViewComponent implements OnInit {
     onSubmit(): void {
         if (!this.formGroup.valid) return;
 
-        this.savePublication.emit(this.formGroup.getRawValue());
-        this.clonedPublication = structuredClone(this.formGroup.getRawValue());
+        if (typeof this.formGroup.value.kindOfPublication === 'string') {
+            this.formGroup.value.kindOfPublication = this.getCorrectKindOfPublication(this.formGroup.value.kindOfPublication);
+        }
 
+        const toSave = this.formGroup.value;
+        toSave.key = this.formGroup.get('key')?.value;
+
+        this.savePublication.emit(toSave);
+        this.clonedPublication = structuredClone(toSave);
+        
         const crudOperation = this.addingPublication ? ' erstellt!' : ' geändert!';
         this.snackBar.open('Publikation ' + crudOperation);
 
         this.formGroup.disable();
+    }
+
+    getCorrectKindOfPublication(kindOfPublication: string): KindOfPublication {
+        const value = kindOfPublication.trim();
+        const filteredKindsOfPublication = this._filterKindsOfPublication(value as string);
+        if (filteredKindsOfPublication.length === 1) {
+            return filteredKindsOfPublication[0];
+        }
+
+        return {value: kindOfPublication} as KindOfPublication;
     }
 
     onCancel(): void {
@@ -123,7 +140,7 @@ export class PublicationViewComponent implements OnInit {
     }
 
     removeKeyword(keyword: Keyword): void {
-        const keywords = this.formGroup.get('keywords')?.value;
+        const keywords = this.formGroup.value.keywords;
         if (!keywords) return;
 
         const index = keywords.indexOf(keyword);
@@ -133,7 +150,7 @@ export class PublicationViewComponent implements OnInit {
     }
 
     removeAuthor(author: Author): void {
-        const authors = this.formGroup.get('authors')?.value;
+        const authors = this.formGroup.value.authors;
         if (!authors) return;
 
         const index = authors.indexOf(author);
@@ -143,7 +160,7 @@ export class PublicationViewComponent implements OnInit {
     }
 
     addKeyword(event: MatChipInputEvent): void {
-        const keywords = this.formGroup.get('keywords')?.value;
+        const keywords = this.formGroup.value.keywords;
         if (!keywords) return;
 
         const value = (event.value || '').trim();
@@ -160,7 +177,7 @@ export class PublicationViewComponent implements OnInit {
     }
 
     addAuthor(event: MatChipInputEvent): void {
-        const authors = this.formGroup.get('authors')?.value;
+        const authors = this.formGroup.value.authors;
         if (!authors) return;
 
         const value = (event.value || '').trim();
@@ -179,7 +196,7 @@ export class PublicationViewComponent implements OnInit {
     }
 
     selectedKeyword(event: MatAutocompleteSelectedEvent): void {
-        const keywords = this.formGroup.get('keywords')?.value;
+        const keywords = this.formGroup.value.keywords;
         if (!keywords) return;
 
         keywords.push(event.option.value);
@@ -188,7 +205,7 @@ export class PublicationViewComponent implements OnInit {
     }
 
     selectedAuthor(event: MatAutocompleteSelectedEvent): void {
-        const authors = this.formGroup.get('authors')?.value;
+        const authors = this.formGroup.value.authors;
         if (!authors) return;
 
         authors.push(event.option.value);
@@ -209,9 +226,9 @@ export class PublicationViewComponent implements OnInit {
     private _filterAuthors(value: string): Author[] {
         const filterValue = value.toLowerCase();
 
-        return this.allAuthors.filter(
-            (author) =>
-                author.surname?.toLowerCase().includes(filterValue) || author.name?.toLowerCase().includes(filterValue)
+        return this.allAuthors.filter((author) =>
+            (author.surname + ' ' + author.name).toLowerCase().includes(filterValue) || 
+            (author.name + ' ' + author.surname).toLowerCase().includes(filterValue)
         );
     }
 

@@ -18,11 +18,13 @@ export class AssignmentListComponent extends TableInitsComponent<Assignment> imp
 
     displayedColumns: string[] = [
         'publicationKey',
-        'studentNumber',
         'surname',
         'name',
+        'studentNumber',
         'dateOfAssignment',
         'dateOfReturn',
+        'latestReturnDate',
+        'extensions',
     ];
 
     selectedAssignment?: Assignment;
@@ -53,10 +55,10 @@ export class AssignmentListComponent extends TableInitsComponent<Assignment> imp
             const dateOfReturnShort = this._convertDate(dateOfReturn);
             const allValuesInOneString =
                 '' +
-                data.publicationKey +
-                data.borrower.studentNumber +
-                data.borrower.name +
-                data.borrower.surname +
+                data.publication?.key +
+                data.borrower?.studentNumber +
+                data.borrower?.name +
+                data.borrower?.surname +
                 dateOfAssignmentShort +
                 dateOfReturnShort;
             return allValuesInOneString?.trim().toLowerCase().includes(filter) ?? false;
@@ -67,22 +69,28 @@ export class AssignmentListComponent extends TableInitsComponent<Assignment> imp
         return (data: Assignment, property: string) => {
             switch (property) {
                 case 'publicationKey': {
-                    return data.publicationKey;
+                    return data.publication?.key ?? '';
                 }
                 case 'studentNumber': {
-                    return data.borrower.studentNumber;
+                    return data.borrower?.studentNumber ?? '';
                 }
                 case 'surname': {
-                    return data.borrower.surname;
+                    return data.borrower?.surname ?? '';
                 }
                 case 'name': {
-                    return data.borrower.name;
+                    return data.borrower?.name ?? '';
                 }
                 case 'dateOfAssignment': {
-                    return data.dateOfAssignment.toString();
+                    return data.dateOfAssignment?.toString() ?? '';
                 }
                 case 'dateOfReturn': {
-                    return data.dateOfReturn.toString();
+                    return data.dateOfReturn?.toString() ?? '';
+                }
+                case 'latestReturnDate': {
+                    return data.latestReturnDate?.toString() ?? '';
+                }
+                case 'extensions': {
+                    return data.extensions?.toString() ?? '';
                 }
                 default: {
                     return '';
@@ -91,7 +99,8 @@ export class AssignmentListComponent extends TableInitsComponent<Assignment> imp
         };
     }
 
-    private _convertDate(date: Date): string {
-        return new GermanDateAdapter().formatDateToShortString(date);
+    private _convertDate(date: Date | null | undefined): string {
+        const germanDateAdapter: GermanDateAdapter = new GermanDateAdapter();
+        return date ? germanDateAdapter.formatDateToShortString(date) : '-';
     }
 }

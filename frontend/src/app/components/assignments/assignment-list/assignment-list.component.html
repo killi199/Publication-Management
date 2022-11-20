@@ -11,7 +11,7 @@
     <table mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="publicationKey">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Publikationsschlüssel</th>
-            <td mat-cell *matCellDef="let element">{{ element.publicationKey }}</td>
+            <td mat-cell *matCellDef="let element">{{ element.publication.key }}</td>
         </ng-container>
         
         <ng-container matColumnDef="surname">
@@ -46,6 +46,20 @@
                 {{ element.dateOfReturn | date: "shortDate" }}
             </td>
         </ng-container>
+
+        <ng-container matColumnDef="latestReturnDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Späteste Abgabe
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.latestReturnDate | date: "shortDate" }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="extensions">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Verlängerungen</th>
+            <td mat-cell *matCellDef="let element">{{ element.extensions }}</td>
+        </ng-container>   
 
         <tr
             mat-header-row

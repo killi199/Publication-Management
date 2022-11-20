@@ -5,6 +5,8 @@
 
     <app-overdue-notice-list
         [overdueNotices]="data"
+        [updateDataOnWarn]="onWarnSubject.asObservable()"
+        [updateDataOnLoss]="onLossSubject.asObservable()"
         (selectRecord)="onSetSelection($event)"
     ></app-overdue-notice-list>
 
@@ -15,6 +17,7 @@
                 [disabled]="!(currentRecord && warnable)"
                 mat-mini-fab
                 color="primary"
+                (click)="onWarn()"
             >
                 <mat-icon>assignment_late</mat-icon>
             </button>
@@ -22,7 +25,8 @@
                 matTooltip="Verlust melden"
                 [disabled]="!(currentRecord && deleteable)"
                 mat-mini-fab
-                color="warn"
+                color="warn"                
+                (click)="onLoss()"
             >
                 <mat-icon>delete_forever</mat-icon>
             </button>

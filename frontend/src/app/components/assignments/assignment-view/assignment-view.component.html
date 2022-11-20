@@ -1,1 +1,148 @@
-<p>assignment-view works!</p>
+<div class="container">
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="fill">
+            <mat-label>Publikationsschlüssel</mat-label>
+            <input
+                placeholder="Bsp. NA-123"
+                type="text"
+                name="publication"
+                matInput
+                formControlName="publication"
+                [matAutocomplete]="autocompletepublication"
+                required
+            />
+            <mat-autocomplete
+                #autocompletepublication="matAutocomplete"
+                [displayWith]="displayPublication"
+            >
+                <mat-option
+                    *ngFor="let publication of filteredPublication | async"
+                    [value]="publication"
+                >
+                    {{ publication.key }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Ausleihdatum</mat-label>
+            <input
+                placeholder="Bsp. 1.8.2008"
+                matInput
+                name="dateOfAssignment"
+                formControlName="dateOfAssignment"
+                [matDatepicker]="pickerDateOfAssignment"
+            />
+            <mat-datepicker-toggle
+                matSuffix
+                [for]="pickerDateOfAssignment"
+                [disabled]="this.formGroup.disabled"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #pickerDateOfAssignment></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Ausleiher</mat-label>
+            <input
+                placeholder="Bsp. Mustermann Max"
+                type="text"
+                name="borrower"
+                matInput
+                formControlName="borrower"
+                [matAutocomplete]="autocompleteBorrower"
+                required
+            />
+            <mat-autocomplete
+                #autocompleteBorrower="matAutocomplete"
+                [displayWith]="displayBorrower"
+            >
+                <mat-option
+                    *ngFor="let borrower of filteredBorrowers | async"
+                    [value]="borrower"
+                >
+                    {{ borrower.surname }} {{ borrower.name }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Rückgabedatum</mat-label>
+            <input
+                matInput
+                name="dateOfReturn"
+                formControlName="dateOfReturn"
+                [matDatepicker]="pickerDateOfReturn"
+            />
+            <mat-datepicker #pickerDateOfReturn></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Verlängerungen</mat-label>
+            <input
+                matInput
+                type="text"
+                name="extensions"
+                formControlName="extensions"
+            />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Späteste Abgabe</mat-label>
+            <input
+                matInput
+                name="latestReturnDate"
+                formControlName="latestReturnDate"
+                [matDatepicker]="pickerLatestReturnDate"
+            />
+            <mat-datepicker #pickerLatestReturnDate></mat-datepicker>
+        </mat-form-field>
+
+        <div class="button-container">
+            <button
+                *ngIf="this.formGroup.disabled && assignment"
+                type="button"
+                (click)="onExtend()"
+                [disabled]="this.formGroup.value.dateOfReturn || this.formGroup.value.extensions! >= 2"
+                mat-mini-fab
+                color="primary"
+                matTooltip="Verlängern"
+            >
+                <mat-icon>av_timer</mat-icon>
+            </button>
+
+            <button
+                *ngIf="this.formGroup.disabled"
+                type="button"
+                (click)="onReturn()"
+                [disabled]="this.formGroup.value.dateOfReturn"
+                mat-mini-fab
+                color="primary"
+                matTooltip="Zurückgeben"
+            >
+                <mat-icon>assignment_return</mat-icon>
+            </button>
+
+            <button
+                *ngIf="this.formGroup.enabled"
+                type="submit"
+                [disabled]="formGroup.invalid"
+                mat-mini-fab
+                color="primary"
+                matTooltip="Speichern"
+            >
+                <mat-icon>done</mat-icon>
+            </button>
+
+            <button
+                *ngIf="this.formGroup.enabled"
+                type="button"
+                (click)="onCancel()"
+                mat-mini-fab
+                color="primary"
+                matTooltip="Rückgängig"
+            >
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </form>
+</div>
