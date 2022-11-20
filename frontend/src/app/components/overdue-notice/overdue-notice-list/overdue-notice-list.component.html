@@ -103,4 +103,27 @@
         class="mat-paginator-sticky"
     >
     </mat-paginator>
+
+    <div class="button-container">
+        <div class="crud-container">
+            <button
+                matTooltip="Mahnen"
+                [disabled]="!(selectedRecord && warnable)"
+                mat-mini-fab
+                color="primary"
+                (click)="onWarn()"
+            >
+                <mat-icon>assignment_late</mat-icon>
+            </button>
+            <button
+                matTooltip="Verlust melden"
+                [disabled]="!(selectedRecord && deleteable)"
+                mat-mini-fab
+                color="warn"
+                (click)="onDelete()"
+            >
+                <mat-icon>delete_forever</mat-icon>
+            </button>
+        </div>
+    </div>
 </div>

@@ -1,10 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TableInitsComponent } from 'src/app/helpers/table-inits';
 import { OverdueNotice } from 'src/app/models/overdue-notice';
-import { OverdueNoticeEvent } from './check-warnstatus-event';
-import { formatDate } from '@angular/common';
 import { GermanDateAdapter } from 'src/app/helpers/german-date-adapter';
+import { Warning } from 'src/app/models/warning';
 
 @Component({
     selector: 'app-overdue-notice-list',
@@ -12,10 +11,21 @@ import { GermanDateAdapter } from 'src/app/helpers/german-date-adapter';
     styleUrls: ['../../../helpers/list-component.scss', './overdue-notice-list.component.scss'],
 })
 export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotice> implements OnInit {
-    @Input() overdueNotices: Observable<OverdueNotice[]> = new Observable<OverdueNotice[]>();
-    @Output() selectRecord = new EventEmitter<OverdueNoticeEvent>();
+    @Input() 
+    overdueNotices: Observable<OverdueNotice[]> = new Observable<OverdueNotice[]>();
+
+    @Input()
+    delete?: (uuid: string) => Observable<any>;
+
+    @Input()
+    createWarning?: (uuid: string) => Observable<Warning>;
 
     selectedRecord?: OverdueNotice;
+
+    warnable: boolean = false;
+
+    deleteable: boolean = false;
+
     displayedColumns: string[] = [
         'publicationKey',
         'surname',
@@ -49,15 +59,30 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
 
     onEmitSelectRecord(overdueNotice: OverdueNotice): void {
         if (overdueNotice === this.selectedRecord) {
-            this.selectRecord.emit(undefined);
             this.selectedRecord = undefined;
         } else {
             const dateOfLastWarning = this.getLatestWarningDate(overdueNotice);
             const warnable = this.isWarnable(dateOfLastWarning);
             const deleteable = (overdueNotice.warnings && overdueNotice.warnings.length >= 3) ?? false;
-            this.selectRecord.emit({ overdueNotice: overdueNotice, warnable: warnable, deleteable: deleteable });
+            this.warnable = warnable;
+            this.deleteable = deleteable;
             this.selectedRecord = overdueNotice;
         }
+    }
+
+    onWarn(): void {
+        if(!this.selectedRecord?.uuid) return;
+
+        this.createWarning!(this.selectedRecord?.uuid).subscribe();
+    }
+
+    onDelete(): void {
+        if(!this.selectedRecord?.uuid) return;
+
+        this.delete!(this.selectedRecord?.uuid).subscribe(() => {
+            this.dataSource.data = this.dataSource.data.filter((r) => r.uuid != this.selectedRecord?.uuid);
+            this.selectedRecord = undefined;
+        });
     }
 
     protected _defineFilterPredicate(): (data: OverdueNotice, filter: string) => boolean {
