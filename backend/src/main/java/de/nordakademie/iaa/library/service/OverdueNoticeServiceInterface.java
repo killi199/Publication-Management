@@ -16,7 +16,7 @@ public interface OverdueNoticeServiceInterface {
      *
      * @return all OverdueNotices
      */
-    List<OverdueNoticeDto> getAll();
+    List<OverdueNoticeDto> getAll(boolean showClosed);
 
     /**
      * deletes the OverdueNotice

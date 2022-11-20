@@ -33,8 +33,8 @@ public class OverdueNoticeController {
      * @return a list of OverdueNotices
      */
     @GetMapping
-    public ResponseEntity<List<OverdueNoticeDto>> getAll() {
-        return new ResponseEntity<>(overdueNoticeService.getAll(), HttpStatus.OK);
+    public ResponseEntity<List<OverdueNoticeDto>> getAll(@RequestParam(defaultValue = "false") boolean showClosed) {
+        return new ResponseEntity<>(overdueNoticeService.getAll(showClosed), HttpStatus.OK);
     }
 
     /**

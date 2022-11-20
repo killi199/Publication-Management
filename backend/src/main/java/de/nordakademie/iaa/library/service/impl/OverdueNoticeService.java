@@ -43,8 +43,8 @@ public class OverdueNoticeService implements OverdueNoticeServiceInterface {
      *
      * @return all OverdueNotices
      */
-    public List<OverdueNoticeDto> getAll() {
-        List<OverdueNotice> overdueNotices = overdueNoticeRepository.findAllOpenOverdueNotices(new Date());
+    public List<OverdueNoticeDto> getAll(boolean showClosed) {
+        List<OverdueNotice> overdueNotices = overdueNoticeRepository.findAllOpenOverdueNotices(new Date(), showClosed);
         return overdueNoticeMapper.overdueNoticeEntitiesToDtos(loadPublications(overdueNotices));
     }
 
