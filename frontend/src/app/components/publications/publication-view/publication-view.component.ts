@@ -106,8 +106,11 @@ export class PublicationViewComponent implements OnInit {
             this.formGroup.value.kindOfPublication = this.getCorrectKindOfPublication(this.formGroup.value.kindOfPublication);
         }
 
-        this.savePublication.emit(this.formGroup.getRawValue());
-        this.clonedPublication = structuredClone(this.formGroup.getRawValue());
+        const toSave = this.formGroup.value;
+        toSave.key = this.formGroup.value.key;
+
+        this.savePublication.emit(toSave);
+        this.clonedPublication = structuredClone(toSave);
         
         const crudOperation = this.addingPublication ? ' erstellt!' : ' geändert!';
         this.snackBar.open('Publikation ' + crudOperation);
@@ -118,7 +121,6 @@ export class PublicationViewComponent implements OnInit {
     getCorrectKindOfPublication(kindOfPublication: string): KindOfPublication {
         const value = kindOfPublication.trim();
         const filteredKindsOfPublication = this._filterKindsOfPublication(value as string);
-
         if (filteredKindsOfPublication.length === 1) {
             return filteredKindsOfPublication[0];
         }
