@@ -37,7 +37,7 @@ export abstract class CrudComponent<T extends Entity> extends TableInitsComponen
     }
 
     selectionChanged(selection: T): void {
-        this.selectedRecord = this.selectedRecord === selection ? ({} as T) : structuredClone(selection);
+        this.selectedRecord = this.selectedRecord.uuid === selection.uuid ? ({} as T) : structuredClone(selection);
     }
 
     onEdit(): void {
