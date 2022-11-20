@@ -54,7 +54,7 @@ public interface PublicationRepository extends CustomBaseRepository<Publication,
      */
     @Modifying
     @Query("UPDATE Publication p " +
-            "SET p.quantity = CASE WHEN p.quantity > 0 THEN p.quantity-1 ELSE 0 END " +
+            "SET p.quantity = p.quantity - 1 " +
             "WHERE p.key = :key")
     void reduceQuantityOnce(@Param("key") String key);
 }
