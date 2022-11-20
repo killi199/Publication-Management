@@ -21,6 +21,10 @@ public interface AssignmentRepository extends CustomBaseRepository<Assignment, U
      * This will overwrite the findAll method so that it returns a list and not an iterable
      */
     @Override
+    @Query("SELECT DISTINCT a FROM Assignment a " +
+            "LEFT OUTER JOIN FETCH a.borrower b " +
+            "LEFT OUTER JOIN FETCH a.publication p " +
+            "ORDER BY a.dateOfAssignment")
     List<Assignment> findAll();
 
 
@@ -30,7 +34,12 @@ public interface AssignmentRepository extends CustomBaseRepository<Assignment, U
      * @param key publication key
      * @return List of assignments that are returned
      */
-    List<Assignment> findAllByPublication_Key(String key);
+    @Query("SELECT DISTINCT a FROM Assignment a " +
+            "LEFT OUTER JOIN FETCH a.borrower b " +
+            "LEFT OUTER JOIN FETCH a.publication p " +
+            "WHERE a.publication.key = :key " +
+            "ORDER BY a.dateOfAssignment")
+    List<Assignment> findAllByPublicationKey(@Param("key") String key);
 
 
     /**
@@ -39,7 +48,14 @@ public interface AssignmentRepository extends CustomBaseRepository<Assignment, U
      * @param untilDate Date by which the assignments have not been returned
      * @return List of assignments that are not returned
      */
-    @Query("SELECT a FROM Assignment a WHERE (a.dateOfReturn IS NULL and a.publicationLoss = false) OR a.dateOfReturn > :untilDate")
+    @Query("SELECT DISTINCT a FROM Assignment a " +
+            "LEFT OUTER JOIN FETCH a.borrower b " +
+            "LEFT OUTER JOIN FETCH a.publication p " +
+            "WHERE " +
+            "(a.dateOfReturn IS NULL " +
+            "and a.publicationLoss = false) " +
+            "OR a.dateOfReturn > :untilDate " +
+            "ORDER BY a.dateOfAssignment")
     List<Assignment> findAllUnreturned(@Param("untilDate") Date untilDate);
 
     /**
@@ -49,6 +65,14 @@ public interface AssignmentRepository extends CustomBaseRepository<Assignment, U
      * @param key publication key
      * @return List of assignments that are returned
      */
-    @Query("SELECT a FROM Assignment a WHERE ((a.dateOfReturn IS NULL and a.publicationLoss = false) OR a.dateOfReturn > :untilDate) AND a.publication.key = :key")
-    List<Assignment> findAllUnreturnedByPublication_Key(@Param("untilDate") Date untilDate,@Param("key") String key);
+    @Query("SELECT DISTINCT a FROM Assignment a " +
+            "LEFT OUTER JOIN FETCH a.borrower b " +
+            "LEFT OUTER JOIN FETCH a.publication p " +
+            "WHERE " +
+            "((a.dateOfReturn IS NULL " +
+            "and a.publicationLoss = false) " +
+            "OR a.dateOfReturn > :untilDate) " +
+            "AND a.publication.key = :key " +
+            "ORDER BY a.dateOfAssignment")
+    List<Assignment> findAllUnreturnedByPublicationKey(@Param("untilDate") Date untilDate, @Param("key") String key);
 }

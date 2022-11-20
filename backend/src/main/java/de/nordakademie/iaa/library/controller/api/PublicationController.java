@@ -32,8 +32,9 @@ public class PublicationController {
      * @return a list of publications
      */
     @GetMapping
-    public ResponseEntity<List<PublicationDto>> getAll() {
-        return new ResponseEntity<>(publicationService.getAll(), HttpStatus.OK);
+    public ResponseEntity<List<PublicationDto>> getAll(@RequestParam(required = false, defaultValue = "false")
+                                                           boolean showDeleted) {
+        return new ResponseEntity<>(publicationService.getAll(showDeleted), HttpStatus.OK);
     }
 
     /**

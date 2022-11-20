@@ -20,7 +20,7 @@ public class OverdueNotice {
     @NotNull
     private Assignment assignment;
 
-    @OneToMany(mappedBy = "overdueNotice", fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, orphanRemoval = true)
+    @OneToMany(mappedBy = "overdueNotice", fetch = FetchType.LAZY)
     private List<Warning> warnings = new ArrayList<>();
 
     public UUID getUuid() {
