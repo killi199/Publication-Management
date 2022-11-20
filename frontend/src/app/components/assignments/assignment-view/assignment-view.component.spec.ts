@@ -6,6 +6,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AssignmentViewComponent } from './assignment-view.component';
@@ -26,6 +27,7 @@ describe('AssignmentViewComponent', () => {
                 ReactiveFormsModule,
                 MatIconModule,
                 BrowserAnimationsModule,
+                MatSnackBarModule,
             ],
             declarations: [AssignmentViewComponent],
         }).compileComponents();
