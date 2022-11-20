@@ -11,8 +11,6 @@ import java.util.UUID;
 public class WarningDto {
     private UUID uuid;
 
-    private OverdueNoticeDto overdueNoticeUuid;
-
     private Date warningDate;
 
     public UUID getUuid() {
@@ -21,14 +19,6 @@ public class WarningDto {
 
     public void setUuid(UUID uuid) {
         this.uuid = uuid;
-    }
-
-    public OverdueNoticeDto getOverdueNoticeUuid() {
-        return overdueNoticeUuid;
-    }
-
-    public void setOverdueNoticeUuid(OverdueNoticeDto overdueNoticeUuid) {
-        this.overdueNoticeUuid = overdueNoticeUuid;
     }
 
     public Date getWarningDate() {

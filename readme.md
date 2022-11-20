@@ -1,13 +1,13 @@
 # Hausarbeit IAA A19b Gruppe 5
 
-## Backend und Frontend Starten
+## Anwendung starten
 
-Backend starten:
-
-- `cd docker-compose/backend`
+- `cd docker-compose/application`
 - `docker-compose up`
 
-Frontend starten:
+## Anwendung erreichen
 
-- `cd frontend`
-- `ng serve`
+- Frontend: <http://localhost>
+- Rest API Endpoint: <http://localhost:8080/rest>
+- Rest API Swagger: [/swagger/openapi.yml](./swagger/openapi.yaml)
+- DB: localhost:5432

@@ -6,7 +6,9 @@
 
     <table mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="keyword">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Schlagwort</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Schlagwort
+            </th>
             <td mat-cell *matCellDef="let element">
                 {{ element.value }}
             </td>
@@ -32,7 +34,7 @@
     </table>
 
     <mat-paginator
-    [pageSizeOptions]="[10, 25, 50, 100]"
+        [pageSizeOptions]="[10, 25, 50, 100]"
         showFirstLastButtons
         class="mat-paginator-sticky"
     >
@@ -47,8 +49,9 @@
             [disabled]="crudState === 'read'"
             matInput
             placeholder="Bsp. Java"
-            [value]="selectedRecord?.value || ''"
-            #input
+            [(ngModel)]="selectedRecord.value"
+            #keyword="ngModel"
+            required
         />
     </mat-form-field>
 
@@ -56,7 +59,7 @@
         <button
             matTooltip="Editieren"
             (click)="onEdit()"
-            [disabled]="selectedRecord?.value === null"
+            [disabled]="!selectedRecord.uuid"
             *ngIf="crudState === 'read'"
             mat-mini-fab
             color="primary"
@@ -70,6 +73,7 @@
             *ngIf="crudState === 'create' || crudState === 'update'"
             (click)="onSave()"
             color="primary"
+            [disabled]="!keyword.valid"
         >
             <mat-icon>done</mat-icon>
         </button>
@@ -77,10 +81,10 @@
         <button
             mat-mini-fab
             matTooltip="Löschen"
-            [disabled]="selectedRecord?.value === null"
+            [disabled]="!selectedRecord.uuid"
             *ngIf="crudState === 'read'"
             color="warn"
-            (click)="onDelete(selectedRecord!)"
+            (click)="onDelete()"
         >
             <mat-icon>delete</mat-icon>
         </button>

@@ -1,8 +1,8 @@
 import { Assignment } from './assignment';
+import { Entity } from './entity';
 import { Warning } from './warning';
 
-export interface OverdueNotice {
-    uuid: string;
+export interface OverdueNotice extends Entity {
     assignment: Assignment;
     warnings: Warning[];
 }

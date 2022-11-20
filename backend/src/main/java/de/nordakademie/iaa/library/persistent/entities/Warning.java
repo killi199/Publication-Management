@@ -15,7 +15,7 @@ public class Warning {
     @GeneratedValue
     private UUID uuid;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
     private OverdueNotice overdueNotice;
 
