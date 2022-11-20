@@ -16,4 +16,10 @@ export class BasedataKeywordsComponent extends CrudComponent<Keyword> {
             return allValuesInOneString.trim().toLowerCase().includes(filter) ?? false;
         };
     }
+
+    protected override _defineSortingAccessor(): (data: Keyword, property: string) => string {
+        return (data: Keyword, property: string) => {
+            return data.value ?? '';
+        };
+    }
 }

@@ -16,4 +16,20 @@ export class BasedataAuthorsComponent extends CrudComponent<Author> {
             return allValuesInOneString.trim().toLowerCase().includes(filter) ?? false;
         };
     }
+
+    protected override _defineSortingAccessor(): (data: Author, property: string) => string {
+        return (data: Author, property: string) => {
+            switch (property) {
+                case 'surname': {
+                    return data.surname ?? '';
+                }
+                case 'name': {
+                    return data.name ?? '';
+                }
+                default: {
+                    return '';
+                }
+            }
+        };
+    }
 }

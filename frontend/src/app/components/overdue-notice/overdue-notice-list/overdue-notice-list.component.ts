@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { TableInitsComponent } from 'src/app/helpers/table-inits';
 import { OverdueNotice } from 'src/app/models/overdue-notice';
 import { OverdueNoticeEvent } from './check-warnstatus-event';
-import { formatDate } from '@angular/common';
 import { GermanDateAdapter } from 'src/app/helpers/german-date-adapter';
 
 @Component({
@@ -61,11 +60,11 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
         }
     }
 
-    protected _defineFilterPredicate(): (data: OverdueNotice, filter: string) => boolean {
+    protected override _defineFilterPredicate(): (data: OverdueNotice, filter: string) => boolean {
         return (data: OverdueNotice, filter: string): boolean => {
             const iswarnableDisplayValue = this.isWarnable(this.getLatestWarningDate(data)) ? 'Ja' : 'Nein';
             const latestWarndate = this.getLatestWarningDate(data);
-            const latestWarndateShort = this._convertDate(latestWarndate)
+            const latestWarndateShort = this._convertDate(latestWarndate);
             const dateOfReturn = data.assignment.dateOfReturn;
             const dateOfReturnShort = this._convertDate(dateOfReturn);
             const allValuesInOneString =
@@ -81,6 +80,48 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
                 iswarnableDisplayValue;
 
             return allValuesInOneString.trim().toLowerCase().includes(filter) ?? false;
+        };
+    }
+
+    protected override _defineSortingAccessor(): (data: OverdueNotice, property: string) => string {
+        return (data: OverdueNotice, property: string) => {
+            switch (property) {
+                case 'publicationKey': {
+                    return data.assignment.publicationKey;
+                }
+
+                case 'surname': {
+                    return data.assignment.borrower.surname;
+                }
+
+                case 'name': {
+                    return data.assignment.borrower.name;
+                }
+
+                case 'studentNumber': {
+                    return data.assignment.borrower.studentNumber;
+                }
+
+                case 'dateOfReturn': {
+                    return data.assignment.dateOfReturn.toDateString();
+                }
+
+                case 'warningDate': {
+                    return this.getLatestWarningDate(data)?.toDateString() ?? '';
+                }
+
+                case 'amountOfwarnings': {
+                    return data.warnings.length.toString();
+                }
+
+                case 'isReadyToWarn': {
+                    return this.isWarnable(this.getLatestWarningDate(data)) ? 'ja' : 'nein';
+                }
+
+                default: {
+                    return '';
+                }
+            }
         };
     }
 
