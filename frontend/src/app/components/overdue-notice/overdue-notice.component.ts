@@ -15,13 +15,25 @@ export class OverdueNoticeComponent {
     warnable: boolean = false;
     deleteable: boolean = false;
 
-    constructor(service: OverdueNoticeService) {
-        this.data = service.getAll();
+    constructor(private overdueNoticeService: OverdueNoticeService) {
+        this.data = overdueNoticeService.getAll();
     }
 
     onSetSelection(event: OverdueNoticeEvent): void {
         this.currentRecord = event?.overdueNotice;
         this.warnable = event?.warnable;
         this.deleteable = event?.deleteable;
+    }
+
+    onWarn(): void {
+        if(!this.currentRecord?.uuid) return;
+
+        this.overdueNoticeService.createWarning(this.currentRecord?.uuid).subscribe();
+    }
+
+    onDelete(): void {
+        if(!this.currentRecord?.uuid) return;
+
+        this.overdueNoticeService.delete(this.currentRecord?.uuid).subscribe();
     }
 }

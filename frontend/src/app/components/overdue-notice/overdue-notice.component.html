@@ -15,6 +15,7 @@
                 [disabled]="!(currentRecord && warnable)"
                 mat-mini-fab
                 color="primary"
+                (click)="onWarn()"
             >
                 <mat-icon>assignment_late</mat-icon>
             </button>
@@ -23,6 +24,7 @@
                 [disabled]="!(currentRecord && deleteable)"
                 mat-mini-fab
                 color="warn"
+                (click)="onDelete()"
             >
                 <mat-icon>delete_forever</mat-icon>
             </button>
