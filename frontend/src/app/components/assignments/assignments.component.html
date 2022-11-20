@@ -42,6 +42,12 @@
     </div>
 
     <app-assignment-view
-        *ngIf="currentRecord && isViewOpen"
+        *ngIf="isViewOpen"
+        [create]="createAssignment"
+        [assignment]="currentRecord"
+        [extend]="extend"
+        [returnAssignment]="returnAssignment"
+        [allBorrowers]="borrowers"
+        [allPublications]="publications"
     ></app-assignment-view>
 </div>
