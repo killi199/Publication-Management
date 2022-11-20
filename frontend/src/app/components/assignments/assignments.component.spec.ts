@@ -4,6 +4,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AssignmentListComponent } from './assignment-list/assignment-list.component';
@@ -25,6 +26,7 @@ describe('AssignmentsComponent', () => {
                 MatPaginatorModule,
                 BrowserAnimationsModule,
                 HttpClientTestingModule,
+                MatSnackBarModule,
             ],
             declarations: [
                 AssignmentsComponent,
