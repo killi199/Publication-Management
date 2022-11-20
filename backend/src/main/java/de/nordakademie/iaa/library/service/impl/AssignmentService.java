@@ -2,6 +2,7 @@ package de.nordakademie.iaa.library.service.impl;
 
 import de.nordakademie.iaa.library.controller.api.exception.*;
 import de.nordakademie.iaa.library.controller.dto.AssignmentDto;
+import de.nordakademie.iaa.library.controller.dto.PublicationDto;
 import de.nordakademie.iaa.library.persistent.entities.Assignment;
 import de.nordakademie.iaa.library.persistent.entities.Publication;
 import de.nordakademie.iaa.library.persistent.repository.AssignmentRepository;
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * The assignment service provides methods to handle the assignments
@@ -56,7 +59,7 @@ public class AssignmentService implements AssignmentServiceInterface {
             assignments = assignmentRepository.findAllUnreturned(new Date());
         }
 
-        return assignmentMapper.assignmentEntitiesToDtos(assignments);
+        return assignmentMapper.assignmentEntitiesToDtos(loadPublications(assignments));
     }
 
     /**
@@ -68,12 +71,36 @@ public class AssignmentService implements AssignmentServiceInterface {
         List<Assignment> assignments;
 
         if (showReturned) {
-            assignments = assignmentRepository.findAllByPublication_Key(publicationKey);
+            assignments = assignmentRepository.findAllByPublicationKey(publicationKey);
         } else {
-            assignments = assignmentRepository.findAllUnreturnedByPublication_Key(new Date(), publicationKey);
+            assignments = assignmentRepository.findAllUnreturnedByPublicationKey(new Date(), publicationKey);
         }
 
-        return assignmentMapper.assignmentEntitiesToDtos(assignments);
+        return assignmentMapper.assignmentEntitiesToDtos(loadPublications(assignments));
+    }
+
+    /**
+     * Preload the Publications in the assignments to lower the total number of requests performed
+     *
+     * @param assignments the assignments that should be loaded
+     * @return List of assignments
+     */
+    private List<Assignment> loadPublications(List<Assignment> assignments) {
+        List<Publication> publications = publicationService.getAllByKeys(
+                assignments
+                        .stream()
+                        .map(assignmentDto -> assignmentDto.getPublication().getKey()).collect(Collectors.toList()));
+
+        Map<String, Publication> publicationMap =
+                publications
+                .stream()
+                .collect(Collectors.toMap(Publication::getKey, Function.identity()));
+
+        for (Assignment assignment: assignments) {
+            assignment.setPublication(publicationMap.get(assignment.getPublication().getKey()));
+        }
+
+        return assignments;
     }
 
     /**
@@ -129,7 +156,7 @@ public class AssignmentService implements AssignmentServiceInterface {
      */
     private void checkIfBorrowable(String key) {
 
-        Publication publication;
+        PublicationDto publication;
 
         try {
             publication = publicationService.getByKey(key);
@@ -187,7 +214,7 @@ public class AssignmentService implements AssignmentServiceInterface {
 
         assignment.setLatestReturnDate(calendar.getTime());
 
-        //todo delete overdue notice
+        //TODO delete overdue notice
 
         return createOrUpdate(assignment);
     }

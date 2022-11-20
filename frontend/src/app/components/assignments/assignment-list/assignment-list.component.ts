@@ -65,8 +65,35 @@ export class AssignmentListComponent extends TableInitsComponent<Assignment> imp
         };
     }
 
-    private _convertDate(date: Date | null | undefined): string {
-        const germanDateAdapter: GermanDateAdapter = new GermanDateAdapter();
-        return date ? germanDateAdapter.formatDateToShortString(date) : '-';
+    protected override _defineSortingAccessor(): (data: Assignment, property: string) => string {
+        return (data: Assignment, property: string) => {
+            switch (property) {
+                case 'publicationKey': {
+                    return data.publicationKey;
+                }
+                case 'studentNumber': {
+                    return data.borrower.studentNumber;
+                }
+                case 'surname': {
+                    return data.borrower.surname;
+                }
+                case 'name': {
+                    return data.borrower.name;
+                }
+                case 'dateOfAssignment': {
+                    return data.dateOfAssignment.toString();
+                }
+                case 'dateOfReturn': {
+                    return data.dateOfReturn.toString();
+                }
+                default: {
+                    return '';
+                }
+            }
+        };
+    }
+
+    private _convertDate(date: Date): string {
+        return new GermanDateAdapter().formatDateToShortString(date);
     }
 }

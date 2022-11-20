@@ -5,7 +5,11 @@ import de.nordakademie.iaa.library.controller.api.exception.EntityDoesNotExistEx
 import de.nordakademie.iaa.library.controller.api.exception.MissingFieldException;
 import de.nordakademie.iaa.library.controller.api.exception.NegativValueIsNotAllowedException;
 import de.nordakademie.iaa.library.controller.dto.PublicationDto;
+import de.nordakademie.iaa.library.persistent.entities.AuthorsPublications;
+import de.nordakademie.iaa.library.persistent.entities.KeywordsPublications;
 import de.nordakademie.iaa.library.persistent.entities.Publication;
+import de.nordakademie.iaa.library.persistent.repository.AuthorsPublicationsRepository;
+import de.nordakademie.iaa.library.persistent.repository.KeywordsPublicationsRepository;
 import de.nordakademie.iaa.library.persistent.repository.PublicationRepository;
 import de.nordakademie.iaa.library.service.PublicationServiceInterface;
 import de.nordakademie.iaa.library.service.mapper.PublicationMapper;
@@ -16,6 +20,7 @@ import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static de.nordakademie.iaa.library.service.helper.InputValidator.isStringEmpty;
 
@@ -30,10 +35,19 @@ public class PublicationService implements PublicationServiceInterface {
 
     private final PublicationMapper publicationMapper;
 
+    private final AuthorsPublicationsRepository authorsPublicationsRepository;
+
+    private final KeywordsPublicationsRepository keywordsPublicationsRepository;
+
     @Autowired
-    public PublicationService(PublicationRepository publicationRepository, PublicationMapper publicationMapper) {
+    public PublicationService(PublicationRepository publicationRepository,
+                              PublicationMapper publicationMapper,
+                              AuthorsPublicationsRepository authorsPublicationsRepository,
+                              KeywordsPublicationsRepository keywordsPublicationsRepository) {
         this.publicationRepository = publicationRepository;
         this.publicationMapper = publicationMapper;
+        this.authorsPublicationsRepository = authorsPublicationsRepository;
+        this.keywordsPublicationsRepository = keywordsPublicationsRepository;
     }
 
     /**
@@ -41,9 +55,54 @@ public class PublicationService implements PublicationServiceInterface {
      *
      * @return all Publications
      */
-    public List<PublicationDto> getAll() {
-        List<Publication> publications = publicationRepository.findAll();
-        return publicationMapper.publicationEntitiesToDtos(publications);
+    public List<PublicationDto> getAll(boolean showDeleted) {
+        List<Publication> publications = publicationRepository.findAllOrderedByTitle(showDeleted);
+
+
+        return publicationMapper.publicationEntitiesToDtos(loadAuthorsAndKeywords(publications));
+    }
+
+    /**
+     * returns all Publications by a list of keys
+     *
+     * @param keys list of keys that should be loaded
+     * @return list of publications
+     */
+    public List<Publication> getAllByKeys(List<String> keys) {
+        List<Publication> publications = publicationRepository.findAllByKeys(keys);
+
+
+        return loadAuthorsAndKeywords(publications);
+    }
+
+    /**
+     * this loads the authors and keywords to lower the number of sql queries.
+     * It would be possible to load authors or keywords together with the publications but both
+     * is caused by the cartesian and the hibernate bagFetchException not possible so that we
+     * decided to load both manually for consistency
+     *
+     * @param publications
+     * @return
+     */
+    private List<Publication> loadAuthorsAndKeywords(List<Publication> publications) {
+        List<AuthorsPublications> authorsPublications = authorsPublicationsRepository.findAll();
+        List<KeywordsPublications> keywordsPublications = keywordsPublicationsRepository.findAll();
+
+
+        for (Publication publication : publications) {
+            List<AuthorsPublications> authorsPublicationsOfPublication = authorsPublications.stream()
+                    .filter(ap -> ap.getPublication().getKey().equals(publication.getKey()))
+                    .collect(Collectors.toList());
+
+            List<KeywordsPublications> keywordsPublicationsOfPublication = keywordsPublications.stream()
+                    .filter(ap -> ap.getPublication().getKey().equals(publication.getKey()))
+                    .collect(Collectors.toList());
+
+            publication.setAuthorsPublications(authorsPublicationsOfPublication);
+            publication.setKeywordsPublications(keywordsPublicationsOfPublication);
+        }
+
+        return publications;
     }
 
     /**
@@ -53,14 +112,14 @@ public class PublicationService implements PublicationServiceInterface {
      * @return publication if found
      * @throws EntityDoesNotExistException when not found
      */
-    public Publication getByKey(String key) {
+    public PublicationDto getByKey(String key) {
         Optional<Publication> publicationOptional = publicationRepository.findById(key);
 
         if (publicationOptional.isEmpty()) {
             throw new EntityDoesNotExistException();
         }
 
-        return publicationOptional.get();
+        return publicationMapper.publicationEntityToDto(publicationOptional.get());
     }
 
     /**
@@ -106,8 +165,8 @@ public class PublicationService implements PublicationServiceInterface {
      * deletes the Publication
      *
      * @param key the Publication that should be deleted
-     * \@NotNull is here for documentation and does nothing.
-     * This method should not be called with null values.
+     *            \@NotNull is here for documentation and does nothing.
+     *            This method should not be called with null values.
      */
     public void delete(@NotNull String key) {
         Publication publication = new Publication();

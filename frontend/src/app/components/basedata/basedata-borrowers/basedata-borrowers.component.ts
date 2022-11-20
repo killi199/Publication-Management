@@ -16,4 +16,23 @@ export class BasedataBorrowersComponent extends CrudComponent<Borrower> {
             return allValuesInOneString.trim().toLowerCase().includes(filter) ?? false;
         };
     }
+
+    protected override _defineSortingAccessor(): (data: Borrower, property: string) => string {
+        return (data: Borrower, property: string) => {
+            switch (property) {
+                case 'studentNumber': {
+                    return data.studentNumber;
+                }
+                case 'surname': {
+                    return data.surname;
+                }
+                case 'name': {
+                    return data.name;
+                }
+                default: {
+                    return '';
+                }
+            }
+        };
+    }
 }

@@ -15,8 +15,7 @@ public interface BorrowerRepository extends CustomBaseRepository<Borrower, UUID>
 
 
     /**
-     * This will overwrite the findAll method so that it returns a list and not an iterable
+     * Return all borrowers ordered by student number
      */
-    @Override
-    List<Borrower> findAll();
+    List<Borrower> findAllByOrderByStudentNumber();
 }

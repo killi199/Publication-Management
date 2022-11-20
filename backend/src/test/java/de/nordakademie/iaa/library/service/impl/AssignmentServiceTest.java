@@ -13,8 +13,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -30,15 +29,7 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-@ContextConfiguration
-@TestPropertySource(properties = {
-        "assignment.rentalPeriode=14",
-        "assignment.maxExtensionNumber=2"
-})
 class AssignmentServiceTest {
-
-    @InjectMocks
-    private AssignmentService assignmentService;
 
     @Mock
     private AssignmentRepository assignmentRepository;
@@ -49,11 +40,17 @@ class AssignmentServiceTest {
     @Mock
     private AssignmentMapper assignmentMapper;
 
+    @InjectMocks
+    private AssignmentService assignmentService;
+
     private AssignmentDto assignmentDto;
     private Assignment assignment;
 
+
     @BeforeEach
-    void setUp() {
+    void setUpBeforeEach() {
+        ReflectionTestUtils.setField(assignmentService, "rentalPeriod", 14);
+        ReflectionTestUtils.setField(assignmentService, "maxExtensionNumber", 2);
         this.assignmentDto = new AssignmentDto();
         this.assignment = new Assignment();
     }
@@ -80,8 +77,8 @@ class AssignmentServiceTest {
         this.assignmentService.getAllByPublicationKey("test",true);
 
         verify(assignmentRepository, times(0))
-                .findAllUnreturnedByPublication_Key(any(),eq("test"));
-        verify(assignmentRepository, times(1)).findAllByPublication_Key("test");
+                .findAllUnreturnedByPublicationKey(any(),eq("test"));
+        verify(assignmentRepository, times(1)).findAllByPublicationKey("test");
     }
 
     @Test
@@ -89,8 +86,8 @@ class AssignmentServiceTest {
         this.assignmentService.getAllByPublicationKey("test",false);
 
         verify(assignmentRepository, times(1)).
-                findAllUnreturnedByPublication_Key(any(),eq("test"));
-        verify(assignmentRepository, times(0)).findAllByPublication_Key("test");
+                findAllUnreturnedByPublicationKey(any(),eq("test"));
+        verify(assignmentRepository, times(0)).findAllByPublicationKey("test");
     }
 
     @Test
@@ -141,7 +138,7 @@ class AssignmentServiceTest {
         publicationDto.setKey("test");
         assignmentDto.setPublication(publicationDto);
 
-        when(this.publicationService.getByKey("test")).thenReturn(publication);
+        when(this.publicationService.getByKey("test")).thenReturn(publicationDto);
         when(this.assignmentService.getAllByPublicationKey("test", false))
                 .thenReturn(new ArrayList<>());
 
@@ -157,8 +154,12 @@ class AssignmentServiceTest {
 
         PublicationDto publicationDto = new PublicationDto();
         publicationDto.setKey("test");
+        publicationDto.setQuantity(1);
+
+
         assignmentDto.setPublication(publicationDto);
         assignmentDto.setDateOfAssignment(dateOfAssignment);
+
 
         Date latestReturnDate = formatter.parse("2022-9-20 05:55:13");
 
@@ -170,7 +171,7 @@ class AssignmentServiceTest {
         assignment.setDateOfAssignment(dateOfAssignment);
         assignment.setLatestReturnDate(latestReturnDate);
 
-        when(this.publicationService.getByKey("test")).thenReturn(publication);
+        when(this.publicationService.getByKey("test")).thenReturn(publicationDto);
         when(this.assignmentService.getAllByPublicationKey("test", false))
                 .thenReturn(new ArrayList<>());
         when(this.assignmentMapper.assignmentDtoToEntity(assignmentDto)).thenReturn(assignment);
@@ -236,7 +237,7 @@ class AssignmentServiceTest {
         assertThrows(MaximumExtensionsException.class, () -> this.assignmentService.extend(uuid));
     }
 
-    /*
+
     @Test
     void extend_works() throws ParseException {
 
@@ -262,5 +263,5 @@ class AssignmentServiceTest {
         assignment.setLatestReturnDate(latestReturnExtended);
         assignment.setExtensions(2);
         verify(this.assignmentRepository,times(1)).saveAndRefresh(assignment);
-    }*/
+    }
 }

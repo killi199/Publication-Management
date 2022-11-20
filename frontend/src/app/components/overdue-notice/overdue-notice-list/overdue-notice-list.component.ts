@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TableInitsComponent } from 'src/app/helpers/table-inits';
 import { OverdueNotice } from 'src/app/models/overdue-notice';
+import { OverdueNoticeEvent } from './check-warnstatus-event';
 import { GermanDateAdapter } from 'src/app/helpers/german-date-adapter';
 import { Warning } from 'src/app/models/warning';
 import { Snackbar } from 'src/app/helpers/snackbar';
@@ -94,7 +95,7 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
         });
     }
 
-    protected _defineFilterPredicate(): (data: OverdueNotice, filter: string) => boolean {
+    protected override _defineFilterPredicate(): (data: OverdueNotice, filter: string) => boolean {
         return (data: OverdueNotice, filter: string): boolean => {
             const iswarnableDisplayValue = this.isWarnable(this.getLatestWarningDate(data)) ? 'Ja' : 'Nein';
             const latestWarndate = this.getLatestWarningDate(data);
@@ -117,7 +118,49 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
         };
     }
 
-    private _convertDate(date: Date | null | undefined): string {
+    protected override _defineSortingAccessor(): (data: OverdueNotice, property: string) => string {
+        return (data: OverdueNotice, property: string) => {
+            switch (property) {
+                case 'publicationKey': {
+                    return data.assignment.publicationKey;
+                }
+
+                case 'surname': {
+                    return data.assignment.borrower.surname;
+                }
+
+                case 'name': {
+                    return data.assignment.borrower.name;
+                }
+
+                case 'studentNumber': {
+                    return data.assignment.borrower.studentNumber;
+                }
+
+                case 'dateOfReturn': {
+                    return data.assignment.dateOfReturn.toDateString();
+                }
+
+                case 'warningDate': {
+                    return this.getLatestWarningDate(data)?.toDateString() ?? '';
+                }
+
+                case 'amountOfwarnings': {
+                    return data.warnings.length.toString();
+                }
+
+                case 'isReadyToWarn': {
+                    return this.isWarnable(this.getLatestWarningDate(data)) ? 'ja' : 'nein';
+                }
+
+                default: {
+                    return '';
+                }
+            }
+        };
+    }
+
+    private _convertDate(date: Date | null): string {
         const germanDateAdapter: GermanDateAdapter = new GermanDateAdapter();
         return date ? germanDateAdapter.formatDateToShortString(date) : '-';
     }

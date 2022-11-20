@@ -55,8 +55,9 @@ class PublicationServiceTest {
     void getByKey_works() {
 
         when(this.publicationRepository.findById("test")).thenReturn(Optional.of(publication));
+        when(this.publicationMapper.publicationEntityToDto(publication)).thenReturn(publicationDto);
 
-        assertEquals(publication, this.publicationService.getByKey("test"));
+        assertEquals(publicationDto, this.publicationService.getByKey("test"));
     }
 
     @Test
