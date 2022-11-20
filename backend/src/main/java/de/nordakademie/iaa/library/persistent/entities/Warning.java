@@ -30,11 +30,11 @@ public class Warning {
         this.uuid = uuid;
     }
 
-    public OverdueNotice getOverdueNoticeUuid() {
+    public OverdueNotice getOverdueNotice() {
         return overdueNotice;
     }
 
-    public void setOverdueNoticeUuid(OverdueNotice overdueNotice) {
+    public void setOverdueNotice(OverdueNotice overdueNotice) {
         this.overdueNotice = overdueNotice;
     }
 

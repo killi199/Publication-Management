@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Null;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -96,5 +97,18 @@ public class AssignmentController {
     @PostMapping("/extend/{uuid}")
     public ResponseEntity<AssignmentDto> extend(@PathVariable UUID uuid) {
         return new ResponseEntity<>(assignmentService.extend(uuid), HttpStatus.OK);
+    }
+
+    /**
+     * This method will close an overdue notice caused by loss.
+     * This endpoint shouldn't be a deletion endpoint but couldn't be changed in time.
+     *
+     * @param uuid the OverdueNotice that should be deleted
+     * @return only the status code
+     */
+    @PostMapping("/publication-lost/{uuid}")
+    public ResponseEntity<Null> markAssignmentAsLost(@PathVariable UUID uuid) {
+        assignmentService.markAssignmentAsLost(uuid);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

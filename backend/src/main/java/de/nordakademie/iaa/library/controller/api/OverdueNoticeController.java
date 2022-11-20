@@ -2,14 +2,16 @@ package de.nordakademie.iaa.library.controller.api;
 
 import de.nordakademie.iaa.library.controller.dto.OverdueNoticeDto;
 import de.nordakademie.iaa.library.service.OverdueNoticeServiceInterface;
+import de.nordakademie.iaa.library.service.impl.AssignmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.constraints.Null;
 import java.util.List;
-import java.util.UUID;
 
 import static de.nordakademie.iaa.library.controller.api.constants.ApiPath.OVERDUE_NOTICE_BASE_PATH;
 
@@ -22,9 +24,13 @@ public class OverdueNoticeController {
 
     private final OverdueNoticeServiceInterface overdueNoticeService;
 
+    private final AssignmentService assignmentService;
+
     @Autowired
-    public OverdueNoticeController(OverdueNoticeServiceInterface overdueNoticeService) {
+    public OverdueNoticeController(OverdueNoticeServiceInterface overdueNoticeService,
+                                   AssignmentService assignmentService) {
         this.overdueNoticeService = overdueNoticeService;
+        this.assignmentService = assignmentService;
     }
 
     /**
@@ -33,19 +39,7 @@ public class OverdueNoticeController {
      * @return a list of OverdueNotices
      */
     @GetMapping
-    public ResponseEntity<List<OverdueNoticeDto>> getAll() {
-        return new ResponseEntity<>(overdueNoticeService.getAll(), HttpStatus.OK);
-    }
-
-    /**
-     * This method will delete a OverdueNotice. The key is necessary to find the OverdueNotice that should be deleted.
-     *
-     * @param uuid the OverdueNotice that should be deleted
-     * @return only the status code
-     */
-    @DeleteMapping("/{uuid}")
-    public ResponseEntity<Null> delete(@PathVariable UUID uuid) {
-        overdueNoticeService.delete(uuid);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<List<OverdueNoticeDto>> getAll(@RequestParam(defaultValue = "false") boolean showClosed) {
+        return new ResponseEntity<>(overdueNoticeService.getAll(showClosed), HttpStatus.OK);
     }
 }

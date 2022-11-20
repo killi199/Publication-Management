@@ -76,6 +76,15 @@ public class PublicationService implements PublicationServiceInterface {
     }
 
     /**
+     * Lowers the quantity of the publication
+     *
+     * @param key publication key
+     */
+    public void reduceQuantityOnce(String key) {
+        publicationRepository.reduceQuantityOnce(key);
+    }
+
+    /**
      * this loads the authors and keywords to lower the number of sql queries.
      * It would be possible to load authors or keywords together with the publications but both
      * is caused by the cartesian and the hibernate bagFetchException not possible so that we
