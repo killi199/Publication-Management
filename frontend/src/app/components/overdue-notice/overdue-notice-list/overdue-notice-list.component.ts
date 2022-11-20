@@ -4,6 +4,7 @@ import { TableInitsComponent } from 'src/app/helpers/table-inits';
 import { OverdueNotice } from 'src/app/models/overdue-notice';
 import { GermanDateAdapter } from 'src/app/helpers/german-date-adapter';
 import { Warning } from 'src/app/models/warning';
+import { Snackbar } from 'src/app/helpers/snackbar';
 
 @Component({
     selector: 'app-overdue-notice-list',
@@ -36,6 +37,10 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
         'amountOfwarnings',
         'isReadyToWarn',
     ];
+
+    constructor(private snackBar: Snackbar) {
+        super();
+    }
 
     isWarnable(warningDate: Date | null): boolean {
         if (!warningDate) return true;
@@ -75,6 +80,7 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
 
         this.createWarning!(this.selectedRecord?.uuid).subscribe((w) => {
             this.selectedRecord?.warnings?.push(w);
+            this.snackBar.open('Warnung erstellt!');
         });
     }
 
@@ -84,6 +90,7 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
         this.delete!(this.selectedRecord?.uuid).subscribe(() => {
             this.dataSource.data = this.dataSource.data.filter((r) => r.uuid != this.selectedRecord?.uuid);
             this.selectedRecord = undefined;
+            this.snackBar.open('Mahnung gelöscht!');
         });
     }
 
