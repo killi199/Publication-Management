@@ -107,7 +107,7 @@ export class PublicationViewComponent implements OnInit {
         }
 
         const toSave = this.formGroup.value;
-        toSave.key = this.formGroup.value.key;
+        toSave.key = this.formGroup.get('key')?.value;
 
         this.savePublication.emit(toSave);
         this.clonedPublication = structuredClone(toSave);
