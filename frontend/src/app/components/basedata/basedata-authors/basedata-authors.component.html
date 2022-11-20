@@ -76,7 +76,7 @@
         <button
             matTooltip="Editieren"
             (click)="onEdit()"
-            [disabled]="!selectedRecord.name"
+            [disabled]="!selectedRecord.uuid"
             *ngIf="crudState === 'read'"
             mat-mini-fab
             color="primary"
@@ -98,7 +98,7 @@
         <button
             mat-mini-fab
             matTooltip="Löschen"
-            [disabled]="!selectedRecord.name"
+            [disabled]="!selectedRecord.uuid"
             *ngIf="crudState === 'read'"
             color="warn"
             (click)="onDelete()"
