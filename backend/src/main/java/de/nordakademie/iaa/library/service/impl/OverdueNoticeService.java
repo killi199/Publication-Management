@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -118,17 +117,4 @@ public class OverdueNoticeService implements OverdueNoticeServiceInterface {
         overdueNoticeRepository.save(overdueNotice);
     }
 
-    /**
-     * deletes the OverdueNotice
-     *
-     * @param uuid the OverdueNotice that should be deleted
-     *            \@NotNull is here for documentation and does nothing.
-     *            This method should not be called with null values.
-     */
-    public void delete(@NotNull UUID uuid) {
-
-        OverdueNotice overdueNotice = new OverdueNotice();
-        overdueNotice.setUuid(uuid);
-        overdueNoticeRepository.delete(overdueNotice);
-    }
 }

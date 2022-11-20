@@ -1,6 +1,7 @@
 package de.nordakademie.iaa.library.persistent.repository;
 
 import de.nordakademie.iaa.library.persistent.entities.Publication;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -45,4 +46,15 @@ public interface PublicationRepository extends CustomBaseRepository<Publication,
             "LEFT OUTER JOIN FETCH p.kindOfPublication kop " +
             "WHERE p.key IN :keys")
     List<Publication> findAllByKeys(@Param("keys") List<String> keys);
+
+    /**
+     * Lowers the number of quantity once if possible
+     *
+     * @param key of publication
+     */
+    @Modifying
+    @Query("UPDATE Publication p " +
+            "SET p.quantity = CASE WHEN p.quantity > 0 THEN p.quantity-1 ELSE 0 END " +
+            "WHERE p.key = :key")
+    void reduceQuantityOnce(@Param("key") String key);
 }

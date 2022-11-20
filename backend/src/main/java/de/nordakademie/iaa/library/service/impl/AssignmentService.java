@@ -67,6 +67,28 @@ public class AssignmentService implements AssignmentServiceInterface {
     }
 
     /**
+     * Marks an assignment as lost and deletes all overdue notices.
+     * Also lowers the quantity of available publications.
+     *
+     * @param uuid uuid of assignment
+     */
+    public void markAssignmentAsLost(UUID uuid) {
+        Optional<Assignment> assignmentOptional = assignmentRepository.findById(uuid);
+
+        if (assignmentOptional.isEmpty()) {
+            throw new EntityDoesNotExistException();
+        }
+
+        Assignment assignment = assignmentOptional.get();
+        assignment.setPublicationLoss(true);
+
+        this.overdueNoticeService.closeAllOverdueNotices(assignment);
+        this.publicationService.reduceQuantityOnce(assignment.getPublication().getKey());
+
+        this.createOrUpdate(assignment, false);
+    }
+
+    /**
      * get all assignments by publication key
      *
      * @return all assignments
