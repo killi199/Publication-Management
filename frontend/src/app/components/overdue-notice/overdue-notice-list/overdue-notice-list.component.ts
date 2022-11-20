@@ -70,11 +70,11 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
             const dateOfReturnShort = this._convertDate(dateOfReturn);
             const allValuesInOneString =
                 '' +
-                data.assignment.publication?.key +
-                data.assignment.borrower?.studentNumber +
-                data.assignment.borrower?.name +
-                data.assignment.borrower?.surname +
-                data.assignment.dateOfReturn +
+                data.assignment?.publication?.key +
+                data.assignment?.borrower?.studentNumber +
+                data.assignment?.borrower?.name +
+                data.assignment?.borrower?.surname +
+                data.assignment?.dateOfReturn +
                 latestWarndateShort +
                 dateOfReturnShort +
                 data.warnings?.length +
