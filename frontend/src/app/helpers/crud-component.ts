@@ -3,11 +3,12 @@ import { Observable } from 'rxjs';
 import { Snackbar } from 'src/app/helpers/snackbar';
 import { TableInitsComponent } from 'src/app/helpers/table-inits';
 import { CrudState } from 'src/app/models/crud-state';
+import { Entity } from '../models/entity';
 
 @Component({
     template: '',
 })
-export abstract class CrudComponent<T> extends TableInitsComponent<T> implements OnInit {
+export abstract class CrudComponent<T extends Entity> extends TableInitsComponent<T> implements OnInit {
     @Input()
     data: Observable<T[]> = new Observable<T[]>();
 
@@ -36,7 +37,7 @@ export abstract class CrudComponent<T> extends TableInitsComponent<T> implements
     }
 
     selectionChanged(selection: T): void {
-        this.selectedRecord = this.selectedRecord === selection ? ({} as T) : selection;
+        this.selectedRecord = this.selectedRecord === selection ? ({} as T) : structuredClone(selection);
     }
 
     onEdit(): void {
@@ -44,7 +45,7 @@ export abstract class CrudComponent<T> extends TableInitsComponent<T> implements
     }
 
     onSave(): void {
-        let messageType = this.crudState === CrudState.Create ? this.onCreate() : this.onUpdate();
+        const messageType = this.crudState === CrudState.Create ? this.onCreate() : this.onUpdate();
 
         this.snackBar.open(messageType);
         this.crudState = CrudState.Read;
@@ -59,9 +60,9 @@ export abstract class CrudComponent<T> extends TableInitsComponent<T> implements
         this.selectedRecord = {} as T;
     }
 
-    onDelete(record: T): void {
-        this.delete!(record).subscribe(() => {
-            this.dataSource.data = this.dataSource.data.filter((r) => r !== record);
+    onDelete(): void {
+        this.delete!(this.selectedRecord).subscribe(() => {
+            this.dataSource.data = this.dataSource.data.filter((r) => r.uuid != this.selectedRecord.uuid);
             this.selectedRecord = {} as T;
             this.snackBar.open('Gelöscht!');
         });
