@@ -73,7 +73,9 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
     onWarn(): void {
         if(!this.selectedRecord?.uuid) return;
 
-        this.createWarning!(this.selectedRecord?.uuid).subscribe();
+        this.createWarning!(this.selectedRecord?.uuid).subscribe((w) => {
+            this.selectedRecord?.warnings?.push(w);
+        });
     }
 
     onDelete(): void {
