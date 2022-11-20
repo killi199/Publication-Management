@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Assignment } from 'src/app/models/assignment';
 import { Borrower } from 'src/app/models/borrower';
+import { Publication } from 'src/app/models/publication';
 import { AssignmentService } from 'src/app/services/assignment.service';
 import { BorrowerService } from 'src/app/services/borrower.service';
 import { PublicationService } from 'src/app/services/publication.service';
@@ -19,10 +20,14 @@ export class AssignmentsComponent implements OnInit {
     createAssignment?: (assignment: Assignment) => Observable<Assignment>;
     isViewOpen: boolean = false;
     borrowers: Borrower[] = [];
-    publicationKeys: string[] = [];
+    publications: Publication[] = [];
     currentRecord?: Assignment;
-    
-    constructor(assignmentService: AssignmentService, private borrowerService: BorrowerService, private publicationService: PublicationService) {
+
+    constructor(
+        assignmentService: AssignmentService,
+        private borrowerService: BorrowerService,
+        private publicationService: PublicationService
+    ) {
         this.data = assignmentService.getAll();
         this.extendAssignment = assignmentService.extendAssignment;
         this.isAssignmentExtendable = assignmentService.isAssignmentExtendable;
@@ -31,12 +36,8 @@ export class AssignmentsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.borrowerService
-            .getAll()
-            .subscribe((borrowers) => (this.borrowers = borrowers));
-        this.publicationService.getAll().subscribe((publications) => (this.publicationKeys = publications.map((p) => {
-            return p.key ? p.key : "";
-        })));
+        this.borrowerService.getAll().subscribe((borrowers) => (this.borrowers = borrowers));
+        this.publicationService.getAll().subscribe((publications) => (this.publications = publications));
     }
 
     onBack(): void {

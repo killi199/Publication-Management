@@ -4,6 +4,7 @@ import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { map, Observable, startWith } from 'rxjs';
 import { Assignment } from 'src/app/models/assignment';
 import { Borrower } from 'src/app/models/borrower';
+import { Publication } from 'src/app/models/publication';
 
 @Component({
     selector: 'app-assignment-view',
@@ -18,7 +19,7 @@ export class AssignmentViewComponent implements OnInit {
     allBorrowers: Borrower[] = [];
 
     @Input()
-    allPublicationKeys: string[] = [];
+    allPublications: Publication[] = [];
 
     @Input()
     extendAssignment?: (assignment: Assignment) => Observable<Assignment>;
@@ -33,7 +34,7 @@ export class AssignmentViewComponent implements OnInit {
     create?: (assignment: Assignment) => Observable<Assignment>;
 
     formGroup = new FormGroup({
-        publicationKey: new FormControl<string>(''),
+        publication: new FormControl<Publication | undefined>(undefined),
         dateOfAssignment: new FormControl<Date>(new Date()),
         dateOfReturn: new FormControl<Date | undefined>(undefined),
         borrower: new FormControl<Borrower | undefined>(undefined),
@@ -41,7 +42,7 @@ export class AssignmentViewComponent implements OnInit {
 
     filteredBorrowers: Observable<Borrower[]> = new Observable<Borrower[]>();
 
-    filteredPublicationKeys: Observable<string[]> = new Observable<string[]>();
+    filteredPublication: Observable<Publication[]> = new Observable<Publication[]>();
 
     ngOnInit(): void {
         if (this.assignment) {
@@ -85,10 +86,17 @@ export class AssignmentViewComponent implements OnInit {
         });
     }
 
-    displayBorrower(borrower: Borrower): string {
+    displayBorrower(borrower: Borrower | string): string {
+        if (typeof borrower === 'string') {
+            return borrower;
+        }
         return borrower?.surname && borrower?.name
             ? borrower.surname + ' ' + borrower.name
             : '';
+    }
+
+    displayPublication(publication: Publication): string {
+        return publication?.key ? publication.key : '';
     }
 
     private _filterBorrowers(value: string): Borrower[] {
@@ -101,12 +109,14 @@ export class AssignmentViewComponent implements OnInit {
         );
     }
 
-    private _filterPublicationKeys(value: string): string[] {
+    private _filterPublications(value: string): Publication[] {
         const filterValue = value.toLowerCase();
-    
-        return this.allPublicationKeys.filter(option => option.toLowerCase().includes(filterValue));
-      }
 
+        return this.allPublications.filter(
+            (publication) =>
+            publication.key?.toLowerCase().includes(filterValue)
+        );
+    }
     private _reloadView(): void {
         this.filteredBorrowers = this.formGroup
             .get('borrower')!
@@ -127,9 +137,23 @@ export class AssignmentViewComponent implements OnInit {
                 })
             );
 
-            this.filteredPublicationKeys = this.formGroup.get('publicationKey')!.valueChanges.pipe(
+            this.filteredPublication = this.formGroup
+            .get('publication')!
+            .valueChanges.pipe(
                 startWith(''),
-                map(publicationKey => this._filterPublicationKeys(publicationKey || '')),
-              );
+                map((publication) => {
+                    let value = '';
+
+                    if (typeof publication === 'string') {
+                        value = publication;
+                    } else if (publication?.key) {
+                        value = publication?.key;
+                    }
+
+                    return value
+                        ? this._filterPublications(value as string)
+                        : this.allPublications.slice();
+                })
+            );
     }
 }

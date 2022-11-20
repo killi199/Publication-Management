@@ -5,19 +5,22 @@
             <input
                 placeholder="Ex. NA-123"
                 type="text"
-                name="publicationKey"
+                name="publication"
                 matInput
-                formControlName="publicationKey"
-                [matAutocomplete]="autocompletepublicationKey"
+                formControlName="publication"
+                [matAutocomplete]="autocompletepublication"
             />
-            <mat-autocomplete #autocompletepublicationKey="matAutocomplete">
+            <mat-autocomplete
+                #autocompletepublication="matAutocomplete"
+                [displayWith]="displayPublication"
+            >
                 <mat-option
                     *ngFor="
-                        let publicationKey of filteredPublicationKeys | async
+                        let publication of filteredPublication | async
                     "
-                    [value]="publicationKey"
+                    [value]="publication"
                 >
-                    {{ publicationKey }}
+                    {{ publication.key }}
                 </mat-option>
             </mat-autocomplete>
         </mat-form-field>
