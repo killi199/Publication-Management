@@ -29,8 +29,7 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
 
     isWarnable(warningDate: Date | null): boolean {
         if (!warningDate) return true;
-        const today = new Date();
-        const diffInDays = Math.floor((today.getTime() - new Date(warningDate).getTime()) / (24 * 60 * 60 * 1000));
+        const diffInDays = Math.floor((new Date().getTime() - new Date(warningDate).getTime()) / (24 * 60 * 60 * 1000));
         return diffInDays >= 7;
     }
 
