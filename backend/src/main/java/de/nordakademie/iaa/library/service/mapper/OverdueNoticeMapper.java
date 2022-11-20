@@ -18,7 +18,5 @@ public interface OverdueNoticeMapper {
 
     OverdueNoticeDto overdueNoticeEntityToDto(OverdueNotice overdueNoticeDto);
 
-    OverdueNotice overdueNoticeDtoToEntity(OverdueNoticeDto overdueNoticeDto);
-
     List<OverdueNoticeDto> overdueNoticeEntitiesToDtos(List<OverdueNotice> overdueNoticeDto);
 }

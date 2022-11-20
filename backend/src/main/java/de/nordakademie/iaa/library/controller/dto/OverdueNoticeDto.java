@@ -13,6 +13,12 @@ public class OverdueNoticeDto {
 
     private AssignmentDto assignment;
 
+    private Date closedAt;
+
+    private Date openedAt;
+
+    private OverdueNoticeState overdueNoticeState;
+
     private List<WarningDto> warnings = new ArrayList<>();
 
     public UUID getUuid() {
@@ -29,6 +35,29 @@ public class OverdueNoticeDto {
 
     public void setAssignment(AssignmentDto assignment) {
         this.assignment = assignment;
+    }
+
+    public void setClosedAt(Date closedAt) {
+        this.closedAt = closedAt;
+    }
+
+    public void setOpenedAt(Date openedAt) {
+        this.openedAt = openedAt;
+    }
+
+    public void setOverdueNoticeState(OverdueNoticeState overdueNoticeState) {
+        this.overdueNoticeState = overdueNoticeState;
+    }
+
+    public OverdueNoticeState getOverdueNoticeState() {
+        return overdueNoticeState;
+    }
+    public Date getClosedAt() {
+        return closedAt;
+    }
+
+    public Date getOpenedAt() {
+        return openedAt;
     }
 
     public List<WarningDto> getWarnings() {

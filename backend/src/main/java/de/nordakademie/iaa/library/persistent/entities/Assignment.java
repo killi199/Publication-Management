@@ -37,7 +37,6 @@ public class Assignment {
     @NotNull
     private Publication publication;
 
-
     public UUID getUuid() {
         return uuid;
     }

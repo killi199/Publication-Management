@@ -756,8 +756,19 @@ components:
           type: string
         assignment:
           $ref: '#/components/schemas/Assignment'
+        closedAt:
+          type: string
+          format: date-time
+        openedAt:
+          type: string
+          format: date-time
+        overdueNoticeState:
+          type: string
+          enum: [OPENED,CLOSED]
         warnings:
-          $ref: '#/components/schemas/Warning'
+          type: array
+          items:
+            $ref: '#/components/schemas/Warning'
     EntityAlreadyExistsException:
       type: string
       enum: ["The entity you try to create already exits. You can override it if you want."]

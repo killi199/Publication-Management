@@ -36,13 +36,17 @@ public class AssignmentService implements AssignmentServiceInterface {
 
     private final PublicationService publicationService;
 
+    private final OverdueNoticeService overdueNoticeService;
+
     @Autowired
     public AssignmentService(AssignmentRepository assignmentRepository,
                              AssignmentMapper assignmentMapper,
-                             PublicationService publicationService) {
+                             PublicationService publicationService,
+                             OverdueNoticeService overdueNoticeService) {
         this.assignmentRepository = assignmentRepository;
         this.assignmentMapper = assignmentMapper;
         this.publicationService = publicationService;
+        this.overdueNoticeService = overdueNoticeService;
     }
 
     /**
@@ -145,7 +149,7 @@ public class AssignmentService implements AssignmentServiceInterface {
         Date time = calendar.getTime();
         assignment.setLatestReturnDate(time);
 
-        return createOrUpdate(assignment);
+        return createOrUpdate(assignment, true);
     }
 
     /**
@@ -185,7 +189,9 @@ public class AssignmentService implements AssignmentServiceInterface {
 
         assignment.setDateOfReturn(returnDate == null ? new Date() : returnDate);
 
-        return createOrUpdate(assignment);
+        this.overdueNoticeService.closeAllOverdueNotices(assignment);
+
+        return createOrUpdate(assignment, false);
     }
 
     /**
@@ -214,9 +220,9 @@ public class AssignmentService implements AssignmentServiceInterface {
 
         assignment.setLatestReturnDate(calendar.getTime());
 
-        //TODO delete overdue notice
+        this.overdueNoticeService.closeAllOverdueNotices(assignment);
 
-        return createOrUpdate(assignment);
+        return createOrUpdate(assignment, true);
     }
 
 
@@ -240,14 +246,26 @@ public class AssignmentService implements AssignmentServiceInterface {
     }
 
     /**
-     * create or updates an assignment
+     * create or updates an assignment.
+     * On every create or update a new overdue notice will be created with the state reserved.
+     * On an update all other will be closed or deleted before.
+     * </p>
+     * This is an easy and performant way to create an overdue notice exactly one day after the latest return date.
+     * Other methods would have been to have async task runner or create the overdue notice at the overdue notice
+     * get request.
      *
      * @param assignment the assignment that should be created or updated
      * @return the created or updated assignment
      * \@NotNull is here for documentation and does nothing.
      * This method should not be called with null values.
      */
-    private AssignmentDto createOrUpdate(@NotNull Assignment assignment) {
-        return assignmentMapper.assignmentEntityToDto(assignmentRepository.saveAndRefresh(assignment));
+    private AssignmentDto createOrUpdate(@NotNull Assignment assignment, boolean createNewOverdueNotice) {
+        assignment = assignmentRepository.saveAndRefresh(assignment);
+
+        if (createNewOverdueNotice) {
+            overdueNoticeService.createOverdueNotice(assignment);
+        }
+
+        return assignmentMapper.assignmentEntityToDto(assignment);
     }
 }
