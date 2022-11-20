@@ -16,7 +16,7 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
     overdueNotices: Observable<OverdueNotice[]> = new Observable<OverdueNotice[]>();
 
     @Input()
-    delete?: (uuid: string) => Observable<any>;
+    publicationLost?: (uuid: string) => Observable<any>;
 
     @Input()
     createWarning?: (uuid: string) => Observable<Warning>;
@@ -87,7 +87,7 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
     onDelete(): void {
         if(!this.selectedRecord?.uuid) return;
 
-        this.delete!(this.selectedRecord?.uuid).subscribe(() => {
+        this.publicationLost!(this.selectedRecord?.uuid).subscribe(() => {
             this.dataSource.data = this.dataSource.data.filter((r) => r.uuid != this.selectedRecord?.uuid);
             this.selectedRecord = undefined;
             this.snackBar.open('Mahnung gelöscht!');

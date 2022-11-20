@@ -32,7 +32,7 @@ export class AssignmentsComponent implements OnInit {
     };
 
     returnAssignment = (uuid: string): Observable<Assignment> => {
-        return this.assignmentService.returnAssignment(uuid);
+        return this.assignmentService.return(uuid);
     };
 
     createAssignment = (assignment: Assignment): Observable<Assignment> => {

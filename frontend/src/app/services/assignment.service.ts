@@ -36,7 +36,7 @@ export class AssignmentService {
         );
     }
 
-    returnAssignment(uuid: string): Observable<Assignment> {
+    return(uuid: string): Observable<Assignment> {
         return this.http.post<Assignment>(`${ENDPOINT_URL}/return/${uuid}`, null).pipe(
             catchError((err: HttpErrorResponse) => {
                 throw this._handleError(err);
@@ -46,6 +46,14 @@ export class AssignmentService {
 
     extend(uuid: string): Observable<Assignment> {
         return this.http.post<Assignment>(`${ENDPOINT_URL}/extend/${uuid}`, null).pipe(
+            catchError((err: HttpErrorResponse) => {
+                throw this._handleError(err);
+            })
+        );
+    }
+
+    publicationLost(uuid: string): Observable<any> {
+        return this.http.post(`${ENDPOINT_URL}/publication-lost/${uuid}`, null).pipe(
             catchError((err: HttpErrorResponse) => {
                 throw this._handleError(err);
             })

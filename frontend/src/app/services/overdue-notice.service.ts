@@ -16,15 +16,7 @@ export class OverdueNoticeService {
     getAll(): Observable<OverdueNotice[]> {
         return this.http.get<OverdueNotice[]>(ENDPOINT_URL).pipe(
             catchError((err: HttpErrorResponse) => {
-                throw this.handleError(err);
-            })
-        );
-    }
-
-    delete(uuid: string): Observable<any> {
-        return this.http.delete(`${ENDPOINT_URL}/${uuid}`).pipe(
-            catchError((err: HttpErrorResponse) => {
-                throw this.handleError(err);
+                throw this._handleError(err);
             })
         );
     }
@@ -32,12 +24,12 @@ export class OverdueNoticeService {
     createWarning(uuid: string): Observable<Warning> {
         return this.http.post<Warning>(`${ENDPOINT_URL}/warning/${uuid}`, null).pipe(
             catchError((err: HttpErrorResponse) => {
-                throw this.handleError(err);
+                throw this._handleError(err);
             })
         );
     }
 
-    handleError(err: HttpErrorResponse): HttpErrorResponse {
+    private _handleError(err: HttpErrorResponse): HttpErrorResponse {
         if(err.error.error) {
             this.snackBar.open('Es ist etwas schief gelaufen');
         }
