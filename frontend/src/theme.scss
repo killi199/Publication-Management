@@ -9,10 +9,12 @@ $app-primary1: mat-palette($mat-indigo, 500);
 $app-primary2: mat-palette($mat-indigo, 700);
 $app-accent1:  mat-palette($mat-indigo, 50);
 $app-accent2:  mat-palette($mat-indigo, 100);
-$app-warn: mat-palette($mat-pink, 100);
+$app-warn1: mat-palette($mat-pink, 50);
+$app-warn2: mat-palette($mat-pink, 400);
 
 $primary1: mat-color($app-primary1);
 $primary2: mat-color($app-primary2);
 $accent1: mat-color($app-accent1);
 $accent2: mat-color($app-accent2);
-$warn: mat-color($app-warn);
+$warn1: mat-color($app-warn1);
+$warn2: mat-color($app-warn2);
