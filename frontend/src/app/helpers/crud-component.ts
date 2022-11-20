@@ -45,11 +45,7 @@ export abstract class CrudComponent<T extends Entity> extends TableInitsComponen
     }
 
     onSave(): void {
-        const messageType = this.crudState === CrudState.Create ? this.onCreate() : this.onUpdate();
-
-        this.snackBar.open(messageType);
-        this.crudState = CrudState.Read;
-        this.selectedRecord = {} as T;
+        this.crudState === CrudState.Create ? this.onCreate() : this.onUpdate();
     }
 
     onUndo(): void {
@@ -74,22 +70,25 @@ export abstract class CrudComponent<T extends Entity> extends TableInitsComponen
         this.selection.clear();
     }
 
-    onCreate(): string {
+    onCreate(): void {
         this.create!(this.selectedRecord).subscribe((a) => {
             this.selectedRecord = {} as T;
             this.dataSource.data.push(a);
             this.dataSource.data = this.dataSource.data;
+            this.selection.clear();
+            this.snackBar.open('Erstellt!');
+            this.crudState = CrudState.Read;
         });
-
-        return 'Erstellt!';
     }
 
-    onUpdate(): string {
+    onUpdate(): void {
         this.update!(this.selectedRecord).subscribe((a) => {
             this.selectedRecord = {} as T;
+            this.dataSource.data = this.dataSource.data.map((r) => (r.uuid === a.uuid ? a : r));
+            this.dataSource.data = this.dataSource.data;
             this.selection.clear();
+            this.snackBar.open('Geändert!');
+            this.crudState = CrudState.Read;
         });
-
-        return 'Geändert!';
     }
 }
