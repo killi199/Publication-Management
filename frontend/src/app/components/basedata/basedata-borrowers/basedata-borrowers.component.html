@@ -63,7 +63,9 @@
             [disabled]="crudState === 'read'"
             matInput
             placeholder="Bsp. Mustermann"
-            [value]="selectedRecord?.surname || ''"
+            [(ngModel)]="selectedRecord.surname"
+            #surname="ngModel"
+            required
         />
     </mat-form-field>
     <mat-form-field appearance="fill">
@@ -73,7 +75,9 @@
             [disabled]="crudState === 'read'"
             matInput
             placeholder="Bsp. Max"
-            [value]="selectedRecord?.name || ''"
+            [(ngModel)]="selectedRecord.name"
+            #name="ngModel"
+            required
         />
     </mat-form-field>
     <mat-form-field appearance="fill">
@@ -83,7 +87,9 @@
             [disabled]="crudState === 'read'"
             matInput
             placeholder="Bsp. 9123"
-            [value]="selectedRecord?.studentNumber || ''"
+            [(ngModel)]="selectedRecord.studentNumber"
+            #studentNumber="ngModel"
+            required
         />
     </mat-form-field>
 
@@ -91,7 +97,7 @@
         <button
             matTooltip="Editieren"
             (click)="onEdit()"
-            [disabled]="selectedRecord?.studentNumber === null"
+            [disabled]="!selectedRecord.uuid"
             *ngIf="crudState === 'read'"
             mat-mini-fab
             color="primary"
@@ -105,6 +111,7 @@
             *ngIf="crudState === 'create' || crudState === 'update'"
             (click)="onSave()"
             color="primary"
+            [disabled]="!name.valid || !surname.valid || !studentNumber.valid"
         >
             <mat-icon>done</mat-icon>
         </button>
@@ -112,10 +119,10 @@
         <button
             mat-mini-fab
             matTooltip="Löschen"
-            [disabled]="selectedRecord?.studentNumber === null"
+            [disabled]="!selectedRecord.uuid"
             *ngIf="crudState === 'read'"
             color="warn"
-            (click)="onDelete(selectedRecord!)"
+            (click)="onDelete()"
         >
             <mat-icon>delete</mat-icon>
         </button>
