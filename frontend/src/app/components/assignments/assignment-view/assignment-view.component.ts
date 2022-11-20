@@ -27,7 +27,7 @@ export class AssignmentViewComponent implements OnInit {
     isAssignmentExtandable?: (assignment: Assignment) => Observable<boolean>;
 
     @Input()
-    update?: (assignment: Assignment) => Observable<Assignment>;
+    returnAssignment?: (uuid: string) => Observable<Assignment>;
 
     @Input()
     create?: (assignment: Assignment) => Observable<Assignment>;
@@ -110,11 +110,10 @@ export class AssignmentViewComponent implements OnInit {
     }
 
     onReturn(): void {
-        if (!this.assignment) return;
+        if (!this.assignment?.uuid) return;
 
         this.assignment.dateOfReturn = new Date();
-        console.log(this.assignment.dateOfReturn);
-        this.update!(this.assignment).subscribe((a) => {
+        this.returnAssignment!(this.assignment.uuid).subscribe((a) => {
             this.formGroup.patchValue(a);
         });
     }

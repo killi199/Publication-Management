@@ -12,8 +12,12 @@ const ENDPOINT_URL: string = '/rest/assignment';
 export class AssignmentService {
     constructor(private snackBar: Snackbar, private http: HttpClient) {}
 
-    update(assignment: Assignment): Observable<Assignment> {
-        return of(assignment);
+    getAll(): Observable<Assignment[]> {
+        return this.http.get<Assignment[]>(ENDPOINT_URL).pipe(
+            catchError((err: HttpErrorResponse) => {
+                throw this._handleError(err);
+            })
+        );
     }
 
     create(assignment: Assignment): Observable<Assignment> {
@@ -24,16 +28,16 @@ export class AssignmentService {
         );
     }
 
-    getAll(): Observable<Assignment[]> {
-        return this.http.get<Assignment[]>(ENDPOINT_URL).pipe(
+    getAllByPubKey(uuid: string): Observable<Assignment[]> {
+        return this.http.get<Assignment[]>(`${ENDPOINT_URL}/${uuid}`).pipe(
             catchError((err: HttpErrorResponse) => {
                 throw this._handleError(err);
             })
         );
     }
 
-    getAllByPubKey(uuid: string): Observable<Assignment[]> {
-        return this.http.get<Assignment[]>(`${ENDPOINT_URL}/${uuid}`).pipe(
+    returnAssignment(uuid: string): Observable<Assignment> {
+        return this.http.post<Assignment>(`${ENDPOINT_URL}/return/${uuid}`, null).pipe(
             catchError((err: HttpErrorResponse) => {
                 throw this._handleError(err);
             })

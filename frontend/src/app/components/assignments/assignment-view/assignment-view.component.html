@@ -112,7 +112,7 @@
                 type="button"
                 (click)="onExtend()"
                 [disabled]="
-                    (isAssignmentExtandable!(assignment) | async) === false
+                    (isAssignmentExtandable!(assignment) | async) === false || this.formGroup.value.dateOfReturn
                 "
                 mat-mini-fab
                 color="primary"
@@ -125,6 +125,7 @@
                 *ngIf="this.formGroup.disabled"
                 type="button"
                 (click)="onReturn()"
+                [disabled]="this.formGroup.value.dateOfReturn"
                 mat-mini-fab
                 color="primary"
                 matTooltip="Buch zurückgeben"
