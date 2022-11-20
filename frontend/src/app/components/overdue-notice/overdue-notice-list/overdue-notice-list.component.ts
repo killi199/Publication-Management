@@ -84,7 +84,7 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
         };
     }
 
-    private _convertDate(date: Date | null): string {
+    private _convertDate(date: Date | null | undefined): string {
         const germanDateAdapter: GermanDateAdapter = new GermanDateAdapter();
         return date ? germanDateAdapter.formatDateToShortString(date) : '-';
     }

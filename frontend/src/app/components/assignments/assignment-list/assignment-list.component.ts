@@ -55,17 +55,18 @@ export class AssignmentListComponent extends TableInitsComponent<Assignment> imp
             const dateOfReturnShort = this._convertDate(dateOfReturn);
             const allValuesInOneString =
                 '' +
-                data.publicationKey +
-                data.borrower.studentNumber +
-                data.borrower.name +
-                data.borrower.surname +
+                data.publication?.key +
+                data.borrower?.studentNumber +
+                data.borrower?.name +
+                data.borrower?.surname +
                 dateOfAssignmentShort +
                 dateOfReturnShort;
             return allValuesInOneString?.trim().toLowerCase().includes(filter) ?? false;
         };
     }
 
-    private _convertDate(date: Date): string {
-        return new GermanDateAdapter().formatDateToShortString(date);
+    private _convertDate(date: Date | null | undefined): string {
+        const germanDateAdapter: GermanDateAdapter = new GermanDateAdapter();
+        return date ? germanDateAdapter.formatDateToShortString(date) : '-';
     }
 }
