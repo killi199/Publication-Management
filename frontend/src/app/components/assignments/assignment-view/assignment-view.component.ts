@@ -74,7 +74,6 @@ export class AssignmentViewComponent implements OnInit {
 
     getCorrectBorrower(borrower: string): Borrower {
         const value = borrower.trim();
-        console.log(value);
         const filteredBorrower = this._filterBorrowers(value as string);
 
         if (filteredBorrower.length === 1) {
@@ -132,7 +131,8 @@ export class AssignmentViewComponent implements OnInit {
     private _filterBorrowers(value: string): Borrower[] {
         const filterValue = value.toLowerCase();
         return this.allBorrowers.filter((borrower) =>
-            (borrower.surname + ' ' + borrower.name).toLowerCase().includes(filterValue)
+            (borrower.surname + ' ' + borrower.name).toLowerCase().includes(filterValue) ||
+            (borrower.name + ' ' + borrower.surname).toLowerCase().includes(filterValue)
         );
     }
 

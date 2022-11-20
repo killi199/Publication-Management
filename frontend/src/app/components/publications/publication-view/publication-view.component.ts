@@ -216,10 +216,9 @@ export class PublicationViewComponent implements OnInit {
     private _filterAuthors(value: string): Author[] {
         const filterValue = value.toLowerCase();
 
-        return this.allAuthors.filter(
-            (author) =>
-                author.surname?.toLowerCase().includes(filterValue) ||
-                author.name?.toLowerCase().includes(filterValue)
+        return this.allAuthors.filter((author) =>
+            (author.surname + ' ' + author.name).toLowerCase().includes(filterValue) || 
+            (author.name + ' ' + author.surname).toLowerCase().includes(filterValue)
         );
     }
 
