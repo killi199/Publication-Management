@@ -83,40 +83,6 @@ public class PublicationService implements PublicationServiceInterface {
         return publicationMapper.publicationEntityToDto(publicationOptional.get());
     }
 
-    /**
-     * create a Publication
-     *
-     * @param publicationDto the Publication that should be created
-     * @return the created Publication
-     * \@NotNull is here for documentation and does nothing.
-     * This method should not be called with null values.
-     */
-    public PublicationDto create(@NotNull PublicationDto publicationDto) {
-
-        if (publicationRepository.existsById(publicationDto.getKey())) {
-            throw new EntityAlreadyExistsException();
-        }
-
-        return createOrUpdate(publicationDto);
-    }
-
-    /**
-     * update a Publication
-     *
-     * @param publicationDto the Publication that should be updated
-     * @return the updated Publication
-     * \@NotNull is here for documentation and does nothing.
-     * This method should not be called with null values.
-     */
-    public PublicationDto update(@NotNull PublicationDto publicationDto) {
-
-        if (!publicationRepository.existsById(publicationDto.getKey())) {
-            throw new EntityDoesNotExistException();
-        }
-
-        return createOrUpdate(publicationDto);
-    }
-
 
     /**
      * deletes the Publication
@@ -139,7 +105,7 @@ public class PublicationService implements PublicationServiceInterface {
      * \@NotNull is here for documentation and does nothing.
      * This method should not be called with null values.
      */
-    private PublicationDto createOrUpdate(@NotNull PublicationDto publicationDto) {
+    public PublicationDto createOrUpdate(@NotNull PublicationDto publicationDto) {
         Publication publication = publicationMapper.publicationDtoToEntity(publicationDto);
 
         return publicationMapper.publicationEntityToDto(publicationRepository.saveAndRefresh(publication));

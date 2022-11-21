@@ -36,20 +36,12 @@ public interface PublicationServiceInterface {
     PublicationDto getByKey(String key);
 
     /**
-     * create a Publication
-     *
-     * @param publicationDto the Publication that should be created
-     * @return the created Publication
-     */
-    PublicationDto create(PublicationDto publicationDto);
-
-    /**
-     * update a Publication
+     * create or update a Publication
      *
      * @param publicationDto the Publication that should be updated
      * @return the updated Publication
      */
-    PublicationDto update(PublicationDto publicationDto);
+    PublicationDto createOrUpdate(PublicationDto publicationDto);
 
 
     /**

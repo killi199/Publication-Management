@@ -37,12 +37,15 @@ public class AssignmentController {
     /**
      * This method will fetch all assignments from the database.
      *
+     * @param showReturned actually means showClosed also closed assignments by a loss of the publication will
+     *                     not be displayed
+     *
      * @return a list of assignments
      */
     @GetMapping
-    public ResponseEntity<List<AssignmentDto>> getAll(@RequestParam(required = false, defaultValue = "false")
-                                                      boolean showReturned) {
-        return new ResponseEntity<>(assignmentService.getAll(showReturned), HttpStatus.OK);
+    public ResponseEntity<List<AssignmentDto>> getAll(@RequestParam(required = false, defaultValue = "false", name = "showReturned")
+                                                      boolean showClosed) {
+        return new ResponseEntity<>(assignmentService.getAll(showClosed), HttpStatus.OK);
     }
 
 

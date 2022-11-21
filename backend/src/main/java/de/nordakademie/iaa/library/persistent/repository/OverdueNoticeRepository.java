@@ -46,9 +46,9 @@ public interface OverdueNoticeRepository extends CustomBaseRepository<OverdueNot
      */
     @Modifying
     @Query("DELETE FROM OverdueNotice o " +
-            "WHERE o.openedAt >= :closeDate " +
+            "WHERE o.openedAt > :now " +
             "AND o.assignment.uuid = :assignmentUUID")
-    void deleteReservedOverdueNotices(@Param("assignmentUUID") UUID assignmentUUID, @Param("closeDate") Date closeDate);
+    void deleteReservedOverdueNotices(@Param("assignmentUUID") UUID assignmentUUID, @Param("now") Date now);
 
     /**
      * Closes all opened overdue notices.

@@ -88,6 +88,7 @@ public class PublicationMapperImpl implements PublicationMapper {
                 kindOfPublicationMapper.kindOfPublicationEntityToDto(publication.getKindOfPublication()));
         publicationDto.setIsbn(publication.getIsbn());
         publicationDto.setQuantity(publication.getQuantity());
+        publicationDto.setDeleted(publication.isDeleted());
 
         return publicationDto;
     }

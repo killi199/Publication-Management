@@ -46,7 +46,7 @@ public class PublicationController {
      */
     @PostMapping
     public ResponseEntity<PublicationDto> create(@RequestBody @Valid PublicationDto publicationDto) {
-        return new ResponseEntity<>(publicationService.create(publicationDto), HttpStatus.OK);
+        return new ResponseEntity<>(publicationService.createOrUpdate(publicationDto), HttpStatus.OK);
     }
 
     /**
@@ -57,7 +57,7 @@ public class PublicationController {
      */
     @PutMapping
     public ResponseEntity<PublicationDto> update(@RequestBody @Valid PublicationDto publicationDto) {
-        return new ResponseEntity<>(publicationService.update(publicationDto), HttpStatus.OK);
+        return new ResponseEntity<>(publicationService.createOrUpdate(publicationDto), HttpStatus.OK);
     }
 
     /**

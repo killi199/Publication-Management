@@ -95,7 +95,7 @@ public class OverdueNoticeService implements OverdueNoticeServiceInterface {
      */
     public void closeAllOverdueNotices(Assignment assignment) {
         Date closedDate = assignment.getDateOfReturn() == null ? new Date(): assignment.getDateOfReturn();
-        overdueNoticeRepository.deleteReservedOverdueNotices(assignment.getUuid(), closedDate);
+        overdueNoticeRepository.deleteReservedOverdueNotices(assignment.getUuid(), new Date());
         overdueNoticeRepository.closeAllOverdueNotices(assignment.getUuid(), closedDate);
     }
 

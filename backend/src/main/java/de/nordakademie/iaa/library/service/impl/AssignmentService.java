@@ -64,10 +64,10 @@ public class AssignmentService implements AssignmentServiceInterface {
      *
      * @return all assignments
      */
-    public List<AssignmentDto> getAll(boolean showReturned) {
+    public List<AssignmentDto> getAll(boolean showClosed) {
         List<Assignment> assignments;
 
-        if (showReturned) {
+        if (showClosed) {
             assignments = assignmentRepository.findAll();
         } else {
             assignments = assignmentRepository.findAllUnreturned(new Date());
@@ -220,6 +220,10 @@ public class AssignmentService implements AssignmentServiceInterface {
         Assignment assignment = getAssignmentByUuid(assignmentUUID);
 
         assignment.setDateOfReturn(returnDate == null ? new Date() : returnDate);
+
+        if (assignment.getDateOfAssignment().after(assignment.getDateOfReturn())) {
+            throw new ReturnBeforeAssignmentException();
+        }
 
         this.overdueNoticeService.closeAllOverdueNotices(assignment);
 
