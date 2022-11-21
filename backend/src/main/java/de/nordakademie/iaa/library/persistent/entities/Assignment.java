@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.UUID;
 
 /**
+ * Author: Thorge Früchtenicht
  * An Assignment describes the lending of Publications.
  * Each Publication can be lent to a Borrower.
  */

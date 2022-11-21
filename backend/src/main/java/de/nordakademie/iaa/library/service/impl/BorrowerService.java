@@ -17,6 +17,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 /**
+ * Author: Nello Musmeci
  * The borrower service provides methods to handle the borrowers
  */
 @Service

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
+ * Author: Thorge Früchtenicht
  * The author service provides methods to handle the authors
  */
 public interface AuthorServiceInterface {

@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
+ * Author: Thorge Früchtenicht
  * The implementation of this mapper is done manually to be able to set the authors and keywords directly.
  * This lowers the number of sql queries.
  */

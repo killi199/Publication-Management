@@ -1,3 +1,4 @@
+/*Author: Nello Musmeci*/
 insert into publication (key, isbn, date_of_publication, publisher, quantity, title, kind_of_publication_uuid) values ('c6b91843-a823-45f2-b125-6c89bdba061f', '624227277-6', '2022-04-09 10:55:13', 'Karlie Elham', 4, 'Memento', 'cd874876-d36f-4488-b009-a8ccfd2cb53f') ON CONFLICT DO NOTHING;
 insert into publication (key, isbn, date_of_publication, publisher, quantity, title, kind_of_publication_uuid) values ('f4bc7844-e09b-43d6-a69e-c54566c79542', '518334401-9', '2009-11-05 17:17:24', 'Towny Joisce', 9, 'Pacific Rim', '80b0af6c-20c7-4118-a353-8850d62bf969') ON CONFLICT DO NOTHING;
 insert into publication (key, isbn, date_of_publication, publisher, quantity, title, kind_of_publication_uuid) values ('cc804c19-8b35-4054-94cf-51a260afeac1', '278253364-9', '1999-05-25 18:07:24', 'Maighdiln Drivers', 19, 'Father of the Bride', '7812b89c-df2e-46fe-bf39-1f894951c26d') ON CONFLICT DO NOTHING;

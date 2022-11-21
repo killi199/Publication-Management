@@ -18,6 +18,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 /**
+ * Author: Nello Musmeci
  * The kindOfPublication service provides methods to handle the kindOfPublication
  */
 @Service

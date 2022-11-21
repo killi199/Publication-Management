@@ -16,6 +16,11 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.UUID;
 
+/**
+ * Author: Nello Musmeci
+ * </p>
+ * handles warnings
+ */
 @Service
 public class WarningService implements WarningServiceInterface {
 

@@ -8,6 +8,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * Author: Thorge Früchtenicht
+ *
  * A Publication is the main object for a library. It describes things like books, articles, etc.
  * A Publication can only be softly deleted. Caused by its correlation to the assignments and the fact that we want to
  * show all historical assignments.

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
+ * Author: Nello Musmeci
  * The kindOfPublication service provides methods to handle the kindOfPublications
  */
 public interface KindOfPublicationServiceInterface {

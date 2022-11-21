@@ -3,6 +3,7 @@ package de.nordakademie.iaa.library.controller.api.exception;
 import org.springframework.http.HttpStatus;
 
 /**
+ * Author: Nello Musmeci
  * This exception is thrown if an assignment return date is before the date of assignment.
  */
 public class ReturnBeforeAssignmentException extends AbstractRestApiException {

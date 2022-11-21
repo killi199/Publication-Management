@@ -15,6 +15,7 @@ import java.util.UUID;
 import static de.nordakademie.iaa.library.controller.api.constants.ApiPath.WARNING_BASE_PATH;
 
 /**
+ * Author: Nello Musmeci
  * controller to create warnings.
  */
 @RestController

@@ -1,3 +1,4 @@
+/*Author: Nello Musmeci*/
 insert into authors_publications (publication_key, author_uuid) values ('6038b475-6bd3-46e7-ac5a-a6b48c7f2f74', 'd00568af-94bb-46b3-b6d3-8167d6358a6e') ON CONFLICT DO NOTHING;
 insert into authors_publications (publication_key, author_uuid) values ('be5df4fc-d171-4cda-8ea8-8cc9af8212ba', '33483cd6-f136-4ea2-9ec2-7b32f029c58a') ON CONFLICT DO NOTHING;
 insert into authors_publications (publication_key, author_uuid) values ('3ae8b669-f0b0-4dbd-bcf0-8660fe9f5273', '705f7582-2498-4822-aa09-09dfa9ef9ab3') ON CONFLICT DO NOTHING;

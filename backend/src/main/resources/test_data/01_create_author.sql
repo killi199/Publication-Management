@@ -1,3 +1,4 @@
+/*Author: Nello Musmeci*/
 insert into author (uuid, name, surname) values ('85c356ec-a5cf-45f2-8c0f-81ba19b7c102', 'Jamal', 'Castana') ON CONFLICT DO NOTHING;
 insert into author (uuid, name, surname) values ('486359cc-5714-4e95-8985-15434808f63b', 'Katine', 'Mackison') ON CONFLICT DO NOTHING;
 insert into author (uuid, name, surname) values ('8111e925-5966-43ce-a40d-9bbe08f63218', 'Katherina', 'Tuckwell') ON CONFLICT DO NOTHING;

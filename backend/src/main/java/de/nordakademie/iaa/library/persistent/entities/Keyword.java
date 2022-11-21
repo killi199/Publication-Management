@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
+ * Author: Thorge Früchtenicht
  * Keywords can be used to describe a Publication with some simple words in a abstract form.
  */
 @Entity

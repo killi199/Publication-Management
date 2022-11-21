@@ -15,6 +15,7 @@ import java.util.UUID;
 import static de.nordakademie.iaa.library.controller.api.constants.ApiPath.KEYWORD_BASE_PATH;
 
 /**
+ * Author: Thorge Früchtenicht
  * controller keyword entity crud operations.
  */
 @RestController

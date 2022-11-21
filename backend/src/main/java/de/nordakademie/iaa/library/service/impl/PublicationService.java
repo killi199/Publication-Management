@@ -1,6 +1,5 @@
 package de.nordakademie.iaa.library.service.impl;
 
-import de.nordakademie.iaa.library.controller.api.exception.EntityAlreadyExistsException;
 import de.nordakademie.iaa.library.controller.api.exception.EntityDoesNotExistException;
 import de.nordakademie.iaa.library.controller.dto.PublicationDto;
 import de.nordakademie.iaa.library.persistent.entities.Publication;
@@ -16,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
+ * Author: Thorge Früchtenicht
  * The Publication service provides methods to handle the Publications
  */
 @Service

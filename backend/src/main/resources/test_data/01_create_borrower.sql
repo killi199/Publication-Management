@@ -1,3 +1,4 @@
+/*Author: Nello Musmeci*/
 insert into borrower (uuid, name, student_number, surname) values ('811b9088-93a1-4ea0-9c62-5d43b50039a7', 'Riply', 6854, 'Beneix') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('26bf872f-986f-44d0-a796-328dd5fec261', 'Mincini', 9483, 'Daulton') ON CONFLICT DO NOTHING;
 insert into borrower (uuid, name, student_number, surname) values ('2b104bb0-e618-4860-bc5e-858ee1967fa1', 'Sieve', 8401, 'Vitet') ON CONFLICT DO NOTHING;

@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
+ * Author: Nello Musmeci
  * Functions that can parse dates
  */
 public class DateParser {

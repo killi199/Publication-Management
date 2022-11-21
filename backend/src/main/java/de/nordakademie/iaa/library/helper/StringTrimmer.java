@@ -1,6 +1,7 @@
 package de.nordakademie.iaa.library.helper;
 
 /**
+ * Author: Nello Musmeci
  * Functions that trim strings
  */
 public class StringTrimmer {

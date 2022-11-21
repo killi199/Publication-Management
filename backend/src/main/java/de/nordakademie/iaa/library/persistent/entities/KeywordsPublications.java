@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 
 /**
+ * Author: Thorge Früchtenicht
  * Keyword Publication relation this is exact definition of the relation is needed so that a combined key can be defined.
  */
 @Entity

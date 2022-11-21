@@ -1,5 +1,10 @@
 package de.nordakademie.iaa.library.controller.api.constants;
 
+/**
+ * Author: Nello Musmeci
+ * </p>
+ * Error message constants
+ */
 public class ErrorMessages {
 
     private ErrorMessages() {

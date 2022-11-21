@@ -1,3 +1,4 @@
+/*Author: Nello Musmeci*/
 insert into keyword (uuid, value) values ('d9692466-4768-4426-b96f-b5b805584a16', 'Comedy') ON CONFLICT DO NOTHING;
 insert into keyword (uuid, value) values ('9f7cdf68-19a3-49f1-8834-aab8cc3a90f0', 'Fantasy') ON CONFLICT DO NOTHING;
 insert into keyword (uuid, value) values ('0a3a70bb-e443-4a38-ada9-ab1e49d942d9', 'Romance') ON CONFLICT DO NOTHING;

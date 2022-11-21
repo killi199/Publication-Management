@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
+ * Author: Nello Musmeci
  * A Borrower is a person that is allowed to lend a Publication.
  */
 @Entity

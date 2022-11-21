@@ -17,6 +17,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
+ * Author: Nello Musmeci
  * The OverdueNotice service provides methods to handle the OverdueNotices
  */
 @Service

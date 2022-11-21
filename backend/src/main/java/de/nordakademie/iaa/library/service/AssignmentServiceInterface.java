@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
+ * Author: Thorge Früchtenicht
  * The assignment service provides methods to handle the assignments
  */
 public interface AssignmentServiceInterface {

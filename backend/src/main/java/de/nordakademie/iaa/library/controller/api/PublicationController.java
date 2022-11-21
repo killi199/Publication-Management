@@ -14,6 +14,7 @@ import java.util.List;
 import static de.nordakademie.iaa.library.controller.api.constants.ApiPath.PUBLICATION_BASE_PATH;
 
 /**
+ * Author: Thorge Früchtenicht
  * controller publication entity crud operations.
  */
 @RestController

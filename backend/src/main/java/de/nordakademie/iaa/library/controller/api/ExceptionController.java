@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import static org.springframework.core.NestedExceptionUtils.getRootCause;
 
 /**
+ * Author: Thorge Früchtenicht
  * This controller will handle all exceptions in this application, caused by the controllerAdvice annotation.
  * Each response has to pass this controller
  */
