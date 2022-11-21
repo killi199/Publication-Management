@@ -20,14 +20,14 @@
             <mat-icon>arrow_back</mat-icon>
         </button>
         <button
-            matTooltip="Löschen"
+            matTooltip="Zurückgeben"
             *ngIf="!isViewOpen"
             [disabled]="!currentRecord"
             (click)="onBack()"
             mat-mini-fab
             color="warn"
         >
-            <mat-icon>delete</mat-icon>
+            <mat-icon>assignment_return</mat-icon>
         </button>
         <div class="crud-container" *ngIf="!isViewOpen">
             <button

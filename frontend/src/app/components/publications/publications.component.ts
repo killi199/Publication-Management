@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Snackbar } from 'src/app/helpers/snackbar';
 import { Assignment } from 'src/app/models/assignment';
 import { Author } from 'src/app/models/author';
 import { Keyword } from 'src/app/models/keyword';
@@ -31,31 +32,33 @@ export class PublicationsComponent implements OnInit {
         private keywordService: KeywordService,
         private kindOfPublicationService: KindOfPublicationService,
         private authorService: AuthorService,
-        private assignmentService: AssignmentService
+        private assignmentService: AssignmentService,
+        private snackbar: Snackbar
     ) {
         this.publications = publicationService.getAll();
     }
 
     ngOnInit(): void {
-        this.keywordService
-            .getAll()
-            .subscribe((keywords) => (this.keywords = keywords));
-        this.authorService
-            .getAll()
-            .subscribe((authors) => (this.authors = authors));
+        this.keywordService.getAll().subscribe((keywords) => (this.keywords = keywords));
+        this.authorService.getAll().subscribe((authors) => (this.authors = authors));
         this.kindOfPublicationService
             .getAll()
-            .subscribe(
-                (kindsOfPublication) =>
-                    (this.kindsOfPublication = kindsOfPublication)
-            );
+            .subscribe((kindsOfPublication) => (this.kindsOfPublication = kindsOfPublication));
     }
 
     onSelectPublication(publication: Publication): void {
         this.currentPublication = publication;
 
-        if(publication?.key){
+        if (publication?.key) {
             this.assignments = this.assignmentService.getAllByPubKey(publication.key);
+        }
+    }
+
+    onDelete(): void {
+        if (this.currentPublication) {
+            this.publicationService.delete(this.currentPublication).subscribe(() => {
+                this.snackbar.open('Publikation gelöscht!');
+            });
         }
     }
 
