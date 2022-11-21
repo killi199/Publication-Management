@@ -178,31 +178,6 @@ class AssignmentServiceTest {
     }
 
     @Test
-    void returnAssignment_withoutDate_Works() {
-        UUID uuid = UUID.randomUUID();
-
-        assignment.setUuid(uuid);
-        when(assignmentRepository.findById(any())).thenReturn(Optional.of(assignment));
-
-        this.assignmentService.returnAssignment(uuid, null);
-
-        verify(this.assignmentRepository, times(1)).saveAndRefresh(any());
-    }
-    @Test
-    void returnAssignment_withDate_Works() throws ParseException {
-        UUID uuid = UUID.randomUUID();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        Date returnDate = formatter.parse("2022-9-05T05:55:13.123Z");
-
-        assignment.setUuid(uuid);
-        when(assignmentRepository.findById(any())).thenReturn(Optional.of(assignment));
-
-        this.assignmentService.returnAssignment(uuid, returnDate);
-
-        verify(this.assignmentRepository, times(1)).saveAndRefresh(any());
-    }
-
-    @Test
     void extend_withToMuchExtension_throwMaximumExtensionsException() throws ParseException {
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
