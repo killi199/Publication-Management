@@ -12,25 +12,23 @@
     ></app-overdue-notice-list>
 
     <div class="button-container">
-        <div class="crud-container">
-            <button
-                matTooltip="Mahnen"
-                [disabled]="!(currentRecord && warnable)"
-                mat-mini-fab
-                color="primary"
-                (click)="onWarn()"
-            >
-                <mat-icon>assignment_late</mat-icon>
-            </button>
-            <button
-                matTooltip="Verlust melden"
-                [disabled]="!(currentRecord && deleteable)"
-                mat-mini-fab
-                color="warn"                
-                (click)="onLoss()"
-            >
-                <mat-icon>delete_forever</mat-icon>
-            </button>
-        </div>
+        <button
+            matTooltip="Verlust melden"
+            [disabled]="!(currentRecord && deleteable)"
+            mat-mini-fab
+            color="warn"
+            (click)="onLoss()"
+        >
+            <mat-icon>campaign</mat-icon>
+        </button>
+        <button
+            matTooltip="Mahnen"
+            [disabled]="!(currentRecord && warnable)"
+            mat-mini-fab
+            color="primary"
+            (click)="onWarn()"
+        >
+            <mat-icon>assignment_late</mat-icon>
+        </button>
     </div>
 </div>

@@ -69,7 +69,7 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
         this.eventsSubscription = this.updateDataOnLoss?.subscribe(() => {
             this.dataSource.data = this.dataSource.data.filter((r) => r.uuid != this.selectedRecord?.uuid);
             this.selectedRecord = undefined;
-            this.snackBar.open('Mahnung gelöscht!');
+            this.snackBar.open('Verlust gemeldet. Mahnung wurde archiviet.');
         });
         this.eventsSubscription = this.updateDataOnWarn?.subscribe((w) => {
             this.selectedRecord?.warnings?.push(w);

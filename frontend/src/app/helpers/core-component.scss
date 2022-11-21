@@ -39,6 +39,9 @@ h1 {
 .button-container {
     width: 99%;
     margin: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .crud-container {
