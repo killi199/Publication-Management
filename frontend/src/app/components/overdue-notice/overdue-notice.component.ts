@@ -1,4 +1,4 @@
-// Author: Marcel Dymarz
+// Author: Kevin Jahrens
 import { Component } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { OverdueNotice } from 'src/app/models/overdue-notice';

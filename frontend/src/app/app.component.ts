@@ -1,4 +1,4 @@
-// Author: Marcel Dymarz
+// Author: Kevin Jahrens
 import { Component } from '@angular/core';
 
 @Component({

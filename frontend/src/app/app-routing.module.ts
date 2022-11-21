@@ -1,4 +1,4 @@
-// Author: Marcel Dymarz
+// Author: Kevin Jahrens
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AssignmentsComponent } from './components/assignments/assignments.component';
