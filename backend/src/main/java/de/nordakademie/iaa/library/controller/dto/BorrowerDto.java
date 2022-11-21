@@ -15,9 +15,11 @@ public class BorrowerDto {
 
     private UUID uuid;
 
+    @NotBlank(message = VALUE_IS_EMPTY)
     @Size(max = 255, message = VALUE_IS_TOO_LONG)
     private String surname;
 
+    @NotBlank(message = VALUE_IS_EMPTY)
     @Size(max = 255, message = VALUE_IS_TOO_LONG)
     private String name;
 
