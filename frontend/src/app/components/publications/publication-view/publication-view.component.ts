@@ -1,12 +1,4 @@
-import {
-    Component,
-    ElementRef,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-    ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { map, Observable, startWith } from 'rxjs';
 import { Keyword } from 'src/app/models/keyword';
@@ -77,12 +69,15 @@ export class PublicationViewComponent implements OnInit {
 
     filteredAuthors: Observable<Author[]> = new Observable<Author[]>();
 
-    filteredKindsOfPublication: Observable<KindOfPublication[]> =
-        new Observable<KindOfPublication[]>();
+    filteredKindsOfPublication: Observable<KindOfPublication[]> = new Observable<KindOfPublication[]>();
 
     clonedPublication: Publication = {};
 
-    constructor(private snackBar: Snackbar) {}
+    hasAssignments: boolean = false;
+
+    constructor(private snackBar: Snackbar) {
+        this.assignments.subscribe((a) => (this.hasAssignments = a.length > 0));
+    }
 
     ngOnInit(): void {
         if (this.publication) {
@@ -103,7 +98,9 @@ export class PublicationViewComponent implements OnInit {
         if (!this.formGroup.valid) return;
 
         if (typeof this.formGroup.value.kindOfPublication === 'string') {
-            this.formGroup.value.kindOfPublication = this.getCorrectKindOfPublication(this.formGroup.value.kindOfPublication);
+            this.formGroup.value.kindOfPublication = this.getCorrectKindOfPublication(
+                this.formGroup.value.kindOfPublication
+            );
         }
 
         const toSave = this.formGroup.value;
@@ -111,7 +108,7 @@ export class PublicationViewComponent implements OnInit {
 
         this.savePublication.emit(toSave);
         this.clonedPublication = structuredClone(toSave);
-        
+
         const crudOperation = this.addingPublication ? ' erstellt!' : ' geändert!';
         this.snackBar.open('Publikation ' + crudOperation);
 
@@ -125,7 +122,7 @@ export class PublicationViewComponent implements OnInit {
             return filteredKindsOfPublication[0];
         }
 
-        return {value: kindOfPublication} as KindOfPublication;
+        return { value: kindOfPublication } as KindOfPublication;
     }
 
     onCancel(): void {
@@ -225,17 +222,16 @@ export class PublicationViewComponent implements OnInit {
     private _filterKeywords(value: string): Keyword[] {
         const filterValue = value.toLowerCase();
 
-        return this.allKeywords.filter((keyword) =>
-            keyword.value?.toLowerCase().includes(filterValue)
-        );
+        return this.allKeywords.filter((keyword) => keyword.value?.toLowerCase().includes(filterValue));
     }
 
     private _filterAuthors(value: string): Author[] {
         const filterValue = value.toLowerCase();
 
-        return this.allAuthors.filter((author) =>
-            (author.surname + ' ' + author.name).toLowerCase().includes(filterValue) || 
-            (author.name + ' ' + author.surname).toLowerCase().includes(filterValue)
+        return this.allAuthors.filter(
+            (author) =>
+                (author.surname + ' ' + author.name).toLowerCase().includes(filterValue) ||
+                (author.name + ' ' + author.surname).toLowerCase().includes(filterValue)
         );
     }
 
@@ -251,11 +247,8 @@ export class PublicationViewComponent implements OnInit {
         this.filteredKeywords = this.keywordControl.valueChanges.pipe(
             startWith(''),
             map((keyword) => {
-                const value =
-                    typeof keyword === 'string' ? keyword : keyword?.value;
-                return value
-                    ? this._filterKeywords(value as string)
-                    : this.allKeywords.slice();
+                const value = typeof keyword === 'string' ? keyword : keyword?.value;
+                return value ? this._filterKeywords(value as string) : this.allKeywords.slice();
             })
         );
 
@@ -270,25 +263,16 @@ export class PublicationViewComponent implements OnInit {
                     value = author?.surname + author?.name;
                 }
 
-                return value
-                    ? this._filterAuthors(value as string)
-                    : this.allAuthors.slice();
+                return value ? this._filterAuthors(value as string) : this.allAuthors.slice();
             })
         );
 
-        this.filteredKindsOfPublication = this.formGroup
-            .get('kindOfPublication')!
-            .valueChanges.pipe(
-                startWith(''),
-                map((kindOfPublication) => {
-                    const value =
-                        typeof kindOfPublication === 'string'
-                            ? kindOfPublication
-                            : kindOfPublication?.value;
-                    return value
-                        ? this._filterKindsOfPublication(value as string)
-                        : this.allKindsOfPublication.slice();
-                })
-            );
+        this.filteredKindsOfPublication = this.formGroup.get('kindOfPublication')!.valueChanges.pipe(
+            startWith(''),
+            map((kindOfPublication) => {
+                const value = typeof kindOfPublication === 'string' ? kindOfPublication : kindOfPublication?.value;
+                return value ? this._filterKindsOfPublication(value as string) : this.allKindsOfPublication.slice();
+            })
+        );
     }
 }
