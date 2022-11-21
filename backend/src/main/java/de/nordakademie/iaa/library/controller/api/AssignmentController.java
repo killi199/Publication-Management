@@ -8,13 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.Null;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -82,7 +79,7 @@ public class AssignmentController {
     @PostMapping("/return/{assignmentUUID}")
     public ResponseEntity<AssignmentDto> returnAssignment(@PathVariable UUID assignmentUUID, @RequestParam(required = false, name = "dateOfReturn") @Valid @NotBlank(message = VALUE_IS_EMPTY) @Size(max = 255, message = VALUE_IS_TOO_LONG) String dateOfReturnString) {
         return new ResponseEntity<>(assignmentService.returnAssignment(assignmentUUID, parseDate(dateOfReturnString)), HttpStatus.OK);
-
+    }
     /**
      * This method will extend the assignment.
      *
