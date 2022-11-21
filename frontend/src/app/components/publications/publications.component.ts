@@ -26,6 +26,7 @@ export class PublicationsComponent implements OnInit {
     openPublication: boolean = false;
     addingPublication: boolean = false;
     viewSpecification: string = "";
+    showHistory: boolean = false;
 
     constructor(
         private publicationService: PublicationService,
@@ -93,5 +94,10 @@ export class PublicationsComponent implements OnInit {
         this.openPublication = false;
         this.addingPublication = false;
         this.currentPublication = undefined;
+    }
+
+    changeShowHistory(): void {
+        this.showHistory = !this.showHistory;
+        console.log(this.showHistory);
     }
 }

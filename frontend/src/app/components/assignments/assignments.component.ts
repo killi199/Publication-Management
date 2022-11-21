@@ -19,6 +19,7 @@ export class AssignmentsComponent implements OnInit {
     publications: Publication[] = [];
     currentRecord?: Assignment;    
     viewSpecification: string = "";
+    showHistory: boolean = false;
 
     constructor(
         private assignmentService: AssignmentService,
@@ -64,5 +65,10 @@ export class AssignmentsComponent implements OnInit {
 
     onSelect(assignment: Assignment): void {
         this.currentRecord = assignment;
+    }
+
+    changeShowHistory(): void {
+        this.showHistory = !this.showHistory;
+        console.log(this.showHistory);
     }
 }
