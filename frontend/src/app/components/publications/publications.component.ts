@@ -91,6 +91,7 @@ export class PublicationsComponent implements OnInit {
     onSavePublication(publication: Publication): void {
         if (this.addingPublication) {
             this.publicationService.create(publication).subscribe();
+            this.addingPublication = false;
         } else {
             this.publicationService.update(publication).subscribe();
         }
