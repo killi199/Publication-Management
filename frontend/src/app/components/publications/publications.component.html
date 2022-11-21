@@ -3,7 +3,6 @@
     <div class="header-div">
         <h1> {{ headerTitle }}</h1>
         <mat-slide-toggle  *ngIf="!openPublication"
-                           [checked]="showHistory"
                            color="accent"
                            (change)="changeShowHistory()"
         >
@@ -15,6 +14,7 @@
         *ngIf="!openPublication"
         [publications]="publications"
         [updateDataOnDelete]="onDeleteSubject.asObservable()"
+        [updateData]="onUpdateListSubject.asObservable()"
         (showPublication)="onSelectPublication($event)"
     ></app-publication-list>
 

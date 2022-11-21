@@ -17,6 +17,9 @@ export class PublicationListComponent extends TableInitsComponent<Publication> i
     @Input()
     updateDataOnDelete?: Observable<any>;
 
+    @Input()
+    updateData?: Observable<Observable<Publication[]>>;
+
     @Output()
     showPublication = new EventEmitter<Publication>();
 
@@ -37,13 +40,12 @@ export class PublicationListComponent extends TableInitsComponent<Publication> i
     ];
 
     ngOnInit(): void {
-        this.publications.subscribe((publications) => {
-            this.dataSource.data = publications;
-            this.dataSource.paginator = this.paginator;
-            this.dataSource.sort = this.sort;
-        });
+        this._loadData(this.publications);
         this.eventsSubscription = this.updateDataOnDelete?.subscribe((a) => {
             this.dataSource.data = this.dataSource.data.filter((publication) => publication.key !== a.key);
+        });
+        this.eventsSubscription = this.updateData?.subscribe((publications) => {
+            this._loadData(publications);
         });
     }
 
@@ -127,5 +129,13 @@ export class PublicationListComponent extends TableInitsComponent<Publication> i
                 }
             }
         };
+    }
+
+    private _loadData(publications: Observable<Publication[]>): void {
+        publications.subscribe((publications) => {
+            this.dataSource.data = publications;
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+        });
     }
 }
