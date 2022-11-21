@@ -6,4 +6,5 @@ import { Warning } from './warning';
 export interface OverdueNotice extends Entity {
     assignment?: Assignment;
     warnings?: Warning[];
+    overdueNoticeState?: string;
 }

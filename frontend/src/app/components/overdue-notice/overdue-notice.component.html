@@ -18,7 +18,7 @@
     <div class="crud-container">
         <button
             matTooltip="Verlust melden"
-            [disabled]="!(currentRecord && deleteable)"
+            [disabled]="!(currentRecord && deleteable && currentRecord.overdueNoticeState === 'OPENED')"
             mat-mini-fab
             color="warn"
             (click)="onLoss()"

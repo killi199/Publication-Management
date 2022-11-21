@@ -32,7 +32,7 @@
             <button
                 matTooltip="Löschen"
                 *ngIf="!openPublication"
-                [disabled]="!currentPublication"
+                [disabled]="!currentPublication || currentPublication.deleted"
                 (click)="onDelete()"
                 mat-mini-fab
                 color="warn"
@@ -41,7 +41,7 @@
             </button>
             <button
                 matTooltip="Details"
-                [disabled]="!currentPublication"
+                [disabled]="!currentPublication  || currentPublication.deleted"
                 (click)="onEditPublication()"
                 mat-mini-fab
                 color="primary"
