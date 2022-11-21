@@ -114,12 +114,14 @@ public class PublicationMapperImpl implements PublicationMapper {
 
         publication.setKeywordsPublications(
                 publicationDto.getKeywords().stream().map(
-                                keyword -> new KeywordsPublications(publication, keywordMapper.keywordDtoToEntity(keyword)))
+                                keyword -> new KeywordsPublications(publication,
+                                        keywordMapper.keywordDtoToEntity(keyword)))
                         .collect(Collectors.toList()));
 
         publication.setAuthorsPublications(
                 publicationDto.getAuthors().stream().map(
-                                author -> new AuthorsPublications(publication, authorMapper.authorDtoToEntity(author)))
+                                author -> new AuthorsPublications(publication,
+                                        authorMapper.authorDtoToEntity(author)))
                         .collect(Collectors.toList()));
 
         return publication;

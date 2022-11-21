@@ -11,7 +11,8 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface AuthorsPublicationsRepository extends CustomBaseRepository<AuthorsPublications, AuthorPublicationsKey> {
+public interface AuthorsPublicationsRepository
+        extends CustomBaseRepository<AuthorsPublications, AuthorPublicationsKey> {
 
     /**
      * find all author publications

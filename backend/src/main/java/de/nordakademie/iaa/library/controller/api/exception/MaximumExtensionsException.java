@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 public class MaximumExtensionsException extends AbstractRestApiException{
 
     public MaximumExtensionsException() {
-        super(HttpStatus.BAD_REQUEST, "Der Ausleihvorgang hat bereits die maximale Anzahl von Verlängerungen erreicht.");
+        super(HttpStatus.BAD_REQUEST, "Der Ausleihvorgang hat bereits " +
+                "die maximale Anzahl von Verlängerungen erreicht.");
     }
 }

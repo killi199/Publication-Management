@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 public class MaximumWarningsNotReachedException extends AbstractRestApiException {
 
     public MaximumWarningsNotReachedException() {
-        super(HttpStatus.BAD_REQUEST, "Um ein Buch als verloren zu melden, müssen erst alle Mahnungen versendet werden.");
+        super(HttpStatus.BAD_REQUEST, "Um ein Buch als verloren zu melden, " +
+                "müssen erst alle Mahnungen versendet werden.");
     }
 }

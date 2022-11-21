@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 public class BorrowerHasOpenAssignmentException extends AbstractRestApiException {
 
     public BorrowerHasOpenAssignmentException() {
-        super(HttpStatus.BAD_REQUEST, "Der Ausleiher konnte nicht gelöscht werden, da noch ein oder mehrere Ausleihvorgänge offen sind.");
+        super(HttpStatus.BAD_REQUEST, "Der Ausleiher konnte nicht gelöscht werden, " +
+                "da noch ein oder mehrere Ausleihvorgänge offen sind.");
     }
 }

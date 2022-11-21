@@ -297,7 +297,8 @@ public class AssignmentService implements AssignmentServiceInterface {
             assignmentDto.setDateOfAssignment(new Date());
         }
 
-        if (assignmentDto.getDateOfReturn() != null && assignmentDto.getDateOfAssignment().after(assignmentDto.getDateOfReturn())) {
+        if (assignmentDto.getDateOfReturn() != null &&
+                assignmentDto.getDateOfAssignment().after(assignmentDto.getDateOfReturn())) {
             throw new ReturnBeforeAssignmentException();
         }
     }

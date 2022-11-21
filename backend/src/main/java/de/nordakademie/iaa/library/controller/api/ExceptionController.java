@@ -48,7 +48,8 @@ public class ExceptionController {
         Logger logger = LoggerFactory.getLogger(ExceptionController.class.getSimpleName());
         logger.debug("Bad Request, HttpMessageNotReadableException: ", exception);
 
-        return new ResponseEntity<>("Der Wert eines oder mehrerer Felder ist nicht valide. Bitte geben Sie gültige Werte an.", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("Der Wert eines oder mehrerer Felder ist nicht valide. " +
+                "Bitte geben Sie gültige Werte an.", HttpStatus.BAD_REQUEST);
     }
 
     /**
@@ -61,11 +62,13 @@ public class ExceptionController {
         Logger logger = LoggerFactory.getLogger(ExceptionController.class.getSimpleName());
         logger.error("Bad Request, NullPointerException: ", exception);
 
-        return new ResponseEntity<>("Der Server hat einen ungültigen Status. Bitte kontaktieren Sie den Support.", HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>("Der Server hat einen ungültigen Status. " +
+                "Bitte kontaktieren Sie den Support.", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     /**
-     * This handles the ConstraintViolationException which occurs most frequently when a child entity does not exist in our case.
+     * This handles the ConstraintViolationException which occurs most frequently when a
+     * child entity does not exist in our case.
      * All ConstraintViolationException concerning the existent of the object itself will be caught before.
      *
      * @return The error text as response
@@ -75,7 +78,9 @@ public class ExceptionController {
         Logger logger = LoggerFactory.getLogger(ExceptionController.class.getSimpleName());
         logger.debug("Bad Request, ConstraintViolationException: ", exception);
 
-        return new ResponseEntity<>("Eine oder mehrere Bedingungen sind nicht vorhanden. Bitte stellen Sie sicher, dass Sie zuerst alle korrelierenden Entitäten erstellen.", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("Eine oder mehrere Bedingungen sind nicht vorhanden. " +
+                "Bitte stellen Sie sicher, " +
+                "dass Sie zuerst alle korrelierenden Entitäten erstellen.", HttpStatus.BAD_REQUEST);
     }
 
     /**
@@ -92,9 +97,11 @@ public class ExceptionController {
         String errorField = exception.getBindingResult().getFieldErrors().get(0).getField();
         if (errorMessage != null) {
             errorMessage = errorMessage.substring(0, 1).toUpperCase() + errorMessage.substring(1);
-            return new ResponseEntity<>("Der Wert eines Feldes (\"" + errorField + "\") ist nicht valide. " + errorMessage, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Der Wert eines Feldes (\"" + errorField + "\") ist nicht valide. "
+                    + errorMessage, HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>("Der Wert eines Feldes (\"" + errorField + "\") ist nicht valide. Bitte geben Sie einen gültigen Wert an.", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("Der Wert eines Feldes (\"" + errorField + "\") ist nicht valide." +
+                " Bitte geben Sie einen gültigen Wert an.", HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(value = IllegalStateException.class)
