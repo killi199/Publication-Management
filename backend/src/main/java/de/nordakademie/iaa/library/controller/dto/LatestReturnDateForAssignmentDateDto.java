@@ -1,5 +1,6 @@
 package de.nordakademie.iaa.library.controller.dto;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -7,8 +8,10 @@ import java.util.Date;
  */
 public class LatestReturnDateForAssignmentDateDto {
 
+    @NotNull
     private Date dateOfAssignment;
 
+    @NotNull
     private Date latestReturnDate;
 
     public LatestReturnDateForAssignmentDateDto(Date dateOfAssignment, Date latestReturnDate) {

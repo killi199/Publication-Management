@@ -14,7 +14,6 @@ public class AssignmentDto {
 
     private UUID uuid;
 
-    @NotNull(message = VALUE_IS_EMPTY)
     private Date dateOfAssignment;
 
     private Date dateOfReturn;
@@ -26,7 +25,6 @@ public class AssignmentDto {
     @NotNull(message = VALUE_IS_EMPTY)
     private PublicationDto publication;
 
-    @NotNull(message = VALUE_IS_EMPTY)
     private Date latestReturnDate;
 
     private boolean publicationLoss;
