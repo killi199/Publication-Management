@@ -1,3 +1,4 @@
+// Author: Kevin Jahrens
 import { Assignment } from './assignment';
 import { Entity } from './entity';
 import { Warning } from './warning';

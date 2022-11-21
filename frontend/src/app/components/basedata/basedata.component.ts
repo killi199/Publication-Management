@@ -1,3 +1,4 @@
+// Author: Marcel Dymarz
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Author } from 'src/app/models/author';

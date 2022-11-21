@@ -1,3 +1,4 @@
+// Author: Marcel Dymarz
 import { Component } from '@angular/core';
 import { Author } from 'src/app/models/author';
 import { CrudComponent } from '../../../helpers/crud-component';

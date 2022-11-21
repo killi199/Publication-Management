@@ -1,3 +1,4 @@
+// Author: Marcel Dymarz
 import { Component } from '@angular/core';
 import { Borrower } from 'src/app/models/borrower';
 import { CrudComponent } from '../../../helpers/crud-component';

@@ -1,3 +1,4 @@
+// Author: Kevin Jahrens
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { map, Observable, startWith } from 'rxjs';

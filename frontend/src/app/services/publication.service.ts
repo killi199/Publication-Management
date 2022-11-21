@@ -1,3 +1,4 @@
+// Author: Kevin Jahrens
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable } from 'rxjs';

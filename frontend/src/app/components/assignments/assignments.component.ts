@@ -1,3 +1,4 @@
+// Author: Marcel Dymarz
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Assignment } from 'src/app/models/assignment';

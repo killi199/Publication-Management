@@ -1,3 +1,4 @@
+// Author: Marcel Dymarz
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { GermanDateAdapter } from 'src/app/helpers/german-date-adapter';

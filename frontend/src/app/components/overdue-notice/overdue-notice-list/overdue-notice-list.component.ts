@@ -1,3 +1,4 @@
+// Author: Marcel Dymarz
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { TableInitsComponent } from 'src/app/helpers/table-inits';
