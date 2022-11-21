@@ -7,6 +7,7 @@
     <app-assignment-list
         *ngIf="!isViewOpen"
         [assignments]="data"
+        [updateDataOnReturn]="onReturnSubject.asObservable()"
         (showAssignment)="onSelect($event)"
     ></app-assignment-list>
 
@@ -23,8 +24,8 @@
         <button
             matTooltip="Zurückgeben"
             *ngIf="!isViewOpen"
-            [disabled]="!currentRecord"
-            (click)="onBack()"
+            [disabled]="!currentRecord || currentRecord.dateOfReturn"
+            (click)="onReturn(currentRecord?.uuid)"
             mat-mini-fab
             color="warn"
         >

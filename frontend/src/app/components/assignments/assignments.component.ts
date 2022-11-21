@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Assignment } from 'src/app/models/assignment';
 import { Borrower } from 'src/app/models/borrower';
 import { Publication } from 'src/app/models/publication';
@@ -14,6 +14,7 @@ import { PublicationService } from 'src/app/services/publication.service';
 })
 export class AssignmentsComponent implements OnInit {
     data: Observable<Assignment[]>;
+    onReturnSubject: Subject<Assignment> = new Subject<Assignment>();
     isViewOpen: boolean = false;
     borrowers: Borrower[] = [];
     publications: Publication[] = [];
@@ -36,6 +37,13 @@ export class AssignmentsComponent implements OnInit {
     returnAssignment = (uuid: string): Observable<Assignment> => {
         return this.assignmentService.return(uuid);
     };
+
+    onReturn(uuid: string | undefined | null): void {
+        if(!uuid) return;
+        this.assignmentService.return(uuid).subscribe((assignment) => {
+            this.onReturnSubject.next(assignment);
+        });
+    }
 
     createAssignment = (assignment: Assignment): Observable<Assignment> => {
         return this.assignmentService.create(assignment);
