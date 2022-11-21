@@ -122,6 +122,10 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
     protected override _defineSortingAccessor(): (data: OverdueNotice, property: string) => string {
         return (data: OverdueNotice, property: string) => {
             switch (property) {
+                case 'publicationKey': {
+                    return data.assignment?.publication?.key ?? '';
+                }
+
                 case 'surname': {
                     return data.assignment?.borrower?.surname ?? '';
                 }
@@ -135,11 +139,11 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
                 }
 
                 case 'dateOfReturn': {
-                    return data.assignment?.dateOfReturn?.toDateString() ?? '';
+                    return data.assignment?.dateOfReturn?.toString() ?? '';
                 }
 
                 case 'warningDate': {
-                    return this.getLatestWarningDate(data)?.toDateString() ?? '';
+                    return this.getLatestWarningDate(data)?.toString() ?? '';
                 }
 
                 case 'amountOfwarnings': {

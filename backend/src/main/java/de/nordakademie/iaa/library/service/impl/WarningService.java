@@ -6,6 +6,7 @@ import de.nordakademie.iaa.library.controller.dto.WarningDto;
 import de.nordakademie.iaa.library.persistent.entities.OverdueNotice;
 import de.nordakademie.iaa.library.persistent.entities.Warning;
 import de.nordakademie.iaa.library.persistent.repository.WarningRepository;
+import de.nordakademie.iaa.library.service.OverdueNoticeServiceInterface;
 import de.nordakademie.iaa.library.service.WarningServiceInterface;
 import de.nordakademie.iaa.library.service.mapper.WarningMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class WarningService implements WarningServiceInterface {
 
     WarningMapper warningMapper;
 
-    OverdueNoticeService overdueNoticeService;
+    OverdueNoticeServiceInterface overdueNoticeService;
 
     @Value("${warning.maxNumber:3}")
     int maxNumberWarnings;
@@ -30,7 +31,7 @@ public class WarningService implements WarningServiceInterface {
     @Autowired
     public WarningService(WarningRepository warningRepository,
                           WarningMapper warningMapper,
-                          OverdueNoticeService overdueNoticeService) {
+                          OverdueNoticeServiceInterface overdueNoticeService) {
         this.warningRepository = warningRepository;
         this.warningMapper = warningMapper;
         this.overdueNoticeService = overdueNoticeService;
@@ -49,7 +50,7 @@ public class WarningService implements WarningServiceInterface {
             throw new OverdueNoticeIsClosedException();
         }
 
-        if (warningRepository.countAllByOverdueNoticeUuid(overdueNoticeUuid) >= maxNumberWarnings - 1) {
+        if (countAllByOverdueNoticeUuid(overdueNoticeUuid) >= maxNumberWarnings - 1) {
             throw new MaximumWarningException();
         }
 
@@ -62,5 +63,15 @@ public class WarningService implements WarningServiceInterface {
         warning.setWarningDate(new Date());
 
         return warningMapper.warningEntityToDto(warningRepository.saveAndRefresh(warning));
+    }
+
+    /**
+     * Counts the number of warnings.
+     *
+     * @param overdueNoticeUuid the overdue notice identifier
+     */
+    @Override
+    public int countAllByOverdueNoticeUuid(UUID overdueNoticeUuid) {
+        return warningRepository.countAllByOverdueNoticeUuid(overdueNoticeUuid);
     }
 }

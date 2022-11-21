@@ -6,6 +6,7 @@ import de.nordakademie.iaa.library.persistent.entities.OverdueNotice;
 import de.nordakademie.iaa.library.persistent.entities.Publication;
 import de.nordakademie.iaa.library.persistent.repository.OverdueNoticeRepository;
 import de.nordakademie.iaa.library.service.OverdueNoticeServiceInterface;
+import de.nordakademie.iaa.library.service.PublicationServiceInterface;
 import de.nordakademie.iaa.library.service.mapper.OverdueNoticeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,12 +27,12 @@ public class OverdueNoticeService implements OverdueNoticeServiceInterface {
 
     private final OverdueNoticeMapper overdueNoticeMapper;
 
-    private final PublicationService publicationService;
+    private final PublicationServiceInterface publicationService;
 
     @Autowired
     public OverdueNoticeService(OverdueNoticeRepository overdueNoticeRepository,
                                 OverdueNoticeMapper overdueNoticeMapper,
-                                PublicationService publicationService) {
+                                PublicationServiceInterface publicationService) {
         this.overdueNoticeRepository = overdueNoticeRepository;
         this.overdueNoticeMapper = overdueNoticeMapper;
         this.publicationService = publicationService;

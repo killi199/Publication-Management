@@ -1,6 +1,7 @@
 package de.nordakademie.iaa.library.service;
 
 import de.nordakademie.iaa.library.controller.dto.AssignmentDto;
+import de.nordakademie.iaa.library.controller.dto.LatestReturnDateForAssignmentDateDto;
 
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -58,4 +59,11 @@ public interface AssignmentServiceInterface {
      * @return the extended assignment
      */
     AssignmentDto extend(UUID assignmentUUID);
+
+    /**
+     * This method will return the latest return date for a given assignment date
+     *
+     * @param dateOfAssignment the date of assignment
+     */
+    LatestReturnDateForAssignmentDateDto getLatestReturnDate(Date dateOfAssignment);
 }
