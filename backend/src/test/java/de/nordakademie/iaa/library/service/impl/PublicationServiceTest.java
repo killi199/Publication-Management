@@ -65,7 +65,7 @@ class PublicationServiceTest {
 
         when(this.publicationRepository.existsById("test")).thenReturn(true);
 
-        assertThrows(EntityAlreadyExistsException.class, () -> this.publicationService.create(publicationDto));
+        assertThrows(EntityAlreadyExistsException.class, () -> this.publicationService.createOrUpdate(publicationDto));
         verify(publicationRepository, times(1)).existsById("test");
     }
 
@@ -79,7 +79,7 @@ class PublicationServiceTest {
         when(this.publicationMapper.publicationDtoToEntity(publicationDto)).thenReturn(publication);
         when(this.publicationMapper.publicationEntityToDto(publication)).thenReturn(publicationDto);
 
-        assertEquals(publicationDto, this.publicationService.create(publicationDto));
+        assertEquals(publicationDto, this.publicationService.createOrUpdate(publicationDto));
         verify(publicationRepository, times(1)).existsById("test");
         verify(publicationRepository, times(1)).saveAndRefresh(publication);
         verify(publicationMapper, times(1)).publicationDtoToEntity(publicationDto);
@@ -93,7 +93,7 @@ class PublicationServiceTest {
 
         when(this.publicationRepository.existsById("test")).thenReturn(false);
 
-        assertThrows(EntityDoesNotExistException.class, () -> this.publicationService.update(publicationDto));
+        assertThrows(EntityDoesNotExistException.class, () -> this.publicationService.createOrUpdate(publicationDto));
         verify(publicationRepository, times(1)).existsById("test");
     }
 
@@ -107,7 +107,7 @@ class PublicationServiceTest {
         when(this.publicationMapper.publicationDtoToEntity(publicationDto)).thenReturn(publication);
         when(this.publicationMapper.publicationEntityToDto(publication)).thenReturn(publicationDto);
 
-        assertEquals(publicationDto, this.publicationService.update(publicationDto));
+        assertEquals(publicationDto, this.publicationService.createOrUpdate(publicationDto));
         verify(publicationRepository, times(1)).existsById("test");
         verify(publicationRepository, times(1)).saveAndRefresh(publication);
         verify(publicationMapper, times(1)).publicationDtoToEntity(publicationDto);
