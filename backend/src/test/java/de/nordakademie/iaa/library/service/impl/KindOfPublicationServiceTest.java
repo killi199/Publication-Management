@@ -45,7 +45,8 @@ class KindOfPublicationServiceTest {
         kindOfPublicationDto.setUuid(UUID.randomUUID());
         kindOfPublicationDto.setValue("test");
 
-        assertThrows(IllegalUsageOfIdentifierException.class, () -> this.kindOfPublicationService.create(kindOfPublicationDto));
+        assertThrows(IllegalUsageOfIdentifierException.class, () ->
+                this.kindOfPublicationService.create(kindOfPublicationDto));
         verify(kindOfPublicationRepository, times(0)).existsById(any());
     }
 
@@ -54,13 +55,17 @@ class KindOfPublicationServiceTest {
         kindOfPublicationDto.setValue("test");
 
         when(this.kindOfPublicationRepository.save(kindOfPublication)).thenReturn(kindOfPublication);
-        when(this.kindOfPublicationMapper.kindOfPublicationDtoToEntity(kindOfPublicationDto)).thenReturn(kindOfPublication);
-        when(this.kindOfPublicationMapper.kindOfPublicationEntityToDto(kindOfPublication)).thenReturn(kindOfPublicationDto);
+        when(this.kindOfPublicationMapper.kindOfPublicationDtoToEntity(kindOfPublicationDto))
+                .thenReturn(kindOfPublication);
+        when(this.kindOfPublicationMapper.kindOfPublicationEntityToDto(kindOfPublication))
+                .thenReturn(kindOfPublicationDto);
 
         assertEquals(kindOfPublicationDto, this.kindOfPublicationService.create(kindOfPublicationDto));
         verify(kindOfPublicationRepository, times(1)).save(kindOfPublication);
-        verify(kindOfPublicationMapper, times(1)).kindOfPublicationDtoToEntity(kindOfPublicationDto);
-        verify(kindOfPublicationMapper, times(1)).kindOfPublicationEntityToDto(kindOfPublication);
+        verify(kindOfPublicationMapper, times(1))
+                .kindOfPublicationDtoToEntity(kindOfPublicationDto);
+        verify(kindOfPublicationMapper, times(1))
+                .kindOfPublicationEntityToDto(kindOfPublication);
     }
 
     @Test
@@ -72,7 +77,8 @@ class KindOfPublicationServiceTest {
 
         when(this.kindOfPublicationRepository.existsById(uuid)).thenReturn(false);
 
-        assertThrows(EntityDoesNotExistException.class, () -> this.kindOfPublicationService.update(kindOfPublicationDto));
+        assertThrows(EntityDoesNotExistException.class, () -> this.kindOfPublicationService
+                .update(kindOfPublicationDto));
         verify(kindOfPublicationRepository, times(1)).existsById(uuid);
     }
 
@@ -85,13 +91,17 @@ class KindOfPublicationServiceTest {
 
         when(this.kindOfPublicationRepository.existsById(uuid)).thenReturn(true);
         when(this.kindOfPublicationRepository.save(kindOfPublication)).thenReturn(kindOfPublication);
-        when(this.kindOfPublicationMapper.kindOfPublicationDtoToEntity(kindOfPublicationDto)).thenReturn(kindOfPublication);
-        when(this.kindOfPublicationMapper.kindOfPublicationEntityToDto(kindOfPublication)).thenReturn(kindOfPublicationDto);
+        when(this.kindOfPublicationMapper.kindOfPublicationDtoToEntity(kindOfPublicationDto))
+                .thenReturn(kindOfPublication);
+        when(this.kindOfPublicationMapper.kindOfPublicationEntityToDto(kindOfPublication))
+                .thenReturn(kindOfPublicationDto);
 
         assertEquals(kindOfPublicationDto, this.kindOfPublicationService.update(kindOfPublicationDto));
         verify(kindOfPublicationRepository, times(1)).existsById(uuid);
         verify(kindOfPublicationRepository, times(1)).save(kindOfPublication);
-        verify(kindOfPublicationMapper, times(1)).kindOfPublicationDtoToEntity(kindOfPublicationDto);
-        verify(kindOfPublicationMapper, times(1)).kindOfPublicationEntityToDto(kindOfPublication);
+        verify(kindOfPublicationMapper, times(1))
+                .kindOfPublicationDtoToEntity(kindOfPublicationDto);
+        verify(kindOfPublicationMapper, times(1))
+                .kindOfPublicationEntityToDto(kindOfPublication);
     }
 }

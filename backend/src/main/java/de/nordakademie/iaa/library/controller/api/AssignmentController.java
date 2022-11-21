@@ -44,8 +44,8 @@ public class AssignmentController {
      * @return a list of assignments
      */
     @GetMapping
-    public ResponseEntity<List<AssignmentDto>> getAll(@RequestParam(required = false, defaultValue = "false", name = "showReturned")
-                                                      boolean showClosed) {
+    public ResponseEntity<List<AssignmentDto>> getAll(
+            @RequestParam(required = false, defaultValue = "false", name = "showReturned") boolean showClosed) {
         return new ResponseEntity<>(assignmentService.getAll(showClosed), HttpStatus.OK);
     }
 
@@ -56,10 +56,12 @@ public class AssignmentController {
      * @return a list of assignments
      */
     @GetMapping("/{publicationKey}")
-    public ResponseEntity<List<AssignmentDto>> getAllByPublicationKey(@PathVariable String publicationKey,
-                                                                      @RequestParam(required = false, defaultValue = "false")
-                                                                      boolean showReturned) {
-        return new ResponseEntity<>(assignmentService.getAllByPublicationKey(publicationKey, showReturned), HttpStatus.OK);
+    public ResponseEntity<List<AssignmentDto>> getAllByPublicationKey(
+            @PathVariable String publicationKey,
+            @RequestParam(required = false, defaultValue = "false") boolean showReturned) {
+        return new ResponseEntity<>(
+                assignmentService.getAllByPublicationKey(publicationKey, showReturned),
+                HttpStatus.OK);
     }
 
     /**
@@ -81,8 +83,14 @@ public class AssignmentController {
      * @return the updated assignment
      */
     @PostMapping("/return/{assignmentUUID}")
-    public ResponseEntity<AssignmentDto> returnAssignment(@PathVariable UUID assignmentUUID, @RequestParam(required = false, name = "dateOfReturn") @Valid @NotBlank(message = VALUE_IS_EMPTY) @Size(max = 255, message = VALUE_IS_TOO_LONG) String dateOfReturnString) {
-        return new ResponseEntity<>(assignmentService.returnAssignment(assignmentUUID, parseDate(dateOfReturnString)), HttpStatus.OK);
+    public ResponseEntity<AssignmentDto> returnAssignment(
+            @PathVariable UUID assignmentUUID,
+            @RequestParam(required = false, name = "dateOfReturn")
+            @Valid @NotBlank(message = VALUE_IS_EMPTY)
+            @Size(max = 255, message = VALUE_IS_TOO_LONG) String dateOfReturnString) {
+        return new ResponseEntity<>(
+                assignmentService.returnAssignment(assignmentUUID,
+                parseDate(dateOfReturnString)), HttpStatus.OK);
     }
     /**
      * This method will extend the assignment.

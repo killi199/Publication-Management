@@ -31,7 +31,8 @@ public class KindOfPublicationService implements KindOfPublicationServiceInterfa
     private final KindOfPublicationMapper kindOfPublicationMapper;
 
     @Autowired
-    public KindOfPublicationService(KindOfPublicationRepository kindOfPublicationRepository, KindOfPublicationMapper kindOfPublicationMapper) {
+    public KindOfPublicationService(KindOfPublicationRepository kindOfPublicationRepository,
+                                    KindOfPublicationMapper kindOfPublicationMapper) {
         this.kindOfPublicationRepository = kindOfPublicationRepository;
         this.kindOfPublicationMapper = kindOfPublicationMapper;
     }
@@ -73,7 +74,8 @@ public class KindOfPublicationService implements KindOfPublicationServiceInterfa
      */
     public KindOfPublicationDto update(@NotNull KindOfPublicationDto kindOfPublicationDto) {
 
-        if (kindOfPublicationDto.getUuid() == null || !kindOfPublicationRepository.existsById(kindOfPublicationDto.getUuid())) {
+        if (kindOfPublicationDto.getUuid() == null
+                || !kindOfPublicationRepository.existsById(kindOfPublicationDto.getUuid())) {
             throw new EntityDoesNotExistException();
         }
 
@@ -106,8 +108,10 @@ public class KindOfPublicationService implements KindOfPublicationServiceInterfa
             throw new EntityAlreadyExistsException();
         }
 
-        KindOfPublication kindOfPublication = kindOfPublicationMapper.kindOfPublicationDtoToEntity(kindOfPublicationDto);
+        KindOfPublication kindOfPublication =
+                kindOfPublicationMapper.kindOfPublicationDtoToEntity(kindOfPublicationDto);
 
-        return kindOfPublicationMapper.kindOfPublicationEntityToDto(kindOfPublicationRepository.save(kindOfPublication));
+        return kindOfPublicationMapper
+                .kindOfPublicationEntityToDto(kindOfPublicationRepository.save(kindOfPublication));
     }
 }

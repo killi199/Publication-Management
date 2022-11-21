@@ -51,7 +51,8 @@ public class KindOfPublicationController {
     }
 
     /**
-     * This method will update a kindOfPublication. The key is necessary to find the kindOfPublication that should be updated.
+     * This method will update a kindOfPublication. The key is necessary to find the kindOfPublication that should be
+     * updated.
      *
      * @param kindOfPublicationDto the kindOfPublication that should be updated
      * @return The updated kindOfPublication
@@ -62,7 +63,8 @@ public class KindOfPublicationController {
     }
 
     /**
-     * This method will delete a kindOfPublication. The key is necessary to find the kindOfPublication that should be deleted.
+     * This method will delete a kindOfPublication. The key is necessary to find the kindOfPublication that should be
+     * deleted.
      *
      * @param uuid the kindOfPublication that should be deleted
      * @return only the status code

@@ -173,7 +173,8 @@ class AssignmentServiceTest {
 
     @Test
     void returnAssignment_withoutUUID_EntityDoesNotExistException() {
-        assertThrows(EntityDoesNotExistException.class, () -> this.assignmentService.returnAssignment(null, null));
+        assertThrows(EntityDoesNotExistException.class, () ->
+                this.assignmentService.returnAssignment(null, null));
         verify(this.assignmentRepository, times(0)).saveAndRefresh(any());
     }
 

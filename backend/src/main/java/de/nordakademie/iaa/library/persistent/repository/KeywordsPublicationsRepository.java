@@ -11,7 +11,8 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface KeywordsPublicationsRepository extends CustomBaseRepository<KeywordsPublications, KeywordPublicationsKey> {
+public interface KeywordsPublicationsRepository
+        extends CustomBaseRepository<KeywordsPublications, KeywordPublicationsKey> {
 
     /**
      * find all keyword publications

@@ -8,7 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import java.io.Serializable;
 
-public class CustomBaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRepository<T, ID> implements CustomBaseRepository<T, ID> {
+public class CustomBaseRepositoryImpl<T, ID extends Serializable>
+        extends SimpleJpaRepository<T, ID>
+        implements CustomBaseRepository<T, ID> {
     private final EntityManager entityManager;
     public CustomBaseRepositoryImpl(JpaEntityInformation<T, ?> entityInformation, EntityManager entityManager) {
         super(entityInformation, entityManager);
