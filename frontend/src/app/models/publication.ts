@@ -14,4 +14,5 @@ export interface Publication extends Entity {
     isbn?: string | null;
     keywords?: Keyword[] | null;
     quantity?: number | null;
+    deleted?: boolean | null;
 }

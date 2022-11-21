@@ -2,7 +2,7 @@
 <div class="page">
     <div class="header-div">
         <h1> {{ headerTitle }}</h1>
-        <mat-slide-toggle *ngIf="!isViewOpen" [checked]="showHistory" (change)="changeShowHistory()" color="accent">
+        <mat-slide-toggle *ngIf="!isViewOpen" (change)="changeShowHistory()" color="accent" [checked]="showHistory">
             Historie
         </mat-slide-toggle>
     </div>
@@ -11,6 +11,7 @@
         *ngIf="!isViewOpen"
         [assignments]="data"
         [updateDataOnReturn]="onReturnSubject.asObservable()"
+        [updateData]="onUpdateListSubject.asObservable()"
         (showAssignment)="onSelect($event)"
     ></app-assignment-list>
 
@@ -28,7 +29,7 @@
             <button
                 matTooltip="Zurückgeben"
                 *ngIf="!isViewOpen"
-                [disabled]="!currentRecord || currentRecord.dateOfReturn"
+                [disabled]="!currentRecord || currentRecord.dateOfReturn || currentRecord.publicationLoss"
                 (click)="onReturn(currentRecord?.uuid)"
                 mat-mini-fab
                 color="warn"

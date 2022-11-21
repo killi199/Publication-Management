@@ -1,5 +1,5 @@
 // Author: Kevin Jahrens
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable } from 'rxjs';
 import { Snackbar } from '../helpers/snackbar';
@@ -24,5 +24,13 @@ export class PublicationService extends CrudService<Publication> {
                 throw this.handleError(err);
             })
         );;
+    }
+
+    getAllWithDeleted(): Observable<Publication[]> {
+        return this.httpintern.get<Publication[]>(this.ENDPOINT_URL, { params: new HttpParams().set('showDeleted', true) }).pipe(
+            catchError((err: HttpErrorResponse) => {
+                throw this.handleError(err);
+            })
+        );
     }
 }

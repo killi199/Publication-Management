@@ -30,6 +30,7 @@ export class PublicationsComponent implements OnInit {
     headerTitle: string = "Publikationen";
     showHistory: boolean = false;
     onDeleteSubject: Subject<Publication> = new Subject<Publication>();
+    onUpdateListSubject: Subject<Observable<Publication[]>> = new Subject<Observable<Publication[]>>();
 
     constructor(
         private publicationService: PublicationService,
@@ -90,6 +91,7 @@ export class PublicationsComponent implements OnInit {
     onSavePublication(publication: Publication): void {
         if (this.addingPublication) {
             this.publicationService.create(publication).subscribe();
+            this.addingPublication = false;
         } else {
             this.publicationService.update(publication).subscribe();
         }
@@ -104,6 +106,10 @@ export class PublicationsComponent implements OnInit {
 
     changeShowHistory(): void {
         this.showHistory = !this.showHistory;
-        console.log(this.showHistory);
+        if(this.showHistory) {
+            this.onUpdateListSubject.next(this.publicationService.getAllWithDeleted());
+        } else {
+            this.onUpdateListSubject.next(this.publicationService.getAll());
+        }
     }
 }

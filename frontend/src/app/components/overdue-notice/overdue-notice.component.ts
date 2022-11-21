@@ -18,6 +18,8 @@ export class OverdueNoticeComponent {
     data: Observable<OverdueNotice[]>;
     currentRecord?: OverdueNotice;
     deleteable: boolean = false;
+    showHistory: boolean = false;
+    onUpdateListSubject: Subject<Observable<OverdueNotice[]>> = new Subject<Observable<OverdueNotice[]>>();
 
     constructor(private overdueNoticeService: OverdueNoticeService, private assignmentService: AssignmentService) {
         this.data = overdueNoticeService.getAll();
@@ -42,5 +44,14 @@ export class OverdueNoticeComponent {
     onSetSelection(event: OverdueNoticeEvent): void {
         this.currentRecord = event?.overdueNotice;
         this.deleteable = event?.deleteable;
+    }
+
+    changeShowHistory(): void {
+        this.showHistory = !this.showHistory;
+        if(this.showHistory) {
+            this.onUpdateListSubject.next(this.overdueNoticeService.getAllWithClosed());
+        } else {
+            this.onUpdateListSubject.next(this.overdueNoticeService.getAll());
+        }
     }
 }

@@ -115,7 +115,7 @@
                 *ngIf="this.formGroup.disabled"
                 type="button"
                 (click)="onReturn()"
-                [disabled]="this.formGroup.value.dateOfReturn"
+                [disabled]="this.formGroup.value.dateOfReturn || this.assignment?.publicationLoss"
                 mat-mini-fab
                 color="warn"
                 matTooltip="Zurückgeben"

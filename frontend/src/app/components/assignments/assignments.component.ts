@@ -22,6 +22,7 @@ export class AssignmentsComponent implements OnInit {
     currentRecord?: Assignment;    
     headerTitle: string = "Ausleihvorgänge";
     showHistory: boolean = false;
+    onUpdateListSubject: Subject<Observable<Assignment[]>> = new Subject<Observable<Assignment[]>>();
 
     constructor(
         private assignmentService: AssignmentService,
@@ -78,6 +79,10 @@ export class AssignmentsComponent implements OnInit {
 
     changeShowHistory(): void {
         this.showHistory = !this.showHistory;
-        console.log(this.showHistory);
+        if(this.showHistory) {
+            this.onUpdateListSubject.next(this.assignmentService.getAllWithReturned());
+        } else {
+            this.onUpdateListSubject.next(this.assignmentService.getAll());
+        }
     }
 }
