@@ -1,6 +1,12 @@
 <div class="page">
     <div class="header-div">
-        <h1>Publikationen</h1>
+        <h1> {{ headerTitle }}</h1>
+        <mat-checkbox
+            *ngIf="!openPublication"
+            [checked]="showHistory"
+            (change)="changeShowHistory()"
+            >Historie</mat-checkbox
+        >
     </div>
 
     <app-publication-list

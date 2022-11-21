@@ -1,6 +1,7 @@
 @import "../../theme.scss";
 
 .page {
+    border-radius: 3px;
     width: 90%;
     height: 100%;
     display: flex;
@@ -10,9 +11,23 @@
 }
 
 .header-div {
-    border-bottom: 1px solid;
+    
+    border-radius: 3px 3px 0px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background-color: $primary2;
     color: white;
+}
+
+mat-checkbox{
+    font-size: large;
+    margin-right: 2%;
+}
+
+::ng-deep .mat-checkbox-background{
+    background-color: white;
+    border-radius: 5%;
 }
 
 h1 {

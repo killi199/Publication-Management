@@ -18,7 +18,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DateAdapter, MatNativeDateModule } from '@angular/material/core';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSelectModule } from '@angular/material/select';
-import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -82,6 +83,7 @@ registerLocaleData(localeDe, 'de-DE', localeDeExtra);
         MatSidenavModule,
         MatListModule,
         MatGridListModule,
+        MatCheckboxModule,
         FormsModule,
         MatDatepickerModule,
         MatNativeDateModule,
@@ -95,8 +97,8 @@ registerLocaleData(localeDe, 'de-DE', localeDeExtra);
     ],
     providers: [
         { provide: LOCALE_ID, useValue: 'de-DE' },
-        {provide: DateAdapter, useClass: GermanDateAdapter},
-        {provide: MatPaginatorIntl, useValue: getGermanPaginatorIntl()},
+        { provide: DateAdapter, useClass: GermanDateAdapter },
+        { provide: MatPaginatorIntl, useValue: getGermanPaginatorIntl() },
     ],
     bootstrap: [AppComponent],
 })
