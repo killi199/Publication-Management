@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { GermanDateAdapter } from 'src/app/helpers/german-date-adapter';
+import { Snackbar } from 'src/app/helpers/snackbar';
 import { TableInitsComponent } from 'src/app/helpers/table-inits';
 import { Assignment } from 'src/app/models/assignment';
 
@@ -9,12 +10,15 @@ import { Assignment } from 'src/app/models/assignment';
     templateUrl: './assignment-list.component.html',
     styleUrls: ['../../../helpers/list-component.scss'],
 })
-export class AssignmentListComponent extends TableInitsComponent<Assignment> implements OnInit {
+export class AssignmentListComponent extends TableInitsComponent<Assignment> implements OnInit, OnDestroy {
     @Input()
     assignments: Observable<Assignment[]> = new Observable<Assignment[]>();
 
     @Output()
     showAssignment = new EventEmitter<Assignment>();
+
+    @Input()
+    updateDataOnReturn?: Observable<Assignment>;
 
     displayedColumns: string[] = [
         'publicationKey',
@@ -29,12 +33,31 @@ export class AssignmentListComponent extends TableInitsComponent<Assignment> imp
 
     selectedAssignment?: Assignment;
 
+    private eventsSubscription?: Subscription;
+
+    constructor(private snackBar: Snackbar) {
+        super();
+    }
+
     ngOnInit(): void {
         this.assignments.subscribe((assignments) => {
             this.dataSource.data = assignments;
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
         });
+        this.eventsSubscription = this.updateDataOnReturn?.subscribe((a) => {
+            this.dataSource.data = this.dataSource.data.map((assignment) => {
+                if (assignment.uuid === a.uuid) {
+                    return a;
+                }
+                return assignment;
+            });
+            this.snackBar.open('Buch zurückgegeben!');
+        });
+    }
+
+    ngOnDestroy() {
+        this.eventsSubscription?.unsubscribe();
     }
 
     onShowAssignment(assignment: Assignment): void {

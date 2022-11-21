@@ -13,6 +13,7 @@
     <app-publication-list
         *ngIf="!openPublication"
         [publications]="publications"
+        [updateDataOnDelete]="onDeleteSubject.asObservable()"
         (showPublication)="onSelectPublication($event)"
     ></app-publication-list>
 
