@@ -50,7 +50,7 @@ public class WarningService implements WarningServiceInterface {
             throw new OverdueNoticeIsClosedException();
         }
 
-        if (countAllByOverdueNoticeUuid(overdueNoticeUuid) >= maxNumberWarnings - 1) {
+        if (countAllByOverdueNoticeUuid(overdueNoticeUuid) >= maxNumberWarnings) {
             throw new MaximumWarningException();
         }
 
