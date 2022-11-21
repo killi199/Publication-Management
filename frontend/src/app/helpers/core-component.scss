@@ -10,9 +10,21 @@
 }
 
 .header-div {
-    border-bottom: 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background-color: $primary2;
     color: white;
+}
+
+mat-checkbox{
+    font-size: large;
+    margin-right: 2%;
+}
+
+::ng-deep .mat-checkbox-background{
+    background-color: white;
+    border-radius: 5%;
 }
 
 h1 {
