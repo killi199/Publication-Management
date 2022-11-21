@@ -25,6 +25,9 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
     @Input()
     updateDataOnWarn?: Observable<Warning>;
 
+    @Input()
+    updateData?: Observable<Observable<OverdueNotice[]>>;
+
     @Output()
     selectRecord = new EventEmitter<OverdueNoticeEvent>();
 
@@ -60,11 +63,7 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
     }
 
     ngOnInit(): void {
-        this.overdueNotices.subscribe((overdueNotices) => {
-            this.dataSource.data = overdueNotices;
-            this.dataSource.paginator = this.paginator;
-            this.dataSource.sort = this.sort;
-        });
+        this._loadData(this.overdueNotices);
         this.eventsSubscription = this.updateDataOnLoss?.subscribe(() => {
             this.dataSource.data = this.dataSource.data.filter((r) => r.uuid != this.selectedRecord?.uuid);
             this.selectedRecord = undefined;
@@ -72,6 +71,9 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
         });
         this.eventsSubscription = this.updateDataOnWarn?.subscribe((w) => {
             this.snackBar.open('Warnung erstellt!');
+        });
+        this.eventsSubscription = this.updateData?.subscribe((overdueNotices) => {
+            this._loadData(overdueNotices);
         });
     }
 
@@ -160,4 +162,13 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
         const germanDateAdapter: GermanDateAdapter = new GermanDateAdapter();
         return date ? germanDateAdapter.formatDateToShortString(date) : '-';
     }
+
+    private _loadData(overdueNotices: Observable<OverdueNotice[]>): void {
+        overdueNotices.subscribe((overdueNotices) => {
+            this.dataSource.data = overdueNotices;
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+        });
+    }
+
 }
