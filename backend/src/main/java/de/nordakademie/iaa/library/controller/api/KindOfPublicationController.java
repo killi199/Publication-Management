@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Null;
 import java.util.List;
 import java.util.UUID;
@@ -40,23 +41,23 @@ public class KindOfPublicationController {
     /**
      * This method will create a kindOfPublication.
      *
-     * @param KindOfPublicationDto the kindOfPublication that should be created
+     * @param kindOfPublicationDto the kindOfPublication that should be created
      * @return The created kindOfPublication
      */
     @PostMapping
-    public ResponseEntity<KindOfPublicationDto> create(@RequestBody KindOfPublicationDto KindOfPublicationDto) {
-        return new ResponseEntity<>(kindOfPublicationServiceInterface.create(KindOfPublicationDto), HttpStatus.OK);
+    public ResponseEntity<KindOfPublicationDto> create(@RequestBody @Valid KindOfPublicationDto kindOfPublicationDto) {
+        return new ResponseEntity<>(kindOfPublicationServiceInterface.create(kindOfPublicationDto), HttpStatus.OK);
     }
 
     /**
      * This method will update a kindOfPublication. The key is necessary to find the kindOfPublication that should be updated.
      *
-     * @param KindOfPublicationDto the kindOfPublication that should be updated
+     * @param kindOfPublicationDto the kindOfPublication that should be updated
      * @return The updated kindOfPublication
      */
     @PutMapping
-    public ResponseEntity<KindOfPublicationDto> update(@RequestBody KindOfPublicationDto KindOfPublicationDto) {
-        return new ResponseEntity<>(kindOfPublicationServiceInterface.update(KindOfPublicationDto), HttpStatus.OK);
+    public ResponseEntity<KindOfPublicationDto> update(@RequestBody @Valid KindOfPublicationDto kindOfPublicationDto) {
+        return new ResponseEntity<>(kindOfPublicationServiceInterface.update(kindOfPublicationDto), HttpStatus.OK);
     }
 
     /**

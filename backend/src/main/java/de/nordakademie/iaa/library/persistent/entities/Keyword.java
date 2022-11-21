@@ -1,8 +1,10 @@
 package de.nordakademie.iaa.library.persistent.entities;
 
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -16,8 +18,9 @@ public class Keyword {
     @GeneratedValue
     private UUID uuid;
 
+    @NotBlank
+    @Length(max = 255)
     @Column(unique = true)
-    @NotNull
     private String value;
 
     @OneToMany(mappedBy = "keyword", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST}, orphanRemoval = true)

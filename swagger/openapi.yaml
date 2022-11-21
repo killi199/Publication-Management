@@ -714,7 +714,7 @@ components:
           type: string
         kindOfPublication:
           $ref: '#/components/schemas/KindOfPublication'
-        ISBN:
+        isbn:
           type: string
         keywords:
           type: array

@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Null;
 import java.util.List;
 import java.util.UUID;
@@ -44,7 +45,7 @@ public class AuthorController {
      * @return The created author
      */
     @PostMapping
-    public ResponseEntity<AuthorDto> create(@RequestBody AuthorDto authorDto) {
+    public ResponseEntity<AuthorDto> create(@RequestBody @Valid AuthorDto authorDto) {
         return new ResponseEntity<>(authorService.create(authorDto), HttpStatus.OK);
     }
 
@@ -55,7 +56,7 @@ public class AuthorController {
      * @return The updated author
      */
     @PutMapping
-    public ResponseEntity<AuthorDto> update(@RequestBody AuthorDto authorDto) {
+    public ResponseEntity<AuthorDto> update(@RequestBody @Valid AuthorDto authorDto) {
         return new ResponseEntity<>(authorService.update(authorDto), HttpStatus.OK);
     }
 

@@ -2,7 +2,6 @@ package de.nordakademie.iaa.library.service.impl;
 
 import de.nordakademie.iaa.library.controller.api.exception.EntityDoesNotExistException;
 import de.nordakademie.iaa.library.controller.api.exception.IllegalUsageOfIdentifierException;
-import de.nordakademie.iaa.library.controller.api.exception.MissingFieldException;
 import de.nordakademie.iaa.library.controller.dto.AuthorDto;
 import de.nordakademie.iaa.library.persistent.entities.Author;
 import de.nordakademie.iaa.library.persistent.repository.AuthorRepository;
@@ -15,8 +14,6 @@ import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.UUID;
-
-import static de.nordakademie.iaa.library.service.helper.InputValidator.isStringEmpty;
 
 /**
  * The author service provides methods to handle the authors
@@ -56,8 +53,6 @@ public class AuthorService implements AuthorServiceInterface {
      */
     public AuthorDto create(@NotNull AuthorDto authorDto) {
 
-        checkRequiredFields(authorDto);
-
         if (authorDto.getUuid() != null) {
             throw new IllegalUsageOfIdentifierException();
         }
@@ -74,8 +69,6 @@ public class AuthorService implements AuthorServiceInterface {
      * This method should not be called with null values.
      */
     public AuthorDto update(@NotNull AuthorDto authorDto) {
-
-        checkRequiredFields(authorDto);
 
         if (authorDto.getUuid() == null || !authorRepository.existsById(authorDto.getUuid())) {
             throw new EntityDoesNotExistException();
@@ -96,20 +89,6 @@ public class AuthorService implements AuthorServiceInterface {
         Author author = new Author();
         author.setUuid(uuid);
         authorRepository.delete(author);
-    }
-
-    /**
-     * This function checks if every required parameter is set
-     *
-     * @param authorDto dto from request
-     */
-    private void checkRequiredFields(@NotNull AuthorDto authorDto) {
-        if (isStringEmpty(authorDto.getName())) {
-            throw new MissingFieldException("name");
-        }
-        if (isStringEmpty(authorDto.getSurname())) {
-            throw new MissingFieldException("surname");
-        }
     }
 
     /**

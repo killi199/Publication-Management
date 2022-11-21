@@ -20,8 +20,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static de.nordakademie.iaa.library.service.helper.InputValidator.isStringEmpty;
-
 /**
  * The Publication service provides methods to handle the Publications
  */
@@ -139,8 +137,6 @@ public class PublicationService implements PublicationServiceInterface {
      */
     public PublicationDto create(@NotNull PublicationDto publicationDto) {
 
-        checkRequiredFields(publicationDto);
-
         if (publicationRepository.existsById(publicationDto.getKey())) {
             throw new EntityAlreadyExistsException();
         }
@@ -157,8 +153,6 @@ public class PublicationService implements PublicationServiceInterface {
      * This method should not be called with null values.
      */
     public PublicationDto update(@NotNull PublicationDto publicationDto) {
-
-        checkRequiredFields(publicationDto);
 
         if (!publicationRepository.existsById(publicationDto.getKey())) {
             throw new EntityDoesNotExistException();
@@ -179,25 +173,6 @@ public class PublicationService implements PublicationServiceInterface {
         Publication publication = new Publication();
         publication.setKey(key);
         publicationRepository.delete(publication);
-    }
-
-    /**
-     * This function checks if every required parameter is set
-     *
-     * @param publicationDto dto from request
-     */
-    private void checkRequiredFields(@NotNull PublicationDto publicationDto) {
-        if (isStringEmpty(publicationDto.getKey())) {
-            throw new MissingFieldException("key");
-        }
-
-        if (isStringEmpty(publicationDto.getTitle())) {
-            throw new MissingFieldException("title");
-        }
-
-        if (publicationDto.getQuantity() < 0) {
-            throw new NegativValueIsNotAllowedException("quantity");
-        }
     }
 
     /**

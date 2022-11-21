@@ -2,7 +2,6 @@ package de.nordakademie.iaa.library.service.impl;
 
 import de.nordakademie.iaa.library.controller.api.exception.EntityDoesNotExistException;
 import de.nordakademie.iaa.library.controller.api.exception.IllegalUsageOfIdentifierException;
-import de.nordakademie.iaa.library.controller.api.exception.MissingFieldException;
 import de.nordakademie.iaa.library.controller.dto.BorrowerDto;
 import de.nordakademie.iaa.library.persistent.entities.Borrower;
 import de.nordakademie.iaa.library.persistent.repository.BorrowerRepository;
@@ -41,22 +40,6 @@ class BorrowerServiceTest {
         this.borrower = new Borrower();
     }
 
-
-    @Test
-    void create_withoutParameters_throwsMissingFieldException() {
-        assertThrows(MissingFieldException.class, () -> this.borrowerService.create(borrowerDto));
-        verify(borrowerRepository, times(0)).existsById(any());
-    }
-
-    @Test
-    void create_withoutMandatoryParameters_throwsMissingFieldException() {
-        borrowerDto.setSurname("Surname");
-        borrowerDto.setName("Name");
-
-        assertThrows(MissingFieldException.class, () -> this.borrowerService.create(borrowerDto));
-        verify(borrowerRepository, times(0)).existsById(any());
-    }
-
     @Test
     void create_withUUID_throwsIllegalUsageOfIdentifierException() {
         borrowerDto.setUuid(UUID.randomUUID());
@@ -79,23 +62,6 @@ class BorrowerServiceTest {
         verify(borrowerMapper, times(1)).borrowerDtoToEntity(borrowerDto);
         verify(borrowerMapper, times(1)).borrowerEntityToDto(borrower);
     }
-
-    @Test
-    void update_withoutParameters_throwsMissingFieldException() {
-        assertThrows(MissingFieldException.class, () -> this.borrowerService.update(borrowerDto));
-        verify(borrowerRepository, times(0)).existsById(any());
-    }
-
-    @Test
-    void update_onlyWithUUID_throwsMissingFieldException() {
-        UUID uuid = UUID.randomUUID();
-
-        borrowerDto.setUuid(uuid);
-
-        assertThrows(MissingFieldException.class, () -> this.borrowerService.update(borrowerDto));
-        verify(borrowerRepository, times(0)).existsById(uuid);
-    }
-
 
     @Test
     void update_borrowerNotExists_throwsEntityDoesNotExistException() {

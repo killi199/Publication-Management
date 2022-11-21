@@ -1,7 +1,10 @@
 package de.nordakademie.iaa.library.controller.dto;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.UUID;
+
+import static de.nordakademie.iaa.library.controller.api.constants.ErrorMessages.VALUE_IS_EMPTY;
 
 /**
  * An Assignment describes the lending of Publications.
@@ -11,6 +14,7 @@ public class AssignmentDto {
 
     private UUID uuid;
 
+    @NotNull(message = VALUE_IS_EMPTY)
     private Date dateOfAssignment;
 
     private Date dateOfReturn;
@@ -19,8 +23,10 @@ public class AssignmentDto {
 
     private int extensions;
 
+    @NotNull(message = VALUE_IS_EMPTY)
     private PublicationDto publication;
 
+    @NotNull(message = VALUE_IS_EMPTY)
     private Date latestReturnDate;
 
     private boolean publicationLoss;

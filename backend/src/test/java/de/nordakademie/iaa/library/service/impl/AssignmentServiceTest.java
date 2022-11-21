@@ -1,6 +1,9 @@
 package de.nordakademie.iaa.library.service.impl;
 
-import de.nordakademie.iaa.library.controller.api.exception.*;
+import de.nordakademie.iaa.library.controller.api.exception.EntityDoesNotExistException;
+import de.nordakademie.iaa.library.controller.api.exception.IllegalUsageOfIdentifierException;
+import de.nordakademie.iaa.library.controller.api.exception.MaximumExtensionsException;
+import de.nordakademie.iaa.library.controller.api.exception.PublicationIsNotBorrowableException;
 import de.nordakademie.iaa.library.controller.dto.AssignmentDto;
 import de.nordakademie.iaa.library.controller.dto.PublicationDto;
 import de.nordakademie.iaa.library.persistent.entities.Assignment;
@@ -91,22 +94,6 @@ class AssignmentServiceTest {
                 findAllUnreturnedByPublicationKey(any(),eq("test"));
         verify(assignmentRepository, times(0)).findAllByPublicationKey("test");
     }
-
-    @Test
-    void create_withoutPublication_ThrowsMissingFieldException() {
-        assertThrows(MissingFieldException.class, () -> this.assignmentService.create(assignmentDto));
-        verify(this.assignmentRepository, times(0)).saveAndRefresh(any());
-    }
-
-    @Test
-    void create_withoutPublicationKey_ThrowsMissingFieldException() {
-        PublicationDto publicationDto = new PublicationDto();
-        assignmentDto.setPublication(publicationDto);
-
-        assertThrows(MissingFieldException.class, () -> this.assignmentService.create(assignmentDto));
-        verify(this.assignmentRepository, times(0)).saveAndRefresh(any());
-    }
-
 
     @Test
     void create_withSetUuid_ThrowsIllegalUsageOfIdentifierException() {

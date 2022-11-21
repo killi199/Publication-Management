@@ -2,7 +2,6 @@ package de.nordakademie.iaa.library.service.impl;
 
 import de.nordakademie.iaa.library.controller.api.exception.EntityDoesNotExistException;
 import de.nordakademie.iaa.library.controller.api.exception.IllegalUsageOfIdentifierException;
-import de.nordakademie.iaa.library.controller.api.exception.MissingFieldException;
 import de.nordakademie.iaa.library.controller.dto.BorrowerDto;
 import de.nordakademie.iaa.library.persistent.entities.Borrower;
 import de.nordakademie.iaa.library.persistent.repository.BorrowerRepository;
@@ -16,8 +15,6 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
-import static de.nordakademie.iaa.library.service.helper.InputValidator.isStringEmpty;
 
 /**
  * The borrower service provides methods to handle the borrowers
@@ -57,8 +54,6 @@ public class BorrowerService implements BorrowerServiceInterface {
      */
     public BorrowerDto create(@NotNull BorrowerDto borrowerDto) {
 
-        checkRequiredFields(borrowerDto);
-
         if (borrowerDto.getUuid() != null) {
             throw new IllegalUsageOfIdentifierException();
         }
@@ -75,8 +70,6 @@ public class BorrowerService implements BorrowerServiceInterface {
      * This method should not be called with null values.
      */
     public BorrowerDto update(@NotNull BorrowerDto borrowerDto) {
-
-        checkRequiredFields(borrowerDto);
 
         if (borrowerDto.getUuid() == null || !borrowerRepository.existsById(borrowerDto.getUuid())) {
             throw new EntityDoesNotExistException();
@@ -96,17 +89,6 @@ public class BorrowerService implements BorrowerServiceInterface {
     public void delete(@NotNull UUID uuid) {
         Optional<Borrower> borrowerOptional = borrowerRepository.findById(uuid);
         borrowerOptional.ifPresent(borrowerRepository::delete);
-    }
-
-    /**
-     * This function checks if every required parameter is set
-     *
-     * @param borrowerDto dto from request
-     */
-    private void checkRequiredFields(@NotNull BorrowerDto borrowerDto) {
-        if (isStringEmpty(borrowerDto.getStudentNumber())) {
-            throw new MissingFieldException("studentNumber");
-        }
     }
 
     /**

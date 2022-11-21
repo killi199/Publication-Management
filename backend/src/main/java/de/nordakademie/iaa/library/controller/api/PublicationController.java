@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Null;
 import java.util.List;
 
@@ -44,7 +45,7 @@ public class PublicationController {
      * @return The created publication
      */
     @PostMapping
-    public ResponseEntity<PublicationDto> create(@RequestBody PublicationDto publicationDto) {
+    public ResponseEntity<PublicationDto> create(@RequestBody @Valid PublicationDto publicationDto) {
         return new ResponseEntity<>(publicationService.create(publicationDto), HttpStatus.OK);
     }
 
@@ -55,7 +56,7 @@ public class PublicationController {
      * @return The updated publication
      */
     @PutMapping
-    public ResponseEntity<PublicationDto> update(@RequestBody PublicationDto publicationDto) {
+    public ResponseEntity<PublicationDto> update(@RequestBody @Valid PublicationDto publicationDto) {
         return new ResponseEntity<>(publicationService.update(publicationDto), HttpStatus.OK);
     }
 

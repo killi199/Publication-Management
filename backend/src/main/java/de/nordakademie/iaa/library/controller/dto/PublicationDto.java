@@ -1,32 +1,42 @@
 package de.nordakademie.iaa.library.controller.dto;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static de.nordakademie.iaa.library.controller.api.constants.ErrorMessages.*;
 
 /**
  * A Publication is the main object for a library. It describes things like books, articles, etc.
  */
 public class PublicationDto {
 
+    @NotBlank(message = VALUE_IS_EMPTY)
+    @Size(max = 255, message = VALUE_IS_TOO_LONG)
     private String key;
 
-    @NotNull
+    @NotBlank(message = VALUE_IS_EMPTY)
+    @Size(max = 255, message = VALUE_IS_TOO_LONG)
     private String title;
 
     private List<AuthorDto> authors = new ArrayList<>();
 
     private Date dateOfPublication;
 
+    @Size(max = 255, message = VALUE_IS_TOO_LONG)
     private String publisher;
 
     private KindOfPublicationDto kindOfPublication;
 
-    private String ISBN;
+    @Size(max = 255, message = VALUE_IS_TOO_LONG)
+    private String isbn;
 
     private List<KeywordDto> keywords = new ArrayList<>();
 
+    @PositiveOrZero(message = NEGATIVE_VALUE_NOT_ALLOWED)
     private int quantity;
 
     private boolean deleted = false;
@@ -35,16 +45,26 @@ public class PublicationDto {
         return key;
     }
 
+    /**
+     * Sets the key of the publication and trims it.
+     *
+     * @param key The key of the publication.
+     */
     public void setKey(String key) {
-        this.key = key;
+        this.key = key.trim();
     }
 
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Sets the title of the publication and trims it.
+     *
+     * @param title The title of the publication.
+     */
     public void setTitle(String title) {
-        this.title = title;
+        this.title = title.trim();
     }
 
     public List<AuthorDto> getAuthors() {
@@ -67,8 +87,13 @@ public class PublicationDto {
         return publisher;
     }
 
+    /**
+     * Sets the publisher of the publication and trims it.
+     *
+     * @param publisher The publisher of the publication.
+     */
     public void setPublisher(String publisher) {
-        this.publisher = publisher;
+        this.publisher = publisher.trim();
     }
 
     public KindOfPublicationDto getKindOfPublication() {
@@ -79,12 +104,17 @@ public class PublicationDto {
         this.kindOfPublication = kindOfPublications;
     }
 
-    public String getISBN() {
-        return ISBN;
+    public String getIsbn() {
+        return isbn;
     }
 
-    public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
+    /**
+     * Sets the ISBN of the publication and trims it.
+     *
+     * @param isbn The ISBN of the publication.
+     */
+    public void setIsbn(String isbn) {
+        this.isbn = isbn.trim();
     }
 
     public List<KeywordDto> getKeywords() {

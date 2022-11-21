@@ -297,10 +297,6 @@ public class AssignmentService implements AssignmentServiceInterface {
         if (assignmentDto.getDateOfReturn() != null && assignmentDto.getDateOfAssignment().after(assignmentDto.getDateOfReturn())) {
             throw new ReturnBeforeAssignmentException();
         }
-
-        if (assignmentDto.getPublication() == null || assignmentDto.getPublication().getKey() == null) {
-            throw new MissingFieldException("publication");
-        }
     }
 
     /**

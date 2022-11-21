@@ -2,7 +2,6 @@ package de.nordakademie.iaa.library.service.impl;
 
 import de.nordakademie.iaa.library.controller.api.exception.EntityDoesNotExistException;
 import de.nordakademie.iaa.library.controller.api.exception.IllegalUsageOfIdentifierException;
-import de.nordakademie.iaa.library.controller.api.exception.MissingFieldException;
 import de.nordakademie.iaa.library.controller.dto.AuthorDto;
 import de.nordakademie.iaa.library.persistent.entities.Author;
 import de.nordakademie.iaa.library.persistent.repository.AuthorRepository;
@@ -42,13 +41,6 @@ class AuthorServiceTest {
         this.author = new Author();
     }
 
-
-    @Test
-    void create_noParameters_throwsMissingFieldException() {
-        assertThrows(MissingFieldException.class, () -> this.authorService.create(authorDto));
-        verify(authorRepository, times(0)).existsById(any());
-    }
-
     @Test
     void create_withUUID_throwsIllegalUsageOfIdentifierException() {
         authorDto.setUuid(UUID.randomUUID());
@@ -56,22 +48,6 @@ class AuthorServiceTest {
         authorDto.setSurname("Mustermann");
 
         assertThrows(IllegalUsageOfIdentifierException.class, () -> this.authorService.create(authorDto));
-        verify(authorRepository, times(0)).existsById(any());
-    }
-
-    @Test
-    void create_nullSurname_throwsMissingFieldException() {
-        authorDto.setName("Max");
-
-        assertThrows(MissingFieldException.class, () -> this.authorService.create(authorDto));
-        verify(authorRepository, times(0)).existsById(any());
-    }
-
-    @Test
-    void create_nullName_throwsMissingFieldException() {
-        authorDto.setSurname("Mustermann");
-
-        assertThrows(MissingFieldException.class, () -> this.authorService.create(authorDto));
         verify(authorRepository, times(0)).existsById(any());
     }
 
@@ -89,23 +65,6 @@ class AuthorServiceTest {
         verify(authorMapper, times(1)).authorDtoToEntity(authorDto);
         verify(authorMapper, times(1)).authorEntityToDto(author);
     }
-
-    @Test
-    void update_nullKey_throwsMissingFieldException() {
-        assertThrows(MissingFieldException.class, () -> this.authorService.update(authorDto));
-        verify(authorRepository, times(0)).existsById(any());
-    }
-
-    @Test
-    void update_nullName_throwsMissingFieldException() {
-        UUID uuid = UUID.randomUUID();
-
-        authorDto.setUuid(uuid);
-
-        assertThrows(MissingFieldException.class, () -> this.authorService.update(authorDto));
-        verify(authorRepository, times(0)).existsById(uuid);
-    }
-
 
     @Test
     void update_authorNotExists_throwsEntityDoesNotExistException() {

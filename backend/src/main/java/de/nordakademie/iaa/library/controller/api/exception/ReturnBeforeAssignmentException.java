@@ -8,6 +8,6 @@ import org.springframework.http.HttpStatus;
 public class ReturnBeforeAssignmentException extends AbstractRestApiException {
 
     public ReturnBeforeAssignmentException() {
-        super(HttpStatus.BAD_REQUEST, "The date of return can not be earlier than the date of assignment.");
+        super(HttpStatus.BAD_REQUEST, "Das Rückgabedatum darf nicht vor dem Ausleihdatum liegen.");
     }
 }

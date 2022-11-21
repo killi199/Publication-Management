@@ -2,8 +2,6 @@ package de.nordakademie.iaa.library.service.impl;
 
 import de.nordakademie.iaa.library.controller.api.exception.EntityAlreadyExistsException;
 import de.nordakademie.iaa.library.controller.api.exception.EntityDoesNotExistException;
-import de.nordakademie.iaa.library.controller.api.exception.MissingFieldException;
-import de.nordakademie.iaa.library.controller.api.exception.NegativValueIsNotAllowedException;
 import de.nordakademie.iaa.library.controller.dto.PublicationDto;
 import de.nordakademie.iaa.library.persistent.entities.Publication;
 import de.nordakademie.iaa.library.persistent.repository.PublicationRepository;
@@ -61,31 +59,6 @@ class PublicationServiceTest {
     }
 
     @Test
-    void create_withoutParameters_throwsMissingFieldException() {
-
-        assertThrows(MissingFieldException.class, () -> this.publicationService.create(publicationDto));
-        verify(publicationRepository, times(0)).existsById("test");
-    }
-
-    @Test
-    void create_nullTitle_throwsMissingFieldException() {
-        publicationDto.setKey("test");
-
-        assertThrows(MissingFieldException.class, () -> this.publicationService.create(publicationDto));
-        verify(publicationRepository, times(0)).existsById("test");
-    }
-
-    @Test
-    void create_negativeQuantity_throwsMissingFieldException() {
-        publicationDto.setKey("test");
-        publicationDto.setTitle("test");
-        publicationDto.setQuantity(-1);
-
-        assertThrows(NegativValueIsNotAllowedException.class, () -> this.publicationService.create(publicationDto));
-        verify(publicationRepository, times(0)).existsById("test");
-    }
-
-    @Test
     void create_publicationExists_throwsEntityAlreadyExistsException() {
         publicationDto.setKey("test");
         publicationDto.setTitle("test");
@@ -111,30 +84,6 @@ class PublicationServiceTest {
         verify(publicationRepository, times(1)).saveAndRefresh(publication);
         verify(publicationMapper, times(1)).publicationDtoToEntity(publicationDto);
         verify(publicationMapper, times(1)).publicationEntityToDto(publication);
-    }
-
-    @Test
-    void update_withoutParameters_throwsMissingFieldException() {
-        assertThrows(MissingFieldException.class, () -> this.publicationService.update(publicationDto));
-        verify(publicationRepository, times(0)).existsById(any());
-    }
-
-    @Test
-    void update_nullTitle_throwsMissingFieldException() {
-        publicationDto.setKey("test");
-
-        assertThrows(MissingFieldException.class, () -> this.publicationService.update(publicationDto));
-        verify(publicationRepository, times(0)).existsById("test");
-    }
-
-    @Test
-    void update_negativeQuantity_throwsNegativValueIsNotAllowedException() {
-        publicationDto.setKey("test");
-        publicationDto.setTitle("test");
-        publicationDto.setQuantity(-1);
-
-        assertThrows(NegativValueIsNotAllowedException.class, () -> this.publicationService.update(publicationDto));
-        verify(publicationRepository, times(0)).existsById("test");
     }
 
     @Test

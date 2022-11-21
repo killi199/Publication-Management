@@ -33,8 +33,8 @@ public class Assignment {
     private Date latestReturnDate;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
     private Publication publication;
 
     public UUID getUuid() {

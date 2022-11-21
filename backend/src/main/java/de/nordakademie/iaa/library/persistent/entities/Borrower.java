@@ -3,8 +3,8 @@ package de.nordakademie.iaa.library.persistent.entities;
 import de.nordakademie.iaa.library.controller.api.exception.BorrowerHasOpenAssignmentException;
 
 import javax.persistence.*;
-import java.util.List;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.UUID;
 
 /**

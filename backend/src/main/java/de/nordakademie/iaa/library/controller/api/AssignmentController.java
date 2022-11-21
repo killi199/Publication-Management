@@ -9,10 +9,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Null;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 import static de.nordakademie.iaa.library.controller.api.constants.ApiPath.ASSIGNMENT_BASE_PATH;
+import static de.nordakademie.iaa.library.controller.api.constants.ErrorMessages.VALUE_IS_EMPTY;
+import static de.nordakademie.iaa.library.controller.api.constants.ErrorMessages.VALUE_IS_TOO_LONG;
 import static de.nordakademie.iaa.library.helper.DateParser.parseDate;
 
 /**
@@ -48,8 +56,8 @@ public class AssignmentController {
      */
     @GetMapping("/{publicationKey}")
     public ResponseEntity<List<AssignmentDto>> getAllByPublicationKey(@PathVariable String publicationKey,
-                                                      @RequestParam(required = false, defaultValue = "false")
-                                                      boolean showReturned) {
+                                                                      @RequestParam(required = false, defaultValue = "false")
+                                                                      boolean showReturned) {
         return new ResponseEntity<>(assignmentService.getAllByPublicationKey(publicationKey, showReturned), HttpStatus.OK);
     }
 
@@ -60,7 +68,7 @@ public class AssignmentController {
      * @return The created assignment
      */
     @PostMapping
-    public ResponseEntity<AssignmentDto> create(@RequestBody AssignmentDto assignmentDto) {
+    public ResponseEntity<AssignmentDto> create(@RequestBody @Valid AssignmentDto assignmentDto) {
         return new ResponseEntity<>(assignmentService.create(assignmentDto), HttpStatus.OK);
     }
 
@@ -72,9 +80,8 @@ public class AssignmentController {
      * @return the updated assignment
      */
     @PostMapping("/return/{assignmentUUID}")
-    public ResponseEntity<AssignmentDto> returnAssignment(@PathVariable UUID assignmentUUID, @RequestParam(required = false, name = "dateOfReturn") String dateOfReturnString) {
+    public ResponseEntity<AssignmentDto> returnAssignment(@PathVariable UUID assignmentUUID, @RequestParam(required = false, name = "dateOfReturn") @Valid @NotBlank(message = VALUE_IS_EMPTY) @Size(max = 255, message = VALUE_IS_TOO_LONG) String dateOfReturnString) {
         return new ResponseEntity<>(assignmentService.returnAssignment(assignmentUUID, parseDate(dateOfReturnString)), HttpStatus.OK);
-    }
 
     /**
      * This method will extend the assignment.

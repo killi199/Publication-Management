@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Null;
 import java.util.List;
 import java.util.UUID;
@@ -44,7 +45,7 @@ public class BorrowerController {
      * @return The created borrower
      */
     @PostMapping
-    public ResponseEntity<BorrowerDto> create(@RequestBody BorrowerDto borrowerDto) {
+    public ResponseEntity<BorrowerDto> create(@RequestBody @Valid BorrowerDto borrowerDto) {
         return new ResponseEntity<>(borrowerService.create(borrowerDto), HttpStatus.OK);
     }
 
@@ -55,7 +56,7 @@ public class BorrowerController {
      * @return The updated borrower
      */
     @PutMapping
-    public ResponseEntity<BorrowerDto> update(@RequestBody BorrowerDto borrowerDto) {
+    public ResponseEntity<BorrowerDto> update(@RequestBody @Valid BorrowerDto borrowerDto) {
         return new ResponseEntity<>(borrowerService.update(borrowerDto), HttpStatus.OK);
     }
 

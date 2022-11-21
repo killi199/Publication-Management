@@ -3,7 +3,6 @@ package de.nordakademie.iaa.library.service.impl;
 import de.nordakademie.iaa.library.controller.api.exception.EntityAlreadyExistsException;
 import de.nordakademie.iaa.library.controller.api.exception.EntityDoesNotExistException;
 import de.nordakademie.iaa.library.controller.api.exception.IllegalUsageOfIdentifierException;
-import de.nordakademie.iaa.library.controller.api.exception.MissingFieldException;
 import de.nordakademie.iaa.library.controller.dto.KeywordDto;
 import de.nordakademie.iaa.library.persistent.entities.Keyword;
 import de.nordakademie.iaa.library.persistent.repository.KeywordRepository;
@@ -16,8 +15,6 @@ import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.UUID;
-
-import static de.nordakademie.iaa.library.service.helper.InputValidator.isStringEmpty;
 
 /**
  * The keyword service provides methods to handle the keywords
@@ -57,8 +54,6 @@ public class KeywordService implements KeywordServiceInterface {
      */
     public KeywordDto create(@NotNull KeywordDto keywordDto) {
 
-        checkRequiredFields(keywordDto);
-
         if (keywordDto.getUuid() != null) {
             throw new IllegalUsageOfIdentifierException();
         }
@@ -75,8 +70,6 @@ public class KeywordService implements KeywordServiceInterface {
      * This method should not be called with null values.
      */
     public KeywordDto update(@NotNull KeywordDto keywordDto) {
-
-        checkRequiredFields(keywordDto);
 
         if (keywordDto.getUuid() == null || !keywordRepository.existsById(keywordDto.getUuid())) {
             throw new EntityDoesNotExistException();
@@ -97,17 +90,6 @@ public class KeywordService implements KeywordServiceInterface {
         Keyword keyword = new Keyword();
         keyword.setUuid(uuid);
         keywordRepository.delete(keyword);
-    }
-
-    /**
-     * This function checks if every required parameter is set
-     *
-     * @param keywordDto dto from request
-     */
-    private void checkRequiredFields(@NotNull KeywordDto keywordDto) {
-        if (isStringEmpty(keywordDto.getValue())) {
-            throw new MissingFieldException("value");
-        }
     }
 
     /**
