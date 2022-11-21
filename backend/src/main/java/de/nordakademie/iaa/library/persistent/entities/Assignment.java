@@ -24,7 +24,7 @@ public class Assignment {
 
     private boolean publicationLoss;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Borrower borrower;
 
     private int extensions;
@@ -33,8 +33,8 @@ public class Assignment {
     private Date latestReturnDate;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
     private Publication publication;
 
     public UUID getUuid() {

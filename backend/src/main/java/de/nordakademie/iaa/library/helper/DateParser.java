@@ -6,12 +6,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static de.nordakademie.iaa.library.service.helper.InputValidator.isStringEmpty;
-
 /**
  * Functions that can parse dates
  */
 public class DateParser {
+
+    private DateParser() {
+    }
 
     /**
      * This method will parse a dateString to a Date
@@ -21,7 +22,7 @@ public class DateParser {
     public static Date parseDate(String dateString) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         Date date = null;
-        if(!isStringEmpty(dateString)) {
+        if(dateString != null && !dateString.isEmpty()) {
             try {
                 date = formatter.parse(dateString);
             } catch (ParseException e) {

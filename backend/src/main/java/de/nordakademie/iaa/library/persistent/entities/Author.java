@@ -1,10 +1,9 @@
 package de.nordakademie.iaa.library.persistent.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -18,12 +17,14 @@ public class Author {
     @GeneratedValue
     private UUID uuid;
 
-    @NotNull
+    @NotBlank
+    @Length(max = 255)
     private String surname;
-    @NotNull
+    @NotBlank
+    @Length(max = 255)
     private String name;
 
-    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST}, orphanRemoval = true)
+    @OneToMany(mappedBy = "author", orphanRemoval = true)
     private List<AuthorsPublications> authorsPublications = new ArrayList<>();
 
     public UUID getUuid() {
@@ -55,6 +56,7 @@ public class Author {
     }
 
     public void setAuthorsPublications(List<AuthorsPublications> authorsPublications) {
-        this.authorsPublications = authorsPublications;
+        this.authorsPublications.clear();
+        this.authorsPublications.addAll(authorsPublications);
     }
 }

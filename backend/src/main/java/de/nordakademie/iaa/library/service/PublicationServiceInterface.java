@@ -2,7 +2,6 @@ package de.nordakademie.iaa.library.service;
 
 import de.nordakademie.iaa.library.controller.api.exception.EntityDoesNotExistException;
 import de.nordakademie.iaa.library.controller.dto.PublicationDto;
-import de.nordakademie.iaa.library.persistent.entities.Publication;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -25,7 +24,7 @@ public interface PublicationServiceInterface {
      * @param keys list of keys that should be loaded
      * @return list of publications
      */
-    List<Publication> getAllByKeys(List<String> keys);
+    List<PublicationDto> getAllByKeys(List<String> keys);
 
     /**
      * get a publication by its key
@@ -37,20 +36,12 @@ public interface PublicationServiceInterface {
     PublicationDto getByKey(String key);
 
     /**
-     * create a Publication
-     *
-     * @param publicationDto the Publication that should be created
-     * @return the created Publication
-     */
-    PublicationDto create(PublicationDto publicationDto);
-
-    /**
-     * update a Publication
+     * create or update a Publication
      *
      * @param publicationDto the Publication that should be updated
      * @return the updated Publication
      */
-    PublicationDto update(PublicationDto publicationDto);
+    PublicationDto createOrUpdate(PublicationDto publicationDto);
 
 
     /**

@@ -9,7 +9,7 @@ public class IllegalUsageOfIdentifierException extends AbstractRestApiException 
 
     public IllegalUsageOfIdentifierException() {
         super(HttpStatus.BAD_REQUEST,
-                "The identifier shouldn't be set here.");
+                "Der Identifikator sollte hier nicht gesetzt werden.");
     }
 
 }

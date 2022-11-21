@@ -8,6 +8,6 @@ import org.springframework.http.HttpStatus;
 public class EntityAlreadyExistsException extends AbstractRestApiException {
 
     public EntityAlreadyExistsException() {
-        super(HttpStatus.BAD_REQUEST, "The entity you try to create already exists.");
+        super(HttpStatus.BAD_REQUEST, "Die Entität, die Sie versuchen zu erstellen, existiert bereits.");
     }
 }

@@ -1,7 +1,10 @@
 package de.nordakademie.iaa.library.controller.dto;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.UUID;
+
+import static de.nordakademie.iaa.library.controller.api.constants.ErrorMessages.VALUE_IS_EMPTY;
 
 
 /**
@@ -11,6 +14,7 @@ import java.util.UUID;
 public class WarningDto {
     private UUID uuid;
 
+    @NotNull(message = VALUE_IS_EMPTY)
     private Date warningDate;
 
     public UUID getUuid() {

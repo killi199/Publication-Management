@@ -1,6 +1,9 @@
 package de.nordakademie.iaa.library.service.impl;
 
-import de.nordakademie.iaa.library.controller.api.exception.*;
+import de.nordakademie.iaa.library.controller.api.exception.EntityDoesNotExistException;
+import de.nordakademie.iaa.library.controller.api.exception.IllegalUsageOfIdentifierException;
+import de.nordakademie.iaa.library.controller.api.exception.MaximumExtensionsException;
+import de.nordakademie.iaa.library.controller.api.exception.PublicationIsNotBorrowableException;
 import de.nordakademie.iaa.library.controller.dto.AssignmentDto;
 import de.nordakademie.iaa.library.controller.dto.PublicationDto;
 import de.nordakademie.iaa.library.persistent.entities.Assignment;
@@ -49,7 +52,6 @@ class AssignmentServiceTest {
     private AssignmentDto assignmentDto;
     private Assignment assignment;
 
-
     @BeforeEach
     void setUpBeforeEach() {
         ReflectionTestUtils.setField(assignmentService, "rentalPeriod", 14);
@@ -92,22 +94,6 @@ class AssignmentServiceTest {
                 findAllUnreturnedByPublicationKey(any(),eq("test"));
         verify(assignmentRepository, times(0)).findAllByPublicationKey("test");
     }
-
-    @Test
-    void create_withoutPublication_ThrowsMissingFieldException() {
-        assertThrows(MissingFieldException.class, () -> this.assignmentService.create(assignmentDto));
-        verify(this.assignmentRepository, times(0)).saveAndRefresh(any());
-    }
-
-    @Test
-    void create_withoutPublicationKey_ThrowsMissingFieldException() {
-        PublicationDto publicationDto = new PublicationDto();
-        assignmentDto.setPublication(publicationDto);
-
-        assertThrows(MissingFieldException.class, () -> this.assignmentService.create(assignmentDto));
-        verify(this.assignmentRepository, times(0)).saveAndRefresh(any());
-    }
-
 
     @Test
     void create_withSetUuid_ThrowsIllegalUsageOfIdentifierException() {
@@ -159,10 +145,8 @@ class AssignmentServiceTest {
         publicationDto.setKey("test");
         publicationDto.setQuantity(1);
 
-
         assignmentDto.setPublication(publicationDto);
         assignmentDto.setDateOfAssignment(dateOfAssignment);
-
 
         Date latestReturnDate = formatter.parse("2022-9-20 05:55:13");
 
@@ -194,31 +178,6 @@ class AssignmentServiceTest {
     }
 
     @Test
-    void returnAssignment_withoutDate_Works() {
-        UUID uuid = UUID.randomUUID();
-
-        assignment.setUuid(uuid);
-        when(assignmentRepository.findById(any())).thenReturn(Optional.of(assignment));
-
-        this.assignmentService.returnAssignment(uuid, null);
-
-        verify(this.assignmentRepository, times(1)).saveAndRefresh(any());
-    }
-    @Test
-    void returnAssignment_withDate_Works() throws ParseException {
-        UUID uuid = UUID.randomUUID();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        Date returnDate = formatter.parse("2022-9-05T05:55:13.123Z");
-
-        assignment.setUuid(uuid);
-        when(assignmentRepository.findById(any())).thenReturn(Optional.of(assignment));
-
-        this.assignmentService.returnAssignment(uuid, returnDate);
-
-        verify(this.assignmentRepository, times(1)).saveAndRefresh(any());
-    }
-
-    @Test
     void extend_withToMuchExtension_throwMaximumExtensionsException() throws ParseException {
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
@@ -239,7 +198,6 @@ class AssignmentServiceTest {
 
         assertThrows(MaximumExtensionsException.class, () -> this.assignmentService.extend(uuid));
     }
-
 
     @Test
     void extend_works() throws ParseException {

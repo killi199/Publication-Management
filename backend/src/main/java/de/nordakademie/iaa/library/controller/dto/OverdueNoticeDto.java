@@ -1,11 +1,14 @@
 package de.nordakademie.iaa.library.controller.dto;
 
+import javax.validation.constraints.NotNull;
 import de.nordakademie.iaa.library.enums.OverdueNoticeState;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+
+import static de.nordakademie.iaa.library.controller.api.constants.ErrorMessages.VALUE_IS_EMPTY;
 
 /**
  * An Overdue Notice will be started if the Borrower exceeds the return date.
@@ -14,6 +17,7 @@ import java.util.UUID;
 public class OverdueNoticeDto {
     private UUID uuid;
 
+    @NotNull(message = VALUE_IS_EMPTY)
     private AssignmentDto assignment;
 
     private Date closedAt;

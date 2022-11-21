@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Null;
 import java.util.List;
 import java.util.UUID;
@@ -44,7 +45,7 @@ public class KeywordController {
      * @return The created keyword
      */
     @PostMapping
-    public ResponseEntity<KeywordDto> create(@RequestBody KeywordDto keywordDto) {
+    public ResponseEntity<KeywordDto> create(@RequestBody @Valid KeywordDto keywordDto) {
         return new ResponseEntity<>(keywordService.create(keywordDto), HttpStatus.OK);
     }
 
@@ -55,7 +56,7 @@ public class KeywordController {
      * @return The updated keyword
      */
     @PutMapping
-    public ResponseEntity<KeywordDto> update(@RequestBody KeywordDto keywordDto) {
+    public ResponseEntity<KeywordDto> update(@RequestBody @Valid KeywordDto keywordDto) {
         return new ResponseEntity<>(keywordService.update(keywordDto), HttpStatus.OK);
     }
 

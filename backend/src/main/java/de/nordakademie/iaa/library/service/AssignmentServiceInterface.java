@@ -18,7 +18,7 @@ public interface AssignmentServiceInterface {
      *
      * @return all assignments
      */
-    List<AssignmentDto> getAll(boolean showReturned);
+    List<AssignmentDto> getAll(boolean showClosed);
 
 
     /**

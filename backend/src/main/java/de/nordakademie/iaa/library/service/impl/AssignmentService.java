@@ -5,7 +5,6 @@ import de.nordakademie.iaa.library.controller.dto.AssignmentDto;
 import de.nordakademie.iaa.library.controller.dto.LatestReturnDateForAssignmentDateDto;
 import de.nordakademie.iaa.library.controller.dto.PublicationDto;
 import de.nordakademie.iaa.library.persistent.entities.Assignment;
-import de.nordakademie.iaa.library.persistent.entities.Publication;
 import de.nordakademie.iaa.library.persistent.repository.AssignmentRepository;
 import de.nordakademie.iaa.library.service.AssignmentServiceInterface;
 import de.nordakademie.iaa.library.service.OverdueNoticeServiceInterface;
@@ -65,16 +64,16 @@ public class AssignmentService implements AssignmentServiceInterface {
      *
      * @return all assignments
      */
-    public List<AssignmentDto> getAll(boolean showReturned) {
+    public List<AssignmentDto> getAll(boolean showClosed) {
         List<Assignment> assignments;
 
-        if (showReturned) {
+        if (showClosed) {
             assignments = assignmentRepository.findAll();
         } else {
             assignments = assignmentRepository.findAllUnreturned(new Date());
         }
 
-        return assignmentMapper.assignmentEntitiesToDtos(loadPublications(assignments));
+        return loadPublications(assignmentMapper.assignmentEntitiesToDtos(assignments));
     }
 
     /**
@@ -90,7 +89,7 @@ public class AssignmentService implements AssignmentServiceInterface {
             throw new EntityDoesNotExistException();
         }
 
-        if (this.warningService.countAllByOverdueNoticeUuid(uuid) < maxNumberWarnings) {
+        if (this.warningService.countAllByAssignmentUuid(uuid) < maxNumberWarnings) {
             throw new MaximumWarningsNotReachedException();
         }
 
@@ -117,7 +116,7 @@ public class AssignmentService implements AssignmentServiceInterface {
             assignments = assignmentRepository.findAllUnreturnedByPublicationKey(new Date(), publicationKey);
         }
 
-        return assignmentMapper.assignmentEntitiesToDtos(loadPublications(assignments));
+        return loadPublications(assignmentMapper.assignmentEntitiesToDtos(assignments));
     }
 
     /**
@@ -126,18 +125,18 @@ public class AssignmentService implements AssignmentServiceInterface {
      * @param assignments the assignments that should be loaded
      * @return List of assignments
      */
-    private List<Assignment> loadPublications(List<Assignment> assignments) {
-        List<Publication> publications = publicationService.getAllByKeys(
+    private List<AssignmentDto> loadPublications(List<AssignmentDto> assignments) {
+        List<PublicationDto> publications = publicationService.getAllByKeys(
                 assignments
                         .stream()
                         .map(assignmentDto -> assignmentDto.getPublication().getKey()).collect(Collectors.toList()));
 
-        Map<String, Publication> publicationMap =
+        Map<String, PublicationDto> publicationMap =
                 publications
                 .stream()
-                .collect(Collectors.toMap(Publication::getKey, Function.identity()));
+                .collect(Collectors.toMap(PublicationDto::getKey, Function.identity()));
 
-        for (Assignment assignment: assignments) {
+        for (AssignmentDto assignment: assignments) {
             assignment.setPublication(publicationMap.get(assignment.getPublication().getKey()));
         }
 
@@ -222,6 +221,10 @@ public class AssignmentService implements AssignmentServiceInterface {
 
         assignment.setDateOfReturn(returnDate == null ? new Date() : returnDate);
 
+        if (assignment.getDateOfAssignment().after(assignment.getDateOfReturn())) {
+            throw new ReturnBeforeAssignmentException();
+        }
+
         this.overdueNoticeService.closeAllOverdueNotices(assignment);
 
         return createOrUpdate(assignment, false);
@@ -296,10 +299,6 @@ public class AssignmentService implements AssignmentServiceInterface {
         if (assignmentDto.getDateOfReturn() != null && assignmentDto.getDateOfAssignment().after(assignmentDto.getDateOfReturn())) {
             throw new ReturnBeforeAssignmentException();
         }
-
-        if (assignmentDto.getPublication() == null || assignmentDto.getPublication().getKey() == null) {
-            throw new MissingFieldException("publication");
-        }
     }
 
     /**
@@ -325,6 +324,4 @@ public class AssignmentService implements AssignmentServiceInterface {
 
         return assignmentMapper.assignmentEntityToDto(assignment);
     }
-
-
 }

@@ -3,7 +3,6 @@ package de.nordakademie.iaa.library.service.impl;
 import de.nordakademie.iaa.library.controller.api.exception.EntityAlreadyExistsException;
 import de.nordakademie.iaa.library.controller.api.exception.EntityDoesNotExistException;
 import de.nordakademie.iaa.library.controller.api.exception.IllegalUsageOfIdentifierException;
-import de.nordakademie.iaa.library.controller.api.exception.MissingFieldException;
 import de.nordakademie.iaa.library.controller.dto.KindOfPublicationDto;
 import de.nordakademie.iaa.library.persistent.entities.KindOfPublication;
 import de.nordakademie.iaa.library.persistent.repository.KindOfPublicationRepository;
@@ -17,8 +16,6 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
-import static de.nordakademie.iaa.library.service.helper.InputValidator.isStringEmpty;
 
 /**
  * The kindOfPublication service provides methods to handle the kindOfPublication
@@ -58,8 +55,6 @@ public class KindOfPublicationService implements KindOfPublicationServiceInterfa
      */
     public KindOfPublicationDto create(@NotNull KindOfPublicationDto kindOfPublicationDto) {
 
-        checkRequiredFields(kindOfPublicationDto);
-
         if (kindOfPublicationDto.getUuid() != null) {
             throw new IllegalUsageOfIdentifierException();
         }
@@ -76,8 +71,6 @@ public class KindOfPublicationService implements KindOfPublicationServiceInterfa
      * This method should not be called with null values.
      */
     public KindOfPublicationDto update(@NotNull KindOfPublicationDto kindOfPublicationDto) {
-
-        checkRequiredFields(kindOfPublicationDto);
 
         if (kindOfPublicationDto.getUuid() == null || !kindOfPublicationRepository.existsById(kindOfPublicationDto.getUuid())) {
             throw new EntityDoesNotExistException();
@@ -97,17 +90,6 @@ public class KindOfPublicationService implements KindOfPublicationServiceInterfa
     public void delete(@NotNull UUID uuid) {
         Optional<KindOfPublication> kindOfPublicationOptional = kindOfPublicationRepository.findById(uuid);
         kindOfPublicationOptional.ifPresent(kindOfPublicationRepository::delete);
-    }
-
-    /**
-     * This function checks if every required parameter is set
-     *
-     * @param kindOfPublicationDto dto from request
-     */
-    private void checkRequiredFields(@NotNull KindOfPublicationDto kindOfPublicationDto) {
-        if (isStringEmpty(kindOfPublicationDto.getValue())) {
-            throw new MissingFieldException("value");
-        }
     }
 
     /**

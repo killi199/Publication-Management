@@ -2,7 +2,6 @@ package de.nordakademie.iaa.library.service.impl;
 
 import de.nordakademie.iaa.library.controller.api.exception.EntityDoesNotExistException;
 import de.nordakademie.iaa.library.controller.api.exception.IllegalUsageOfIdentifierException;
-import de.nordakademie.iaa.library.controller.api.exception.MissingFieldException;
 import de.nordakademie.iaa.library.controller.dto.KeywordDto;
 import de.nordakademie.iaa.library.persistent.entities.Keyword;
 import de.nordakademie.iaa.library.persistent.repository.KeywordRepository;
@@ -41,13 +40,6 @@ class KeywordServiceTest {
         this.keyword = new Keyword();
     }
 
-
-    @Test
-    void create_withoutParameters_throwsMissingFieldException() {
-        assertThrows(MissingFieldException.class, () -> this.keywordService.create(keywordDto));
-        verify(keywordRepository, times(0)).existsById(any());
-    }
-
     @Test
     void create_withUUID_throwsIllegalUsageOfIdentifierException() {
         keywordDto.setUuid(UUID.randomUUID());
@@ -70,23 +62,6 @@ class KeywordServiceTest {
         verify(keywordMapper, times(1)).keywordDtoToEntity(keywordDto);
         verify(keywordMapper, times(1)).keywordEntityToDto(keyword);
     }
-
-    @Test
-    void update_withoutParameters_throwsMissingFieldException() {
-        assertThrows(MissingFieldException.class, () -> this.keywordService.update(keywordDto));
-        verify(keywordRepository, times(0)).existsById(any());
-    }
-
-    @Test
-    void update_onlyWithUUID_throwsMissingFieldException() {
-        UUID uuid = UUID.randomUUID();
-
-        keywordDto.setUuid(uuid);
-
-        assertThrows(MissingFieldException.class, () -> this.keywordService.update(keywordDto));
-        verify(keywordRepository, times(0)).existsById(uuid);
-    }
-
 
     @Test
     void update_keywordNotExists_throwsEntityDoesNotExistException() {

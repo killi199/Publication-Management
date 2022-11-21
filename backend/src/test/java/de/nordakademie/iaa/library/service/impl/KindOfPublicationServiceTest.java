@@ -2,7 +2,6 @@ package de.nordakademie.iaa.library.service.impl;
 
 import de.nordakademie.iaa.library.controller.api.exception.EntityDoesNotExistException;
 import de.nordakademie.iaa.library.controller.api.exception.IllegalUsageOfIdentifierException;
-import de.nordakademie.iaa.library.controller.api.exception.MissingFieldException;
 import de.nordakademie.iaa.library.controller.dto.KindOfPublicationDto;
 import de.nordakademie.iaa.library.persistent.entities.KindOfPublication;
 import de.nordakademie.iaa.library.persistent.repository.KindOfPublicationRepository;
@@ -41,13 +40,6 @@ class KindOfPublicationServiceTest {
         this.kindOfPublication = new KindOfPublication();
     }
 
-
-    @Test
-    void create_withoutParameters_throwsMissingFieldException() {
-        assertThrows(MissingFieldException.class, () -> this.kindOfPublicationService.create(kindOfPublicationDto));
-        verify(kindOfPublicationRepository, times(0)).existsById(any());
-    }
-
     @Test
     void create_withUUID_throwsIllegalUsageOfIdentifierException() {
         kindOfPublicationDto.setUuid(UUID.randomUUID());
@@ -70,23 +62,6 @@ class KindOfPublicationServiceTest {
         verify(kindOfPublicationMapper, times(1)).kindOfPublicationDtoToEntity(kindOfPublicationDto);
         verify(kindOfPublicationMapper, times(1)).kindOfPublicationEntityToDto(kindOfPublication);
     }
-
-    @Test
-    void update_withoutParameters_throwsMissingFieldException() {
-        assertThrows(MissingFieldException.class, () -> this.kindOfPublicationService.update(kindOfPublicationDto));
-        verify(kindOfPublicationRepository, times(0)).existsById(any());
-    }
-
-    @Test
-    void update_onlyWithUUID_throwsMissingFieldException() {
-        UUID uuid = UUID.randomUUID();
-
-        kindOfPublicationDto.setUuid(uuid);
-
-        assertThrows(MissingFieldException.class, () -> this.kindOfPublicationService.update(kindOfPublicationDto));
-        verify(kindOfPublicationRepository, times(0)).existsById(uuid);
-    }
-
 
     @Test
     void update_keywordNotExists_throwsEntityDoesNotExistException() {

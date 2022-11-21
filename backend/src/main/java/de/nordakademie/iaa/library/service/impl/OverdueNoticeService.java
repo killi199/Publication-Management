@@ -1,9 +1,9 @@
 package de.nordakademie.iaa.library.service.impl;
 
 import de.nordakademie.iaa.library.controller.dto.OverdueNoticeDto;
+import de.nordakademie.iaa.library.controller.dto.PublicationDto;
 import de.nordakademie.iaa.library.persistent.entities.Assignment;
 import de.nordakademie.iaa.library.persistent.entities.OverdueNotice;
-import de.nordakademie.iaa.library.persistent.entities.Publication;
 import de.nordakademie.iaa.library.persistent.repository.OverdueNoticeRepository;
 import de.nordakademie.iaa.library.service.OverdueNoticeServiceInterface;
 import de.nordakademie.iaa.library.service.PublicationServiceInterface;
@@ -45,7 +45,7 @@ public class OverdueNoticeService implements OverdueNoticeServiceInterface {
      */
     public List<OverdueNoticeDto> getAll(boolean showClosed) {
         List<OverdueNotice> overdueNotices = overdueNoticeRepository.findAllOpenOverdueNotices(new Date(), showClosed);
-        return overdueNoticeMapper.overdueNoticeEntitiesToDtos(loadPublications(overdueNotices));
+        return loadPublications(overdueNoticeMapper.overdueNoticeEntitiesToDtos(overdueNotices));
     }
 
     /**
@@ -55,8 +55,8 @@ public class OverdueNoticeService implements OverdueNoticeServiceInterface {
      * @param overdueNotices the overdueNotices that should be loaded
      * @return List of overdueNotices
      */
-    private List<OverdueNotice> loadPublications(List<OverdueNotice> overdueNotices) {
-        List<Publication> publications = publicationService.getAllByKeys(
+    private List<OverdueNoticeDto> loadPublications(List<OverdueNoticeDto> overdueNotices) {
+        List<PublicationDto> publications = publicationService.getAllByKeys(
                 overdueNotices
                         .stream()
                         .map(overdueNotice -> overdueNotice
@@ -65,12 +65,12 @@ public class OverdueNoticeService implements OverdueNoticeServiceInterface {
                                 .getKey())
                         .collect(Collectors.toList()));
 
-        Map<String, Publication> publicationMap =
+        Map<String, PublicationDto> publicationMap =
                 publications
                         .stream()
-                        .collect(Collectors.toMap(Publication::getKey, Function.identity()));
+                        .collect(Collectors.toMap(PublicationDto::getKey, Function.identity()));
 
-        for (OverdueNotice overdueNotice: overdueNotices) {
+        for (OverdueNoticeDto overdueNotice: overdueNotices) {
             overdueNotice.getAssignment().setPublication(
                     publicationMap.get(overdueNotice.getAssignment().getPublication().getKey()));
         }
@@ -95,7 +95,7 @@ public class OverdueNoticeService implements OverdueNoticeServiceInterface {
      */
     public void closeAllOverdueNotices(Assignment assignment) {
         Date closedDate = assignment.getDateOfReturn() == null ? new Date(): assignment.getDateOfReturn();
-        overdueNoticeRepository.deleteReservedOverdueNotices(assignment.getUuid(), closedDate);
+        overdueNoticeRepository.deleteReservedOverdueNotices(assignment.getUuid(), new Date());
         overdueNoticeRepository.closeAllOverdueNotices(assignment.getUuid(), closedDate);
     }
 
