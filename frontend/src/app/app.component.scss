@@ -24,7 +24,7 @@ img {
 .main-container {
     position: absolute;
     top: 80px;
-    bottom: calc(20px + 1em);
+    height: calc(100% - 130px);
     left: 0;
     right: 0;
 }
@@ -55,7 +55,7 @@ button {
     height: 45px;
     display: flex;
     border-radius: 5px;
-    padding: 0 5px;
+    padding: 0 10px;
     font-size: 18px !important;
 }
 
@@ -113,6 +113,11 @@ mat-icon {
     color: $footer-font-color;
     text-align: end;
     padding: 10px;
+    font-size: 1em;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .sidenav-content{

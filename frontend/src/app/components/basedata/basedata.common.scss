@@ -2,30 +2,31 @@
     width: 100%;
     overflow: auto;
     overflow-x: hidden;
-    height: 90%;
+    height: calc(100% - 100px);
     display: flex;
     flex-direction: column;
 }
 
 
 .form-container {
-    width: 99%;
-    margin: 5px 5px 5px 10px;
+    width: calc(100% - 40px);
+    height: 60px;
+    padding: 20px;
     text-align: right;
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
 }
 
 .btn-container {
-    width: 99%;
+    width: 100%;
     margin: 5px 5px 5px 10px;
     text-align: right;
     display: flex;
 }
 
 button {
-    margin: 5px;
+    margin: 0 5px;
     height: 50px;
     width: 50px;
 }
@@ -42,5 +43,13 @@ mat-icon {
 
 mat-form-field{
     margin-right: 10px;
+}
+
+.form-container > mat-form-field > ::ng-deep .mat-form-field-wrapper {
+    padding: 0;
+}
+
+::ng-deep .mat-tab-body-wrapper {
+    height: 100%;
 }
 
