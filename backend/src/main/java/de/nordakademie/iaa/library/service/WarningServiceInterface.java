@@ -25,4 +25,11 @@ public interface WarningServiceInterface {
      * @param overdueNoticeUuid the overdue notice identifier
      */
     int countAllByOverdueNoticeUuid(UUID overdueNoticeUuid);
+
+    /**
+     * Counts the number of warnings.
+     *
+     * @param assignmentUuid the assignment identifier
+     */
+    int countAllByAssignmentUuid(UUID assignmentUuid);
 }

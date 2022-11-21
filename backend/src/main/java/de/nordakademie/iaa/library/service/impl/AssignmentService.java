@@ -89,7 +89,7 @@ public class AssignmentService implements AssignmentServiceInterface {
             throw new EntityDoesNotExistException();
         }
 
-        if (this.warningService.countAllByOverdueNoticeUuid(uuid) < maxNumberWarnings) {
+        if (this.warningService.countAllByAssignmentUuid(uuid) < maxNumberWarnings) {
             throw new MaximumWarningsNotReachedException();
         }
 

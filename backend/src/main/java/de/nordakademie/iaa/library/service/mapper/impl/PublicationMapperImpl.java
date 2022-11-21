@@ -69,7 +69,7 @@ public class PublicationMapperImpl implements PublicationMapper {
 
         publicationDto.setKeywords(keywordDtos);
 
-        return null;
+        return publicationDto;
     }
 
     /**

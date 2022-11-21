@@ -74,4 +74,14 @@ public class WarningService implements WarningServiceInterface {
     public int countAllByOverdueNoticeUuid(UUID overdueNoticeUuid) {
         return warningRepository.countAllByOverdueNoticeUuid(overdueNoticeUuid);
     }
+
+    /**
+     * Counts the number of warnings.
+     *
+     * @param assignmentUuid the overdue notice identifier
+     */
+    @Override
+    public int countAllByAssignmentUuid(UUID assignmentUuid) {
+        return warningRepository.countAllByAssignmentUuid(assignmentUuid);
+    }
 }
