@@ -1,3 +1,4 @@
+# Author: Thorge Früchtenicht
 version: '3.8'
 services:
   db:
