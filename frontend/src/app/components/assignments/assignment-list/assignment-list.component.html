@@ -1,5 +1,5 @@
 <div class="container">
-    <mat-form-field appearance="standard">
+    <mat-form-field appearance="standard" class="filter">
         <mat-label>Filter</mat-label>
         <input
             matInput
@@ -13,12 +13,12 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Publikationsschlüssel</th>
             <td mat-cell *matCellDef="let element">{{ element.publication.key }}</td>
         </ng-container>
-        
+
         <ng-container matColumnDef="surname">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Nachname</th>
             <td mat-cell *matCellDef="let element">{{ element.borrower.surname }}</td>
         </ng-container>
-        
+
         <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Vorname</th>
             <td mat-cell *matCellDef="let element">{{ element.borrower.name }}</td>
@@ -27,7 +27,7 @@
         <ng-container matColumnDef="studentNumber">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Matrikelnummer</th>
             <td mat-cell *matCellDef="let element">{{ element.borrower.studentNumber }}</td>
-        </ng-container>    
+        </ng-container>
 
         <ng-container matColumnDef="dateOfAssignment">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
@@ -59,7 +59,7 @@
         <ng-container matColumnDef="extensions">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Verlängerungen</th>
             <td mat-cell *matCellDef="let element">{{ element.extensions }}</td>
-        </ng-container>   
+        </ng-container>
 
         <tr
             mat-header-row
