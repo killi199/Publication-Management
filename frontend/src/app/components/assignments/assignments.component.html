@@ -29,7 +29,7 @@
             <button
                 matTooltip="Zurückgeben"
                 *ngIf="!isViewOpen"
-                [disabled]="!currentRecord || currentRecord.dateOfReturn"
+                [disabled]="!currentRecord || currentRecord.dateOfReturn || currentRecord.publicationLoss"
                 (click)="onReturn(currentRecord?.uuid)"
                 mat-mini-fab
                 color="warn"
