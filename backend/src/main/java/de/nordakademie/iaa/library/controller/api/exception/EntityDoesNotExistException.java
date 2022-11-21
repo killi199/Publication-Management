@@ -8,6 +8,6 @@ import org.springframework.http.HttpStatus;
 public class EntityDoesNotExistException extends AbstractRestApiException {
 
     public EntityDoesNotExistException() {
-        super(HttpStatus.BAD_REQUEST, "Die Entität, die Sie zu aktualisieren versuchen, existiert bereits.");
+        super(HttpStatus.BAD_REQUEST, "Die Entität, die Sie zu aktualisieren versuchen, existiert nicht.");
     }
 }
