@@ -25,17 +25,17 @@
         >
             <mat-icon>arrow_back</mat-icon>
         </button>
-        <button
-            matTooltip="Löschen"
-            *ngIf="!openPublication"
-            [disabled]="!currentPublication"
-            (click)="onDelete()"
-            mat-mini-fab
-            color="warn"
-        >
-            <mat-icon>delete</mat-icon>
-        </button>
         <div class="crud-container" *ngIf="!openPublication">
+            <button
+                matTooltip="Löschen"
+                *ngIf="!openPublication"
+                [disabled]="!currentPublication"
+                (click)="onDelete()"
+                mat-mini-fab
+                color="warn"
+            >
+                <mat-icon>delete</mat-icon>
+            </button>
             <button
                 matTooltip="Details"
                 [disabled]="!currentPublication"

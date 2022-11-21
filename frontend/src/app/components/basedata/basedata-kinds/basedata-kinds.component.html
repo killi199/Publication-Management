@@ -65,7 +65,7 @@
             [disabled]="!selectedRecord.uuid"
             *ngIf="crudState === 'read'"
             mat-mini-fab
-            color="accent"
+            color="primary"
         >
             <mat-icon>edit</mat-icon>
         </button>
@@ -107,7 +107,7 @@
         class="add-btn"
         mat-mini-fab
         matTooltip="Hinzufügen"
-        color="primary"
+        color="accent"
         (click)="onAdd()"
         *ngIf="crudState === 'read'"
     >

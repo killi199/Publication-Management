@@ -1,5 +1,12 @@
 @import "src/theme";
 
-.warn-ready{
-    background-color: rgba($warn1, 0.2);
+.readyToWarnIcon {
+    color: $warn1;
+    display: flex;
+    justify-content: center;
+}
+.readyToWarnIcon > mat-icon {
+    height: 40px;
+    width: 40px;
+    font-size: 40px;
 }
