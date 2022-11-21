@@ -1,5 +1,5 @@
 <div class="container">
-    <mat-form-field appearance="standard">
+    <mat-form-field appearance="standard" class="filter">
         <mat-label>Filter</mat-label>
         <input
             matInput
@@ -71,10 +71,12 @@
 
         <ng-container matColumnDef="isReadyToWarn">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                Mahnungsbereit
+                Mahnung im Verzug
             </th>
             <td mat-cell *matCellDef="let element">
-                {{ isWarnable(getLatestWarningDate(element)) ? "Ja" : "Nein" }}
+                <div class="readyToWarnIcon">
+                    <mat-icon *ngIf="isWarnable(getLatestWarningDate(element))">alarm</mat-icon>
+                </div>
             </td>
         </ng-container>
 
@@ -102,5 +104,5 @@
         showFirstLastButtons
         class="mat-paginator-sticky"
     >
-    </mat-paginator>  
+    </mat-paginator>
 </div>

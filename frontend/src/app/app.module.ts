@@ -47,6 +47,7 @@ import { AssignmentViewComponent } from './components/assignments/assignment-vie
 import { OverdueNoticeComponent } from './components/overdue-notice/overdue-notice.component';
 import { OverdueNoticeListComponent } from './components/overdue-notice/overdue-notice-list/overdue-notice-list.component';
 import { getGermanPaginatorIntl } from './helpers/german-paginator-intl';
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 
 registerLocaleData(localeDe, 'de-DE', localeDeExtra);
 
@@ -94,6 +95,7 @@ registerLocaleData(localeDe, 'de-DE', localeDeExtra);
         HttpClientModule,
         MatTabsModule,
         MatSnackBarModule,
+        MatSlideToggleModule,
     ],
     providers: [
         { provide: LOCALE_ID, useValue: 'de-DE' },

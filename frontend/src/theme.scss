@@ -4,13 +4,62 @@
 // @import '@angular/material/prebuilt-themes/purple-green.css';
 
 @import '@angular/material/theming';
+@import '@angular/material';
 
-$app-primary1: mat-palette($mat-indigo, 500);
-$app-primary2: mat-palette($mat-indigo, 700);
-$app-accent1:  mat-palette($mat-indigo, 50);
-$app-accent2:  mat-palette($mat-indigo, 100);
-$app-warn1: mat-palette($mat-pink, 50);
-$app-warn2: mat-palette($mat-pink, 400);
+$my-palette: define-palette((
+    50:#3cd2ff,
+    100:#3cd2ff,
+    200:#3cd2ff,
+    300:#3cd2ff,
+    400:#3cd2ff,
+    500:#003A79,
+    600:#003A79,
+    700:#003A79,
+    800:#003A79,
+    900:#003A79,
+    contrast: (
+        50:white,
+        100:white,
+        200:white,
+        300:white,
+        400:white,
+        500:white,
+        600:white,
+        700:white,
+        800:white,
+        900:white,
+)));
+
+$warn-palette: define-palette((
+    50:#FF0000,
+    100:#FF0000,
+    200:#FF0000,
+    300:#FF0000,
+    400:#FF0000,
+    500:#FF0000,
+    600:#FF0000,
+    700:#FF0000,
+    800:#FF0000,
+    900:#FF0000,
+    contrast: (
+        50:white,
+        100:white,
+        200:white,
+        300:white,
+        400:white,
+        500:white,
+        600:white,
+        700:white,
+        800:white,
+        900:white,
+    )));
+
+$app-primary1: mat-palette($my-palette, 500);
+$app-primary2: mat-palette($my-palette, 700);
+$app-accent1:  mat-palette($my-palette, 50);
+$app-accent2:  mat-palette($my-palette, 100);
+$app-warn1: mat-palette($warn-palette, 50);
+$app-warn2: mat-palette($warn-palette, 400);
 
 $primary1: mat-color($app-primary1);
 $primary2: mat-color($app-primary2);
@@ -18,3 +67,14 @@ $accent1: mat-color($app-accent1);
 $accent2: mat-color($app-accent2);
 $warn1: mat-color($app-warn1);
 $warn2: mat-color($app-warn2);
+
+$my-theme: define-light-theme((
+    color: (
+        primary: $app-primary1,
+        accent: $app-accent1,
+        warn: $app-warn1,
+    ),
+));
+
+@include angular-material-theme($my-theme);
+

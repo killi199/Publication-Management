@@ -1,7 +1,9 @@
 <div class="page">
     <div class="header-div">
         <h1> {{ headerTitle }}</h1>
-        <mat-checkbox *ngIf="!isViewOpen" [checked]="showHistory" (change)="changeShowHistory()">Historie</mat-checkbox>
+        <mat-slide-toggle *ngIf="!isViewOpen" [checked]="showHistory" (change)="changeShowHistory()" color="accent">
+            Historie
+        </mat-slide-toggle>
     </div>
 
     <app-assignment-list
@@ -20,32 +22,32 @@
         >
             <mat-icon>arrow_back</mat-icon>
         </button>
-        <button
-            matTooltip="Zurückgeben"
-            *ngIf="!isViewOpen"
-            [disabled]="!currentRecord"
-            (click)="onBack()"
-            mat-mini-fab
-            color="warn"
-        >
-            <mat-icon>assignment_return</mat-icon>
-        </button>
         <div class="crud-container" *ngIf="!isViewOpen">
             <button
-                matTooltip="Editieren"
+                matTooltip="Zurückgeben"
+                *ngIf="!isViewOpen"
+                [disabled]="!currentRecord"
+                (click)="onBack()"
+                mat-mini-fab
+                color="warn"
+            >
+                <mat-icon>assignment_return</mat-icon>
+            </button>
+            <button
+                matTooltip="Details"
                 [disabled]="!currentRecord"
                 (click)="onEdit()"
                 mat-mini-fab
                 color="primary"
             >
-                <mat-icon>edit</mat-icon>
+                <mat-icon>format_list_bulleted</mat-icon>
             </button>
 
             <button
                 (click)="onAdd()"
                 mat-mini-fab
                 matTooltip="Hinzufügen"
-                color="primary"
+                color="accent"
             >
                 <mat-icon>add</mat-icon>
             </button>
