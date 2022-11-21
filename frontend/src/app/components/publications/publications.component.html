@@ -5,6 +5,7 @@
         <mat-slide-toggle  *ngIf="!openPublication"
                            color="accent"
                            (change)="changeShowHistory()"
+                           [checked]="showHistory"
         >
             Historie
         </mat-slide-toggle>
