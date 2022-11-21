@@ -26,7 +26,7 @@ export class PublicationsComponent implements OnInit {
     currentPublication?: Publication;
     openPublication: boolean = false;
     addingPublication: boolean = false;
-    viewSpecification: string = "";
+    headerTitle: string = "Publikationen";
     showHistory: boolean = false;
 
     constructor(
@@ -65,13 +65,13 @@ export class PublicationsComponent implements OnInit {
     }
 
     onEditPublication(): void {
-        this.viewSpecification = "bearbeiten";
+        this.headerTitle = "Publikation bearbeiten";
         this.addingPublication = false;
         this.openPublication = !this.openPublication;
     }
 
     onAddPublication(): void {
-        this.viewSpecification = "hinzufügen";
+        this.headerTitle = "Publikation hinzufügen";
         this.addingPublication = true;
         this.currentPublication = undefined;
         this.openPublication = !this.openPublication;
@@ -93,7 +93,7 @@ export class PublicationsComponent implements OnInit {
     }
 
     onBack(): void {
-        this.viewSpecification = "";
+        this.headerTitle = "Publikationen";
         this.openPublication = false;
         this.addingPublication = false;
         this.currentPublication = undefined;

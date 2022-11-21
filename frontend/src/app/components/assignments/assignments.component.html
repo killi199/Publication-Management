@@ -1,7 +1,7 @@
 <div class="page">
     <div class="header-div">
-        <h1>Ausleihvorgänge {{ viewSpecification }}</h1>
-        <mat-checkbox *ngIf="!viewSpecification" [checked]="showHistory" (change)="changeShowHistory()">Historie</mat-checkbox>
+        <h1> {{ headerTitle }}</h1>
+        <mat-checkbox *ngIf="!isViewOpen" [checked]="showHistory" (change)="changeShowHistory()">Historie</mat-checkbox>
     </div>
 
     <app-assignment-list

@@ -18,7 +18,7 @@ export class AssignmentsComponent implements OnInit {
     borrowers: Borrower[] = [];
     publications: Publication[] = [];
     currentRecord?: Assignment;    
-    viewSpecification: string = "";
+    headerTitle: string = "Ausleihvorgänge";
     showHistory: boolean = false;
 
     constructor(
@@ -47,18 +47,18 @@ export class AssignmentsComponent implements OnInit {
     }
 
     onBack(): void {
-        this.viewSpecification = "";
+        this.headerTitle = "Ausleihvorgänge";
         this.currentRecord = undefined;
         this.isViewOpen = false;
     }
 
     onEdit(): void {
-        this.viewSpecification = "bearbeiten";
+        this.headerTitle = "Ausleihvorgang bearbeiten";
         this.isViewOpen = true;
     }
 
     onAdd(): void {
-        this.viewSpecification = "hinzufügen";
+        this.headerTitle = "Ausleihvorgang hinzufügen";
         this.currentRecord = undefined;
         this.isViewOpen = true;
     }
