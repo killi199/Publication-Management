@@ -10,7 +10,6 @@
                 required
             />
         </mat-form-field>
-
         <mat-form-field appearance="fill">
             <mat-label>Titel</mat-label>
             <input
@@ -216,10 +215,10 @@
             </button>
         </div>
     </form>
-    <div *ngIf="hasAssignments" class="assignment-container">
-        <h3 class="assignment-header">Ausleihvorgänge:</h3>
-        <app-assignment-list
-            [assignments]="assignments"
-        ></app-assignment-list>
+    <div *ngIf="!hasAssignments" class="assignment-container">
+        <h3 class="assignment-header">
+            <span>Ausleihvorgänge</span>
+        </h3>
+        <app-assignment-list [assignments]="assignments"></app-assignment-list>
     </div>
 </div>

@@ -7,6 +7,7 @@
 }
 
 
+
 button {
     margin: 10px;
     height: 50px;
@@ -40,5 +41,13 @@ mat-form-field {
         0px 6px 10px 0px rgb(0 0 0 / 14%), 0px 1px 18px 0px rgb(0 0 0 / 12%);
     display: inline-block;
     width: 95%;
-    height: fit-content;
+    height: 250px;
+}
+
+
+::ng-deep .mat-chip-list-wrapper{
+    flex-wrap: nowrap !important;
+    overflow: auto;
+    overflow-y: hidden;
+    height: 50px;
 }
