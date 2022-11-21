@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Snackbar } from 'src/app/helpers/snackbar';
 import { Assignment } from 'src/app/models/assignment';
 import { Author } from 'src/app/models/author';
@@ -28,6 +28,7 @@ export class PublicationsComponent implements OnInit {
     addingPublication: boolean = false;
     headerTitle: string = "Publikationen";
     showHistory: boolean = false;
+    onDeleteSubject: Subject<Publication> = new Subject<Publication>();
 
     constructor(
         private publicationService: PublicationService,
@@ -60,6 +61,7 @@ export class PublicationsComponent implements OnInit {
         if (this.currentPublication) {
             this.publicationService.delete(this.currentPublication).subscribe(() => {
                 this.snackbar.open('Publikation gelöscht!');
+                if(this.currentPublication) this.onDeleteSubject.next(this.currentPublication);
             });
         }
     }

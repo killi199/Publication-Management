@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { GermanDateAdapter } from 'src/app/helpers/german-date-adapter';
+import { Snackbar } from 'src/app/helpers/snackbar';
 import { TableInitsComponent } from 'src/app/helpers/table-inits';
 import { Publication } from 'src/app/models/publication';
 
@@ -9,14 +10,19 @@ import { Publication } from 'src/app/models/publication';
     templateUrl: './publication-list.component.html',
     styleUrls: ['../../../helpers/list-component.scss'],
 })
-export class PublicationListComponent extends TableInitsComponent<Publication> implements OnInit {
+export class PublicationListComponent extends TableInitsComponent<Publication> implements OnInit, OnDestroy {
     @Input()
     publications: Observable<Publication[]> = new Observable<Publication[]>();
+
+    @Input()
+    updateDataOnDelete?: Observable<any>;
 
     @Output()
     showPublication = new EventEmitter<Publication>();
 
     selectedPublication?: Publication;
+
+    private eventsSubscription?: Subscription;
 
     displayedColumns: string[] = [
         'key',
@@ -36,6 +42,13 @@ export class PublicationListComponent extends TableInitsComponent<Publication> i
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
         });
+        this.eventsSubscription = this.updateDataOnDelete?.subscribe((a) => {
+            this.dataSource.data = this.dataSource.data.filter((publication) => publication.key !== a.key);
+        });
+    }
+
+    ngOnDestroy() {
+        this.eventsSubscription?.unsubscribe();
     }
 
     onShowPublication(publication: Publication): void {
