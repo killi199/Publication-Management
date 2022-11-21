@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
+ * Author: Nello Musmeci
  * This is an interface for a generated mapper.
  * This interface defines methods to map between OverdueNotices and OverdueNotice.
  */

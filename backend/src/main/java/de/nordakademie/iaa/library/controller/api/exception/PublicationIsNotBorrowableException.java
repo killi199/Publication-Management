@@ -3,6 +3,7 @@ package de.nordakademie.iaa.library.controller.api.exception;
 import org.springframework.http.HttpStatus;
 
 /**
+ * Author: Thorge Früchtenicht
  * This exception will be thrown if a publication is not borrowable.
  */
 public class PublicationIsNotBorrowableException extends AbstractRestApiException {

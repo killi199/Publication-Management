@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
+ * Author: Nello Musmeci
  * The OverdueNotice service provides methods to handle the OverdueNotice
  */
 public interface OverdueNoticeServiceInterface {

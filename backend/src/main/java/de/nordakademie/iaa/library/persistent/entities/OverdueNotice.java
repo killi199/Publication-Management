@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
+ * Author: Nello Musmeci
  * An Overdue Notice will be started if the Borrower exceeds the return date.
  * It is an act where the staff of a library will warn the Borrower.
  */

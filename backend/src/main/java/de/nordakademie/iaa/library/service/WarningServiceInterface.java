@@ -5,6 +5,7 @@ import de.nordakademie.iaa.library.controller.dto.WarningDto;
 import java.util.UUID;
 
 /**
+ * Author: Nello Musmeci
  * The warning service provides methods to handle the warnings
  */
 public interface WarningServiceInterface {

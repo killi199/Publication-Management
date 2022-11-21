@@ -6,6 +6,7 @@ import de.nordakademie.iaa.library.persistent.entities.Publication;
 import java.util.List;
 
 /**
+ * Author: Nello Musmeci
  * This is an interface for a mapper.
  * This interface defines methods to map between PublicationDtos and Publications.
  * The implementation of this mapper is done manually to be able to set the authors and keywords directly.

@@ -7,6 +7,7 @@ import org.mapstruct.NullValueCheckStrategy;
 import org.springframework.stereotype.Component;
 
 /**
+ * Author: Nello Musmeci
  * This is an interface for a generated mapper.
  * This interface defines methods to map between WarningDtos and warnings.
  */

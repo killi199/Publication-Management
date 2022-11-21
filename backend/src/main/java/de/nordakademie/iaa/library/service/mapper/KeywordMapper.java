@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
+ * Author: Thorge Früchtenicht
  * This is an interface for a generated mapper.
  * This interface defines methods to map between keywordDtos and keywords.
  */

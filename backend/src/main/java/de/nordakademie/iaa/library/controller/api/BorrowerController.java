@@ -15,6 +15,7 @@ import java.util.UUID;
 import static de.nordakademie.iaa.library.controller.api.constants.ApiPath.BORROWER_BASE_PATH;
 
 /**
+ * Author: Nello Musmeci
  * controller borrower entity crud operations.
  */
 @RestController

@@ -3,6 +3,7 @@ package de.nordakademie.iaa.library.controller.api.exception;
 import org.springframework.http.HttpStatus;
 
 /**
+ * Author: Nello Musmeci
  * This exception is thrown if the maximum amount of assignment extensions is reached.
  */
 public class MaximumExtensionsException extends AbstractRestApiException{

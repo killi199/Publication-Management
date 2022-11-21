@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
+ * Author: Thorge Früchtenicht
  * The keyword service provides methods to handle the keywords
  */
 @Service

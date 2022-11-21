@@ -1,3 +1,4 @@
+/*Author: Nello Musmeci*/
 INSERT INTO overdue_notice (uuid, closed_at, opened_at, assignment_uuid) VALUES ('3135b54c-fb64-45a9-a2bf-33df38136e20', null, '2022-11-30 16:51:00.000000', '79b0991c-6662-430a-9670-565be4a15d7a') ON CONFLICT DO NOTHING;
 INSERT INTO overdue_notice (uuid, closed_at, opened_at, assignment_uuid) VALUES ('250e2820-ac15-4694-97ce-e5fd8acbf0e8', null, '2022-11-28 16:51:00.000000', '176389df-8c99-4676-a0c1-06bb53976456') ON CONFLICT DO NOTHING;
 INSERT INTO overdue_notice (uuid, closed_at, opened_at, assignment_uuid) VALUES ('235d67cf-ce18-4c0f-a535-f7af21eda015', '2022-11-04 20:26:11.800000', '2022-11-18 16:51:00.000000', '05832bc9-c231-4e1f-b536-1aa60cc65010') ON CONFLICT DO NOTHING;

@@ -1,5 +1,10 @@
 package de.nordakademie.iaa.library.controller.api.constants;
 
+/**
+ * Author: Thorge Früchtenicht
+ * </p>
+ * Publication Constants
+ */
 public class ApiPath {
 
     private ApiPath() {

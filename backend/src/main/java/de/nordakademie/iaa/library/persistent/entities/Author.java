@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
+ * Author: Thorge Früchtenicht
  * The Author describes a person that wrote a Publication
  */
 @Entity

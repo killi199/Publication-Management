@@ -16,6 +16,7 @@ import java.util.List;
 import static de.nordakademie.iaa.library.controller.api.constants.ApiPath.OVERDUE_NOTICE_BASE_PATH;
 
 /**
+ * Author: Nello Musmeci
  * controller OverdueNotice entity crud operations.
  */
 @RestController

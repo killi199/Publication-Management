@@ -22,6 +22,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
+ * Author: Thorge Früchtenicht
  * The assignment service provides methods to handle the assignments
  */
 @Service

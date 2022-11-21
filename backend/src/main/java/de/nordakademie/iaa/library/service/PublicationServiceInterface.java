@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
+ * Author: Thorge Früchtenicht
  * The Publication service provides methods to handle the Publications
  */
 public interface PublicationServiceInterface {

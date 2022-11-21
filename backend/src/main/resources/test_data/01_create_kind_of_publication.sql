@@ -1,3 +1,4 @@
+/*Author: Nello Musmeci*/
 insert into kind_of_publication (uuid, value) values ('21fc7dae-1d45-4a0a-a829-69cbd48008d0', 'Book') ON CONFLICT DO NOTHING;
 insert into kind_of_publication (uuid, value) values ('0b337437-19f2-4772-a314-9f47415b6528', 'Newspaper') ON CONFLICT DO NOTHING;
 insert into kind_of_publication (uuid, value) values ('9bdcee51-04eb-48a6-a892-454df80ea92f', 'Essay') ON CONFLICT DO NOTHING;

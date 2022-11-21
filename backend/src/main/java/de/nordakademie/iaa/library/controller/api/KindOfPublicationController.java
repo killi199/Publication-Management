@@ -15,6 +15,7 @@ import java.util.UUID;
 import static de.nordakademie.iaa.library.controller.api.constants.ApiPath.KIND_OF_PUBLICATION_BASE_PATH;
 
 /**
+ * Author: Nello Musmeci
  * controller kindOfPublication entity crud operations.
  */
 @RestController

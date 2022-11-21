@@ -21,6 +21,7 @@ import static de.nordakademie.iaa.library.controller.api.constants.ErrorMessages
 import static de.nordakademie.iaa.library.helper.DateParser.parseDate;
 
 /**
+ * Author: Thorge Früchtenicht
  * controller assignment entity crud operations.
  */
 @RestController

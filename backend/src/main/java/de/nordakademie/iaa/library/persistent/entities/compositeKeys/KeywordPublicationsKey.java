@@ -6,6 +6,7 @@ import java.util.UUID;
 
 
 /**
+ * Author: Thorge Früchtenicht
  * Key for combined foreign key to make the many to many relation keyword and publications unique
  */
 public class KeywordPublicationsKey implements Serializable {

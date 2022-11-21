@@ -15,6 +15,7 @@ import java.util.UUID;
 import static de.nordakademie.iaa.library.controller.api.constants.ApiPath.AUTHOR_BASE_PATH;
 
 /**
+ * Author: Thorge Früchtenicht
  * controller author entity crud operations.
  */
 @RestController

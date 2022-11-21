@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.UUID;
 
 /**
+ * Author: Nello Musmeci
  * A Warning is a element in an Overdue Notice.
  * Warnings are often letters that will be sent out to the Borrower.
  */

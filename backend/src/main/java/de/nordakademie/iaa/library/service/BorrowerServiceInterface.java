@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
+ * Author: Nello Musmeci
  * The borrower service provides methods to handle the borrowers
  */
 public interface BorrowerServiceInterface {
