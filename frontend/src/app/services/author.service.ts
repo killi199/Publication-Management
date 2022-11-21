@@ -1,3 +1,4 @@
+// Author: Kevin Jahrens
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Snackbar } from '../helpers/snackbar';

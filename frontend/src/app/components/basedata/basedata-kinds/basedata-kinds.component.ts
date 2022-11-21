@@ -1,3 +1,4 @@
+// Author: Marcel Dymarz
 import { Component } from '@angular/core';
 import { KindOfPublication } from 'src/app/models/kind-of-publication';
 import { CrudComponent } from '../../../helpers/crud-component';

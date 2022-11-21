@@ -1,6 +1,6 @@
+// Author: Kevin Jahrens
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
 import { Snackbar } from '../helpers/snackbar';
 import { KindOfPublication } from '../models/kind-of-publication';
 import { CrudService } from './crud.service';

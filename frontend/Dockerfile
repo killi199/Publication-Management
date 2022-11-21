@@ -1,3 +1,4 @@
+# Author: Kevin Jahrens
 #
 # Build stage
 #

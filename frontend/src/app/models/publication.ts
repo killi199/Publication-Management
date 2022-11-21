@@ -1,3 +1,4 @@
+// Author: Kevin Jahrens
 import { Author } from './author';
 import { Entity } from './entity';
 import { Keyword } from './keyword';

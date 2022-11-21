@@ -1,5 +1,5 @@
+// Author: Kevin Jahrens
 import { Component } from '@angular/core';
-import { MatDrawerMode } from '@angular/material/sidenav';
 
 @Component({
     selector: 'app-root',

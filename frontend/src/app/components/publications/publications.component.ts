@@ -1,3 +1,4 @@
+// Author: Kevin Jahrens
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Snackbar } from 'src/app/helpers/snackbar';

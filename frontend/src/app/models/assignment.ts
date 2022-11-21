@@ -1,3 +1,4 @@
+// Author: Kevin Jahrens
 import { Borrower } from "./borrower";
 import { Publication } from "./publication";
 import { Entity } from './entity';

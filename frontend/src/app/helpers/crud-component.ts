@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+// Author: Marcel Dymarz
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Snackbar } from 'src/app/helpers/snackbar';
 import { TableInitsComponent } from 'src/app/helpers/table-inits';

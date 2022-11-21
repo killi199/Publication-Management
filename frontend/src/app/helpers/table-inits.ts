@@ -1,3 +1,4 @@
+// Author: Marcel Dymarz
 import { SelectionModel } from '@angular/cdk/collections';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
