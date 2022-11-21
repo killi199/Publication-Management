@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { TableInitsComponent } from 'src/app/helpers/table-inits';
 import { OverdueNotice } from 'src/app/models/overdue-notice';
@@ -12,7 +12,7 @@ import { OverdueNoticeEvent } from './overdue-notice-event';
     templateUrl: './overdue-notice-list.component.html',
     styleUrls: ['../../../helpers/list-component.scss', './overdue-notice-list.component.scss'],
 })
-export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotice> implements OnInit {
+export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotice> implements OnInit, OnDestroy {
     private eventsSubscription?: Subscription;
 
     @Input()
