@@ -1,5 +1,5 @@
 // Author: Kevin Jahrens
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
 import { Snackbar } from '../helpers/snackbar';
@@ -15,6 +15,14 @@ export class AssignmentService {
 
     getAll(): Observable<Assignment[]> {
         return this.http.get<Assignment[]>(ENDPOINT_URL).pipe(
+            catchError((err: HttpErrorResponse) => {
+                throw this._handleError(err);
+            })
+        );
+    }
+
+    getAllWithDeleted(): Observable<Assignment[]> {
+        return this.http.get<Assignment[]>(ENDPOINT_URL, { params: new HttpParams().set('showReturned', true) }).pipe(
             catchError((err: HttpErrorResponse) => {
                 throw this._handleError(err);
             })

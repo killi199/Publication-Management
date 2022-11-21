@@ -21,6 +21,9 @@ export class AssignmentListComponent extends TableInitsComponent<Assignment> imp
     @Input()
     updateDataOnReturn?: Observable<Assignment>;
 
+    @Input()
+    updateData?: Observable<Observable<Assignment[]>>;
+
     displayedColumns: string[] = [
         'publicationKey',
         'surname',
@@ -41,11 +44,7 @@ export class AssignmentListComponent extends TableInitsComponent<Assignment> imp
     }
 
     ngOnInit(): void {
-        this.assignments.subscribe((assignments) => {
-            this.dataSource.data = assignments;
-            this.dataSource.paginator = this.paginator;
-            this.dataSource.sort = this.sort;
-        });
+        this._loadData(this.assignments);
         this.eventsSubscription = this.updateDataOnReturn?.subscribe((a) => {
             this.dataSource.data = this.dataSource.data.map((assignment) => {
                 if (assignment.uuid === a.uuid) {
@@ -54,6 +53,9 @@ export class AssignmentListComponent extends TableInitsComponent<Assignment> imp
                 return assignment;
             });
             this.snackBar.open('Buch zurückgegeben!');
+        });
+        this.eventsSubscription = this.updateData?.subscribe((assignments) => {
+            this._loadData(assignments);
         });
     }
 
@@ -126,5 +128,13 @@ export class AssignmentListComponent extends TableInitsComponent<Assignment> imp
     private _convertDate(date: Date | null | undefined): string {
         const germanDateAdapter: GermanDateAdapter = new GermanDateAdapter();
         return date ? germanDateAdapter.formatDateToShortString(date) : '-';
+    }
+
+    private _loadData(assignments: Observable<Assignment[]>): void {
+        assignments.subscribe((assignments) => {
+            this.dataSource.data = assignments;
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+        });
     }
 }
