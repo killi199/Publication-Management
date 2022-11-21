@@ -21,7 +21,7 @@ export class AssignmentService {
         );
     }
 
-    getAllWithDeleted(): Observable<Assignment[]> {
+    getAllWithReturned(): Observable<Assignment[]> {
         return this.http.get<Assignment[]>(ENDPOINT_URL, { params: new HttpParams().set('showReturned', true) }).pipe(
             catchError((err: HttpErrorResponse) => {
                 throw this._handleError(err);

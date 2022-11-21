@@ -49,7 +49,7 @@ export class OverdueNoticeComponent {
     changeShowHistory(): void {
         this.showHistory = !this.showHistory;
         if(this.showHistory) {
-            this.onUpdateListSubject.next(this.overdueNoticeService.getAllWithDeleted());
+            this.onUpdateListSubject.next(this.overdueNoticeService.getAllWithClosed());
         } else {
             this.onUpdateListSubject.next(this.overdueNoticeService.getAll());
         }

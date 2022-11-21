@@ -80,7 +80,7 @@ export class AssignmentsComponent implements OnInit {
     changeShowHistory(): void {
         this.showHistory = !this.showHistory;
         if(this.showHistory) {
-            this.onUpdateListSubject.next(this.assignmentService.getAllWithDeleted());
+            this.onUpdateListSubject.next(this.assignmentService.getAllWithReturned());
         } else {
             this.onUpdateListSubject.next(this.assignmentService.getAll());
         }

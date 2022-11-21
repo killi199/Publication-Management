@@ -22,7 +22,7 @@ export class OverdueNoticeService {
         );
     }
 
-    getAllWithDeleted(): Observable<OverdueNotice[]> {
+    getAllWithClosed(): Observable<OverdueNotice[]> {
         return this.http.get<OverdueNotice[]>(ENDPOINT_URL, { params: new HttpParams().set('showClosed', true) }).pipe(
             catchError((err: HttpErrorResponse) => {
                 throw this._handleError(err);
