@@ -25,6 +25,7 @@ export class PublicationsComponent implements OnInit {
     currentPublication?: Publication;
     openPublication: boolean = false;
     addingPublication: boolean = false;
+    viewSpecification: string = "";
 
     constructor(
         private publicationService: PublicationService,
@@ -60,11 +61,13 @@ export class PublicationsComponent implements OnInit {
     }
 
     onEditPublication(): void {
+        this.viewSpecification = "bearbeiten";
         this.addingPublication = false;
         this.openPublication = !this.openPublication;
     }
 
     onAddPublication(): void {
+        this.viewSpecification = "hinzufügen";
         this.addingPublication = true;
         this.currentPublication = undefined;
         this.openPublication = !this.openPublication;
@@ -86,6 +89,7 @@ export class PublicationsComponent implements OnInit {
     }
 
     onBack(): void {
+        this.viewSpecification = "";
         this.openPublication = false;
         this.addingPublication = false;
         this.currentPublication = undefined;

@@ -1,7 +1,7 @@
 <div class="page">
     <div class="header-div">
-        <h1>Publikationen</h1>
-        <mat-checkbox>Historie</mat-checkbox>
+        <h1>Publikationen {{ viewSpecification }}</h1>
+        <mat-checkbox *ngIf="!viewSpecification">Historie</mat-checkbox>
     </div>
 
     <app-publication-list

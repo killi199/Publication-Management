@@ -17,7 +17,8 @@ export class AssignmentsComponent implements OnInit {
     isViewOpen: boolean = false;
     borrowers: Borrower[] = [];
     publications: Publication[] = [];
-    currentRecord?: Assignment;
+    currentRecord?: Assignment;    
+    viewSpecification: string = "";
 
     constructor(
         private assignmentService: AssignmentService,
@@ -45,15 +46,18 @@ export class AssignmentsComponent implements OnInit {
     }
 
     onBack(): void {
+        this.viewSpecification = "";
         this.currentRecord = undefined;
         this.isViewOpen = false;
     }
 
     onEdit(): void {
+        this.viewSpecification = "bearbeiten";
         this.isViewOpen = true;
     }
 
     onAdd(): void {
+        this.viewSpecification = "hinzufügen";
         this.currentRecord = undefined;
         this.isViewOpen = true;
     }
