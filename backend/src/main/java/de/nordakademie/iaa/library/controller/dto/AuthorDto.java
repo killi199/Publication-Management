@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import static de.nordakademie.iaa.library.controller.api.constants.ErrorMessages.VALUE_IS_EMPTY;
 import static de.nordakademie.iaa.library.controller.api.constants.ErrorMessages.VALUE_IS_TOO_LONG;
+import static de.nordakademie.iaa.library.helper.StringTrimmer.trimIfNotNull;
 
 
 /**
@@ -41,7 +42,7 @@ public class AuthorDto {
      * @param surname The surname of the author.
      */
     public void setSurname(String surname) {
-        this.surname = surname.trim();
+        this.surname = trimIfNotNull(surname);
     }
 
     public String getName() {
@@ -54,6 +55,6 @@ public class AuthorDto {
      * @param name The name of the author.
      */
     public void setName(String name) {
-        this.name = name.trim();
+        this.name = trimIfNotNull(name);
     }
 }

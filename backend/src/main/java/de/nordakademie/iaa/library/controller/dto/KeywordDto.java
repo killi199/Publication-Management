@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import static de.nordakademie.iaa.library.controller.api.constants.ErrorMessages.VALUE_IS_EMPTY;
 import static de.nordakademie.iaa.library.controller.api.constants.ErrorMessages.VALUE_IS_TOO_LONG;
+import static de.nordakademie.iaa.library.helper.StringTrimmer.trimIfNotNull;
 
 
 /**
@@ -36,6 +37,6 @@ public class KeywordDto {
      * @param value The value of the keyword.
      */
     public void setValue(String value) {
-        this.value = value.trim();
+        this.value = trimIfNotNull(value);
     }
 }

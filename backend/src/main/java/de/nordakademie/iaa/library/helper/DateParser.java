@@ -11,6 +11,9 @@ import java.util.Date;
  */
 public class DateParser {
 
+    private DateParser() {
+    }
+
     /**
      * This method will parse a dateString to a Date
      * @param dateString date string

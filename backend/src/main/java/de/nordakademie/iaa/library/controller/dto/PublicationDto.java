@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import static de.nordakademie.iaa.library.controller.api.constants.ErrorMessages.*;
+import static de.nordakademie.iaa.library.helper.StringTrimmer.trimIfNotNull;
 
 /**
  * A Publication is the main object for a library. It describes things like books, articles, etc.
@@ -51,7 +52,7 @@ public class PublicationDto {
      * @param key The key of the publication.
      */
     public void setKey(String key) {
-        this.key = key.trim();
+        this.key = trimIfNotNull(key);
     }
 
     public String getTitle() {
@@ -64,7 +65,7 @@ public class PublicationDto {
      * @param title The title of the publication.
      */
     public void setTitle(String title) {
-        this.title = title.trim();
+        this.title = trimIfNotNull(title);
     }
 
     public List<AuthorDto> getAuthors() {
@@ -93,7 +94,7 @@ public class PublicationDto {
      * @param publisher The publisher of the publication.
      */
     public void setPublisher(String publisher) {
-        this.publisher = publisher.trim();
+        this.publisher = trimIfNotNull(publisher);
     }
 
     public KindOfPublicationDto getKindOfPublication() {
@@ -114,7 +115,7 @@ public class PublicationDto {
      * @param isbn The ISBN of the publication.
      */
     public void setIsbn(String isbn) {
-        this.isbn = isbn.trim();
+        this.isbn = trimIfNotNull(isbn);
     }
 
     public List<KeywordDto> getKeywords() {
