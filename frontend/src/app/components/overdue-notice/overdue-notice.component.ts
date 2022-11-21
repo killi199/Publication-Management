@@ -24,8 +24,8 @@ export class OverdueNoticeComponent {
     }
 
     onLoss() {
-        if (!this.currentRecord?.uuid) return;
-        this.assignmentService.publicationLost(this.currentRecord?.uuid).subscribe(() => {
+        if (!this.currentRecord?.assignment?.uuid) return;
+        this.assignmentService.publicationLost(this.currentRecord?.assignment?.uuid).subscribe(() => {
             this.onLossSubject.next();
         });
     }
