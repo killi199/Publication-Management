@@ -76,4 +76,5 @@ $my-theme: define-light-theme((
     ),
 ));
 
-@include button-theme($my-theme);
+@include angular-material-theme($my-theme);
+

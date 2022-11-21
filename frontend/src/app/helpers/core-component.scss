@@ -1,8 +1,9 @@
 @import "../../theme.scss";
 
 .page {
+    margin: 20px;
     border-radius: 3px;
-    width: calc(100% - 20px);
+    width: calc(100% - 40px);
     height: calc(100% - 40px);
     display: flex;
     flex-direction: column;
@@ -23,6 +24,11 @@
 .header-div > h1 {
     font-size: 42px;
     margin: 20px;
+}
+
+.header-div > mat-slide-toggle {
+    padding: 10px;
+    font-size: 1.4rem;
 }
 
 mat-checkbox{
