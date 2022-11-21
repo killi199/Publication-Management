@@ -61,7 +61,7 @@ public interface AssignmentServiceInterface {
     AssignmentDto extend(UUID assignmentUUID);
 
     /**
-     * This method will return the latest return date for a given date
+     * This method will return the latest return date for a given assignment date
      *
      * @param dateOfAssignment the date of assignment
      */

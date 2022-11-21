@@ -21,12 +21,12 @@ public interface OverdueNoticeServiceInterface {
     /**
      *  Checks if an overdue notice is open
      *
-     * @param uuid the uuid for the overdue notice
+     * @param uuid the uuid of the overdue notice
      */
     boolean isOpen(UUID uuid);
 
     /**
-     * This method deletes all overdue notices that are not opened yet and
+     * This method deletes all overdue notices that have not been opened yet and
      * closes all opened ones.
      *
      * @param assignment the assignment the overdue notices should be updated for.

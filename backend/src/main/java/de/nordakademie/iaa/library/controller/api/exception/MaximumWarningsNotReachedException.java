@@ -5,6 +5,6 @@ import org.springframework.http.HttpStatus;
 public class MaximumWarningsNotReachedException extends AbstractRestApiException {
 
     public MaximumWarningsNotReachedException() {
-        super(HttpStatus.BAD_REQUEST, "To mark a book as lost you have to sent out the maximum number of warnings.");
+        super(HttpStatus.BAD_REQUEST, "To mark a book as lost you have to send out the maximum number of warnings.");
     }
 }

@@ -20,7 +20,7 @@ public interface PublicationServiceInterface {
     List<PublicationDto> getAll(boolean showDeleted);
 
     /**
-     * returns all Publications by a list of keys
+     * returns all publications by a list of keys
      *
      * @param keys list of keys that should be loaded
      * @return list of publications
@@ -28,7 +28,7 @@ public interface PublicationServiceInterface {
     List<Publication> getAllByKeys(List<String> keys);
 
     /**
-     * get a Publication by its key
+     * get a publication by its key
      *
      * @param key key of publication
      * @return publication if found

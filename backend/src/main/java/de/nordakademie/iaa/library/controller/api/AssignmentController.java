@@ -101,7 +101,7 @@ public class AssignmentController {
     }
 
     /**
-     * This method will return the latest return date for a given date
+     * This method will return the latest return date for a given assignment date
      *
      * @param dateOfAssignmentString the date of assignment as string
      */
