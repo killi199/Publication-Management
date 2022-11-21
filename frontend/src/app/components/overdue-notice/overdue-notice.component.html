@@ -25,7 +25,7 @@
         </button>
         <button
             matTooltip="Mahnen"
-            [disabled]="!(currentRecord && warnable)"
+            [disabled]="!(currentRecord  && currentRecord.warnings && currentRecord.warnings.length < 3)"
             mat-mini-fab
             color="primary"
             (click)="onWarn()"
