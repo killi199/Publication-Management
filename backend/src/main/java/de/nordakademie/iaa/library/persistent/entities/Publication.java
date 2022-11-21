@@ -48,6 +48,14 @@ public class Publication {
     @Column(columnDefinition = "boolean default false")
     private boolean deleted;
 
+    /**
+     * On Update set deleted false
+     */
+    @PreUpdate
+    public void preUpdate() {
+        this.deleted = false;
+    }
+
     public String getKey() {
         return key;
     }

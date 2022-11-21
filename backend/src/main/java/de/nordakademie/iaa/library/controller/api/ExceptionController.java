@@ -119,7 +119,7 @@ public class ExceptionController {
             if ("23505".equals(((SQLException) rootCause).getSQLState())) {
                 return new ResponseEntity<>(
                         "Einer der Werte darf nur einmal existieren, existiert jedoch bereits schon. " +
-                                "Bitte überprüfen Sie ihre angaben.",
+                                "Bitte überprüfen Sie Ihre Angaben.",
                         HttpStatus.BAD_REQUEST);
             }
         }
