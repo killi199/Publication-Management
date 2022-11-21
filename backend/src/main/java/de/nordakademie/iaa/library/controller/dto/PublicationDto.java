@@ -1,5 +1,6 @@
 package de.nordakademie.iaa.library.controller.dto;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
@@ -23,6 +24,7 @@ public class PublicationDto {
     @Size(max = 255, message = VALUE_IS_TOO_LONG)
     private String title;
 
+    @Valid
     private List<AuthorDto> authors = new ArrayList<>();
 
     private Date dateOfPublication;
@@ -30,11 +32,13 @@ public class PublicationDto {
     @Size(max = 255, message = VALUE_IS_TOO_LONG)
     private String publisher;
 
+    @Valid
     private KindOfPublicationDto kindOfPublication;
 
     @Size(max = 255, message = VALUE_IS_TOO_LONG)
     private String isbn;
 
+    @Valid
     private List<KeywordDto> keywords = new ArrayList<>();
 
     @PositiveOrZero(message = NEGATIVE_VALUE_NOT_ALLOWED)

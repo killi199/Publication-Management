@@ -23,7 +23,7 @@ public class Keyword {
     @Column(unique = true)
     private String value;
 
-    @OneToMany(mappedBy = "keyword", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE}, orphanRemoval = true)
+    @OneToMany(mappedBy = "keyword", fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<KeywordsPublications> keywordsPublications = new ArrayList<>();
 
     public UUID getUuid() {

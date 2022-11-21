@@ -3,11 +3,7 @@ package de.nordakademie.iaa.library.service.impl;
 import de.nordakademie.iaa.library.controller.api.exception.EntityAlreadyExistsException;
 import de.nordakademie.iaa.library.controller.api.exception.EntityDoesNotExistException;
 import de.nordakademie.iaa.library.controller.dto.PublicationDto;
-import de.nordakademie.iaa.library.persistent.entities.AuthorsPublications;
-import de.nordakademie.iaa.library.persistent.entities.KeywordsPublications;
 import de.nordakademie.iaa.library.persistent.entities.Publication;
-import de.nordakademie.iaa.library.persistent.repository.AuthorsPublicationsRepository;
-import de.nordakademie.iaa.library.persistent.repository.KeywordsPublicationsRepository;
 import de.nordakademie.iaa.library.persistent.repository.PublicationRepository;
 import de.nordakademie.iaa.library.service.PublicationServiceInterface;
 import de.nordakademie.iaa.library.service.mapper.PublicationMapper;
@@ -18,7 +14,6 @@ import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * The Publication service provides methods to handle the Publications
@@ -31,19 +26,11 @@ public class PublicationService implements PublicationServiceInterface {
 
     private final PublicationMapper publicationMapper;
 
-    private final AuthorsPublicationsRepository authorsPublicationsRepository;
-
-    private final KeywordsPublicationsRepository keywordsPublicationsRepository;
-
     @Autowired
     public PublicationService(PublicationRepository publicationRepository,
-                              PublicationMapper publicationMapper,
-                              AuthorsPublicationsRepository authorsPublicationsRepository,
-                              KeywordsPublicationsRepository keywordsPublicationsRepository) {
+                              PublicationMapper publicationMapper) {
         this.publicationRepository = publicationRepository;
         this.publicationMapper = publicationMapper;
-        this.authorsPublicationsRepository = authorsPublicationsRepository;
-        this.keywordsPublicationsRepository = keywordsPublicationsRepository;
     }
 
     /**
@@ -54,8 +41,7 @@ public class PublicationService implements PublicationServiceInterface {
     public List<PublicationDto> getAll(boolean showDeleted) {
         List<Publication> publications = publicationRepository.findAllOrderedByTitle(showDeleted);
 
-
-        return publicationMapper.publicationEntitiesToDtos(loadAuthorsAndKeywords(publications));
+        return publicationMapper.publicationEntitiesToDtos(publications);
     }
 
     /**
@@ -64,11 +50,11 @@ public class PublicationService implements PublicationServiceInterface {
      * @param keys list of keys that should be loaded
      * @return list of publications
      */
-    public List<Publication> getAllByKeys(List<String> keys) {
+    public List<PublicationDto> getAllByKeys(List<String> keys) {
         List<Publication> publications = publicationRepository.findAllByKeys(keys);
 
 
-        return loadAuthorsAndKeywords(publications);
+        return publicationMapper.publicationEntitiesToDtos(publications);
     }
 
     /**
@@ -78,36 +64,6 @@ public class PublicationService implements PublicationServiceInterface {
      */
     public void reduceQuantityOnce(String key) {
         publicationRepository.reduceQuantityOnce(key);
-    }
-
-    /**
-     * this loads the authors and keywords to lower the number of sql queries.
-     * It would be possible to load authors or keywords together with the publications but both
-     * is caused by the cartesian and the hibernate bagFetchException not possible so that we
-     * decided to load both manually for consistency
-     *
-     * @param publications
-     * @return
-     */
-    private List<Publication> loadAuthorsAndKeywords(List<Publication> publications) {
-        List<AuthorsPublications> authorsPublications = authorsPublicationsRepository.findAll();
-        List<KeywordsPublications> keywordsPublications = keywordsPublicationsRepository.findAll();
-
-
-        for (Publication publication : publications) {
-            List<AuthorsPublications> authorsPublicationsOfPublication = authorsPublications.stream()
-                    .filter(ap -> ap.getPublication().getKey().equals(publication.getKey()))
-                    .collect(Collectors.toList());
-
-            List<KeywordsPublications> keywordsPublicationsOfPublication = keywordsPublications.stream()
-                    .filter(ap -> ap.getPublication().getKey().equals(publication.getKey()))
-                    .collect(Collectors.toList());
-
-            publication.setAuthorsPublications(authorsPublicationsOfPublication);
-            publication.setKeywordsPublications(keywordsPublicationsOfPublication);
-        }
-
-        return publications;
     }
 
     /**

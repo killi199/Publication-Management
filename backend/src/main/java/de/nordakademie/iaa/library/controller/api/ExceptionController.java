@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import javax.validation.ConstraintViolationException;
 
+import java.sql.SQLException;
+
+import static org.springframework.core.NestedExceptionUtils.getRootCause;
+
 /**
  * This controller will handle all exceptions in this application, caused by the controllerAdvice annotation.
  * Each response has to pass this controller
@@ -90,5 +94,30 @@ public class ExceptionController {
             return new ResponseEntity<>("Der Wert eines Feldes (\"" + errorField + "\") ist nicht valide. " + errorMessage, HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>("Der Wert eines Feldes (\"" + errorField + "\") ist nicht valide. Bitte geben Sie einen gültigen Wert an.", HttpStatus.BAD_REQUEST);
+    }
+
+
+    /**
+     * TODO write docu
+     */
+    @ExceptionHandler(value = RuntimeException.class)
+    public ResponseEntity<String> exception(RuntimeException exception) {
+
+        Throwable rootCause = getRootCause(exception);
+
+        if (rootCause instanceof SQLException) {
+            if ("23505".equals(((SQLException) rootCause).getSQLState())) {
+                return new ResponseEntity<>(
+                        "Einer der Werte darf nur einmal existieren, existiert jedoch bereits schon. " +
+                                "Bitte überprüfen Sie ihre angaben.",
+                        HttpStatus.BAD_REQUEST);
+            }
+        }
+
+        Logger logger = LoggerFactory.getLogger(ExceptionController.class.getSimpleName());
+        logger.error("Unhandled Exception: ", exception);
+        return new ResponseEntity<>(
+                "Ein unbekannter Fehler ist aufgetreten, bitte wenden Sie sich an den Support.",
+                HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
