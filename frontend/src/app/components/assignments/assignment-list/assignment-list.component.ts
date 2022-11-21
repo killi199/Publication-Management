@@ -26,6 +26,7 @@ export class AssignmentListComponent extends TableInitsComponent<Assignment> imp
 
     displayedColumns: string[] = [
         'publicationKey',
+        'publicationTitle',
         'surname',
         'name',
         'studentNumber',
@@ -82,6 +83,7 @@ export class AssignmentListComponent extends TableInitsComponent<Assignment> imp
             const allValuesInOneString =
                 '' +
                 data.publication?.key +
+                data.publication?.title +
                 data.borrower?.studentNumber +
                 data.borrower?.name +
                 data.borrower?.surname +
@@ -96,6 +98,9 @@ export class AssignmentListComponent extends TableInitsComponent<Assignment> imp
             switch (property) {
                 case 'publicationKey': {
                     return data.publication?.key ?? '';
+                }
+                case 'publicationTitle': {
+                    return data.publication?.title ?? '';
                 }
                 case 'studentNumber': {
                     return data.borrower?.studentNumber ?? '';
