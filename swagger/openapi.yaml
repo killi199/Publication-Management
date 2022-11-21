@@ -338,6 +338,34 @@ paths:
       responses:
         '200':
           description: Successful assignment
+  /assignment/latest-return-date:
+    get:
+      tags:
+        - Assignment
+      summary: returns the return date for a given date or now
+      operationId: getAssignmentReturnDate
+      parameters:
+        - name: dateOfAssignment
+          in: query
+          description: Date of assignmnet
+          required: false
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dateOfAssignment:
+                    type: string
+                    format: date-time
+                  latestReturnDate:
+                    type: string
+                    format: date-time
   /overdue-notice:
     get:
       tags:

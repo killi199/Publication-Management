@@ -2,11 +2,15 @@ package de.nordakademie.iaa.library.service.impl;
 
 import de.nordakademie.iaa.library.controller.api.exception.*;
 import de.nordakademie.iaa.library.controller.dto.AssignmentDto;
+import de.nordakademie.iaa.library.controller.dto.LatestReturnDateForAssignmentDateDto;
 import de.nordakademie.iaa.library.controller.dto.PublicationDto;
 import de.nordakademie.iaa.library.persistent.entities.Assignment;
 import de.nordakademie.iaa.library.persistent.entities.Publication;
 import de.nordakademie.iaa.library.persistent.repository.AssignmentRepository;
 import de.nordakademie.iaa.library.service.AssignmentServiceInterface;
+import de.nordakademie.iaa.library.service.OverdueNoticeServiceInterface;
+import de.nordakademie.iaa.library.service.PublicationServiceInterface;
+import de.nordakademie.iaa.library.service.WarningServiceInterface;
 import de.nordakademie.iaa.library.service.mapper.AssignmentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,23 +34,30 @@ public class AssignmentService implements AssignmentServiceInterface {
 
     @Value("${assignment.maxExtensionNumber:2}")
     int maxExtensionNumber;
+
+    @Value("${warning.maxNumber:3}")
+    int maxNumberWarnings;
     private final AssignmentRepository assignmentRepository;
 
     private final AssignmentMapper assignmentMapper;
 
-    private final PublicationService publicationService;
+    private final PublicationServiceInterface publicationService;
 
-    private final OverdueNoticeService overdueNoticeService;
+    private final OverdueNoticeServiceInterface overdueNoticeService;
+
+    private final WarningServiceInterface warningService;
 
     @Autowired
     public AssignmentService(AssignmentRepository assignmentRepository,
                              AssignmentMapper assignmentMapper,
-                             PublicationService publicationService,
-                             OverdueNoticeService overdueNoticeService) {
+                             PublicationServiceInterface publicationService,
+                             OverdueNoticeServiceInterface overdueNoticeService,
+                             WarningServiceInterface warningService) {
         this.assignmentRepository = assignmentRepository;
         this.assignmentMapper = assignmentMapper;
         this.publicationService = publicationService;
         this.overdueNoticeService = overdueNoticeService;
+        this.warningService = warningService;
     }
 
     /**
@@ -77,6 +88,10 @@ public class AssignmentService implements AssignmentServiceInterface {
 
         if (assignmentOptional.isEmpty()) {
             throw new EntityDoesNotExistException();
+        }
+
+        if (this.warningService.countAllByOverdueNoticeUuid(uuid) < maxNumberWarnings) {
+            throw new MaximumWarningsNotReachedException();
         }
 
         Assignment assignment = assignmentOptional.get();
@@ -165,11 +180,7 @@ public class AssignmentService implements AssignmentServiceInterface {
 
         Assignment assignment = assignmentMapper.assignmentDtoToEntity(assignmentDto);
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(assignment.getDateOfAssignment());
-        calendar.add(Calendar.DAY_OF_YEAR, rentalPeriod);
-        Date time = calendar.getTime();
-        assignment.setLatestReturnDate(time);
+        assignment.setLatestReturnDate(calculateLatestReturnDate(assignment.getDateOfAssignment()));
 
         return createOrUpdate(assignment, true);
     }
@@ -236,15 +247,39 @@ public class AssignmentService implements AssignmentServiceInterface {
 
 
         //extend the borrowed until date
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(assignment.getLatestReturnDate());
-        calendar.add(Calendar.DAY_OF_YEAR, rentalPeriod);
-
-        assignment.setLatestReturnDate(calendar.getTime());
+        assignment.setLatestReturnDate(calculateLatestReturnDate(assignment.getLatestReturnDate()));
 
         this.overdueNoticeService.closeAllOverdueNotices(assignment);
 
         return createOrUpdate(assignment, true);
+    }
+
+    /**
+     * This method will return the latest return date for a given date
+     *
+     * @param dateOfAssignment the date of assignment
+     */
+    @Override
+    public LatestReturnDateForAssignmentDateDto getLatestReturnDate(Date dateOfAssignment) {
+
+        if (dateOfAssignment == null) {
+            dateOfAssignment = new Date();
+        }
+
+        return new LatestReturnDateForAssignmentDateDto(dateOfAssignment, calculateLatestReturnDate(dateOfAssignment));
+    }
+
+    /**
+     * Calculates the latest return date from a given date
+     *
+     * @param date this date can either be the old latestReturnDate or the date of assignment
+     */
+    private Date calculateLatestReturnDate(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.DAY_OF_YEAR, rentalPeriod);
+
+        return calendar.getTime();
     }
 
 
@@ -290,4 +325,6 @@ public class AssignmentService implements AssignmentServiceInterface {
 
         return assignmentMapper.assignmentEntityToDto(assignment);
     }
+
+
 }

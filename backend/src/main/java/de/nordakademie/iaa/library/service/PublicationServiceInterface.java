@@ -1,6 +1,8 @@
 package de.nordakademie.iaa.library.service;
 
+import de.nordakademie.iaa.library.controller.api.exception.EntityDoesNotExistException;
 import de.nordakademie.iaa.library.controller.dto.PublicationDto;
+import de.nordakademie.iaa.library.persistent.entities.Publication;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -16,6 +18,23 @@ public interface PublicationServiceInterface {
      * @return all Publications
      */
     List<PublicationDto> getAll(boolean showDeleted);
+
+    /**
+     * returns all publications by a list of keys
+     *
+     * @param keys list of keys that should be loaded
+     * @return list of publications
+     */
+    List<Publication> getAllByKeys(List<String> keys);
+
+    /**
+     * get a publication by its key
+     *
+     * @param key key of publication
+     * @return publication if found
+     * @throws EntityDoesNotExistException when not found
+     */
+    PublicationDto getByKey(String key);
 
     /**
      * create a Publication
@@ -40,4 +59,11 @@ public interface PublicationServiceInterface {
      * @param key the Publication that should be deleted
      */
     void delete(@NotNull String key);
+
+    /**
+     * Lowers the quantity of the publication
+     *
+     * @param key publication key
+     */
+    void reduceQuantityOnce(String key);
 }

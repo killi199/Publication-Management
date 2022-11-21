@@ -17,4 +17,12 @@ public interface WarningServiceInterface {
      * @return the created warning
      */
     WarningDto create(UUID overdueNoticeUuid);
+
+
+    /**
+     * Counts the number of warnings.
+     *
+     * @param overdueNoticeUuid the overdue notice identifier
+     */
+    int countAllByOverdueNoticeUuid(UUID overdueNoticeUuid);
 }
