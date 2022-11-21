@@ -97,9 +97,18 @@ export class PublicationViewComponent implements OnInit {
     onSubmit(): void {
         if (!this.formGroup.valid) return;
 
-        this.savePublication.emit(this.formGroup.getRawValue());
-        this.clonedPublication = structuredClone(this.formGroup.getRawValue());
-        
+        if (typeof this.formGroup.value.kindOfPublication === 'string') {
+            this.formGroup.value.kindOfPublication = this.getCorrectKindOfPublication(
+                this.formGroup.value.kindOfPublication
+            );
+        }
+
+        const toSave = this.formGroup.value;
+        toSave.key = this.formGroup.get('key')?.value;
+
+        this.savePublication.emit(toSave);
+        this.clonedPublication = structuredClone(toSave);
+
         const crudOperation = this.addingPublication ? ' erstellt!' : ' geändert!';
         this.snackBar.open('Publikation ' + crudOperation);
 
@@ -113,7 +122,7 @@ export class PublicationViewComponent implements OnInit {
             return filteredKindsOfPublication[0];
         }
 
-        return {value: kindOfPublication} as KindOfPublication;
+        return { value: kindOfPublication } as KindOfPublication;
     }
 
     onCancel(): void {
@@ -221,8 +230,8 @@ export class PublicationViewComponent implements OnInit {
 
         return this.allAuthors.filter(
             (author) =>
-                author.surname?.toLowerCase().includes(filterValue) ||
-                author.name?.toLowerCase().includes(filterValue)
+                (author.surname + ' ' + author.name).toLowerCase().includes(filterValue) ||
+                (author.name + ' ' + author.surname).toLowerCase().includes(filterValue)
         );
     }
 
