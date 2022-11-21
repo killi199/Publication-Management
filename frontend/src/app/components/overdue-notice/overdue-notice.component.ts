@@ -16,7 +16,6 @@ export class OverdueNoticeComponent {
     onWarnSubject: Subject<Warning> = new Subject<Warning>();
     data: Observable<OverdueNotice[]>;
     currentRecord?: OverdueNotice;
-    warnable: boolean = false;
     deleteable: boolean = false;
 
     constructor(private overdueNoticeService: OverdueNoticeService, private assignmentService: AssignmentService) {
@@ -33,13 +32,14 @@ export class OverdueNoticeComponent {
     onWarn() {
         if (!this.currentRecord?.uuid) return;
         this.overdueNoticeService.createWarning(this.currentRecord?.uuid).subscribe((w) => {
+            this.currentRecord?.warnings?.push(w);
+            this.deleteable = (this.currentRecord?.warnings && this.currentRecord.warnings.length >= 3) ?? false;
             this.onWarnSubject.next(w);
         });
     }
 
     onSetSelection(event: OverdueNoticeEvent): void {
         this.currentRecord = event?.overdueNotice;
-        this.warnable = event?.warnable;
         this.deleteable = event?.deleteable;
     }
 }

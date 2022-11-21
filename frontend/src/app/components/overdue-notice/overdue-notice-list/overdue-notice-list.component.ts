@@ -29,8 +29,6 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
 
     selectedRecord?: OverdueNotice;
 
-    warnable: boolean = false;
-
     deleteable: boolean = false;
 
     displayedColumns: string[] = [
@@ -72,7 +70,6 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
             this.snackBar.open('Verlust gemeldet. Mahnung wurde archiviet.');
         });
         this.eventsSubscription = this.updateDataOnWarn?.subscribe((w) => {
-            this.selectedRecord?.warnings?.push(w);
             this.snackBar.open('Warnung erstellt!');
         });
     }
@@ -86,11 +83,8 @@ export class OverdueNoticeListComponent extends TableInitsComponent<OverdueNotic
             this.selectRecord.emit(undefined);
             this.selectedRecord = undefined;
         } else {
-            const dateOfLastWarning = this.getLatestWarningDate(overdueNotice);
-            const warnable = this.isWarnable(dateOfLastWarning);
             const deleteable = (overdueNotice.warnings && overdueNotice.warnings.length >= 3) ?? false;
-            this.selectRecord.emit({ overdueNotice: overdueNotice, warnable: warnable, deleteable: deleteable });
-            this.warnable = warnable;
+            this.selectRecord.emit({ overdueNotice: overdueNotice, deleteable: deleteable });
             this.deleteable = deleteable;
             this.selectedRecord = overdueNotice;
         }

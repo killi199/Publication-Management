@@ -90,8 +90,7 @@
             (click)="selection.toggle(row)"
             [ngClass]="{
                 hovered: row.hovered,
-                highlighted: selection.isSelected(row),
-                'warn-ready': isWarnable(getLatestWarningDate(row))
+                highlighted: selection.isSelected(row)
             }"
             (mouseover)="row.hovered = true"
             (mouseout)="row.hovered = false"
