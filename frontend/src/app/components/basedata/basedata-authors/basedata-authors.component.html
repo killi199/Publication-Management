@@ -1,5 +1,5 @@
 <div class="container">
-    <mat-form-field appearance="standard">
+    <mat-form-field appearance="standard" class="filter">
         <mat-label>Filter</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Bsp. Max" />
     </mat-form-field>
@@ -79,7 +79,7 @@
             [disabled]="!selectedRecord.uuid"
             *ngIf="crudState === 'read'"
             mat-mini-fab
-            color="primary"
+            color="accent"
         >
             <mat-icon>edit</mat-icon>
         </button>

@@ -1,5 +1,5 @@
-@import "../../../../theme.scss";
+@import "src/theme";
 
 .warn-ready{
-    background-color: $warn1;
+    background-color: rgba($warn1, 0.2);
 }

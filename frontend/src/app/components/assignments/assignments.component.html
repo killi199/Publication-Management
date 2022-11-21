@@ -32,20 +32,20 @@
         </button>
         <div class="crud-container" *ngIf="!isViewOpen">
             <button
-                matTooltip="Editieren"
+                matTooltip="Details"
                 [disabled]="!currentRecord"
                 (click)="onEdit()"
                 mat-mini-fab
                 color="primary"
             >
-                <mat-icon>edit</mat-icon>
+                <mat-icon>format_list_bulleted</mat-icon>
             </button>
 
             <button
                 (click)="onAdd()"
                 mat-mini-fab
                 matTooltip="Hinzufügen"
-                color="primary"
+                color="accent"
             >
                 <mat-icon>add</mat-icon>
             </button>
