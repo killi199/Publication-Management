@@ -27,19 +27,19 @@ public class Publication {
     @NotNull
     private String title;
 
-    @OneToMany(mappedBy = "publication", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "publication", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<AuthorsPublications> authorsPublications = new ArrayList<>();
 
     private Date dateOfPublication;
 
     private String publisher;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private KindOfPublication kindOfPublication;
 
     private String ISBN;
 
-    @OneToMany(mappedBy = "publication", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "publication", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<KeywordsPublications> keywordsPublications = new ArrayList<>();
 
 

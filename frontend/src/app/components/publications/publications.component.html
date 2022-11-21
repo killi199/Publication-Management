@@ -1,12 +1,13 @@
 <div class="page">
     <div class="header-div">
         <h1> {{ headerTitle }}</h1>
-        <mat-checkbox
-            *ngIf="!openPublication"
-            [checked]="showHistory"
-            (change)="changeShowHistory()"
-            >Historie</mat-checkbox
+        <mat-slide-toggle  *ngIf="!openPublication"
+                           [checked]="showHistory"
+                           color="accent"
+                           (change)="changeShowHistory()"
         >
+            Historie
+        </mat-slide-toggle>
     </div>
 
     <app-publication-list
@@ -26,31 +27,32 @@
         >
             <mat-icon>arrow_back</mat-icon>
         </button>
-        <button
-            matTooltip="Löschen"
-            *ngIf="!openPublication"
-            [disabled]="!currentPublication"
-            (click)="onDelete()"
-            mat-mini-fab
-            color="warn"
-        >
-            <mat-icon>delete</mat-icon>
-        </button>
         <div class="crud-container" *ngIf="!openPublication">
             <button
-                matTooltip="Editieren"
+                matTooltip="Löschen"
+                *ngIf="!openPublication"
+                [disabled]="!currentPublication"
+                (click)="onDelete()"
+                mat-mini-fab
+                color="warn"
+            >
+                <mat-icon>delete</mat-icon>
+            </button>
+            <button
+                matTooltip="Details"
                 [disabled]="!currentPublication"
                 (click)="onEditPublication()"
                 mat-mini-fab
                 color="primary"
             >
-                <mat-icon>edit</mat-icon>
+                <mat-icon>format_list_bulleted</mat-icon>
             </button>
+
             <button
                 (click)="onAddPublication()"
                 mat-mini-fab
                 matTooltip="Hinzufügen"
-                color="primary"
+                color="accent"
             >
                 <mat-icon>add</mat-icon>
             </button>

@@ -19,10 +19,15 @@ table {
 
 th {
     font-size: larger !important;
+    padding-top: 10px !important;
+}
+
+::ng-deep .mat-paginator-container {
+    justify-content: flex-start !important;
 }
 
 tr {
-    vertical-align: top;
+    vertical-align: middle;
 }
 
 td{
@@ -30,7 +35,7 @@ td{
 }
 
 .mat-row:hover .mat-cell {
-    border-color: currentColor;
+    border-color: rgba($primary1, 0.1);
 }
 
 .mat-row .mat-cell {
@@ -40,11 +45,15 @@ td{
 }
 
 .mat-row.hovered {
-    background-color: $accent1;
+    background-color: rgba($accent1, 0.1);
 }
 
 .mat-row.highlighted {
-    background-color: $accent2;
+    background-color: $primary1;
+}
+
+.mat-row.highlighted > * {
+    color: $accent1;
 }
 
 .mat-paginator-sticky {
@@ -56,4 +65,9 @@ td{
 .mat-form-field {
     font-size: 14px;
     width: 100%;
+}
+
+.filter {
+    margin: 0 10px 0 10px;
+    width: calc(100% - 20px);
 }

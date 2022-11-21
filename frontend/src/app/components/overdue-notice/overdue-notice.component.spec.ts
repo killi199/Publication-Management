@@ -5,6 +5,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,6 +26,7 @@ describe('OverdueNoticeComponent', () => {
                 MatInputModule,
                 MatIconModule,
                 MatCheckboxModule,
+                MatSlideToggleModule,
                 MatPaginatorModule,
                 BrowserAnimationsModule,
                 HttpClientTestingModule,

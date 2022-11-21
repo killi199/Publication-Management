@@ -1,9 +1,9 @@
 @import "../theme.scss";
 
-$header-background: $primary1;
+$header-background: white;
 $footer-background: $primary1;
-$font-color: white;
-
+$header-font-color: $primary1;
+$footer-font-color: white;
 img {
     width: 380px;
 }
@@ -17,15 +17,16 @@ img {
     flex-direction: column;
 }
 
+::ng-deep .content > .ng-star-inserted {
+    height: 100% !important;
+}
+
 .main-container {
     position: absolute;
     top: 80px;
-    bottom: 20px;
+    height: calc(100% - 130px);
     left: 0;
     right: 0;
-    box-shadow: inset 0px 3px 5px -1px rgb(0 0 0 / 30%),
-        inset 0px 6px 10px 0px rgb(0 0 0 / 18%),
-        inset 0px 1px 18px 0px rgb(0 0 0 / 13%);
 }
 
 .list {
@@ -33,15 +34,15 @@ img {
     padding: 5px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
 
 mat-sidenav {
-    background-color: $accent1 !important;
-    box-shadow: 0px 3px 5px -1px rgb(0 0 0 / 8%),
-        0px 6px 10px 0px rgb(0 0 0 / 6%), 0px 1px 18px 0px rgb(0 0 0 / 4%);
+    background-color: white !important;
 }
 
-::ng-deep .mat-drawer-inner-container {    
+::ng-deep .mat-drawer-inner-container {
     display: flex;
     flex-direction: column;
     place-content: space-between;
@@ -54,18 +55,17 @@ button {
     height: 45px;
     display: flex;
     border-radius: 5px;
-    padding: 0 5px;
-    box-shadow: 0px 3px 5px -1px rgb(0 0 0 / 8%),
-        0px 6px 10px 0px rgb(0 0 0 / 6%), 0px 1px 18px 0px rgb(0 0 0 / 4%);
+    padding: 0 10px;
     font-size: 18px !important;
 }
 
 button:hover {
-    background: $accent2;
+    background: $accent1;
+    color: $primary1;
 }
 
 .active {
-    color: $warn2;
+    color: $accent1;
     background: $primary1;
 }
 
@@ -80,33 +80,44 @@ mat-icon {
     justify-content: space-between;
     align-items: center;
     background: $header-background;
-    color: $font-color;
+    color: $header-font-color;
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+    border-bottom: 2px solid $accent1;
+    box-shadow: 0px 3px 5px -1px rgb(0 0 0 / 20%);
 }
 
 .logo {
     width: 80px;
     margin-left: 10px;
-    filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.15));
 }
 
-h1 {
+.header > h1 {
     font-size: 42px;
-    margin-left: 80px;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
 }
 
 .nak-logo-text {
     margin-right: 10px;
-    filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.15));
 }
 
 .footer {
     position: fixed;
     left: 0;
     bottom: 0;
-    width: 100%;
+    width: calc(100% - 20px);
     background-color: $footer-background;
-    color: $font-color;
+    color: $footer-font-color;
     text-align: end;
+    padding: 10px;
+    font-size: 1em;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .sidenav-content{

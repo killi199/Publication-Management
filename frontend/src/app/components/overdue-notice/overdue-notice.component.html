@@ -1,7 +1,9 @@
 <div class="page">
     <div class="header-div">
-        <h1>Mahnwesen</h1>        
-        <mat-checkbox>Historie</mat-checkbox>
+        <h1>Mahnwesen</h1>
+        <mat-slide-toggle color="accent">
+            Historie
+        </mat-slide-toggle>
     </div>
 
     <app-overdue-notice-list
@@ -11,7 +13,7 @@
         (selectRecord)="onSetSelection($event)"
     ></app-overdue-notice-list>
 
-    <div class="button-container">
+    <div class="crud-container">
         <button
             matTooltip="Verlust melden"
             [disabled]="!(currentRecord && deleteable)"

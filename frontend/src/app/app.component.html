@@ -1,59 +1,63 @@
 <div class="header">
     <div>
-        <img class="logo" src="/assets/naklogo.svg" />
+        <img class="logo" src="/assets/naklogo.svg"/>
     </div>
     <h1>Bibliotheksverwaltung</h1>
     <div class="nak-logo-text">
-        <img src="/assets/naklogoWithText.svg" />
+        <img src="/assets/naklogoWithText.svg"/>
     </div>
 </div>
 
 <mat-sidenav-container class="main-container" autosize>
     <mat-sidenav disableClose mode="side" opened>
         <div class="list">
-            <button
-                mat-icon-button
-                [routerLink]="'/overdue-notice'"
-                routerLinkActive="active"
-            >
-                <mat-icon>running_with_errors</mat-icon>
-                <span *ngIf="!showMiniNav">Mahnwesen</span>
-            </button>
+            <div>
+                <button
+                    mat-icon-button
+                    [routerLink]="'/overdue-notice'"
+                    routerLinkActive="active"
+                >
+                    <mat-icon>running_with_errors</mat-icon>
+                    <span *ngIf="!showMiniNav">Mahnwesen</span>
+                </button>
 
-            <button
-                mat-icon-button
-                [routerLink]="'/publications'"
-                routerLinkActive="active"
-            >
-                <mat-icon>menu_book</mat-icon>
-                <span *ngIf="!showMiniNav">Publikationen</span>
-            </button>
+                <button
+                    mat-icon-button
+                    [routerLink]="'/publications'"
+                    routerLinkActive="active"
+                >
+                    <mat-icon>menu_book</mat-icon>
+                    <span *ngIf="!showMiniNav">Publikationen</span>
+                </button>
 
-            <button
-                mat-icon-button
-                [routerLink]="'/assignments'"
-                routerLinkActive="active"
-            >
-                <mat-icon>assignment</mat-icon>
-                <span *ngIf="!showMiniNav">Ausleihvorgänge</span>
-            </button>
+                <button
+                    mat-icon-button
+                    [routerLink]="'/assignments'"
+                    routerLinkActive="active"
+                >
+                    <mat-icon>assignment</mat-icon>
+                    <span *ngIf="!showMiniNav">Ausleihvorgänge</span>
+                </button>
 
-            <button
-                mat-icon-button
-                [routerLink]="'/basedata'"
-                routerLinkActive="active"
-            >
-                <mat-icon>storage</mat-icon>
-                <span *ngIf="!showMiniNav">Stammdaten</span>
-            </button>
+                <button
+                    mat-icon-button
+                    [routerLink]="'/basedata'"
+                    routerLinkActive="active"
+                >
+                    <mat-icon>storage</mat-icon>
+                    <span *ngIf="!showMiniNav">Stammdaten</span>
+                </button>
+            </div>
+            <div>
+                <button *ngIf="!showMiniNav" mat-icon-button (click)="showMiniNav = !showMiniNav">
+                    <mat-icon><span> keyboard_double_arrow_left </span></mat-icon>
+                    <span>Einklappen</span>
+                </button>
+                <button *ngIf="showMiniNav" mat-icon-button (click)="showMiniNav = !showMiniNav">
+                    <mat-icon><span> keyboard_double_arrow_right </span></mat-icon>
+                </button>
+            </div>
         </div>
-        <button *ngIf="!showMiniNav" mat-icon-button (click)="showMiniNav = !showMiniNav">
-            <mat-icon><span> keyboard_double_arrow_left </span></mat-icon>
-            <span>Einklappen</span>
-        </button>
-        <button *ngIf="showMiniNav" mat-icon-button (click)="showMiniNav = !showMiniNav">
-            <mat-icon><span> keyboard_double_arrow_right </span></mat-icon>
-        </button>
     </mat-sidenav>
     <mat-sidenav-content>
         <div class="content">
