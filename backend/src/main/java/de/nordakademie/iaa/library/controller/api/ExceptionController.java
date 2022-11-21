@@ -96,12 +96,22 @@ public class ExceptionController {
         return new ResponseEntity<>("Der Wert eines Feldes (\"" + errorField + "\") ist nicht valide. Bitte geben Sie einen gültigen Wert an.", HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(value = IllegalStateException.class)
+    public ResponseEntity<String> exception(IllegalStateException exception) {
+        Logger logger = LoggerFactory.getLogger(ExceptionController.class.getSimpleName());
+        logger.debug("Bad Request, IllegalStateException: ", exception);
+
+        return new ResponseEntity<>("Die Anfrage hat zu einem invaliden Zustand geführt. " +
+                "Dies könnte unteranderem durch die " +
+                "Mehrfachangabe der selben Relationen aufgetreten sein.", HttpStatus.BAD_REQUEST);
+    }
 
     /**
-     * TODO write docu
+     * Handles exceptions with no explicit type
      */
     @ExceptionHandler(value = RuntimeException.class)
     public ResponseEntity<String> exception(RuntimeException exception) {
+
 
         Throwable rootCause = getRootCause(exception);
 
