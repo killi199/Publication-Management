@@ -1,7 +1,7 @@
 package de.nordakademie.iaa.library.controller.api;
 
-import de.nordakademie.iaa.library.controller.api.exception.WrongDateFormatException;
 import de.nordakademie.iaa.library.controller.dto.AssignmentDto;
+import de.nordakademie.iaa.library.controller.dto.LatestReturnDateForAssignmentDateDto;
 import de.nordakademie.iaa.library.service.AssignmentServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,14 +9,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Null;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 import static de.nordakademie.iaa.library.controller.api.constants.ApiPath.ASSIGNMENT_BASE_PATH;
-import static de.nordakademie.iaa.library.service.helper.InputValidator.isStringEmpty;
+import static de.nordakademie.iaa.library.helper.DateParser.parseDate;
 
 /**
  * controller assignment entity crud operations.
@@ -76,16 +73,7 @@ public class AssignmentController {
      */
     @PostMapping("/return/{assignmentUUID}")
     public ResponseEntity<AssignmentDto> returnAssignment(@PathVariable UUID assignmentUUID, @RequestParam(required = false, name = "dateOfReturn") String dateOfReturnString) {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        Date dateOfReturn = null;
-        if(!isStringEmpty(dateOfReturnString)) {
-            try {
-                dateOfReturn = formatter.parse(dateOfReturnString);
-            } catch (ParseException e) {
-                throw new WrongDateFormatException();
-            }
-        }
-        return new ResponseEntity<>(assignmentService.returnAssignment(assignmentUUID, dateOfReturn), HttpStatus.OK);
+        return new ResponseEntity<>(assignmentService.returnAssignment(assignmentUUID, parseDate(dateOfReturnString)), HttpStatus.OK);
     }
 
     /**
@@ -110,5 +98,18 @@ public class AssignmentController {
     public ResponseEntity<Null> markAssignmentAsLost(@PathVariable UUID uuid) {
         assignmentService.markAssignmentAsLost(uuid);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    /**
+     * This method will return the latest return date for a given assignment date
+     *
+     * @param dateOfAssignmentString the date of assignment as string
+     */
+    @GetMapping("/latest-return-date")
+    public ResponseEntity<LatestReturnDateForAssignmentDateDto> getLatestReturnDate(
+            @RequestParam(required = false, name = "dateOfAssignment") String dateOfAssignmentString) {
+        return new ResponseEntity<>(
+                assignmentService.getLatestReturnDate(parseDate(dateOfAssignmentString)),
+                HttpStatus.OK);
     }
 }

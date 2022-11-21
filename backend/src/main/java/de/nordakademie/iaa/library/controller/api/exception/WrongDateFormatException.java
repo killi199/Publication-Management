@@ -2,6 +2,9 @@ package de.nordakademie.iaa.library.controller.api.exception;
 
 import org.springframework.http.HttpStatus;
 
+/**
+ * This exception is thrown if the date format given cannot be matched to the dateformat needed.
+ */
 public class WrongDateFormatException extends AbstractRestApiException {
 
     public WrongDateFormatException() {
