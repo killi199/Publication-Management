@@ -24,7 +24,7 @@ public class Author {
     @Length(max = 255)
     private String name;
 
-    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST}, orphanRemoval = true)
+    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE}, orphanRemoval = true)
     private List<AuthorsPublications> authorsPublications = new ArrayList<>();
 
     public UUID getUuid() {

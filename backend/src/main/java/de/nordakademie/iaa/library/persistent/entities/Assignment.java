@@ -24,7 +24,7 @@ public class Assignment {
 
     private boolean publicationLoss;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private Borrower borrower;
 
     private int extensions;

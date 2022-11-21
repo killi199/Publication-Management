@@ -27,19 +27,19 @@ public class Publication {
     @NotNull
     private String title;
 
-    @OneToMany(mappedBy = "publication", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "publication", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<AuthorsPublications> authorsPublications = new ArrayList<>();
 
     private Date dateOfPublication;
 
     private String publisher;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private KindOfPublication kindOfPublication;
 
-    private String ISBN;
+    private String isbn;
 
-    @OneToMany(mappedBy = "publication", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "publication", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<KeywordsPublications> keywordsPublications = new ArrayList<>();
 
 
@@ -108,12 +108,12 @@ public class Publication {
         this.kindOfPublication = kindOfPublication;
     }
 
-    public String getISBN() {
-        return ISBN;
+    public String getIsbn() {
+        return isbn;
     }
 
-    public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     public List<KeywordsPublications> getKeywordsPublications() {
